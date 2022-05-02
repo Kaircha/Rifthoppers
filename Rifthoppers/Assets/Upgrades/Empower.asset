@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa708505dc436f4bb0bfba7fdc2351d, type: 3}
+  m_Name: Empower
+  m_EditorClassIdentifier: 
+  Rarity: 1
+  Stats:
+  - Type: 0
+    Value: 40
+  - Type: 1
+    Value: 0.2
+  Description: Bear's health increases by 40 points, and his speed increases by 20%.
+  Sprite: {fileID: 21300000, guid: a43232ee42788a5499259623d9e4efa0, type: 3}

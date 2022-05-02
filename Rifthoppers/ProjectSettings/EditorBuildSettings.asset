@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Introduction.unity
+    guid: 91417b3298d02644089f978f542306c0
+  - enabled: 1
+    path: Assets/Scenes/Laboratory.unity
+    guid: 0b49efb96e484004eb3da74837bcc6d0
+  - enabled: 1
+    path: Assets/Scenes/Rift.unity
+    guid: 264ea4887e6308b46a88829b4e0e0816
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 22cd9accc0fbea840a2e607f756793be, type: 2}
