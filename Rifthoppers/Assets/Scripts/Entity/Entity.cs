@@ -19,6 +19,7 @@ public class Entity : MonoBehaviour {
   [HideInInspector] public Vector2 Direction;
   [HideInInspector] public bool IsMoving;
   public SpriteRenderer Sprite;
+  public AudioSource HurtAudio;
   public Transform Target;
   public float Speed;
 
@@ -34,8 +35,15 @@ public class Entity : MonoBehaviour {
     Health = GetComponent<IHealth>();
   }
 
-  private void OnEnable() => Health.OnDeath += Death;
-  private void OnDisable() => Health.OnDeath -= Death;
+  private void OnEnable() {
+    Health.OnDeath += Death;
+    Health.OnDamageTaken += Hurt;
+  }
+
+  private void OnDisable() {
+    Health.OnDeath -= Death;
+  }
+
   private void Update() => Looking();
   private void FixedUpdate() => Moving();
 
@@ -49,6 +57,8 @@ public class Entity : MonoBehaviour {
     Animator.SetFloat("Direction", (Target.position - transform.position).y > 0.6f ? 1 : -1);
     Animator.SetBool("IsMoving", IsMoving);
   }
-
+  public virtual void Hurt(Entity dealer, Entity target, float amount, bool isDoT) {
+    if (HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
+  }
   public virtual void Death(Entity entity) { }
 }

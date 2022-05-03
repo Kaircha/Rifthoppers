@@ -8,6 +8,7 @@ using System;
 public class Projectile : MonoBehaviour, IPoolable {
   private Rigidbody2D Rigidbody;
   private Collider2D Collider;
+  private AudioSource HitAudio;
   private List<GameObject> Targets;
   private LayerMask Ignore;
   private Entity Owner;
@@ -26,6 +27,7 @@ public class Projectile : MonoBehaviour, IPoolable {
   public void OnEnable() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Collider = GetComponent<Collider2D>();
+    HitAudio = GetComponent<AudioSource>();
     Speed = 0;
     Damage = 0;
   }
@@ -77,6 +79,7 @@ public class Projectile : MonoBehaviour, IPoolable {
 
       entity.Health.Hurt(Owner, entity, Damage, false);
       Explode();
+      if (HitAudio != null && HitAudio.clip != null) HitAudio.Play();
     }
 
     // Piercing; Passes through target
