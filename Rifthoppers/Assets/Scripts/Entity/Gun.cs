@@ -6,6 +6,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour {
   public Entity Entity;
   public SpriteRenderer Sprite;
+  public AudioSource ShootSFX;
   public Transform BulletOrigin;
   public Rigidbody2D Rigidbody;
   private CinemachineImpulseSource ImpulseSource;
@@ -46,6 +47,8 @@ public class Gun : MonoBehaviour {
     }
 
     Rigidbody.AddForce(-10f * projectileSizeMulti * BulletOrigin.right, ForceMode2D.Impulse);
-    ImpulseSource.GenerateImpulse(0.10f * projectileSizeMulti * BulletOrigin.right);
+    ImpulseSource.GenerateImpulse(0.15f * projectileSizeMulti * BulletOrigin.right);
+    ShootSFX.pitch = Random.Range(0.7f, 1.3f);
+    ShootSFX.Play();
   }
 }

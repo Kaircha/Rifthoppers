@@ -5508,7 +5508,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4754661993995688743, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 69781e24d7f746e459165dcc743dc47e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5644,6 +5644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entity: {fileID: 2545378967618400601}
   Sprite: {fileID: 4205700405258454852}
+  ShootSFX: {fileID: 6364248090205549524}
   BulletOrigin: {fileID: 7743683448680869880}
   Rigidbody: {fileID: 2200544171613630170}
 --- !u!114 &1770418940780496951
