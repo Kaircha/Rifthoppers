@@ -38,7 +38,7 @@ public class RiftManager : Singleton<RiftManager> {
   private Vignette Vignette;
 
   public float DifficultyMultiplier => (10f + Experience.Level) / 10f;
-  public float EnergySlowness => Mathf.Clamp01(0.1f + (4 * Energy.Percentage));
+  public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
 
   public event Action<PlayerEntity> OnEnergyCollected;
   public void EnergyCollected(PlayerEntity entity) => OnEnergyCollected?.Invoke(entity);
@@ -70,10 +70,10 @@ public class RiftManager : Singleton<RiftManager> {
   }
 
   private void Update() {
-    ColorAdjustments.contrast.Override(25 * (1 - EnergySlowness));
-    ColorAdjustments.saturation.Override(-125 * (1 - EnergySlowness));
-    Vignette.intensity.Override(0.3f + 0.5f * (1 - EnergySlowness));
-    AudioMixerGroup.audioMixer.SetFloat("Lowpass", EnergySlowness * 5000f);
+    ColorAdjustments.contrast.Override(25 * (1 - EnergyMultiplier));
+    ColorAdjustments.saturation.Override(-125 * (1 - EnergyMultiplier));
+    Vignette.intensity.Override(0.3f + 0.5f * (1 - EnergyMultiplier));
+    AudioMixerGroup.audioMixer.SetFloat("Lowpass", EnergyMultiplier * 5000f);
   }
 
   private void OnEnable() {

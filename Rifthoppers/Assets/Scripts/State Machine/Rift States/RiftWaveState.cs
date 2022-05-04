@@ -21,7 +21,7 @@ public class RiftWaveState : State {
 
     while (true) {
       //RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
-      Time.timeScale = RiftManager.Instance.EnergySlowness;
+      Time.timeScale = RiftManager.Instance.EnergyMultiplier;
       yield return null;
     }
   }

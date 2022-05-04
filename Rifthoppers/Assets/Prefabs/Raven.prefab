@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 30203266770976706}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7358046054717307166
 CapsuleCollider2D:
@@ -283,7 +283,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 30203266770976706}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3234497499906314438
 SpriteRenderer:
@@ -382,7 +382,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 30203266770976706}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2721346417246432152
 GameObject:
@@ -6015,13 +6015,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2108691431005275307}
   - {fileID: 5800847918484055087}
   - {fileID: 523290280874421835}
   - {fileID: 3888042184530647723}
   - {fileID: 6695735092749405781}
-  - {fileID: 4713967439379072290}
   - {fileID: 6302329490608167710}
   - {fileID: 1060806670640223036}
+  - {fileID: 4713967439379072290}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11155,7 +11156,7 @@ Transform:
   m_Children:
   - {fileID: 2185846187463258104}
   m_Father: {fileID: 30203266770976706}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3674875425306046743
 MonoBehaviour:
@@ -11218,7 +11219,7 @@ Transform:
   m_Children:
   - {fileID: 768389116788728900}
   m_Father: {fileID: 30203266770976706}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3363986879162552090
 MonoBehaviour:
@@ -11234,6 +11235,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 4713967439379072290}
   Offset: {x: 0, y: 0, z: 0}
+--- !u!1 &8454792177853529754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108691431005275307}
+  - component: {fileID: 7761576052517908404}
+  m_Layer: 6
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108691431005275307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454792177853529754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 30203266770976706}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &7761576052517908404
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454792177853529754}
+  m_Enabled: 1
 --- !u!1 &8908275052420798118
 GameObject:
   m_ObjectHideFlags: 0
