@@ -26,7 +26,9 @@ public class Dodge : MonoBehaviour {
       Use(Entity.transform.position.x > Entity.Target.position.x);
       Entity.Input.Dodge = false;
       Entity.Rigidbody.AddForce(150f * Entity.Input.Move, ForceMode2D.Impulse);
-      // GameManager.Instance.Energy.Hurt(5f);
+      RiftManager.Instance.Energy.Hurt(Entity, null, 5f * RiftManager.Instance.EnergyMultiplier, false);
+
+      // Instead use a new iFrame system
       foreach (Collider2D collider in Colliders) collider.enabled = false;
       yield return new WaitForSeconds(0.2f);
       foreach (Collider2D collider in Colliders) collider.enabled = true;
