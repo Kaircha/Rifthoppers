@@ -6067,8 +6067,10 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   IsMoving: 0
   Sprite: {fileID: 3234497499906314438}
+  HurtAudio: {fileID: 0}
   Target: {fileID: 4713967439379072290}
   Speed: 8
+  AISpeed: 2
   Machine: {fileID: 0}
   stateType: 1
 --- !u!50 &2200544171613630170

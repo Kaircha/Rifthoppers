@@ -22,6 +22,7 @@ public class Entity : MonoBehaviour {
   public AudioSource HurtAudio;
   public Transform Target;
   public float Speed;
+  public float AISpeed;
 
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
   public void HasDealtDamage(Entity receiver, float amount, bool isDoT) => OnDamageDealt?.Invoke(this, receiver, amount, isDoT);
