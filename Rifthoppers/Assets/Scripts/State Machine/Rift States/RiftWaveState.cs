@@ -20,7 +20,7 @@ public class RiftWaveState : State {
     // Move player to the center
 
     while (true) {
-      RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
+      //RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
       Time.timeScale = RiftManager.Instance.EnergySlowness;
       yield return null;
     }

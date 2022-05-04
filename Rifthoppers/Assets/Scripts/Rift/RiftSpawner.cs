@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RiftSpawner : MonoBehaviour {
+  public bool DebugPreventSpawning = false;
   public List<EnemySpawnData> SpawnData = new();
 
   public void StartSpawning() {
     StopSpawning();
+
+    if (DebugPreventSpawning) return;
+
     foreach (EnemySpawnData spawnData in SpawnData) {
       StartCoroutine(SpawnRoutine(spawnData));
     }
-    // Temporary!
+    // Temporary; References break upon scene load due to Singleton
     SpawnData[0].Pool = PoolManager.Instance.SquidPool;
     SpawnData[1].Pool = PoolManager.Instance.SquidmotherPool;
     SpawnData[2].Pool = PoolManager.Instance.SquidlingPool;

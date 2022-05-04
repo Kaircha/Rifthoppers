@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PulseFade
+  m_Name: PulseFadeIn
   m_Shader: {fileID: -6465566751694194690, guid: b63efa9cd4ed7ec42b9f558233a56f5e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
     - _Alpha: 1
     - _Magnitude: -0.25
     - _Scale: 21
-    - _Size: 0.1
+    - _Size: -0.1
     m_Colors:
     - _FocalPoint: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -7,15 +7,16 @@ public class RiftLoader : MonoBehaviour {
   public List<GameObject> Waves = new List<GameObject>();
   public GameObject Upgrade;
   public GameObject Dead;
-  public Material FadeMaterial;
+  public Material FadeInMaterial;
+  public Material FadeOutMaterial;
 
-  public GameObject Current;
-  private GameObject Temp;
+  public GameObject CurrentArea;
+  private GameObject TempArea;
 
   // These should play an animation for the load
   public void LoadDead() {
     StopAllCoroutines();
-    Temp = Instantiate(Dead, Current.transform);
+    TempArea = Instantiate(Dead, CurrentArea.transform);
   }
 
   public void LoadWave() {
@@ -25,36 +26,41 @@ public class RiftLoader : MonoBehaviour {
 
   public void LoadUpgrade() {
     StopAllCoroutines();
-    Temp = Instantiate(Upgrade, Current.transform);
+    TempArea = Instantiate(Upgrade, CurrentArea.transform);
   }
 
   public IEnumerator Load(GameObject ToSpawn) {
-    if (Temp != null) Destroy(Temp);
+    if (TempArea != null) Destroy(TempArea);
     GameObject newArea = Instantiate(ToSpawn, transform);
 
-    FadeMaterial.SetFloat("_Alpha", 0f);
+    FadeOutMaterial.SetFloat("_Alpha", 0f);
 
-    if (Current.TryGetComponent(out SpriteRenderer mainRenderer)) {
-      mainRenderer.material = FadeMaterial;
-      mainRenderer.sortingOrder = 10;
-    }
-    foreach (Transform child in Current.transform) {
-      if (child.TryGetComponent(out SpriteRenderer childRenderer)) {
-        childRenderer.material = FadeMaterial;
-        childRenderer.sortingOrder = 11;
-      }
-    }
+    SetAreaMaterial(newArea, FadeInMaterial);
+    SetAreaMaterial(CurrentArea, FadeOutMaterial);
 
     float timer = 0f;
     while (timer < 1f) {
-      FadeMaterial.SetFloat("_Alpha", timer);
+      FadeInMaterial.SetFloat("_Alpha", timer);
+      FadeOutMaterial.SetFloat("_Alpha", timer);
       timer += Time.deltaTime;
       yield return null;
     }
     timer = 1f;
-    FadeMaterial.SetFloat("_Alpha", timer);
-    
-    Destroy(Current);
-    Current = newArea;
+    FadeInMaterial.SetFloat("_Alpha", timer);
+    FadeOutMaterial.SetFloat("_Alpha", timer);
+
+    Destroy(CurrentArea);
+    CurrentArea = newArea;
+  }
+
+  public void SetAreaMaterial(GameObject area, Material material) {
+    if (area.TryGetComponent(out SpriteRenderer mainRenderer)) {
+      mainRenderer.material = material;
+    }
+    foreach (Transform child in area.transform) {
+      if (child.TryGetComponent(out SpriteRenderer childRenderer)) {
+        childRenderer.material = material;
+      }
+    }
   }
 }

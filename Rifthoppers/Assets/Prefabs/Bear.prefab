@@ -5680,6 +5680,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   IsMoving: 0
   Sprite: {fileID: 6654770937466850669}
+  HurtAudio: {fileID: 0}
   Target: {fileID: 8261056480845723946}
   Speed: 8
   Machine: {fileID: 0}
@@ -11057,10 +11058,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -11093,7 +11094,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -9247,8 +9247,9 @@ MonoBehaviour:
   - {fileID: 5750884589849377175, guid: 06246b243f6ff034485cae55a2259570, type: 3}
   Upgrade: {fileID: 3972959022735367987, guid: ff47911dcdc3e224d814b9ad44d55b7e, type: 3}
   Dead: {fileID: 3972959022735367987, guid: 57ab536845383304f8fd4f832fb65daa, type: 3}
-  FadeMaterial: {fileID: 2100000, guid: ac4cdbf9697d7c249972a8a462c7cb9e, type: 2}
-  Current: {fileID: 1599469960}
+  FadeInMaterial: {fileID: 2100000, guid: 58262a966f3843a4cb6e424694d8a4cf, type: 2}
+  FadeOutMaterial: {fileID: 2100000, guid: ac4cdbf9697d7c249972a8a462c7cb9e, type: 2}
+  CurrentArea: {fileID: 1599469960}
 --- !u!114 &1672535910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9335,6 +9336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugPreventSpawning: 1
   SpawnData:
   - Rate: 0.3
     Threshold: 0
