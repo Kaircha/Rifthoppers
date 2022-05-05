@@ -29,7 +29,7 @@ public class Dodge : MonoBehaviour {
       Use(Entity.transform.position.x > Entity.Target.position.x);
       Entity.Input.Dodge = false;
       Entity.Rigidbody.AddForce(150f * Entity.Input.Move, ForceMode2D.Impulse);
-      RiftManager.Instance.Energy.Hurt(Entity, null, 5f * RiftManager.Instance.EnergyMultiplier, false);
+      RiftManager.Instance.Energy.Hurt(Entity, null, 5f * RiftManager.Instance.EnergyMultiplier * RiftManager.Instance.EnergyMultiplier, false);
 
       StartCoroutine(Immunity.ImmunityRoutine(0.2f));
       yield return new WaitForSeconds(0.4f);

@@ -23,7 +23,6 @@ public class EnemyEntity : Entity, IPoolable {
   private void OnCollisionEnter2D(Collision2D collision) {
     if (collision.transform.CompareTag("Player") && collision.gameObject.TryGetComponent(out Entity entity)) {
       entity.Health.Hurt(this, entity, 10f * RiftManager.Instance.DifficultyMultiplier, false);
-      // Character doesn't actually get iframes; still registers collision; force is still applied
       collision.rigidbody.AddForce(50f * Direction, ForceMode2D.Impulse);
     }
   }
