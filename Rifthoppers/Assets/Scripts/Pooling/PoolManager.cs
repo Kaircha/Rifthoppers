@@ -9,4 +9,5 @@ public class PoolManager : Singleton<PoolManager> {
   public Pool SquidPool;
   public Pool SquidmotherPool;
   public Pool SquidlingPool;
+  public Pool ExplosiveSquidPool;
 }
