@@ -37,6 +37,8 @@ public class RiftManager : Singleton<RiftManager> {
   private ColorAdjustments ColorAdjustments;
   private Vignette Vignette;
 
+  [Header("Experimenting")]
+  [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
   public float DifficultyMultiplier => (10f + Experience.Level) / 10f;
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
 

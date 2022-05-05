@@ -19,7 +19,9 @@ public class RiftWaveState : State {
   public override IEnumerator Execute() {
     while (true) {
       RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
-      Time.timeScale = RiftManager.Instance.EnergyMultiplier;
+      // Time.timeScale = RiftManager.Instance.EnergyMultiplier;
+      // Experimenting!
+      Time.timeScale = RiftManager.Instance.EnergyMultiplier * RiftManager.Instance.SpeedMultiplier;
       yield return null;
     }
   }
