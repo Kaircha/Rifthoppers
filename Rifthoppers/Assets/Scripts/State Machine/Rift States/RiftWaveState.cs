@@ -17,10 +17,8 @@ public class RiftWaveState : State {
   }
 
   public override IEnumerator Execute() {
-    // Move player to the center
-
     while (true) {
-      //RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
+      RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
       Time.timeScale = RiftManager.Instance.EnergyMultiplier;
       yield return null;
     }

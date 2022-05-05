@@ -72,14 +72,14 @@ public class Projectile : MonoBehaviour, IPoolable {
     // Dealing damage
     if (collider.gameObject.TryGetComponent(out Entity entity)) {
       collider.GetComponent<Rigidbody2D>().AddForce(40f * SizeMulti * transform.right, ForceMode2D.Impulse);
-      GameObject particles = PoolManager.Instance.ImpactParticles.Objects.Get();
-      particles.transform.position = transform.position;
-      particles.transform.right = transform.right;
-      particles.GetComponent<ParticleSystem>().Play();
+      GameObject impact = PoolManager.Instance.BulletImpact.Objects.Get();
+      impact.transform.position = transform.position;
+      impact.transform.right = transform.right;
+      impact.GetComponent<ParticleSystem>().Play();
+      impact.GetComponent<AudioSource>().Play();
 
       entity.Health.Hurt(Owner, entity, Damage, false);
       Explode();
-      if (HitAudio != null && HitAudio.clip != null) HitAudio.Play();
     }
 
     // Piercing; Passes through target

@@ -53,7 +53,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 5
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   HurtAudio: {fileID: 4285103430202759523}
   Target: {fileID: 0}
   Speed: 7.5
+  AISpeed: 0
   Experience: 16
   BaseHP: 40
 --- !u!50 &7704696552183869551

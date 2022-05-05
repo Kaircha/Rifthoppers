@@ -8495,7 +8495,7 @@ GameObject:
   - component: {fileID: 1391778700}
   - component: {fileID: 1391778699}
   m_Layer: 0
-  m_Name: Impact Particle Pool
+  m_Name: Bulet Impact Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9376,7 +9376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPreventSpawning: 1
+  DebugPreventSpawning: 0
   SpawnData:
   - Rate: 0.3
     Threshold: 0
@@ -10017,7 +10017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullets: {fileID: 9891950}
-  ImpactParticles: {fileID: 1391778699}
+  BulletImpact: {fileID: 1391778699}
   SquidPool: {fileID: 2067051469}
   SquidmotherPool: {fileID: 1364144807}
   SquidlingPool: {fileID: 814662143}

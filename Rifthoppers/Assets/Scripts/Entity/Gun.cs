@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour {
 
   public void Shoot() {
     int projectileCount = Mathf.Max((int)Stats.Get(StatType.ProjectileCount), 1);
-    float projectileSpeed = Mathf.Max(10 * Stats.Get(StatType.ProjectileSpeedMulti), 1);
+    float projectileSpeed = Mathf.Max(15 * Stats.Get(StatType.ProjectileSpeedMulti), 1);
     float projectileDamage = Mathf.Max(Stats.Get(StatType.ProjectileDamage) * Stats.Get(StatType.ProjectileDamageMulti), 1);
     float projectileHoming = Stats.Get(StatType.ProjectileHoming);
     int projectileForks = (int)Stats.Get(StatType.ProjectileForks);

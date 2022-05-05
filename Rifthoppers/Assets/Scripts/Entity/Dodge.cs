@@ -7,7 +7,11 @@ public class Dodge : MonoBehaviour {
   public SpriteRenderer Renderer;
   public ParticleSystem DodgeSystem;
   public AudioSource DodgeSource;
-  private Collider2D[] Colliders;
+  private Immunity Immunity;
+
+  private void Awake() {
+    Immunity = Entity.GetComponentInChildren<Immunity>(true);
+  }
 
   public void Use(bool isFlipped) {
     var main = DodgeSystem.main;
@@ -20,7 +24,6 @@ public class Dodge : MonoBehaviour {
   }
 
   public IEnumerator DodgeRoutine() {
-    Colliders = Entity.GetComponentsInChildren<Collider2D>();
     while (true) {
       yield return new WaitUntil(() => Entity.Input.Dodge && Entity.Input.Move != Vector2.zero);
       Use(Entity.transform.position.x > Entity.Target.position.x);
@@ -28,11 +31,8 @@ public class Dodge : MonoBehaviour {
       Entity.Rigidbody.AddForce(150f * Entity.Input.Move, ForceMode2D.Impulse);
       RiftManager.Instance.Energy.Hurt(Entity, null, 5f * RiftManager.Instance.EnergyMultiplier, false);
 
-      // Instead use a new iFrame system
-      foreach (Collider2D collider in Colliders) collider.enabled = false;
-      yield return new WaitForSeconds(0.2f);
-      foreach (Collider2D collider in Colliders) collider.enabled = true;
-      yield return new WaitForSeconds(0.2f);
+      StartCoroutine(Immunity.ImmunityRoutine(0.2f));
+      yield return new WaitForSeconds(0.4f);
     }
   }
 }
