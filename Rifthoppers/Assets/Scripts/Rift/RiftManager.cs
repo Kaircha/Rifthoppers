@@ -28,7 +28,7 @@ public class RiftManager : Singleton<RiftManager> {
 
   public Experience Experience;
   public GameObject Checkpoint;
-  public List<Upgrade> Upgrades = new();
+  public List<UpgradeOld> Upgrades = new();
 
   [Header("Dynamic Effects")]
   public Material RiftWaveUIMaterial;

@@ -2,28 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrade")]
-public class Upgrade : ScriptableObject {
-  public RarityType Rarity;
-  public List<Stat> Stats = new List<Stat>();
-  [TextArea] public string Description;
-  public Sprite Sprite;
+public abstract class Upgrade {
+  public abstract string Name { get; }
+  public abstract int ID { get; }
+  public abstract Sprite Sprite { get; }
+  public abstract string Quote { get; }
+  public abstract string Description { get; }
+  public abstract int Weight { get; }
+  public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");
+  public int TimesObtained => DataManager.Instance.Get<int>($"{ID}TimesObtained");
+  // Some sort of Unlock Condition
 
-  public virtual void Apply() {
-    StatManager.Instance.Upgrades.Add(this);
-    foreach (Stat stat in Stats) {
-      if (StatManager.Instance.Has(stat.Type)) {
-        StatManager.Instance.Add(stat.Type, stat.Value);
-      } else {
-        StatManager.Instance.Set(stat.Type, stat.Value);
-      }
-    }
+  public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
+  public void Add() {
+    DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
+    OnAdd();
   }
-}
+  public void Remove() {
+    OnRemove();
+  }
 
-public enum RarityType { 
-  Common,
-  Uncommon,
-  Rare,
-  Legendary,
+  public abstract void OnAdd();
+  public abstract void OnRemove();
 }

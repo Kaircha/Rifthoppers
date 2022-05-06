@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class DataManager : Singleton<DataManager> {
   public GameObject Icon;
   public bool UseSave;
-  public Dictionary<string, dynamic> Data = new Dictionary<string, dynamic>();
+  public Dictionary<string, dynamic> Data = new();
 
   public override void Awake() {
     base.Awake();
@@ -28,20 +28,20 @@ public class DataManager : Singleton<DataManager> {
   public void DeleteData() => Data = new Dictionary<string, dynamic>();
 
   [ContextMenu("SaveData")]
-  public void SaveData() => SaveData(Application.persistentDataPath + "/save" + PlayerPrefs.GetInt("CurrentSave", 1) + ".dat");
+  public void SaveData() => SaveData($"{Application.persistentDataPath}/Save.dat");
   private void SaveData(string path) {
     if (!UseSave) return;
-    using (FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite)) {
+    using (FileStream stream = new(path, FileMode.OpenOrCreate, FileAccess.ReadWrite)) {
       new BinaryFormatter().Serialize(stream, Data);
     }
     // Display saving icon
   }
 
   [ContextMenu("Load Data")]
-  public void LoadData() => LoadData(Application.persistentDataPath + "/save" + PlayerPrefs.GetInt("CurrentSave", 1) + ".dat");
+  public void LoadData() => LoadData($"{Application.persistentDataPath}/Save.dat");
   private void LoadData(string path) {
     if (!UseSave || !File.Exists(path)) return;
-    using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read)) {
+    using (FileStream stream = new(path, FileMode.Open, FileAccess.Read)) {
       Data = new BinaryFormatter().Deserialize(stream) as Dictionary<string, dynamic>;
     }
   }

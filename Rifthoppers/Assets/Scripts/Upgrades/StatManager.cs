@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatManager : Singleton<StatManager> {
   public override bool Persistent => false;
-  public List<Upgrade> Upgrades = new List<Upgrade>();
+  public List<UpgradeOld> Upgrades = new List<UpgradeOld>();
   public Dictionary<StatType, float> Stats = new Dictionary<StatType, float>();
 
   public override void Awake() {
@@ -17,7 +17,7 @@ public class StatManager : Singleton<StatManager> {
   public void Set(StatType type, float value) => Stats[type] = value;
   public void Add(StatType type, float value) => Stats[type] += value;
   public void Initialize() {
-    Upgrades = new List<Upgrade>();
+    Upgrades = new List<UpgradeOld>();
     Stats = new Dictionary<StatType, float> {
       { StatType.EnergyTotal, 100 },
       { StatType.PlayerSpeedMulti, 1 },

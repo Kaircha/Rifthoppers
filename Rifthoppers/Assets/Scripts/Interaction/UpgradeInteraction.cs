@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class UpgradeInteraction : MonoBehaviour, IInteractable {
-  private Upgrade Upgrade;
+  private UpgradeOld Upgrade;
   private SpriteRenderer Renderer;
   public TextMeshProUGUI TempText;
   public GameObject TempTutorial;
@@ -16,7 +16,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
   // Ideally set externally in future
   private void OnEnable() => SetUpgrade(RiftManager.Instance.Upgrades[Random.Range(0, RiftManager.Instance.Upgrades.Count)]);
 
-  public void SetUpgrade(Upgrade upgrade) {
+  public void SetUpgrade(UpgradeOld upgrade) {
     Upgrade = upgrade;
     Renderer.sprite = Upgrade.Sprite;
     TempText.text = upgrade.name;
