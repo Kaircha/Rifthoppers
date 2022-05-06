@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,8 @@ public class PlayerEntity : Entity {
   public StateMachine Machine;
   public PlayerStateType stateType;
 
-  public DamageDealtCondition DamageDealtCondition;
+  public delegate void Delegate();
+  public Delegate AttackHit;
 
   public void Start() {
     Machine = GetComponent<StateMachine>();
@@ -21,6 +23,13 @@ public class PlayerEntity : Entity {
   public void EnterAIState() => Machine.State = new PlayerAIState(this);
   public void EnterHubState() => Machine.State = new PlayerHubState(this);
   public void EnterRiftState() => Machine.State = new PlayerRiftState(this);
+
+  public void AddCallback(Delegate callbackMethod) {
+    AttackHit += callbackMethod;
+  }
+  public void RemoveCallback(Delegate callbackMethod) {
+    AttackHit -= callbackMethod;
+  }
 }
 
 // TEMPORARY!
