@@ -25,12 +25,13 @@ public class VipersTongueUpgrade : Upgrade {
 
   public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (amount == 0 || isDoT) return;
-    receiver.AddEffect(new PoisonEffect());
+    // Chance to apply the effect, instead of guaranteed
+    dealer.Poisons.Add(new PoisonEffect(5, 5));
   }
 
   // Effect should only occur on touching an enemy
   private void PoisonOnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (amount == 0 || isDoT) return;
-    dealer.AddEffect(new PoisonEffect());
+    dealer.Poisons.Add(new PoisonEffect(5, 5));
   }
 }

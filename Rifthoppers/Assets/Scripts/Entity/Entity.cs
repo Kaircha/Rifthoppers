@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,10 @@ public class Entity : MonoBehaviour {
   public Transform Target;
   public float Speed;
   public float AISpeed;
-  private List<Effect> Effects;
+
+  // Effects
+  public List<PoisonEffect> Poisons = new();
+  public IgniteEffect Ignite;
 
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
@@ -45,7 +49,11 @@ public class Entity : MonoBehaviour {
     Health.OnDeath -= Death;
   }
 
-  private void Update() => Looking();
+  private void Update() {
+    Looking();
+    Effects();
+  }
+
   private void FixedUpdate() => Moving();
 
   public virtual void Moving() {
@@ -62,6 +70,17 @@ public class Entity : MonoBehaviour {
     if (HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
   }
   public virtual void Death(Entity entity) { }
+  
+  public void Effects() {
+    if (Ignite.Duration > 0) {
+      Health.Hurt(null, this, Ignite.Damage, true);
+      Ignite.Duration -= Time.deltaTime;
+    }
 
-  public void AddEffect(Effect effect) => Effects.Add(effect);
+    if (Poisons.Count > 0) {
+      Health.Hurt(null, this, Poisons.Sum(x => x.Damage), true);
+      foreach (PoisonEffect poison in Poisons) poison.Duration -= Time.deltaTime;
+      Poisons.RemoveAll(x => x.Duration <= 0);
+    } 
+  }
 }
