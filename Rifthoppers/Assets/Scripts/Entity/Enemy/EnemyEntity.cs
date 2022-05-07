@@ -13,6 +13,8 @@ public class EnemyEntity : Entity, IPoolable {
   public void HandleSpawn() {
     (Health as Health).Maximum = BaseHP * RiftManager.Instance.DifficultyMultiplier;
     Health.Revive();
+    Ignite = new IgniteEffect(0, 0);
+    Poisons = new();
     OnSpawn?.Invoke();
   }
 

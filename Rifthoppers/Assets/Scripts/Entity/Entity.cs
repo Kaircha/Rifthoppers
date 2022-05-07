@@ -69,18 +69,18 @@ public class Entity : MonoBehaviour {
     Animator.SetBool("IsMoving", IsMoving);
   }
   public virtual void Hurt(Entity dealer, Entity target, float amount, bool isDoT) {
-    if (HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
+    if (!isDoT && HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
   }
   public virtual void Death(Entity entity) { }
   
   public void Effects() {
     if (Ignite.Duration > 0) {
-      Health.Hurt(null, this, Ignite.Damage, true);
+      Health.Hurt(null, this, Ignite.Damage * Time.deltaTime, true);
       Ignite.Duration -= Time.deltaTime;
     }
 
     if (Poisons.Count > 0) {
-      Health.Hurt(null, this, Poisons.Sum(x => x.Damage), true);
+      Health.Hurt(null, this, Poisons.Sum(x => x.Damage) * Time.deltaTime, true);
       foreach (PoisonEffect poison in Poisons) poison.Duration -= Time.deltaTime;
       Poisons.RemoveAll(x => x.Duration <= 0);
     } 

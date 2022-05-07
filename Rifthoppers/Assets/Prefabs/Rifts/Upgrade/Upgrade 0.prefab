@@ -278,6 +278,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3972959022735367988}
     m_Modifications:
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 8118200194708336825, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
       propertyPath: TempTutorial
       value: 
@@ -352,6 +360,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3972959022735367988}
     m_Modifications:
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 8118200194708336825, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
       propertyPath: TempTutorial
       value: 
@@ -426,6 +442,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3972959022735367988}
     m_Modifications:
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.x
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365687033324126218, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+      propertyPath: m_Size.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 8118200194708336825, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
       propertyPath: TempTutorial
       value: 

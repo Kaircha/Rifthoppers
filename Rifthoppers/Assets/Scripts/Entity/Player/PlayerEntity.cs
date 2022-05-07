@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerEntity : Entity {
   public StateMachine Machine;
-  public PlayerStateType stateType;
+  public PlayerStateType StateType;
 
   public void Start() {
     Machine = GetComponent<StateMachine>();
-    switch (stateType) {
+    switch (StateType) {
       case PlayerStateType.AI: EnterAIState(); break;
       case PlayerStateType.Hub: EnterHubState(); break;
       case PlayerStateType.Rift: EnterRiftState(); break;
