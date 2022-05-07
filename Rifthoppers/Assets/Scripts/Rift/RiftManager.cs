@@ -39,6 +39,8 @@ public class RiftManager : Singleton<RiftManager> {
 
   [Header("Experimenting")]
   [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
+  public bool DisableEnergyDamage = false;
+
   public float DifficultyMultiplier => (10f + Experience.Level) / 10f;
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
 
@@ -76,6 +78,8 @@ public class RiftManager : Singleton<RiftManager> {
     ColorAdjustments.saturation.Override(-125 * (1 - EnergyMultiplier));
     Vignette.intensity.Override(0.3f + 0.5f * (1 - EnergyMultiplier));
     AudioMixerGroup.audioMixer.SetFloat("Lowpass", EnergyMultiplier * 5000f);
+
+    if (DisableEnergyDamage) Energy.Heal(); // Ugly code just for lazy debugging
   }
 
   private void OnEnable() {

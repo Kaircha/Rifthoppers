@@ -14,14 +14,14 @@ public abstract class Upgrade {
   // Some sort of Unlock Condition
 
   public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
-  public void Add(PlayerEntity entity) {
+  public void Add(Entity entity) {
     DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
     OnAdd(entity);
   }
-  public void Remove(PlayerEntity entity) {
+  public void Remove(Entity entity) {
     OnRemove(entity);
   }
 
-  public abstract void OnAdd(PlayerEntity entity);
-  public abstract void OnRemove(PlayerEntity entity);
+  public abstract void OnAdd(Entity entity);
+  public abstract void OnRemove(Entity entity);
 }

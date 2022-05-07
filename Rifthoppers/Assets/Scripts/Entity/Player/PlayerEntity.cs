@@ -8,9 +8,6 @@ public class PlayerEntity : Entity {
   public StateMachine Machine;
   public PlayerStateType stateType;
 
-  public delegate void Delegate();
-  public Delegate AttackHit;
-
   public void Start() {
     Machine = GetComponent<StateMachine>();
     switch (stateType) {
@@ -23,13 +20,6 @@ public class PlayerEntity : Entity {
   public void EnterAIState() => Machine.State = new PlayerAIState(this);
   public void EnterHubState() => Machine.State = new PlayerHubState(this);
   public void EnterRiftState() => Machine.State = new PlayerRiftState(this);
-
-  public void AddCallback(Delegate callbackMethod) {
-    AttackHit += callbackMethod;
-  }
-  public void RemoveCallback(Delegate callbackMethod) {
-    AttackHit -= callbackMethod;
-  }
 }
 
 // TEMPORARY!

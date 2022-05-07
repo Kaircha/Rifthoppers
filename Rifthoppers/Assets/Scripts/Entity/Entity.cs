@@ -10,7 +10,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(IHealth))]
 public class Entity : MonoBehaviour {
-  //[HideInInspector] public StateMachine Machine;
   [HideInInspector] public Rigidbody2D Rigidbody;
   [HideInInspector] public Animator Animator;
   [HideInInspector] public IHealth Health;
@@ -23,14 +22,15 @@ public class Entity : MonoBehaviour {
   public Transform Target;
   public float Speed;
   public float AISpeed;
+  private List<Effect> Effects;
 
+  // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
   public void HasDealtDamage(Entity receiver, float amount, bool isDoT) => OnDamageDealt?.Invoke(this, receiver, amount, isDoT);
   public event Action OnAttacked;
   public void HasAttacked() => OnAttacked?.Invoke();
 
   private void Awake() {
-    //Machine = GetComponent<StateMachine>();
     Rigidbody = GetComponent<Rigidbody2D>();
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();
@@ -62,4 +62,6 @@ public class Entity : MonoBehaviour {
     if (HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
   }
   public virtual void Death(Entity entity) { }
+
+  public void AddEffect(Effect effect) => Effects.Add(effect);
 }
