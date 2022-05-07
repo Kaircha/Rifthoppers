@@ -27,7 +27,7 @@ public class Entity : MonoBehaviour {
 
   // Effects
   public List<PoisonEffect> Poisons = new();
-  public IgniteEffect Ignite;
+  public IgniteEffect Ignite = new(0, 0);
 
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
