@@ -4,22 +4,18 @@ using TMPro;
 using UnityEngine;
 
 public class UpgradeInteraction : MonoBehaviour, IInteractable {
-  private UpgradeOld Upgrade;
-  private SpriteRenderer Renderer;
+  private Upgrade Upgrade;
+  public SpriteRenderer Renderer;
   public TextMeshProUGUI TempText;
   public GameObject TempTutorial;
 
-  private void Awake() {
-    Renderer = GetComponent<SpriteRenderer>();
-  }
-
   // Ideally set externally in future
-  private void OnEnable() => SetUpgrade(RiftManager.Instance.Upgrades[Random.Range(0, RiftManager.Instance.Upgrades.Count)]);
+  private void OnEnable() => SetUpgrade(UpgradeManager.Instance.Upgrades[Random.Range(0, UpgradeManager.Instance.Upgrades.Count)]);
 
-  public void SetUpgrade(UpgradeOld upgrade) {
+  public void SetUpgrade(Upgrade upgrade) {
     Upgrade = upgrade;
     Renderer.sprite = Upgrade.Sprite;
-    TempText.text = upgrade.name;
+    TempText.text = upgrade.Name;
     if (StatManager.Instance.Upgrades.Count > 0) TempTutorial.SetActive(false);
   }
 
@@ -32,7 +28,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
   }
 
   public void Interact(PlayerEntity interactor) {
-    Upgrade.Apply();
+    Upgrade.Add(interactor);
     RiftManager.Instance.NextWave();
   }
 }
