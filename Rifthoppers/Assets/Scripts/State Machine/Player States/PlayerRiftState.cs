@@ -1,28 +1,26 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerRiftState : State {
   public Entity Entity;
   private bool IsShooting => Entity.Input.Shoot;
   private bool IsMoving => Entity.Direction.magnitude > 0;
-  private StatManager Stats => StatManager.Instance;
-  private Power Power;
+  private Stats Stats => Entity.Stats;
   private Gun Gun;
+  private Power Power;
   private Dodge Dodge;
 
   public PlayerRiftState(Entity entity) {
     Entity = entity;
-    Power = Entity.GetComponentInChildren<Power>(true);
     Gun = Entity.GetComponentInChildren<Gun>(true);
+    Power = Entity.GetComponentInChildren<Power>(true);
     Dodge = Entity.GetComponentInChildren<Dodge>(true);
   }
 
   public override void Enter() {
-    Power.gameObject.SetActive(true);
     Gun.gameObject.SetActive(true);
+    Power.gameObject.SetActive(true);
     Dodge.gameObject.SetActive(true);
 
     Machine.StartCoroutine(ShootRoutine());
@@ -53,7 +51,7 @@ public class PlayerRiftState : State {
       yield return new WaitUntil(() => IsShooting);
       Entity.HasAttacked();
       Gun.Shoot();
-      float firerate = (IsMoving ? 1 : 1.5f) * Mathf.Max(0.01f, Stats.Get(StatType.PlayerFirerate));
+      float firerate = (IsMoving ? 1 : 1.5f) * Stats.PlayerFirerate;
       yield return new WaitForSeconds(1 / firerate);
     }
   }

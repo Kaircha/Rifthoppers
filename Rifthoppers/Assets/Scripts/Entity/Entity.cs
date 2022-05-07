@@ -14,6 +14,7 @@ public class Entity : MonoBehaviour {
   [HideInInspector] public Rigidbody2D Rigidbody;
   [HideInInspector] public Animator Animator;
   [HideInInspector] public IHealth Health;
+  [HideInInspector] public Stats Stats;
   [HideInInspector] public InputDevice Device;
   [HideInInspector] public InputData Input;
   [HideInInspector] public Vector2 Direction;
@@ -38,6 +39,7 @@ public class Entity : MonoBehaviour {
     Rigidbody = GetComponent<Rigidbody2D>();
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();
+    Stats = GetComponent<Stats>();
   }
 
   private void OnEnable() {

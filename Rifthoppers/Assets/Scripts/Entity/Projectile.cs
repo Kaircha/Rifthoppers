@@ -45,16 +45,14 @@ public class Projectile : MonoBehaviour, IPoolable {
     }
   }
 
-  public void Shoot(LayerMask ignore, Entity owner, float speed, float damage, float homing = 0, int forks = 0, int pierces = 0, int chains = 0, float explosion = 0, float sizeMulti = 1) {
+  public void Shoot(LayerMask ignore, Entity owner, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
     Ignore = ignore;
     Owner = owner;
     Speed = speed;
     Damage = damage;
     Homing = homing;
     Forks = forks;
-    Pierces = pierces;
     Chains = chains;
-    Explosion = explosion;
     SizeMulti = sizeMulti;
     Rigidbody.velocity = Speed * transform.right;
     transform.localScale = SizeMulti * Vector3.one;

@@ -28,7 +28,6 @@ public class RiftManager : Singleton<RiftManager> {
 
   public Experience Experience;
   public GameObject Checkpoint;
-  public List<UpgradeOld> Upgrades = new();
 
   [Header("Dynamic Effects")]
   public Material RiftWaveUIMaterial;
@@ -63,9 +62,10 @@ public class RiftManager : Singleton<RiftManager> {
   }
 
   private void Start() {
-    Energy.Static = StatManager.Instance.Get(StatType.EnergyTotal);
-    Energy.Dynamic = StatManager.Instance.Get(StatType.EnergyTotal);
-    Energy.Maximum = StatManager.Instance.Get(StatType.EnergyTotal);
+    // Up for change
+    Energy.Static = 100f;
+    Energy.Dynamic = 100f;
+    Energy.Maximum = 100f;
 
     if (PostProcessingVolume.profile.TryGet(out ColorAdjustments colorAdjustments)) ColorAdjustments = colorAdjustments;
     if (PostProcessingVolume.profile.TryGet(out Vignette vignette)) Vignette = vignette;

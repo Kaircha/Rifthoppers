@@ -5822,7 +5822,7 @@ MonoBehaviour:
   Target: {fileID: 8261056480845723946}
   Speed: 8
   AISpeed: 2
-  Machine: {fileID: 0}
+  Machine: {fileID: 6654770937096141520}
   stateType: 2
 --- !u!50 &6654770937096141510
 Rigidbody2D:
