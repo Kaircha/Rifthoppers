@@ -266,7 +266,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8807,7 +8807,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9342,6 +9342,17 @@ MonoBehaviour:
   WaterPoolMaterial_In: {fileID: 2100000, guid: 000c1e3c9dae8974daba6a941daf369b, type: 2}
   WaterPoolMaterial_Out: {fileID: 2100000, guid: 4e814299d5c5fd54686b97a6b724b6d3, type: 2}
   CurrentArea: {fileID: 1599469960}
+  FadeInMaterials:
+  - {fileID: 2100000, guid: 58262a966f3843a4cb6e424694d8a4cf, type: 2}
+  - {fileID: 2100000, guid: 000c1e3c9dae8974daba6a941daf369b, type: 2}
+  FadeOutMaterials:
+  - {fileID: 2100000, guid: ac4cdbf9697d7c249972a8a462c7cb9e, type: 2}
+  - {fileID: 2100000, guid: 4e814299d5c5fd54686b97a6b724b6d3, type: 2}
+  MaterialLayers:
+  - serializedVersion: 2
+    m_Bits: 16375
+  - serializedVersion: 2
+    m_Bits: 16384
 --- !u!114 &1672535910
 MonoBehaviour:
   m_ObjectHideFlags: 0
