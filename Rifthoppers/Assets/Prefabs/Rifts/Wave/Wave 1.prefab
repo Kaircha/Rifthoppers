@@ -598,6 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5750884589849376873}
   - component: {fileID: 5750884589849377174}
+  - component: {fileID: -3729903694514678969}
   m_Layer: 0
   m_Name: Wave 1
   m_TagString: Untagged
@@ -691,6 +692,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3729903694514678969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5750884589849377175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae57d21ea8cf225448285bb03ac7e0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spots: []
 --- !u!1 &5750884590014863553
 GameObject:
   m_ObjectHideFlags: 0

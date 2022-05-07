@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RiftWaveUI
-  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: WaterPool_Out
+  m_Shader: {fileID: -6465566751694194690, guid: a2c3e694c4b62944a9af2704a8a1d633, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,34 +20,33 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MaskTex:
+    - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorMask: 15
-    - _EnableExternalAlpha: 0
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UseUIAlphaClip: 0
+    - _Alpha: 1
+    - _Magnitude: -0.25
+    - _RippleDensity: 3
+    - _RippleSlimness: 3
+    - _RippleSpeed: 3
+    - _Scale: 20
+    - _Size: 0.1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FocalPoint: {r: 0, g: 0, b: 0, a: 0}
+    - _LiquidColor: {r: 0.03444285, g: 0.3205251, b: 0.8113208, a: 0}
+    - _RippleColor: {r: 0.357022, g: 0.4998776, b: 0.6698113, a: 0}
   m_BuildTextureStacks: []

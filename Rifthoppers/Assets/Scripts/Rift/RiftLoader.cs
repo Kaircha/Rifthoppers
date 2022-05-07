@@ -9,6 +9,8 @@ public class RiftLoader : MonoBehaviour {
   public GameObject Dead;
   public Material FadeInMaterial;
   public Material FadeOutMaterial;
+  public Material WaterPoolMaterial_In;
+  public Material WaterPoolMaterial_Out;
 
   public GameObject CurrentArea;
   private GameObject TempArea;
@@ -29,38 +31,50 @@ public class RiftLoader : MonoBehaviour {
     TempArea = Instantiate(Upgrade, CurrentArea.transform);
   }
 
+  // Need to find beter solution for transitioning objects that don't use the FadeOut/In materials
+
   public IEnumerator Load(GameObject ToSpawn) {
     if (TempArea != null) Destroy(TempArea);
     GameObject newArea = Instantiate(ToSpawn, transform);
 
-    FadeOutMaterial.SetFloat("_Alpha", 0f);
+    newArea.GetComponent<RiftRandomizer>().RandomizeSpots();
 
-    SetAreaMaterial(newArea, FadeInMaterial);
-    SetAreaMaterial(CurrentArea, FadeOutMaterial);
+    FadeOutMaterial.SetFloat("_Alpha", 0f);
+    WaterPoolMaterial_Out.SetFloat("_Alpha", 0f);
+
+    SetAreaMaterial(newArea, FadeInMaterial, WaterPoolMaterial_In);
+    SetAreaMaterial(CurrentArea, FadeOutMaterial, WaterPoolMaterial_Out);
 
     float timer = 0f;
     while (timer < 1f) {
       FadeInMaterial.SetFloat("_Alpha", timer);
       FadeOutMaterial.SetFloat("_Alpha", timer);
+      WaterPoolMaterial_In.SetFloat("_Alpha", timer);
+      WaterPoolMaterial_Out.SetFloat("_Alpha", timer);
       timer += Time.deltaTime;
       yield return null;
     }
     timer = 1f;
     FadeInMaterial.SetFloat("_Alpha", timer);
     FadeOutMaterial.SetFloat("_Alpha", timer);
+    WaterPoolMaterial_In.SetFloat("_Alpha", timer);
+    WaterPoolMaterial_Out.SetFloat("_Alpha", timer);
 
     Destroy(CurrentArea);
     CurrentArea = newArea;
   }
 
-  public void SetAreaMaterial(GameObject area, Material material) {
-    if (area.TryGetComponent(out SpriteRenderer mainRenderer)) {
-      mainRenderer.material = material;
+  public void SetAreaMaterial(GameObject area, Material material, Material forWater) {
+
+    if (area.TryGetComponent(out SpriteRenderer mainRenderer)){
+
+      if (area.layer != 14)
+        mainRenderer.material = material;
+      else
+        mainRenderer.material = forWater;
     }
-    foreach (Transform child in area.transform) {
-      if (child.TryGetComponent(out SpriteRenderer childRenderer)) {
-        childRenderer.material = material;
-      }
-    }
+    
+    foreach (Transform child in area.transform) 
+        SetAreaMaterial(child.gameObject, material, forWater);
   }
 }
