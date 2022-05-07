@@ -21,7 +21,7 @@ public class DataManager : Singleton<DataManager> {
   void OnApplicationQuit() => SaveData();
 
   public bool Has(string id) => Data.ContainsKey(id);
-  public T Get<T>(string id) => Data.TryGetValue(id, out dynamic value) ? value : default;
+  public T Get<T>(string id) => Data.TryGetValue(id, out dynamic value) ? value : default(T); 
   public void Set<T>(string id, T value) => Data[id] = value;
 
   [ContextMenu("DeleteData")]

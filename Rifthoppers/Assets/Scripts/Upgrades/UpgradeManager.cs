@@ -5,9 +5,11 @@ using UnityEngine;
 public class UpgradeManager : Singleton<UpgradeManager>{
 
   public List<Upgrade> Upgrades = new();
+  public List<Sprite> Sprites = new();
 
-  public void Awake()
+  public override void Awake()
   {
-    Upgrades.Add(new VipersTongueUpgrade());
+    base.Awake();
+    Upgrades.Add(new VipersTongueUpgrade(0, Sprites[0]));
   }
 }

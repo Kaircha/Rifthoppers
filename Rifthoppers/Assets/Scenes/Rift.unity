@@ -8088,7 +8088,7 @@ Transform:
   m_Children:
   - {fileID: 697547886}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244454998
 GameObject:
@@ -9490,27 +9490,6 @@ MonoBehaviour:
     Level: 1
     Current: 0
   Checkpoint: {fileID: 3875406827800948136}
-  Upgrades:
-  - {fileID: 11400000, guid: 0cc2104b0bb19214280178d388f49fdc, type: 2}
-  - {fileID: 11400000, guid: abbf4523bda20c147862f5a1f99b762a, type: 2}
-  - {fileID: 11400000, guid: 950ebc8e498c47c4a806bf96cc05aeb2, type: 2}
-  - {fileID: 11400000, guid: fb6ea805abb0b6443bca18ed6a122c2e, type: 2}
-  - {fileID: 11400000, guid: 225b83fb6d491bf4d82fd55826807312, type: 2}
-  - {fileID: 11400000, guid: e0f0a6bb0e89ea84d83b40c6a00b7497, type: 2}
-  - {fileID: 11400000, guid: bb94d6ba3848a5e43b5956fa4a271c60, type: 2}
-  - {fileID: 11400000, guid: c933fa8a562dd664f96a6633b4cc192a, type: 2}
-  - {fileID: 11400000, guid: 54e0b4436f101434a9199c04ab97e3b9, type: 2}
-  - {fileID: 11400000, guid: c08f819b986dacb46b884ad0ca8e769e, type: 2}
-  - {fileID: 11400000, guid: 5b094ae66147e72489e99d65f9fd00c1, type: 2}
-  - {fileID: 11400000, guid: 16fd82f8cc2267642948fe3f6df6c6e8, type: 2}
-  - {fileID: 11400000, guid: 3daa68f072ccfff4d987b6ff3e9551b1, type: 2}
-  - {fileID: 11400000, guid: 0aacd31d4417a6744b00cae92dccf0c5, type: 2}
-  - {fileID: 11400000, guid: 9d69ef0eca52b734ea148b3a97d36c60, type: 2}
-  - {fileID: 11400000, guid: aec839e1bb6b58344ae2e6863ed1be0a, type: 2}
-  - {fileID: 11400000, guid: 950ebc8e498c47c4a806bf96cc05aeb2, type: 2}
-  - {fileID: 11400000, guid: 950ebc8e498c47c4a806bf96cc05aeb2, type: 2}
-  - {fileID: 11400000, guid: c08f819b986dacb46b884ad0ca8e769e, type: 2}
-  - {fileID: 11400000, guid: 54e0b4436f101434a9199c04ab97e3b9, type: 2}
   RiftWaveUIMaterial: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
   AudioMixerGroup: {fileID: 24300002, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
   PostProcessingVolume: {fileID: 4524564}
@@ -9557,7 +9536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPreventSpawning: 1
+  DebugPreventSpawning: 0
   SpawnData:
   - Rate: 0.3
     Threshold: 0
@@ -9771,6 +9750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8259a52c6ee0b4eb6ce0231e3c8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: a657f83b028bdc14598c7d470bcb01bb, type: 3}
 --- !u!4 &1699433448
 Transform:
   m_ObjectHideFlags: 0
@@ -9784,7 +9765,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752085630
 GameObject:

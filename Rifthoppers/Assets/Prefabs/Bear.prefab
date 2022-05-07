@@ -5744,6 +5744,7 @@ GameObject:
   - component: {fileID: 6654770937096141508}
   - component: {fileID: 6654770937096141509}
   - component: {fileID: 2096565626777101293}
+  - component: {fileID: 7121696364370988061}
   m_Layer: 6
   m_Name: Bear
   m_TagString: Player
@@ -5814,6 +5815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
   Animator: {fileID: 0}
+  Stats: {fileID: 0}
   Input: {fileID: 0}
   Direction: {x: 0, y: 0}
   IsMoving: 0
@@ -5934,6 +5936,32 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &7121696364370988061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654770937096141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeedMulti: 1
+  PlayerFirerate: 3
+  ProjectileCount: 1
+  ProjectileSpeed: 15
+  ProjectileSpeedMulti: 1
+  ProjectileDamage: 6
+  ProjectileDamageMulti: 1
+  ProjectileHoming: 0
+  ProjectileForks: 1
+  ProjectileChains: 0
+  ProjectileSizeMulti: 1
+  PowerRange: 5
+  PowerStrength: 20
+  PowerCostMulti: 1
 --- !u!1 &6654770937153837512
 GameObject:
   m_ObjectHideFlags: 0

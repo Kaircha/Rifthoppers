@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Upgrade {
   public abstract string Name { get; }
-  public abstract int ID { get; }
-  public abstract Sprite Sprite { get; }
+  public int ID = 0;
+  public Sprite Sprite = null;
   public abstract string Quote { get; }
   public abstract string Description { get; }
   public abstract int Weight { get; }
