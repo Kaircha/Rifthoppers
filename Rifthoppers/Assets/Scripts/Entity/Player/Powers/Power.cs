@@ -9,9 +9,9 @@ public abstract class Power : MonoBehaviour {
   public float PressCost;
   public float HoldCost;
   public float ReleaseCost;
-  public float CostMulti => StatManager.Instance.Get(StatType.PowerCostMulti);
-  public float Range => StatManager.Instance.Get(StatType.PowerRange);
-  public float Strength => StatManager.Instance.Get(StatType.PowerStrength);
+  public float CostMulti => Entity.Stats.PowerCostMulti;
+  public float Range => Entity.Stats.PowerRange;
+  public float Strength => Entity.Stats.PowerStrength;
 
   public event Action OnPowerUsed;
 

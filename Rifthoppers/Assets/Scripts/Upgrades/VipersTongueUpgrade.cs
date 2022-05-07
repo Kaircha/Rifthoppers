@@ -13,14 +13,14 @@ public class VipersTongueUpgrade : Upgrade {
   public override void OnAdd(Entity entity) {
     entity.OnDamageDealt += PoisonOnDamageDealt;
     entity.Health.OnDamageTaken += PoisonOnDamageTaken;
-    // Find a better solution for the StatManager
-    StatManager.Instance.Set(StatType.ProjectileForks, 2);
+    entity.Stats.ProjectileForks += 1;
     // Poison Resistance?
   }
 
   public override void OnRemove(Entity entity) {
     entity.OnDamageDealt -= PoisonOnDamageDealt;
     entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
+    entity.Stats.ProjectileForks -= 1;
   }
 
   public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {

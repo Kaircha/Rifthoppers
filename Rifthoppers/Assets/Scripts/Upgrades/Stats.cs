@@ -18,4 +18,5 @@ public class Stats : MonoBehaviour {
 
   public float PowerRange = 5f;
   public float PowerStrength = 20f;
+  public float PowerCostMulti = 1f;
 }

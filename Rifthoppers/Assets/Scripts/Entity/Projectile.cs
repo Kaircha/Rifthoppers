@@ -98,7 +98,7 @@ public class Projectile : MonoBehaviour, IPoolable {
         projectile.transform.position = transform.position;
         projectile.transform.right = transform.right;
         projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
-        projectile.Shoot(Ignore, Owner, Speed, Damage / 2, Homing, 0, Pierces, Chains, Explosion / 2, SizeMulti * 0.7f);
+        projectile.Shoot(Ignore, Owner, Speed, Damage / 2, Homing, 0, Chains, SizeMulti * 0.7f);
         Physics2D.IgnoreCollision(projectile.Collider, collider);
       }
       Forks = 0;

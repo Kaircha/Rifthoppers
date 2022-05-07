@@ -16,7 +16,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
     Upgrade = upgrade;
     Renderer.sprite = Upgrade.Sprite;
     TempText.text = upgrade.Name;
-    if (StatManager.Instance.Upgrades.Count > 0) TempTutorial.SetActive(false);
+    //if (StatManager.Instance.Upgrades.Count > 0) TempTutorial.SetActive(false);
   }
 
   public void ShowHighlight() {
