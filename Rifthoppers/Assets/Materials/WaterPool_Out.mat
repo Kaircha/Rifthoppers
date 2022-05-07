@@ -40,13 +40,13 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _Magnitude: -0.25
-    - _RippleDensity: 3
-    - _RippleSlimness: 3
-    - _RippleSpeed: 3
+    - _RippleDensity: 0.7
+    - _RippleSlimness: 6
+    - _RippleSpeed: 0.7
     - _Scale: 20
     - _Size: 0.1
     m_Colors:
     - _FocalPoint: {r: 0, g: 0, b: 0, a: 0}
-    - _LiquidColor: {r: 0.03444285, g: 0.3205251, b: 0.8113208, a: 0}
+    - _LiquidColor: {r: 0.44003624, g: 0.9716981, b: 0.36209506, a: 0}
     - _RippleColor: {r: 0.357022, g: 0.4998776, b: 0.6698113, a: 0}
   m_BuildTextureStacks: []
