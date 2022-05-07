@@ -6171,6 +6171,8 @@ MonoBehaviour:
   Target: {fileID: 4713967439379072290}
   Speed: 8
   AISpeed: 2
+  PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
+  PoisonMat: {fileID: 2100000, guid: 8d0d895acb324634cb14523228d0551d, type: 2}
   Machine: {fileID: 4282712546159289950}
   StateType: 1
 --- !u!50 &2200544171613630170

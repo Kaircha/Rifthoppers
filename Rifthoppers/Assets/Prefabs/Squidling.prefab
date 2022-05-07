@@ -311,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
   Animator: {fileID: 0}
+  Stats: {fileID: 0}
   Input: {fileID: 0}
   Direction: {x: 0, y: 0}
   IsMoving: 0
@@ -319,6 +320,8 @@ MonoBehaviour:
   Target: {fileID: 0}
   Speed: 4
   AISpeed: 0
+  PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
+  PoisonMat: {fileID: 2100000, guid: 8d0d895acb324634cb14523228d0551d, type: 2}
   Experience: 5
   BaseHP: 10
 --- !u!50 &1561905139480256983

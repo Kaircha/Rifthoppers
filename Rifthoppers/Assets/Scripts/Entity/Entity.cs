@@ -28,6 +28,8 @@ public class Entity : MonoBehaviour {
   // Effects
   public List<PoisonEffect> Poisons = new();
   public IgniteEffect Ignite = new(0, 0);
+  public GameObject PoisonParticles;
+  public Material PoisonMat;
 
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
@@ -40,6 +42,7 @@ public class Entity : MonoBehaviour {
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();
     Stats = GetComponent<Stats>();
+    StartCoroutine(Poisoned());
   }
 
   private void OnEnable() {
@@ -84,5 +87,25 @@ public class Entity : MonoBehaviour {
       foreach (PoisonEffect poison in Poisons) poison.Duration -= Time.deltaTime;
       Poisons.RemoveAll(x => x.Duration <= 0);
     } 
+  }
+
+  private IEnumerator Poisoned()
+  {
+    Material def = Sprite.material;
+    while (true){
+
+      while (Poisons.Count <= 0) yield return null;
+
+      Debug.Log("poisoning");
+      GameObject P = Instantiate(PoisonParticles, Sprite.gameObject.transform);
+      Sprite.material = PoisonMat;
+
+      while (Poisons.Count > 0) yield return null;
+
+      Destroy(P);
+      Sprite.material = def;
+
+      yield return null;
+    }
   }
 }
