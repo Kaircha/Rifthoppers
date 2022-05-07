@@ -15,6 +15,10 @@ public class RiftLoader : MonoBehaviour {
   public GameObject CurrentArea;
   private GameObject TempArea;
 
+  public List<Material> FadeInMaterials;
+  public List<Material> FadeOutMaterials;
+  public List<LayerMask> MaterialLayers;
+
   // These should play an animation for the load
   public void LoadDead() {
     StopAllCoroutines();
@@ -31,50 +35,55 @@ public class RiftLoader : MonoBehaviour {
     TempArea = Instantiate(Upgrade, CurrentArea.transform);
   }
 
-  // Need to find beter solution for transitioning objects that don't use the FadeOut/In materials
-
   public IEnumerator Load(GameObject ToSpawn) {
     if (TempArea != null) Destroy(TempArea);
     GameObject newArea = Instantiate(ToSpawn, transform);
 
     newArea.GetComponent<RiftRandomizer>().RandomizeSpots();
 
-    FadeOutMaterial.SetFloat("_Alpha", 0f);
-    WaterPoolMaterial_Out.SetFloat("_Alpha", 0f);
+    SetFadeOutFloat("_Alpha", 0f);
 
-    SetAreaMaterial(newArea, FadeInMaterial, WaterPoolMaterial_In);
-    SetAreaMaterial(CurrentArea, FadeOutMaterial, WaterPoolMaterial_Out);
+    for (int i = 0; i < MaterialLayers.Count; ++i){
+      SetAreaLayerMaterial(CurrentArea, MaterialLayers[i], FadeOutMaterials[i]);
+      SetAreaLayerMaterial(newArea, MaterialLayers[i], FadeInMaterials[i]);
+    }
 
     float timer = 0f;
     while (timer < 1f) {
-      FadeInMaterial.SetFloat("_Alpha", timer);
-      FadeOutMaterial.SetFloat("_Alpha", timer);
-      WaterPoolMaterial_In.SetFloat("_Alpha", timer);
-      WaterPoolMaterial_Out.SetFloat("_Alpha", timer);
+
+      SetFadeInFloat("_Alpha", timer);
+      SetFadeOutFloat("_Alpha", timer);
+
       timer += Time.deltaTime;
       yield return null;
     }
+
     timer = 1f;
-    FadeInMaterial.SetFloat("_Alpha", timer);
-    FadeOutMaterial.SetFloat("_Alpha", timer);
-    WaterPoolMaterial_In.SetFloat("_Alpha", timer);
-    WaterPoolMaterial_Out.SetFloat("_Alpha", timer);
+
+    SetFadeInFloat("_Alpha", timer);
+    SetFadeOutFloat("_Alpha", timer);
 
     Destroy(CurrentArea);
     CurrentArea = newArea;
   }
 
-  public void SetAreaMaterial(GameObject area, Material material, Material forWater) {
+  public void SetFadeInFloat(string name, float value)
+  {
+    foreach (Material mat in FadeInMaterials)
+      mat.SetFloat(name, value);
+  }
+  public void SetFadeOutFloat(string name, float value)
+  {
+    foreach (Material mat in FadeOutMaterials)
+      mat.SetFloat(name, value);
+  }
 
-    if (area.TryGetComponent(out SpriteRenderer mainRenderer)){
+  public void SetAreaLayerMaterial(GameObject area, LayerMask layermask, Material material) {
 
-      if (area.layer != 14)
+    if (area.TryGetComponent(out SpriteRenderer mainRenderer) && layermask == (layermask | (1 << area.layer)))
         mainRenderer.material = material;
-      else
-        mainRenderer.material = forWater;
-    }
     
     foreach (Transform child in area.transform) 
-        SetAreaMaterial(child.gameObject, material, forWater);
+        SetAreaLayerMaterial(child.gameObject, layermask, material);
   }
 }
