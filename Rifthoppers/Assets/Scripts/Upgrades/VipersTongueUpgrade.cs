@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class VipersTongueUpgrade : Upgrade {
   public override string Name => "Viper's Tongue";
-  public override string Quote => "throw venom like a viper";
+  public override string Quote => "Become Venomous.";
   public override string Description => throw new System.NotImplementedException();
   public override int Weight => throw new System.NotImplementedException();
 
   public VipersTongueUpgrade(int id, Sprite sprite){
-    ID = id;
+    //ID = id;
     Sprite = sprite;
   }
 
