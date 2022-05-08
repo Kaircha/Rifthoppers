@@ -92,11 +92,9 @@ public class Entity : MonoBehaviour {
     } 
   }
 
-  private IEnumerator Poisoned()
-  {
+  private IEnumerator Poisoned() {
     Material def = Sprite.material;
-    while (true){
-
+    while (true) {
       while (Poisons.Count <= 0) yield return null;
 
       GameObject P = Instantiate(PoisonParticles, Sprite.gameObject.transform);
