@@ -436,8 +436,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4788305207565542446}
   - component: {fileID: 3731458658104155585}
-  - component: {fileID: 6917399078020616088}
   - component: {fileID: 8468477888388786782}
+  - component: {fileID: 7528533309978532750}
   m_Layer: 14
   m_Name: Acid Pool
   m_TagString: Untagged
@@ -486,7 +486,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &6917399078020616088
+--- !u!114 &8468477888388786782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973297217321230953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b36b88c0fe70546a0496a167710bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entities: []
+  damage: 1000
+--- !u!66 &7528533309978532750
 CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,7 +514,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -781,18 +795,6 @@ CompositeCollider2D:
       - {x: 0.8252796, y: -4.245862}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &8468477888388786782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4973297217321230953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16b36b88c0fe70546a0496a167710bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5500070884522336389
 GameObject:
   m_ObjectHideFlags: 0

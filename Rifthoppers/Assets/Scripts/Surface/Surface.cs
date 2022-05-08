@@ -22,6 +22,6 @@ public abstract class Surface : MonoBehaviour {
   }
 
   public void Update() => Entities.ForEach(entity => entity.SurfaceWalked(entity, this));
-
+  
   public abstract void SurfaceEffect(Entity entity, Surface surface);
 }

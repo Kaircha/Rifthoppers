@@ -99,7 +99,6 @@ public class Entity : MonoBehaviour {
 
       while (Poisons.Count <= 0) yield return null;
 
-      Debug.Log("poisoning");
       GameObject P = Instantiate(PoisonParticles, Sprite.gameObject.transform);
       Sprite.material = PoisonMat;
 
