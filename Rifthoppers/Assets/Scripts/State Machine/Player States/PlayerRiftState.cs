@@ -24,6 +24,7 @@ public class PlayerRiftState : State {
     Dodge.gameObject.SetActive(true);
 
     Machine.StartCoroutine(ShootRoutine());
+    Machine.StartCoroutine(UpdateBlaster());
     Machine.StartCoroutine(Dodge.DodgeRoutine());
     Machine.StartCoroutine(Power.PowerRoutine());
   }
@@ -44,6 +45,16 @@ public class PlayerRiftState : State {
     Power.gameObject.SetActive(false);
     Blaster.gameObject.SetActive(false);
     Dodge.gameObject.SetActive(false);
+  }
+
+  public IEnumerator UpdateBlaster(){
+
+    while(true){
+      yield return new WaitUntil(() => IsShooting);
+      Blaster.shooting = true;
+      yield return new WaitUntil(() => !IsShooting);
+      Blaster.shooting = false;
+    }
   }
 
   public IEnumerator ShootRoutine() {

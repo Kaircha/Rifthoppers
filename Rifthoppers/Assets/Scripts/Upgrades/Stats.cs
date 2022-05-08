@@ -12,11 +12,15 @@ public class Stats : MonoBehaviour {
   public float ProjectileDamage = 6f;
   public float ProjectileDamageMulti = 1f;
   public float ProjectileHoming = 0f;
-  public int ProjectileForks = 1;
+  public int ProjectileForks = 1; 
   public int ProjectileChains = 0;
   public float ProjectileSizeMulti = 1f;
 
   public float PowerRange = 5f;
   public float PowerStrength = 20f;
   public float PowerCostMulti = 1f;
+
+  public int MaxCharges = 1;
+
+  public int Weapon = 0;
 }
