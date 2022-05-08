@@ -14,7 +14,7 @@ public class UpgradeManager : Singleton<UpgradeManager> {
   public override void Awake() {
     base.Awake();
     Upgrades.Add(new VipersTongueUpgrade(0, Sprites[0]));
-    Upgrades.Add(new SuperchargerUpgrade(1, Sprites[0]));
+    Upgrades.Add(new SuperchargedUpgrade(1, Sprites[1]));
   }
 
 

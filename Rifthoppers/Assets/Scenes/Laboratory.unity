@@ -447,7 +447,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -823,7 +823,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6547,7 +6547,7 @@ MonoBehaviour:
   Players: []
   Maximum: 4
   PlayerPrefab: {fileID: 5702664421089684088, guid: 3b52f052292ccba4cafe4190ac58fd4a, type: 3}
-  EntityPrefab: {fileID: 7692575976241060251, guid: a7ed3df688fe4d848ba4644d369febc3, type: 3}
+  EntityPrefab: {fileID: 6654770937096141533, guid: faace29cfdab2964e9f1ce9e9441d88d, type: 3}
   CameraTarget: {fileID: 236578256}
   SoloVCam: {fileID: 130171631}
   CoopVCam: {fileID: 293790443}

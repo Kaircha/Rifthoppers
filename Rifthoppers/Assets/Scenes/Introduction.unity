@@ -917,24 +917,27 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=72>Changelog</size>
 
-    The changes this week are very code-heavy,
-
-    so
-    not much of it is visible yet in-game.
-
-
-    + Wave Transition Shader
+    + Moths have arrived in the Rift!
 
 
     +
-    Updated Energy system
+    Reworked the Upgrade System
 
 
-    + Foundations for Upgrades, AI, Achievements
+    + The first two Upgrades
+
+    <size=28>Viper''s
+    Tongue & Supercharged</size>
 
 
-    +
-    Squidmother has more advanced AI'
+    + Surfaces which apply effects
+
+
+    + Status
+    Effect system
+
+
+    + Beginnings of 3d Audio'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1189,10 +1192,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=48>Welcome to Rifthoppers!</size>
 
-    This is the 3rd WebGL build
+    This is the 4th WebGL build
     of our weekly dev schedule.
 
-    <size=30>Released May 1st 2022</size>'
+    <size=30>Released May 8th 2022</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1336,17 +1339,10 @@ MonoBehaviour:
     Forms link available in the server!</size>
 
 
-    - Should Waves come with an
-    added micro challenge?
+    - What Speed value feels the
+    best?
 
-    <size=28>I.e. standing in 3 circles for a combined
-    duration of 5 seconds each.</size>
-
-
-    - Is Raven''s power fun to use?
-
-    <size=28>Is
-    there a more fun alternative?</size>'
+    <size=28>Slider available in-Rift!</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

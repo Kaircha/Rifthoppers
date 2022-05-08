@@ -5851,7 +5851,7 @@ MonoBehaviour:
   PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
   PoisonMat: {fileID: 2100000, guid: 985ac4929ce4e5b48a9b3c594f5bd88f, type: 2}
   Machine: {fileID: 6654770937096141520}
-  StateType: 2
+  StateType: 1
 --- !u!50 &6654770937096141510
 Rigidbody2D:
   serializedVersion: 4

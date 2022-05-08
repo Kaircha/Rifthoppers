@@ -7,7 +7,7 @@ public class RiftWaveState : State {
     foreach (Player player in LobbyManager.Instance.Players) {
       player.Entity.EnterRiftState();
     }
-    RiftManager.Instance.Energy.CanTakeDamage = false;
+    RiftManager.Instance.Energy.CanTakeDamage = true;
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Checkpoint.SetActive(true);
     RiftManager.Instance.RiftSpawner.StartSpawning();
@@ -28,7 +28,7 @@ public class RiftWaveState : State {
   }
 
   public override void Exit() {
-    RiftManager.Instance.Energy.CanTakeDamage = true;
+    RiftManager.Instance.Energy.CanTakeDamage = false;
     RiftManager.Instance.Checkpoint.SetActive(false);
     RiftManager.Instance.RiftSpawner.StopSpawning();
     // Animate this?
