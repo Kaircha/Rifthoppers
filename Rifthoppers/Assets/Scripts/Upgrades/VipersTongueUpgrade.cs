@@ -9,7 +9,7 @@ public class VipersTongueUpgrade : Upgrade {
   public override int Weight => throw new System.NotImplementedException();
 
   public VipersTongueUpgrade(int id, Sprite sprite){
-    //ID = id;
+    ID = id;
     Sprite = sprite;
   }
 
