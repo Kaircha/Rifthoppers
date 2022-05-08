@@ -9,13 +9,13 @@ public abstract class Upgrade {
   public abstract string Quote { get; }
   public abstract string Description { get; }
   public abstract int Weight { get; }
-  public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");
-  public int TimesObtained => DataManager.Instance.Get<int>($"{ID}TimesObtained");
+  // public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");
+  // public int TimesObtained => DataManager.Instance.Get<int>($"{ID}TimesObtained");
   // Some sort of Unlock Condition
 
-  public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
+  // public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
   public void Add(Entity entity) {
-    DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
+    //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
     OnAdd(entity);
   }
   public void Remove(Entity entity) {

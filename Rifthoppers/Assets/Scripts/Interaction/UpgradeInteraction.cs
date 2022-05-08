@@ -33,7 +33,6 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
   }
 
   public void Interact(PlayerEntity interactor) {
-
     Upgrade.Add(interactor);
     RiftManager.Instance.NextWave();
     UpgradeManager.Instance.TakeUpgrade(Upgrade);

@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Cinemachine;
 
 public class UpgradeManager : Singleton<UpgradeManager> {
-
   public List<Upgrade> Upgrades = new();
   public List<Sprite> Sprites = new();
 
@@ -17,9 +15,7 @@ public class UpgradeManager : Singleton<UpgradeManager> {
     Upgrades.Add(new SuperchargedUpgrade(1, Sprites[1]));
   }
 
-
-  public void TakeUpgrade(Upgrade upgrade)
-  {
+  public void TakeUpgrade(Upgrade upgrade) {
     OnUpgradeTaken?.Invoke(upgrade);
   }
 }
