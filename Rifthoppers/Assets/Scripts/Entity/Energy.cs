@@ -4,8 +4,9 @@ using UnityEngine;
 public class Energy : MonoBehaviour, IHealth {
   public float StaticPercentage => Mathf.Clamp01(Static / Maximum);
   public float Percentage => Mathf.Clamp01(Dynamic / Maximum);
-
+  
   public bool IsDead { get; set; }
+  public bool CanTakeDamage = true;
 
   public float Static;
   public float Dynamic;
@@ -48,7 +49,7 @@ public class Energy : MonoBehaviour, IHealth {
   }
 
   public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-    if (amount <= 0 || IsDead) return;
+    if (amount <= 0 || IsDead || !CanTakeDamage) return;
     Static -= amount;
     OnDamageTaken?.Invoke(dealer, null, amount, isDoT);
     if (dealer != null) dealer.HasDealtDamage(receiver, amount, isDoT);

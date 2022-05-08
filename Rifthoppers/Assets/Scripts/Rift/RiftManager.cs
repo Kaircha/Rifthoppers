@@ -43,8 +43,8 @@ public class RiftManager : Singleton<RiftManager> {
   public float DifficultyMultiplier => (10f + Experience.Level) / 10f;
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
 
-  public event Action<PlayerEntity> OnEnergyCollected;
-  public void EnergyCollected(PlayerEntity entity) => OnEnergyCollected?.Invoke(entity);
+  public event Action OnEnergyCollected;
+  public void EnergyCollected() => OnEnergyCollected?.Invoke();
   public event Action<PlayerEntity> OnKilled;
   public void HasKilled(PlayerEntity entity) => OnKilled?.Invoke(entity);
   public event Action OnWaveStarted;

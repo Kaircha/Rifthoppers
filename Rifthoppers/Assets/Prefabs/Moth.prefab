@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d1ef262b593526c4ea0b090e506193fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e4fb5221703fa44ea141dec17cf15a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -228,13 +228,13 @@ GameObject:
   - component: {fileID: 1561905139480256981}
   - component: {fileID: 1561905139480256979}
   - component: {fileID: 1561905139480256980}
-  - component: {fileID: 2319287849398692769}
+  - component: {fileID: 5150080584749907591}
   - component: {fileID: 8792709176822358506}
   - component: {fileID: 1561905139480256983}
   - component: {fileID: 1561905139480257000}
   - component: {fileID: 2165645433094639394}
   m_Layer: 7
-  m_Name: Squidling
+  m_Name: Moth
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e63a01573a81ab4a99d510b0c53c55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Current: 7
-  Maximum: 7
+  Current: 15
+  Maximum: 15
 --- !u!114 &1561905139480256980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77dff7cde6ced30459f970818500dc6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2319287849398692769
+--- !u!114 &5150080584749907591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561905139480256977}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a72fe499e45974c8e66bec865fc326, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b60fb5256366747821e28200307188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Entity: {fileID: 0}
@@ -358,7 +358,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.8}
+  m_Offset: {x: 0, y: 0.7}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!95 &2165645433094639394
@@ -369,7 +369,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561905139480256977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: be65c8cc7c6ffc4449db59ca5991e054, type: 2}
   m_CullingMode: 0

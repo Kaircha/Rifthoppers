@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour {
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Experience.Learn(24);
     transform.position = GetRandomPos(collision.transform.position);
+    RiftManager.Instance.EnergyCollected();
   }
 
   Vector3 GetRandomPos(Vector3 point) {

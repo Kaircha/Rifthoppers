@@ -849,7 +849,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1892324627}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &261909019
 MonoBehaviour:
@@ -9243,13 +9243,17 @@ MonoBehaviour:
     Maximum: 10
     Pool: {fileID: 2067051469}
   - Rate: 0.1
-    Threshold: 3
+    Threshold: 4
     Maximum: 1
     Pool: {fileID: 1364144807}
   - Rate: 0
     Threshold: 0
     Maximum: 0
     Pool: {fileID: 814662143}
+  - Rate: 0.2
+    Threshold: 2
+    Maximum: 5
+    Pool: {fileID: 1956558505}
   - Rate: 0
     Threshold: 3
     Maximum: 5
@@ -9769,6 +9773,7 @@ Transform:
   - {fileID: 2067051468}
   - {fileID: 1364144806}
   - {fileID: 814662142}
+  - {fileID: 1956558504}
   - {fileID: 261909018}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -9790,7 +9795,55 @@ MonoBehaviour:
   SquidPool: {fileID: 2067051469}
   SquidmotherPool: {fileID: 1364144807}
   SquidlingPool: {fileID: 814662143}
+  MothPool: {fileID: 1956558505}
   ExplosiveSquidPool: {fileID: 261909019}
+--- !u!1 &1956558503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956558504}
+  - component: {fileID: 1956558505}
+  m_Layer: 0
+  m_Name: Moth Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1956558504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956558503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1892324627}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956558505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956558503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090c2fd2ee920e64386874903b7ea519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Minimum: 10
+  Maximum: 10000
+  Prefab: {fileID: 1561905139480256977, guid: 2d046a79cc3ccf74fabc6e51ba617fe1, type: 3}
 --- !u!1 &1970326819
 GameObject:
   m_ObjectHideFlags: 0

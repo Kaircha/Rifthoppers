@@ -19,7 +19,8 @@ public class RiftSpawner : MonoBehaviour {
     SpawnData[0].Pool = PoolManager.Instance.SquidPool;
     SpawnData[1].Pool = PoolManager.Instance.SquidmotherPool;
     SpawnData[2].Pool = PoolManager.Instance.SquidlingPool;
-    SpawnData[3].Pool = PoolManager.Instance.ExplosiveSquidPool;
+    SpawnData[3].Pool = PoolManager.Instance.MothPool;
+    SpawnData[4].Pool = PoolManager.Instance.ExplosiveSquidPool;
   }
 
   public void StopSpawning() {
