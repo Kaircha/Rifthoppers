@@ -7,19 +7,19 @@ public class PlayerRiftState : State {
   private bool IsShooting => Entity.Input.Shoot;
   private bool IsMoving => Entity.Direction.magnitude > 0;
   private Stats Stats => Entity.Stats;
-  private Gun Gun;
+  private Blaster Blaster;
   private Power Power;
   private Dodge Dodge;
 
   public PlayerRiftState(Entity entity) {
     Entity = entity;
-    Gun = Entity.GetComponentInChildren<Gun>(true);
+    Blaster = Entity.GetComponentInChildren<Blaster>(true);
     Power = Entity.GetComponentInChildren<Power>(true);
     Dodge = Entity.GetComponentInChildren<Dodge>(true);
   }
 
   public override void Enter() {
-    Gun.gameObject.SetActive(true);
+    Blaster.gameObject.SetActive(true);
     Power.gameObject.SetActive(true);
     Dodge.gameObject.SetActive(true);
 
@@ -31,7 +31,7 @@ public class PlayerRiftState : State {
   public override IEnumerator Execute() {
     while (true) {
       Entity.Direction = (IsShooting ? 1 : 1.5f) * Entity.Input.Move.normalized;
-      Gun.Sprite.sortingOrder = (Entity.Target.position - Entity.transform.position).y > 0.6f ? -1 : 1;
+      Blaster.Sprite.sortingOrder = (Entity.Target.position - Entity.transform.position).y > 0.6f ? -1 : 1;
 
       if (Entity.Input.IsMouseLook) Entity.Target.position = Entity.Input.Look;
       else Entity.Target.localPosition = Entity.Input.Look;
@@ -42,7 +42,7 @@ public class PlayerRiftState : State {
 
   public override void Exit() {
     Power.gameObject.SetActive(false);
-    Gun.gameObject.SetActive(false);
+    Blaster.gameObject.SetActive(false);
     Dodge.gameObject.SetActive(false);
   }
 
@@ -50,7 +50,7 @@ public class PlayerRiftState : State {
     while (true) {
       yield return new WaitUntil(() => IsShooting);
       Entity.HasAttacked();
-      Gun.Shoot();
+      Blaster.Shoot();
       float firerate = (IsMoving ? 1 : 1.5f) * Stats.PlayerFirerate;
       yield return new WaitForSeconds(1 / firerate);
     }

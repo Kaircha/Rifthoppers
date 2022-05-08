@@ -1,9 +1,10 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class Blaster : MonoBehaviour {
   public Entity Entity;
   public SpriteRenderer Sprite;
   public AudioSource ShootSFX;
@@ -12,11 +13,19 @@ public class Gun : MonoBehaviour {
   private CinemachineImpulseSource ImpulseSource;
   private Stats Stats => Entity.Stats;
 
+  public event Action OnShoot;
+
+  public void Shoot() {
+    // Safety fallback
+    if (OnShoot == null) OnShoot += DefaultWeapon;
+    OnShoot?.Invoke();
+  }
+
   private void Awake() {
     ImpulseSource = GetComponent<CinemachineImpulseSource>();
   }
 
-  public void Shoot() {
+  public void DefaultWeapon() {
     if (Stats.ProjectileCount > 1) {
       float angle = 60f;
       float angleStart = -angle / 2;
@@ -38,7 +47,7 @@ public class Gun : MonoBehaviour {
 
     Rigidbody.AddForce(-10f * Stats.ProjectileSizeMulti * BulletOrigin.right, ForceMode2D.Impulse);
     ImpulseSource.GenerateImpulse(0.15f * Stats.ProjectileSizeMulti * BulletOrigin.right);
-    ShootSFX.pitch = Random.Range(0.7f, 1.3f);
+    ShootSFX.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
     ShootSFX.Play();
   }
 }

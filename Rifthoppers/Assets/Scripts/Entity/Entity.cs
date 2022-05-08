@@ -36,6 +36,9 @@ public class Entity : MonoBehaviour {
   public void HasDealtDamage(Entity receiver, float amount, bool isDoT) => OnDamageDealt?.Invoke(this, receiver, amount, isDoT);
   public event Action OnAttacked;
   public void HasAttacked() => OnAttacked?.Invoke();
+  public event Action<Entity, Surface> OnSurfaceWalked;
+  public void SurfaceWalked(Entity entity, Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
+
 
   private void Awake() {
     Rigidbody = GetComponent<Rigidbody2D>();
