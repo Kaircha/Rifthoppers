@@ -15,9 +15,7 @@ public class SuperchargerUpgrade : Upgrade{
   }
   public override void OnAdd(Entity entity)
   {
-    entity.Stats.Weapon = 1;
-    entity.Stats.MaxCharges = 6;
-    entity.GetComponentInChildren<Blaster>(true).SwitchWeapon();
+    entity.Stats.MaxCharges = 10;
   }
 
   public override void OnRemove(Entity entity)

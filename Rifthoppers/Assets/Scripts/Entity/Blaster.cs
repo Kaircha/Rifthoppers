@@ -14,26 +14,44 @@ public class Blaster : MonoBehaviour {
   private Stats Stats => Entity.Stats;
 
   public event Action OnShoot;
+  public event Action OnStopShoot;
   public bool shooting = false;
+
+  private FakeBullet fakeBullet;
 
   public void SwitchWeapon()
   {
     switch (Entity.Stats.Weapon){
-      case 0: OnShoot = DefaultWeapon; break;
-      case 1: OnShoot = SuperCharger; break;
+      case 0: OnShoot = DefaultWeapon; OnStopShoot = DefaultWeaponStop; break;
     }
   }
 
   public void Shoot() {
+    shooting = true;
     OnShoot?.Invoke();
+  }
+  public void StopShooting(){
+    shooting = false;
+    OnStopShoot?.Invoke();
   }
 
   private void Awake() {
-    OnShoot = DefaultWeapon;
+    fakeBullet = GetComponentInChildren<FakeBullet>(true);
+    OnShoot = DefaultWeapon; OnStopShoot = DefaultWeaponStop;
     ImpulseSource = GetComponent<CinemachineImpulseSource>();
   }
 
-  public void DefaultWeapon() {
+  public void DefaultWeapon(){
+    ++ChargeCount;
+    fakeBullet.Size = CalcSize(); fakeBullet.Damage = CalcDamage() * 0.75f; fakeBullet.color = Stats.BulletColor;
+    if (ChargeCount == Stats.MaxCharges || !shooting) ShootBullet(); 
+  }
+  public void DefaultWeaponStop(){
+    if (ChargeCount != 0)ShootBullet();
+  }
+
+  public void ShootBullet() {
+
     if (Stats.ProjectileCount > 1) {
       float angle = 60f;
       float angleStart = -angle / 2;
@@ -41,17 +59,21 @@ public class Blaster : MonoBehaviour {
 
       for (int i = 0; i < Stats.ProjectileCount; i++) {
         Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
+        projectile.GetComponent<SpriteRenderer>().color = Stats.BulletColor;
         projectile.transform.position = BulletOrigin.position;
         projectile.transform.right = BulletOrigin.right;
         projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
-        projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, Stats.ProjectileDamage, Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, Stats.ProjectileSizeMulti);
+        projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, CalcDamage(), Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, CalcSize());
       }
     } else {
       Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
+      projectile.GetComponent<SpriteRenderer>().color = Stats.BulletColor;
       projectile.transform.position = BulletOrigin.position;
       projectile.transform.right = BulletOrigin.right;
-      projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, Stats.ProjectileDamage, Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, Stats.ProjectileSizeMulti);
+      projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, CalcDamage(), Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, CalcSize());
     }
+
+    fakeBullet.Size = fakeBullet.Damage = ChargeCount = 0;
 
     Rigidbody.AddForce(-10f * Stats.ProjectileSizeMulti * BulletOrigin.right, ForceMode2D.Impulse);
     ImpulseSource.GenerateImpulse(0.15f * Stats.ProjectileSizeMulti * BulletOrigin.right);
@@ -61,47 +83,7 @@ public class Blaster : MonoBehaviour {
 
   private int ChargeCount = 0;
 
-  public void SuperCharger(){
+  private float CalcSize() => Stats.ProjectileSizeMulti + 0.3f * ChargeCount;
+  private float CalcDamage() => Stats.ProjectileDamage * (ChargeCount + 1);
 
-    ++ChargeCount;
-    if (ChargeCount == 1) StartCoroutine(Charging());
-  }
-
-  private IEnumerator Charging(){
-
-    yield return new WaitUntil(() => !shooting || ChargeCount == Stats.MaxCharges);
-    ShootCharge();
-    ChargeCount = 0;
-  }
-
-  public void ShootCharge(){
-
-    if (Stats.ProjectileCount > 1)
-    {
-      float angle = 60f;
-      float angleStart = -angle / 2;
-      float angleIncrease = angle / (Stats.ProjectileCount - 1f);
-
-      for (int i = 0; i < Stats.ProjectileCount; i++)
-      {
-        Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-        projectile.transform.position = BulletOrigin.position;
-        projectile.transform.right = BulletOrigin.right;
-        projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
-        projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, Stats.ProjectileDamage * ChargeCount, Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, Stats.ProjectileSizeMulti * 0.8f * ChargeCount);
-      }
-    }
-    else
-    {
-      Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-      projectile.transform.position = BulletOrigin.position;
-      projectile.transform.right = BulletOrigin.right;
-      projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, Stats.ProjectileDamage * ChargeCount, Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, Stats.ProjectileSizeMulti * 0.8f * ChargeCount);
-    }
-
-    Rigidbody.AddForce(-10f * Stats.ProjectileSizeMulti * BulletOrigin.right, ForceMode2D.Impulse);
-    ImpulseSource.GenerateImpulse(0.15f * Stats.ProjectileSizeMulti * BulletOrigin.right);
-    ShootSFX.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
-    ShootSFX.Play();
-  }
 }

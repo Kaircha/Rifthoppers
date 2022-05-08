@@ -51,9 +51,8 @@ public class PlayerRiftState : State {
 
     while(true){
       yield return new WaitUntil(() => IsShooting);
-      Blaster.shooting = true;
       yield return new WaitUntil(() => !IsShooting);
-      Blaster.shooting = false;
+      Blaster.StopShooting();
     }
   }
 

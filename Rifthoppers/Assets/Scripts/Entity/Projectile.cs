@@ -95,6 +95,7 @@ public class Projectile : MonoBehaviour, IPoolable {
 
       for (int i = 0; i < Forks; i++) {
         Projectile projectile = PoolManager.Instance.Bullets.Objects.Get().GetComponent<Projectile>();
+        projectile.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
         projectile.transform.position = transform.position;
         projectile.transform.right = transform.right;
         projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
