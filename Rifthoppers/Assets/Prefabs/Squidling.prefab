@@ -272,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Current: 7
   Maximum: 7
+  DamageMat: {fileID: 2100000, guid: acceb2b9c8a67c042a6616c5f92c647a, type: 2}
 --- !u!114 &1561905139480256980
 MonoBehaviour:
   m_ObjectHideFlags: 0

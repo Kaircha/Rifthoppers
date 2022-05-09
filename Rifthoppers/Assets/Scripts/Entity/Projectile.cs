@@ -76,8 +76,10 @@ public class Projectile : MonoBehaviour, IPoolable {
       impact.GetComponent<ParticleSystem>().Play();
       impact.GetComponent<AudioSource>().Play();
 
-      entity.Health.Hurt(Owner, entity, Damage, false);
-      Explode();
+      //entity.Health.Hurt(Owner, entity, Damage, false);
+      //moved dealing damage to ExplodeAndDamage()
+      //Explode();
+      ExplodeAndDamge();
     }
 
     // Piercing; Passes through target
@@ -123,16 +125,27 @@ public class Projectile : MonoBehaviour, IPoolable {
     Disarm();
   }
 
-  // Not great
-  public void Explode() {
-    if (Explosion <= 0) return;
-    foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, Explosion)) {
-      if (collider.TryGetComponent(out Rigidbody2D rigidbody)) {
-        Vector3 direction = (transform.position - collider.transform.position).normalized;
-        rigidbody.AddForce(10 * Explosion * direction);
+  public void ExplodeAndDamge(){
+
+    foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, transform.lossyScale.x)){
+      if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent<Entity>(out Entity entity)){
+        if(entity is EnemyEntity)
+        entity.Health.Hurt(Owner, entity, Damage, false, Explosion, transform.position);
       }
     }
   }
+
+  // Not great
+  public void Explode() {
+
+      if (Explosion <= 0) return;
+      foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, Explosion)) {
+        if (collider.TryGetComponent(out Rigidbody2D rigidbody)) {
+          Vector3 direction = (transform.position - collider.transform.position).normalized;
+          rigidbody.AddForce(10 * Explosion * direction);
+        }
+      }
+    }
 
   public void Disarm() {
     IsArmed = false;

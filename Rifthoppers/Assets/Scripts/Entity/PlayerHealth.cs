@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour, IHealth {
     OnDamageTaken?.Invoke(dealer, receiver, 0, isDoT);
     Energy.Hurt(dealer, receiver, amount, isDoT);
   }
+  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
 
   public void Kill() {
     Energy.Kill();

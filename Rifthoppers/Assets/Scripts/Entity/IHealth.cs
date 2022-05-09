@@ -13,5 +13,6 @@ public interface IHealth {
   public void Heal();
   public void Heal(float amount);
   public void Hurt(Entity dealer, Entity target, float amount, bool isDoT);
+  public void Hurt(Entity dealer, Entity target, float amount, bool isDoT, float knockback, Vector3 pos);
   public void Kill();
 }

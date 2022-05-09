@@ -13,6 +13,7 @@ public class UpgradeManager : Singleton<UpgradeManager> {
     base.Awake();
     Upgrades.Add(new VipersTongueUpgrade(0, Sprites[0]));
     Upgrades.Add(new SuperchargedUpgrade(1, Sprites[1]));
+    Upgrades.Add(new MinichargedUpgrade(2, Sprites[2]));
   }
 
   public void TakeUpgrade(Upgrade upgrade) {

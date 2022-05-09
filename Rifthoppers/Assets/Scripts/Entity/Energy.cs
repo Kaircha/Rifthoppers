@@ -62,6 +62,8 @@ public class Energy : MonoBehaviour, IHealth {
     }
   }
 
+  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
+
   public void Kill() {
     if (IsDead) return;
     Static = 0;

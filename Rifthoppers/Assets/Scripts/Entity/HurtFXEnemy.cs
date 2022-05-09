@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HurtFX : MonoBehaviour {
-  public PlayerHealth Health;
+public class HurtFXEnemy : MonoBehaviour {
+  public Health Health;
   public SpriteRenderer Renderer;
   public Material DefaultMaterial;
   public Material HurtMaterial;
