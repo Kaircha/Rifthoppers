@@ -8,7 +8,7 @@ public class HurtFXEnemy : MonoBehaviour {
   public Material DefaultMaterial;
   public Material HurtMaterial;
 
-  public float VFXDuration = 0.2f;
+  private float VFXDuration = 0.15f;
 
   private void OnEnable() => Health.OnDamageTaken += OnHurt;
   private void OnDisable() => Health.OnDamageTaken -= OnHurt;

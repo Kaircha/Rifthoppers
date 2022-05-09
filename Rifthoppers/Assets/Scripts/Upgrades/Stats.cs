@@ -23,6 +23,7 @@ public class Stats : MonoBehaviour {
   public int MaxCharges = 1;
 
   public int Weapon = 0;
+  public bool isFlying = false;
 
   public Color BulletColor;
 }

@@ -353,6 +353,7 @@ MonoBehaviour:
   Renderer: {fileID: 3234497499906314438}
   DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   HurtMaterial: {fileID: 2100000, guid: acceb2b9c8a67c042a6616c5f92c647a, type: 2}
+  VFXDuration: 0.2
 --- !u!1 &2179426361014951715
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,6 +6235,7 @@ GameObject:
   - component: {fileID: 4737944485593127284}
   - component: {fileID: 590457542366126423}
   - component: {fileID: 104187616601383739}
+  - component: {fileID: 478400437151063674}
   m_Layer: 6
   m_Name: Raven
   m_TagString: Player
@@ -6305,6 +6307,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
+  UpgradeVFX: {fileID: 0}
   Input: {fileID: 0}
   Direction: {x: 0, y: 0}
   IsMoving: 0
@@ -6455,7 +6458,22 @@ MonoBehaviour:
   PowerCostMulti: 1
   MaxCharges: 1
   Weapon: 0
+  isFlying: 0
   BulletColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &478400437151063674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692575976241060251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f8ccc169c3de7418ff985d5525fef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefabs:
+  - {fileID: 5356103915473366241, guid: 0ec645b59e2ad944f9844036915b195b, type: 3}
 --- !u!1 &8052437087310551017
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour {
   [HideInInspector] public Animator Animator;
   [HideInInspector] public IHealth Health;
   [HideInInspector] public Stats Stats;
+  [HideInInspector] public ApplyUpgradeVFX UpgradeVFX;
   [HideInInspector] public InputDevice Device;
   [HideInInspector] public InputData Input;
   [HideInInspector] public Vector2 Direction;
@@ -45,6 +46,7 @@ public class Entity : MonoBehaviour {
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();
     Stats = GetComponent<Stats>();
+    UpgradeVFX = GetComponent<ApplyUpgradeVFX>();
     StartCoroutine(Poisoned());
   }
 
