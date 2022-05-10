@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour {
   public Transform Target;
   public float Speed;
   public float AISpeed;
+  public bool IsFlying;
   public List<Upgrade> Upgrades = new();
   public List<Effect> Effects = new();
 

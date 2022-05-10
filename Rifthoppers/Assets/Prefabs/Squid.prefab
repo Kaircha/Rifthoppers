@@ -264,6 +264,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   Speed: 7.5
   AISpeed: 0
+  IsFlying: 1
   Experience: 16
   BaseHP: 40
 --- !u!50 &7704696552183869551

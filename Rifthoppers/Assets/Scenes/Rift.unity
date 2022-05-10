@@ -9896,7 +9896,7 @@ MonoBehaviour:
   AudioMixerGroup: {fileID: 24300002, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
   PostProcessingVolume: {fileID: 4524564}
   SpeedMultiplier: 1
-  DisableEnergyDamage: 1
+  DisableEnergyDamage: 0
 --- !u!114 &1672535911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9938,7 +9938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPreventSpawning: 1
+  DebugPreventSpawning: 0
   SpawnData:
   - Rate: 0.3
     Threshold: 0
