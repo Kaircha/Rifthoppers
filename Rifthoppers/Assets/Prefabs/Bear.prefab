@@ -5850,8 +5850,6 @@ MonoBehaviour:
   Target: {fileID: 8261056480845723946}
   Speed: 8
   AISpeed: 2
-  PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
-  PoisonMat: {fileID: 2100000, guid: 985ac4929ce4e5b48a9b3c594f5bd88f, type: 2}
   Machine: {fileID: 6654770937096141520}
   StateType: 1
 --- !u!50 &6654770937096141510
@@ -5992,6 +5990,7 @@ MonoBehaviour:
   PowerCostMulti: 1
   MaxCharges: 1
   Weapon: 0
+  isFlying: 0
   BulletColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &2051739045551100073
 MonoBehaviour:
@@ -10921,7 +10920,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770937466850578}
   - component: {fileID: 6654770937466850669}
-  - component: {fileID: 317586538968816980}
   m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
@@ -10964,7 +10962,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 83330915f4b803948bcca2a1e91a5b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10996,23 +10994,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &317586538968816980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6654770937466850668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6992999a298dd3b4aa5c31ba997c49e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 4655158169414035567}
-  Renderer: {fileID: 6654770937466850669}
-  DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  HurtMaterial: {fileID: 2100000, guid: acceb2b9c8a67c042a6616c5f92c647a, type: 2}
-  VFXDuration: 0.2
 --- !u!1 &6654770937786405858
 GameObject:
   m_ObjectHideFlags: 0

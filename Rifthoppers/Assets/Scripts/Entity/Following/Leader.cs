@@ -8,17 +8,15 @@ public class Leader : MonoBehaviour {
   public List<Follower> Followers = new();
   public float Radius;
 
-  // Temporary until Entity State Integration
-  public Transform Target;
-
-  private void Awake() {
-    //Points.Add(transform.position);
+  private void Start() {
     for (int i = 0; i < Followers.Count; i++) {
-      Points.Add(new Vector2(i * -Radius, 0));
+      Points.Add((Vector2)transform.position + new Vector2(i * -Radius, 0));
+      Followers[i].SetTarget(Points[i]);
+      Followers[i].GetComponent<SpriteRenderer>().sortingOrder = i + 1;
     }
   }
 
-  private void Update() {
+  public void Update() {
     float distance = Vector2.Distance(transform.position, Points[0]);
     
     if (distance >= Radius) {
@@ -37,12 +35,6 @@ public class Leader : MonoBehaviour {
       if (i == 0) Followers[i].LookAt(transform.position);
       else Followers[i].LookAt(Followers[i - 1].transform.position);
     }
-
-    Movement();
-  }
-
-  private void Movement() {
-    transform.position = Target.position;
   }
 
   public void OnDrawGizmos() {

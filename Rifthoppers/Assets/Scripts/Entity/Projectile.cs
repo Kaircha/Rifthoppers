@@ -38,11 +38,8 @@ public class Projectile : MonoBehaviour, IPoolable {
     Transform target = Targets.Count > 0 ? Targets[0].transform : null;
     if (target == null || Homing <= 0) return;
     Vector3 toTarget = (target.position - transform.position + 0.5f * Vector3.up).normalized;
-    float dotAngle = Vector3.Dot(transform.right, toTarget);
-    if (dotAngle > 0) {
-      transform.right = Vector3.Lerp(transform.right, toTarget, Homing * Time.deltaTime);
-      Rigidbody.velocity = Speed * transform.right;
-    }
+    transform.right = Vector3.Lerp(transform.right, toTarget, Homing * Time.deltaTime);
+    Rigidbody.velocity = Speed * transform.right;
   }
 
   public void Shoot(LayerMask ignore, Entity owner, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
@@ -76,10 +73,8 @@ public class Projectile : MonoBehaviour, IPoolable {
       impact.GetComponent<ParticleSystem>().Play();
       impact.GetComponent<AudioSource>().Play();
 
-      //entity.Health.Hurt(Owner, entity, Damage, false);
-      //moved dealing damage to ExplodeAndDamage()
-      //Explode();
-      ExplodeAndDamge();
+      entity.Health.Hurt(Owner, entity, Damage, false);
+      //ExplodeAndDamage();
     }
 
     // Piercing; Passes through target
@@ -125,27 +120,13 @@ public class Projectile : MonoBehaviour, IPoolable {
     Disarm();
   }
 
-  public void ExplodeAndDamge(){
-
+  public void ExplodeAndDamage() {
     foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, transform.lossyScale.x)){
       if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent<Entity>(out Entity entity)){
-        if(entity is EnemyEntity)
-        entity.Health.Hurt(Owner, entity, Damage, false, Explosion, transform.position);
+        if (entity is EnemyEntity) entity.Health.Hurt(Owner, entity, Damage, false, Explosion, transform.position);
       }
     }
   }
-
-  // Not great
-  public void Explode() {
-
-      if (Explosion <= 0) return;
-      foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, Explosion)) {
-        if (collider.TryGetComponent(out Rigidbody2D rigidbody)) {
-          Vector3 direction = (transform.position - collider.transform.position).normalized;
-          rigidbody.AddForce(10 * Explosion * direction);
-        }
-      }
-    }
 
   public void Disarm() {
     IsArmed = false;

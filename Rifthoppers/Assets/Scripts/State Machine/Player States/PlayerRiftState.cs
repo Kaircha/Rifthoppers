@@ -47,9 +47,8 @@ public class PlayerRiftState : State {
     Dodge.gameObject.SetActive(false);
   }
 
-  public IEnumerator UpdateBlaster(){
-
-    while(true){
+  public IEnumerator UpdateBlaster() {
+    while(true) {
       yield return new WaitUntil(() => IsShooting);
       yield return new WaitUntil(() => !IsShooting);
       Blaster.StopShooting();

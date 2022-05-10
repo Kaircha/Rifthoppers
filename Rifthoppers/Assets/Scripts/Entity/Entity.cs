@@ -25,12 +25,8 @@ public class Entity : MonoBehaviour {
   public Transform Target;
   public float Speed;
   public float AISpeed;
-
-  // Effects
-  public List<PoisonEffect> Poisons = new();
-  public IgniteEffect Ignite = new(0, 0);
-  public GameObject PoisonParticles;
-  public Material PoisonMat;
+  public List<Upgrade> Upgrades = new();
+  public List<Effect> Effects = new();
 
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
@@ -40,30 +36,24 @@ public class Entity : MonoBehaviour {
   public event Action<Entity, Surface> OnSurfaceWalked;
   public void SurfaceWalked(Entity entity, Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
 
-
   private void Awake() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();
     Stats = GetComponent<Stats>();
     UpgradeVFX = GetComponent<ApplyUpgradeVFX>();
-    StartCoroutine(Poisoned());
   }
 
   private void OnEnable() {
-    Health.OnDeath += Death;
-    Health.OnDamageTaken += Hurt;
+    Health.OnDeath += OnDeath;
+    Health.OnDamageTaken += OnDamageTaken;
   }
 
   private void OnDisable() {
-    Health.OnDeath -= Death;
+    Health.OnDeath -= OnDeath;
   }
 
-  private void Update() {
-    Looking();
-    Effects();
-  }
-
+  private void Update() => Looking();
   private void FixedUpdate() => Moving();
 
   public virtual void Moving() {
@@ -76,38 +66,39 @@ public class Entity : MonoBehaviour {
     Animator.SetFloat("Direction", (Target.position - transform.position).y > 0.6f ? 1 : -1);
     Animator.SetBool("IsMoving", IsMoving);
   }
-  public virtual void Hurt(Entity dealer, Entity target, float amount, bool isDoT) {
-    if (!isDoT && HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
-  }
-  public virtual void Death(Entity entity) { }
-  
-  public void Effects() {
-    if (Ignite.Duration > 0) {
-      Health.Hurt(null, this, Ignite.Damage * Time.deltaTime, true);
-      Ignite.Duration -= Time.deltaTime;
-    }
 
-    if (Poisons.Count > 0) {
-      Health.Hurt(null, this, Poisons.Sum(x => x.Damage) * Time.deltaTime, true);
-      foreach (PoisonEffect poison in Poisons) poison.Duration -= Time.deltaTime;
-      Poisons.RemoveAll(x => x.Duration <= 0);
-    } 
+
+  private Coroutine HurtRoutine;
+  public virtual void OnDamageTaken(Entity dealer, Entity target, float amount, bool isDoT) {
+    if (isDoT) return;
+    if (HurtRoutine != null) StopCoroutine(HurtRoutine);
+    HurtRoutine = StartCoroutine(OnDamageTakenRoutine());
+  }
+  public IEnumerator OnDamageTakenRoutine() {
+    if (HurtAudio != null && HurtAudio.clip != null) HurtAudio.Play();
+    Sprite.material.SetInt("_IsHurt", 1);
+    yield return new WaitForSeconds(0.2f);
+    Sprite.material.SetInt("_IsHurt", 0);
   }
 
-  private IEnumerator Poisoned() {
-    Material def = Sprite.material;
-    while (true) {
-      while (Poisons.Count <= 0) yield return null;
 
-      GameObject P = Instantiate(PoisonParticles, Sprite.gameObject.transform);
-      Sprite.material = PoisonMat;
+  public virtual void OnDeath(Entity entity) { }
 
-      while (Poisons.Count > 0) yield return null;
 
-      Destroy(P);
-      Sprite.material = def;
-
-      yield return null;
+  public void AddEffect(Effect effect) {
+    foreach (Effect e in Effects) {
+      if (e.GetType() == effect.GetType()) {
+        e.Add(effect);
+        return;
+      }
     }
+
+    effect.Entity = this;
+    StartCoroutine(effect.EffectRoutine());
+  }
+
+  public void RemoveEffects() {
+    Effects.ForEach(effect => StopCoroutine(effect.EffectRoutine()));
+    Effects = new();
   }
 }

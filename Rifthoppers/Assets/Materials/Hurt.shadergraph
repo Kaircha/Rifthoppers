@@ -1,5 +1,5 @@
 {
-    "m_SGVersion": 2,
+    "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "c29e242a6ca0435dac29c8c5aae3d9c5",
     "m_Properties": [
@@ -11,6 +11,12 @@
         }
     ],
     "m_Keywords": [],
+    "m_Dropdowns": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "cc76b1c63c104995bdb07177328f182d"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "f14178dc475b4cc585c414a2e02169f8"
@@ -91,8 +97,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 348.0,
-            "y": -33.99998474121094
+            "x": 163.99996948242188,
+            "y": -39.99999237060547
         },
         "m_Blocks": [
             {
@@ -108,8 +114,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 348.0,
-            "y": 166.00001525878907
+            "x": 163.99996948242188,
+            "y": 162.00001525878907
         },
         "m_Blocks": [
             {
@@ -130,10 +136,11 @@
         "serializedMesh": {
             "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
             "m_Guid": ""
-        }
+        },
+        "preventRotation": false
     },
     "m_Path": "Shader Graphs",
-    "m_ConcretePrecision": 0,
+    "m_GraphPrecision": 0,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": ""
@@ -285,9 +292,13 @@
         "m_GuidSerialized": "c5a5a1d0-cafb-4d05-b1c4-6b16103b8478"
     },
     "m_Name": "MainTex",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Texture2D_3bf8fbdedc94454ab8fbe47cb8ce8dbf",
     "m_OverrideReferenceName": "_MainTex",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -296,6 +307,8 @@
         "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -386,9 +399,13 @@
         "m_GuidSerialized": "01586a73-45cc-405f-8a26-672e503ce003"
     },
     "m_Name": "Color",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Color_58d9c5b037084497988e9e244670d2a3",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -399,6 +416,7 @@
         "b": 0.0,
         "a": 0.0
     },
+    "isMainColor": false,
     "m_ColorMode": 1
 }
 
@@ -414,9 +432,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 12.999991416931153,
-            "y": 149.0,
-            "width": 107.0,
+            "x": 5.999998569488525,
+            "y": 185.0,
+            "width": 105.00001525878906,
             "height": 34.0
         }
     },
@@ -468,17 +486,23 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "786e0499d8df4028baf14102e30e134e",
     "m_ActiveSubTarget": {
         "m_Id": "cec5743f02dd479a81f2e0d217c0be56"
     },
+    "m_AllowMaterialOverride": false,
     "m_SurfaceType": 0,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_TwoSided": false,
+    "m_RenderFace": 2,
     "m_AlphaClip": false,
-    "m_CustomEditorGUI": ""
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
+    "m_CustomEditorGUI": "",
+    "m_SupportVFX": false
 }
 
 {
@@ -691,6 +715,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "cc76b1c63c104995bdb07177328f182d",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "3bf8fbdedc94454ab8fbe47cb8ce8dbf"
+        },
+        {
+            "m_Id": "58d9c5b037084497988e9e244670d2a3"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "cc9463bf44254d28b200cb69598fb671",
     "m_Group": {
@@ -841,7 +880,8 @@
         "m_SerializableColors": []
     },
     "m_TextureType": 0,
-    "m_NormalMapSpace": 0
+    "m_NormalMapSpace": 0,
+    "m_EnableGlobalMipBias": true
 }
 
 {

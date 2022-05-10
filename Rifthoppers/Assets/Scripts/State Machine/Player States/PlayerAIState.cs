@@ -16,17 +16,12 @@ public class PlayerAIState : State {
   }
 
   public override void Enter() {
-
     Interactable.gameObject.SetActive(true);
     Entity.Speed = AISpeed;
   }
 
   public override IEnumerator Execute() {
-  
     while (true) {
-
-       // Logic for walking to a location
-      
       Vector3 target = new Vector2(Random.Range(-11, 11), Random.Range(-11, 2));
 
       while (Vector2.Distance(target, Entity.transform.position) > 1.5f) {

@@ -14,11 +14,14 @@ public abstract class Upgrade {
   // Some sort of Unlock Condition
 
   // public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
+  
   public void Add(Entity entity) {
     //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
     OnAdd(entity);
+    entity.Upgrades.Add(this);
   }
   public void Remove(Entity entity) {
+    // Upgrades are currently being removed on Exiting the RiftDeadState; Will not work with a quick-reset!
     OnRemove(entity);
   }
 

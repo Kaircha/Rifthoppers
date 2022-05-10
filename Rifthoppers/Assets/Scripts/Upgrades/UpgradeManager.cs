@@ -11,12 +11,12 @@ public class UpgradeManager : Singleton<UpgradeManager> {
 
   public override void Awake() {
     base.Awake();
-    /*Upgrades.Add(new VipersTongueUpgrade(0, Sprites[0]));
+    Upgrades.Add(new VipersTongueUpgrade(0, Sprites[0]));
     Upgrades.Add(new SuperchargedUpgrade(1, Sprites[1]));
     Upgrades.Add(new MinichargedUpgrade(2, Sprites[2]));
-    Upgrades.Add(new CoffeeCup(3, Sprites[3]));
-    Upgrades.Add(new EnergyAmplifier(4, Sprites[4]));*/
-    Upgrades.Add(new EnergyWings(5, Sprites[5]));
+    Upgrades.Add(new CoffeeCupUpgrade(3, Sprites[3]));
+    Upgrades.Add(new EnergyAmplifierUpgrade(4, Sprites[4]));
+    Upgrades.Add(new EnergyWingsUpgrade(5, Sprites[5]));
   }
 
   public void TakeUpgrade(Upgrade upgrade) {

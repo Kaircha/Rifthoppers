@@ -189,7 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Current: 30
   Maximum: 30
-  DamageMat: {fileID: 2100000, guid: acceb2b9c8a67c042a6616c5f92c647a, type: 2}
 --- !u!114 &4111175471758044961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +229,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
+  UpgradeVFX: {fileID: 0}
   Input: {fileID: 0}
   Direction: {x: 0, y: 0}
   IsMoving: 0
@@ -238,8 +238,6 @@ MonoBehaviour:
   Target: {fileID: 0}
   Speed: 3
   AISpeed: 0
-  PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
-  PoisonMat: {fileID: 2100000, guid: 8d0d895acb324634cb14523228d0551d, type: 2}
   Experience: 16
   BaseHP: 6
 --- !u!50 &4111175471758044962
@@ -381,7 +379,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 83330915f4b803948bcca2a1e91a5b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

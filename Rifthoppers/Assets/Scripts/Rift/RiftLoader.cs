@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RiftLoader : MonoBehaviour {
   // Temporary until a second rift is needed
-  public List<GameObject> Waves = new List<GameObject>();
+  public List<GameObject> Waves = new();
   public GameObject Upgrade;
   public GameObject Dead;
   public Material FadeInMaterial;

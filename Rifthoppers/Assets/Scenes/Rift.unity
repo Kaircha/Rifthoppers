@@ -9858,14 +9858,14 @@ MonoBehaviour:
   FadeInMaterial: {fileID: 2100000, guid: 58262a966f3843a4cb6e424694d8a4cf, type: 2}
   FadeOutMaterial: {fileID: 2100000, guid: ac4cdbf9697d7c249972a8a462c7cb9e, type: 2}
   WaterPoolMaterial_In: {fileID: 2100000, guid: 000c1e3c9dae8974daba6a941daf369b, type: 2}
-  WaterPoolMaterial_Out: {fileID: 2100000, guid: 4e814299d5c5fd54686b97a6b724b6d3, type: 2}
+  WaterPoolMaterial_Out: {fileID: 2100000, guid: 77b19a2e1a48d8941b86af9664a4b030, type: 2}
   CurrentArea: {fileID: 1599469960}
   FadeInMaterials:
   - {fileID: 2100000, guid: 58262a966f3843a4cb6e424694d8a4cf, type: 2}
   - {fileID: 2100000, guid: 000c1e3c9dae8974daba6a941daf369b, type: 2}
   FadeOutMaterials:
   - {fileID: 2100000, guid: ac4cdbf9697d7c249972a8a462c7cb9e, type: 2}
-  - {fileID: 2100000, guid: 4e814299d5c5fd54686b97a6b724b6d3, type: 2}
+  - {fileID: 2100000, guid: 77b19a2e1a48d8941b86af9664a4b030, type: 2}
   MaterialLayers:
   - serializedVersion: 2
     m_Bits: 16375
@@ -9896,7 +9896,7 @@ MonoBehaviour:
   AudioMixerGroup: {fileID: 24300002, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
   PostProcessingVolume: {fileID: 4524564}
   SpeedMultiplier: 1
-  DisableEnergyDamage: 0
+  DisableEnergyDamage: 1
 --- !u!114 &1672535911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9938,7 +9938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPreventSpawning: 0
+  DebugPreventSpawning: 1
   SpawnData:
   - Rate: 0.3
     Threshold: 0

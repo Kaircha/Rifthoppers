@@ -20,4 +20,11 @@ public class RiftDeadState : State {
       yield return null;
     }
   }
+
+  public override void Exit() {
+    foreach (Player player in LobbyManager.Instance.Players) {
+      player.Entity.Upgrades.ForEach(x => x.Remove(player.Entity));
+      player.Entity.Upgrades = new();
+    }
+  }
 }

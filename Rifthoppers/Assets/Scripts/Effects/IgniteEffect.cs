@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Effect {
-
-}
-
 public class IgniteEffect : Effect {
   public float Damage;
   public float Duration;
@@ -15,7 +11,10 @@ public class IgniteEffect : Effect {
     Duration = Mathf.Max(duration, 0);
   }
 
-  public void Add(IgniteEffect ignite) {
+  public override void Add(Effect effect) {
+    if (effect is not IgniteEffect) return;
+    IgniteEffect ignite = effect as IgniteEffect;
+
     if (Damage <= 0 || Duration <= 0) {
       Damage = ignite.Damage;
       Duration = ignite.Duration;
@@ -29,14 +28,16 @@ public class IgniteEffect : Effect {
 
     Duration += ignite.Duration * ignite.Damage / Damage;
   }
-}
 
-public class PoisonEffect : Effect {
-  public float Damage;
-  public float Duration;
+  public override IEnumerator EffectRoutine() {
+    // Add VFX
 
-  public PoisonEffect(float damage, float duration) {
-    Damage = Mathf.Max(damage, 0);
-    Duration = Mathf.Max(duration, 0);
+    while (Duration > 0) {
+      Entity.Health.Hurt(null, Entity, Damage * Time.deltaTime, true);
+      Duration -= Time.deltaTime;
+      yield return null;
+    }
+
+    // Remove VFX
   }
 }

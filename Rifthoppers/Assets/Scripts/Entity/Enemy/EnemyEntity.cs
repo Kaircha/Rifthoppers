@@ -13,12 +13,11 @@ public class EnemyEntity : Entity, IPoolable {
   public void HandleSpawn() {
     (Health as Health).Maximum = BaseHP * RiftManager.Instance.DifficultyMultiplier;
     Health.Revive();
-    Ignite = new IgniteEffect(0, 0);
-    Poisons = new();
+    RemoveEffects();
     OnSpawn?.Invoke();
   }
 
-  public override void Death(Entity entity) {
+  public override void OnDeath(Entity entity) {
     RiftManager.Instance.Experience.Learn((int)Experience);
   }
   

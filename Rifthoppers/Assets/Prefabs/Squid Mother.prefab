@@ -270,7 +270,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2100380862474489031}
   - component: {fileID: 2100380862474489024}
-  - component: {fileID: 8155076329252380574}
   m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
@@ -313,7 +312,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: 83330915f4b803948bcca2a1e91a5b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -345,22 +344,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &8155076329252380574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2100380862474489030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606bd92f83479be4588089939c4d8df0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 2100380862824652311}
-  Renderer: {fileID: 2100380862474489024}
-  DefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  HurtMaterial: {fileID: 2100000, guid: acceb2b9c8a67c042a6616c5f92c647a, type: 2}
 --- !u!1 &2100380862824652309
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +446,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Animator: {fileID: 0}
   Stats: {fileID: 0}
+  UpgradeVFX: {fileID: 0}
   Input: {fileID: 0}
   Direction: {x: 0, y: 0}
   IsMoving: 0
@@ -471,8 +455,6 @@ MonoBehaviour:
   Target: {fileID: 0}
   Speed: 10
   AISpeed: 0
-  PoisonParticles: {fileID: 2770837933371962634, guid: 16eacc3254eb230488e265d7778f9226, type: 3}
-  PoisonMat: {fileID: 2100000, guid: 8d0d895acb324634cb14523228d0551d, type: 2}
   Experience: 50
   BaseHP: 100
 --- !u!50 &2100380862824652307

@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entities: []
+  Depth: 0.15
   Damage: 3
 --- !u!66 &7528533309978532750
 CompositeCollider2D:

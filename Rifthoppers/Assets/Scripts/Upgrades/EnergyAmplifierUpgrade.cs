@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyAmplifier : Upgrade
-{
+public class EnergyAmplifierUpgrade : Upgrade {
   public override string Name => "Energy Amplifier";
   public override string Quote => "Amplified Energy, Increased Damage!";
   public override string Description => throw new System.NotImplementedException();
   public override int Weight => throw new System.NotImplementedException();
 
-  public EnergyAmplifier(int id, Sprite sprite)
-  {
+  public EnergyAmplifierUpgrade(int id, Sprite sprite) {
     ID = id;
     Sprite = sprite;
   }
