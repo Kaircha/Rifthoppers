@@ -5,10 +5,11 @@ using UnityEngine;
 public abstract class Surface : MonoBehaviour {
   public List<Entity> Entities = new();
   public float Depth;
+  public bool CanHurtFlying = false;
   // Sound made by walking on the surface
 
   public void OnTriggerEnter2D(Collider2D collision) {
-    if (collision.attachedRigidbody.TryGetComponent(out Entity entity) && !entity.IsFlying) {
+    if (collision.attachedRigidbody.TryGetComponent(out Entity entity) && (CanHurtFlying || !entity.IsFlying)) {
       Entities.Add(entity);
       entity.Sprite.material.SetFloat("_Submersion", Depth);
       entity.OnSurfaceWalked += SurfaceEffect;

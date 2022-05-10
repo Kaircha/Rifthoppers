@@ -5850,6 +5850,7 @@ MonoBehaviour:
   Target: {fileID: 8261056480845723946}
   Speed: 8
   AISpeed: 2
+  IsFlying: 0
   Machine: {fileID: 6654770937096141520}
   StateType: 1
 --- !u!50 &6654770937096141510
@@ -5974,6 +5975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerLuck: 0
   PlayerSpeedMulti: 1
   PlayerFirerate: 3
   ProjectileCount: 1
@@ -5985,13 +5987,12 @@ MonoBehaviour:
   ProjectileForks: 1
   ProjectileChains: 0
   ProjectileSizeMulti: 1
+  ProjectileColor: {r: 1, g: 1, b: 1, a: 1}
   PowerRange: 5
   PowerStrength: 20
   PowerCostMulti: 1
-  MaxCharges: 1
   Weapon: 0
-  isFlying: 0
-  BulletColor: {r: 1, g: 1, b: 1, a: 1}
+  MaxCharges: 1
 --- !u!114 &2051739045551100073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11740,6 +11741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entities: []
+  Depth: 0
+  CanHurtFlying: 0
   Size: 0
   Damage: 0
   color: {r: 0, g: 0, b: 0, a: 0}

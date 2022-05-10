@@ -27,8 +27,9 @@ public class VipersTongueUpgrade : Upgrade {
   }
 
   public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-    if (receiver == null || amount == 0 || isDoT) return;
-    // Chance to apply the effect, instead of guaranteed
+    if (dealer == null || receiver == null || amount == 0 || isDoT) return;
+    // 20% + Luck * 5% Chance to apply a Poison stack 
+    if (Random.Range(0f, 100f) < 20f + dealer.Stats.PlayerLuck * 5f) return;
     receiver.AddEffect(new PoisonEffect(2, 5));
   }
 

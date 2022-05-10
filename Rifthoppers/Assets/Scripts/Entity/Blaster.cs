@@ -43,7 +43,7 @@ public class Blaster : MonoBehaviour {
 
   public void DefaultWeapon(){
     ++ChargeCount;
-    fakeBullet.Size = CalcSize(); fakeBullet.Damage = CalcDamage() * 0.75f; fakeBullet.color = Stats.BulletColor;
+    fakeBullet.Size = CalcSize(); fakeBullet.Damage = CalcDamage() * 0.75f; fakeBullet.color = Stats.ProjectileColor;
     if (ChargeCount == Stats.MaxCharges || !shooting) ShootBullet(); 
   }
   public void DefaultWeaponStop(){
@@ -59,7 +59,7 @@ public class Blaster : MonoBehaviour {
 
       for (int i = 0; i < Stats.ProjectileCount; i++) {
         Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-        projectile.GetComponent<SpriteRenderer>().color = Stats.BulletColor;
+        projectile.GetComponent<SpriteRenderer>().color = Stats.ProjectileColor;
         projectile.transform.position = BulletOrigin.position;
         projectile.transform.right = BulletOrigin.right;
         projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
@@ -67,7 +67,7 @@ public class Blaster : MonoBehaviour {
       }
     } else {
       Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-      projectile.GetComponent<SpriteRenderer>().color = Stats.BulletColor;
+      projectile.GetComponent<SpriteRenderer>().color = Stats.ProjectileColor;
       projectile.transform.position = BulletOrigin.position;
       projectile.transform.right = BulletOrigin.right;
       projectile.GetComponent<Projectile>().Shoot(gameObject.layer, Entity, Stats.ProjectileSpeed, CalcDamage(), Stats.ProjectileHoming, Stats.ProjectileForks, Stats.ProjectileChains, CalcSize());

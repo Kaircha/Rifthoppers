@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour {
+  public int PlayerLuck = 0;
   public float PlayerSpeedMulti = 1f;
   public float PlayerFirerate = 3f;
 
@@ -15,14 +16,12 @@ public class Stats : MonoBehaviour {
   public int ProjectileForks = 1; 
   public int ProjectileChains = 0;
   public float ProjectileSizeMulti = 1f;
+  public Color ProjectileColor;
 
   public float PowerRange = 5f;
   public float PowerStrength = 20f;
   public float PowerCostMulti = 1f;
 
-  public int MaxCharges = 1;
-
   public int Weapon = 0;
-
-  public Color BulletColor;
+  public int MaxCharges = 1;
 }
