@@ -19,7 +19,8 @@ public class LobbyManager : Singleton<LobbyManager> {
   private void Update() {
     if (Players.Count == 0) return;
     CameraTarget.position = Players.Count > 1 ? AvgPos() : AimPos();
-  }
+  } 
+
 
   private void OnEnable() => SceneManager.activeSceneChanged += OnSceneChanged;
   private void OnDisable() => SceneManager.activeSceneChanged -= OnSceneChanged;

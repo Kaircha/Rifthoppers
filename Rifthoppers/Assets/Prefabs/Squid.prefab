@@ -262,11 +262,13 @@ MonoBehaviour:
   Sprite: {fileID: 7704696552374903484}
   HurtAudio: {fileID: 4285103430202759523}
   Target: {fileID: 0}
-  Speed: 7.5
+  Speed: 9.375
   AISpeed: 0
   IsFlying: 1
-  Experience: 16
+  minOrbs: 1
+  maxOrbs: 3
   BaseHP: 40
+  Orb: {fileID: 3875406828900962222, guid: 63611863abe783441a3bae03fb5b32fc, type: 3}
 --- !u!50 &7704696552183869551
 Rigidbody2D:
   serializedVersion: 4

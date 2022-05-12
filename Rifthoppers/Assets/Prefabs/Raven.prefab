@@ -6298,7 +6298,7 @@ MonoBehaviour:
   Sprite: {fileID: 3234497499906314438}
   HurtAudio: {fileID: 0}
   Target: {fileID: 4713967439379072290}
-  Speed: 8
+  Speed: 10
   AISpeed: 2
   IsFlying: 0
   Machine: {fileID: 4282712546159289950}
@@ -6427,9 +6427,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerLuck: 0
   PlayerSpeedMulti: 1
-  PlayerFirerate: 3
+  PlayerFirerate: 4
   ProjectileCount: 1
-  ProjectileSpeed: 15
+  ProjectileSpeed: 17
   ProjectileSpeedMulti: 1
   ProjectileDamage: 6
   ProjectileDamageMulti: 1
