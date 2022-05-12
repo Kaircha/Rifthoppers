@@ -14,6 +14,8 @@ public class EnergyOrb : MonoBehaviour
     Vector3 closest = Vector3.zero;
     float minDistance = int.MaxValue;
 
+    // might want to change how this works in the future
+
     foreach(Player player in LobbyManager.Instance.Players){
       float dis = Vector2.Distance(player.Entity.transform.position, transform.position);
       if(dis < minDistance){

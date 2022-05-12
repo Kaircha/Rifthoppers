@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Experience {
   public int Level = 1;
-  public int Current;
+  public float Current;
   public int Required => Level * (Level + 1) * 50;
   public int Previous => (Level - 1) * Level * 50;
   //public int Required => Level * (Level + 1);
@@ -13,7 +13,7 @@ public class Experience {
   public event Action OnLevelUp;
   public event Action OnLearn;
 
-  public void Learn(int amount) {
+  public void Learn(float amount) {
     if (Current + amount >= Required) {
       Current = Required;
       Level++;
