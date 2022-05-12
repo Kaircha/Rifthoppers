@@ -15,7 +15,12 @@ public class LobbyManager : Singleton<LobbyManager> {
   public CinemachineVirtualCamera SoloVCam;
   public CinemachineVirtualCamera CoopVCam;
 
-  private void Start() => AddPlayer();
+  public override void Awake() {
+    base.Awake();
+
+    AddPlayer();
+  }
+
   private void Update() {
     if (Players.Count == 0) return;
     CameraTarget.position = Players.Count > 1 ? AvgPos() : AimPos();
@@ -29,6 +34,7 @@ public class LobbyManager : Singleton<LobbyManager> {
     InputData input = Instantiate(PlayerPrefab, transform).GetComponent<InputData>();
     PlayerEntity entity = Instantiate(EntityPrefab, input.transform).GetComponent<PlayerEntity>();
     entity.Input = input;
+    entity.transform.position = SceneManager.GetActiveScene().name == "Rift" ? Vector3.zero : new Vector3(0, -30);
     Players.Add(new Player(input, entity));
 
     UpdateAudioListeners();
@@ -44,7 +50,7 @@ public class LobbyManager : Singleton<LobbyManager> {
     UpdateVirtualCameras();
   }
 
-  // Camera is not persistant between scenes; Entities aren't persistant between scenes
+  // Camera is not persistant between scenes
   public void OnSceneChanged(Scene a, Scene b) {
     UpdateAudioListeners();
     UpdateVirtualCameras();
@@ -87,7 +93,7 @@ public class LobbyManager : Singleton<LobbyManager> {
 
     newEntity.transform.SetParent(player.Input.transform);
     newEntity.Input = player.Input;
-    newEntity.EnterHubState();
+    newEntity.EnterLabState();
 
     oldEntity.EnterAIState();
     oldEntity.transform.SetParent(null);

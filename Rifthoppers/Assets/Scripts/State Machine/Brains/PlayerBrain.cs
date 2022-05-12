@@ -7,7 +7,7 @@ public class PlayerBrain : Brain {
   public override State EntryState => RiftState;
 
   public PlayerAIState AIState;
-  public PlayerHubState HubState;
+  public PlayerLabState HubState;
   public PlayerRiftState RiftState;
 
   public override void Initialize() {

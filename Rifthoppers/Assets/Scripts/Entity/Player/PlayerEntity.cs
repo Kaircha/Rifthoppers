@@ -6,25 +6,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerEntity : Entity {
   public StateMachine Machine;
-  public PlayerStateType StateType;
 
-  public void Start() {
+  public override void Awake() {
+    base.Awake();
     Machine = GetComponent<StateMachine>();
-    switch (StateType) {
-      case PlayerStateType.AI: EnterAIState(); break;
-      case PlayerStateType.Hub: EnterHubState(); break;
-      case PlayerStateType.Rift: EnterRiftState(); break;
-    }
   }
 
   public void EnterAIState() => Machine.State = new PlayerAIState(this);
-  public void EnterHubState() => Machine.State = new PlayerHubState(this);
+  public void EnterLabState() => Machine.State = new PlayerLabState(this);
   public void EnterRiftState() => Machine.State = new PlayerRiftState(this);
-}
-
-// TEMPORARY!
-public enum PlayerStateType { 
-  AI,
-  Hub,
-  Rift
 }

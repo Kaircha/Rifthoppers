@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Component {
-  public virtual bool Persistent => true;
+  //public virtual bool Persistent => true;
   private static T _instance;
   public static T Instance => _instance ?? Initialize();
 
@@ -15,7 +15,8 @@ public class Singleton<T> : MonoBehaviour where T : Component {
     if (_instance != null && _instance != this) Destroy(this.gameObject);
     else { 
       Initialize();
-      if (Persistent) DontDestroyOnLoad(this.gameObject);
+      // Singletons are instead loaded in their own dedicated scene.
+      //if (Persistent) DontDestroyOnLoad(this.gameObject);
     }
   }
 }

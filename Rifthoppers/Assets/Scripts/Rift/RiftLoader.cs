@@ -6,7 +6,6 @@ public class RiftLoader : MonoBehaviour {
   // Temporary until a second rift is needed
   public List<GameObject> Waves = new();
   public GameObject Upgrade;
-  public GameObject Dead;
   public Material FadeInMaterial;
   public Material FadeOutMaterial;
   public Material WaterPoolMaterial_In;
@@ -18,12 +17,6 @@ public class RiftLoader : MonoBehaviour {
   public List<Material> FadeInMaterials;
   public List<Material> FadeOutMaterials;
   public List<LayerMask> MaterialLayers;
-
-  // These should play an animation for the load
-  public void LoadDead() {
-    StopAllCoroutines();
-    TempArea = Instantiate(Dead, CurrentArea.transform);
-  }
 
   public void LoadWave() {
     StopAllCoroutines();

@@ -11,20 +11,13 @@ using System;
 [RequireComponent(typeof(RiftLoader))]
 [RequireComponent(typeof(RiftScaler))]
 [RequireComponent(typeof(RiftSpawner))]
-[RequireComponent(typeof(StateMachine))]
 [RequireComponent(typeof(Energy))]
 public class RiftManager : Singleton<RiftManager> {
-  public override bool Persistent => false;
 
   [HideInInspector] public RiftLoader RiftLoader;
   [HideInInspector] public RiftScaler RiftScaler;
   [HideInInspector] public RiftSpawner RiftSpawner;
-  [HideInInspector] public StateMachine Machine;
   [HideInInspector] public Energy Energy;
-
-  public RiftWaveState RiftWaveState = new RiftWaveState();
-  public RiftUpgradeState RiftUpgradeState = new RiftUpgradeState();
-  public RiftDeadState RiftDeadState = new RiftDeadState();
 
   public Experience Experience;
   public GameObject Checkpoint;
@@ -32,7 +25,7 @@ public class RiftManager : Singleton<RiftManager> {
   [Header("Dynamic Effects")]
   public Material RiftWaveUIMaterial;
   public AudioMixerGroup AudioMixerGroup;
-  public Volume PostProcessingVolume;
+  public Volume PostProcessingVolume => GameManager.Instance.PostProcessingVolume;
   private ColorAdjustments ColorAdjustments;
   private Vignette Vignette;
 
@@ -48,7 +41,9 @@ public class RiftManager : Singleton<RiftManager> {
   public event Action<PlayerEntity> OnKilled;
   public void HasKilled(PlayerEntity entity) => OnKilled?.Invoke(entity);
   public event Action OnWaveStarted;
+  public void WaveStarted() => OnWaveStarted?.Invoke();
   public event Action OnWaveEnded;
+  public void WaveEnded() => OnWaveEnded?.Invoke();
 
 
   public override void Awake() {
@@ -57,20 +52,14 @@ public class RiftManager : Singleton<RiftManager> {
     RiftLoader = GetComponent<RiftLoader>();
     RiftScaler = GetComponent<RiftScaler>();
     RiftSpawner = GetComponent<RiftSpawner>();
-    Machine = GetComponent<StateMachine>();
     Energy = GetComponent<Energy>();
+    Energy.Maximum = 100f;
+    Energy.Heal();
   }
 
   private void Start() {
-    // Up for change
-    Energy.Static = 100f;
-    Energy.Dynamic = 100f;
-    Energy.Maximum = 100f;
-
     if (PostProcessingVolume.profile.TryGet(out ColorAdjustments colorAdjustments)) ColorAdjustments = colorAdjustments;
     if (PostProcessingVolume.profile.TryGet(out Vignette vignette)) Vignette = vignette;
-
-    NextWave();
   }
 
   private void Update() {
@@ -92,18 +81,9 @@ public class RiftManager : Singleton<RiftManager> {
   }
 
   [ContextMenu("Next")]
-  public void NextWave() {
-    Machine.State = RiftWaveState;
-    OnWaveStarted?.Invoke();
-  }
+  public void NextWave() => GameManager.Instance.UpgradeToWave();
   [ContextMenu("Victory")]
-  public void Victory() {
-    Machine.State = RiftUpgradeState;
-    OnWaveEnded?.Invoke();
-  }
+  public void Victory() => GameManager.Instance.WaveToUpgrade();
   [ContextMenu("Defeat")]
-  public void Defeat(Entity entity) {
-    Machine.State = RiftDeadState;
-    OnWaveEnded?.Invoke();
-  }
+  public void Defeat(Entity entity) => StartCoroutine(GameManager.Instance.WaveToLab());
 }

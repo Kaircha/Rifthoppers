@@ -37,7 +37,7 @@ public class Entity : MonoBehaviour {
   public event Action<Entity, Surface> OnSurfaceWalked;
   public void SurfaceWalked(Entity entity, Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
 
-  private void Awake() {
+  public virtual void Awake() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Animator = GetComponent<Animator>();
     Health = GetComponent<IHealth>();

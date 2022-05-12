@@ -14,7 +14,7 @@ public class RiftScaler : MonoBehaviour {
     StartCoroutine(ResizeRoutine(target));
   }
   public IEnumerator ResizeRoutine(float target) {
-    var Shapemodule = ParticleSystem.shape;
+    var shapemodule = ParticleSystem.shape;
     float radius = Radius;
     float time = 0;
 
@@ -22,14 +22,14 @@ public class RiftScaler : MonoBehaviour {
       Radius = Mathf.SmoothStep(radius, target, time);
       Collider.localScale = 0.05f * Radius * Vector3.one;
       Mask.localScale = 0.05f * Radius * Vector3.one;
-      Shapemodule.radius = Radius;
+      shapemodule.radius = Radius;
       time += Speed * Time.deltaTime;
       yield return null;
     }
 
     Radius = target;
-    Collider.localScale = 1.1f * 0.05f * Radius * Vector3.one;
+    Collider.localScale = 0.05f * Radius * Vector3.one;
     Mask.localScale = 0.05f * Radius * Vector3.one;
-    Shapemodule.radius = Radius;
+    shapemodule.radius = Radius;
   }
 }

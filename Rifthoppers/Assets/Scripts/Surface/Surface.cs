@@ -22,6 +22,13 @@ public abstract class Surface : MonoBehaviour {
       entity.OnSurfaceWalked -= SurfaceEffect;
     } 
   }
+  private void OnDisable() {
+    foreach (Entity entity in Entities) {
+      entity.Sprite.material.SetFloat("_Submersion", 0);
+      entity.OnSurfaceWalked -= SurfaceEffect;
+    }
+    Entities = new();
+  }
 
   public void Update() => Entities.ForEach(entity => entity.SurfaceWalked(entity, this));
   
