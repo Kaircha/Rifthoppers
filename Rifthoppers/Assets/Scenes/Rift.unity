@@ -437,8 +437,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1359443115
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: e763b202bf0b16744ba0dd7f30080513, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 320701069}
   - component: {fileID: 320701071}
   - component: {fileID: 320701070}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

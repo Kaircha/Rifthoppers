@@ -26,9 +26,9 @@ public class EnemyEntity : Entity, IPoolable {
     while (nr-- > 0) SpawnOrb();
   }
   
-  private void SpawnOrb()
-  {
-    Instantiate(Orb, transform.position, Quaternion.identity);
+  private void SpawnOrb() {
+    Vector3 offset = new(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+    Instantiate(Orb, transform.position + offset, Quaternion.identity);
   }
 
   private void OnCollisionEnter2D(Collision2D collision) {
