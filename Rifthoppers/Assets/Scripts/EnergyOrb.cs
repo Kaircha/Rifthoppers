@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyOrb : MonoBehaviour
-{
+public class EnergyOrb : MonoBehaviour {
   public float Energy = 30;
   public int Progress = 25;
 
-  public float speedMulti = 1;
+  public float SpeedMulti = 1;
 
-  private void Update()
-  {
+  private void Update() {
     Vector3 closest = Vector3.zero;
     float minDistance = int.MaxValue;
 
+<<<<<<< Updated upstream
     // might want to change how this works in the future
 
     foreach(Player player in LobbyManager.Instance.Players){
+=======
+    foreach (Player player in LobbyManager.Instance.Players) {
+>>>>>>> Stashed changes
       float dis = Vector2.Distance(player.Entity.transform.position, transform.position);
       if(dis < minDistance){
         minDistance = dis;
@@ -26,14 +28,13 @@ public class EnergyOrb : MonoBehaviour
 
     float speed = 7 / minDistance;
 
-    transform.position = Vector2.MoveTowards(transform.position, closest, speed * speedMulti * Time.deltaTime);
+    transform.position = Vector2.MoveTowards(transform.position, closest, speed * SpeedMulti * Time.deltaTime);
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
+  private void OnTriggerEnter2D(Collider2D collision) {
     RiftManager.Instance.Energy.Heal(Energy);
     RiftManager.Instance.Experience.Learn(Progress);
-    RiftManager.Instance.EnergyCollected();
+    //RiftManager.Instance.EnergyCollected();
     Destroy(this.gameObject);
   }
 }

@@ -4,18 +4,15 @@ using TMPro;
 using UnityEngine;
 
 public class UpgradeInteraction : MonoBehaviour, IInteractable {
-
   private Upgrade Upgrade;
   public SpriteRenderer Renderer;
   public TextMeshProUGUI TempText;
   public GameObject TempTutorial;
-  private Transform Items;
-
+  public ItemIndicatorUI ItemIndicator;
 
   // Ideally set externally in future
   private void OnEnable(){
     SetUpgrade(UpgradeManager.Instance.Upgrades[Random.Range(0, UpgradeManager.Instance.Upgrades.Count)]);
-    Items = transform.parent;
   }
   public void SetUpgrade(Upgrade upgrade) {
     Upgrade = upgrade;
@@ -25,10 +22,12 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
   }
 
   public void ShowHighlight() {
+    ItemIndicator.ShowItemIndicator(Upgrade);
     Renderer.color = Color.gray;
   }
 
   public void HideHighlight() {
+    ItemIndicator.HideItemIndicator();
     Renderer.color = Color.white;
   }
 

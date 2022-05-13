@@ -5,8 +5,11 @@ using UnityEngine;
 public class CoffeeCupUpgrade : Upgrade {
   public override string Name => "Coffee Cup";
   public override string Quote => "Firerate Up!";
-  public override string Description => throw new System.NotImplementedException();
+  public override List<Modifier> Modifiers => new() {
+    new(ModifierType.Increase, "+3 Firerate up"),
+  };
   public override int Weight => throw new System.NotImplementedException();
+
 
   public CoffeeCupUpgrade(int id, Sprite sprite) {
     ID = id;

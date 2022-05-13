@@ -7,7 +7,7 @@ public abstract class Upgrade {
   public int ID = 0;
   public Sprite Sprite = null;
   public abstract string Quote { get; }
-  public abstract string Description { get; }
+  public abstract List<Modifier> Modifiers { get; }
   public abstract int Weight { get; }
   // public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");
   // public int TimesObtained => DataManager.Instance.Get<int>($"{ID}TimesObtained");

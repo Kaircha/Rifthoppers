@@ -6,7 +6,9 @@ using UnityEngine;
 public class EnergyWingsUpgrade : Upgrade {
   public override string Name => "Energy Wings";
   public override string Quote => "Fly over Stuff!";
-  public override string Description => throw new System.NotImplementedException();
+  public override List<Modifier> Modifiers => new() {
+    new(ModifierType.Default, "Flight"),
+  };
   public override int Weight => throw new System.NotImplementedException();
 
   public EnergyWingsUpgrade(int id, Sprite sprite) {

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class VipersTongueUpgrade : Upgrade {
   public override string Name => "Viper's Tongue";
-  public override string Quote => "Become Venomous.";
-  public override string Description => throw new System.NotImplementedException();
+  public override string Quote => "Become Venomous!";
+  public override List<Modifier> Modifiers => new() {
+    new(ModifierType.Increase, "+1 Forks"),
+    new(ModifierType.Default, "20% + Luck x 5% Poison on Hit"),
+    new(ModifierType.Default, "Poison when Hit")};
   public override int Weight => throw new System.NotImplementedException();
 
   public VipersTongueUpgrade(int id, Sprite sprite){

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnergyAmplifierUpgrade : Upgrade {
   public override string Name => "Energy Amplifier";
-  public override string Quote => "Amplified Energy, Increased Damage!";
-  public override string Description => throw new System.NotImplementedException();
+  public override string Quote => "More Power!";
+  public override List<Modifier> Modifiers => new() {
+    new(ModifierType.Increase, "+4 Damage up"),
+  };
   public override int Weight => throw new System.NotImplementedException();
 
   public EnergyAmplifierUpgrade(int id, Sprite sprite) {

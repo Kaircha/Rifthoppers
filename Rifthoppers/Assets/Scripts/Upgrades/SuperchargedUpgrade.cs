@@ -5,7 +5,9 @@ using UnityEngine;
 public class SuperchargedUpgrade : Upgrade{
   public override string Name => "Supercharged";
   public override string Quote => "Charge your blasts!";
-  public override string Description => throw new System.NotImplementedException();
+  public override List<Modifier> Modifiers => new() {
+    new(ModifierType.Default, "Blaster charges up until limit or release"),
+  };
   public override int Weight => throw new System.NotImplementedException();
 
   public SuperchargedUpgrade(int id, Sprite sprite) {

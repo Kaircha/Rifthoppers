@@ -28,15 +28,17 @@ public class AudioManager : Singleton<AudioManager> {
 
   private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
   private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
-  private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-    SceneMusic music = SceneMusic.FirstOrDefault(x => x.scene == scene.name);
+  private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => PlaySceneMusic(scene.name);
+  private void PlaySceneMusic(string sceneName) {
+    SceneMusic music = SceneMusic.FirstOrDefault(x => x.scene == sceneName);
     if (music != null) PlayMusic(music);
   }
 
   private void Start() {
-    foreach (string channel in Channels)
+    foreach (string channel in Channels) {
       //SetVolume(channel, DataManager.Instance.Has(channel) ? DataManager.Instance.Get<float>(channel) : 0.5f);
       SetVolume(channel, 0.5f);
+    }
   }
 
   public void MasterVolume(float value) => SetVolume("MasterVolume", value);

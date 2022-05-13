@@ -31,6 +31,7 @@ public class DataManager : Singleton<DataManager> {
   public void SaveData() => SaveData($"{Application.persistentDataPath}/Save.dat");
   private void SaveData(string path) {
     if (!UseSave) return;
+    Debug.Log($"Saved Data to {path}.");
     using (FileStream stream = new(path, FileMode.OpenOrCreate, FileAccess.ReadWrite)) {
       new BinaryFormatter().Serialize(stream, Data);
     }

@@ -34,7 +34,6 @@ public class LobbyManager : Singleton<LobbyManager> {
     InputData input = Instantiate(PlayerPrefab, transform).GetComponent<InputData>();
     PlayerEntity entity = Instantiate(EntityPrefab, input.transform).GetComponent<PlayerEntity>();
     entity.Input = input;
-    entity.transform.position = SceneManager.GetActiveScene().name == "Rift" ? Vector3.zero : new Vector3(0, -30);
     Players.Add(new Player(input, entity));
 
     UpdateAudioListeners();
@@ -104,7 +103,7 @@ public class LobbyManager : Singleton<LobbyManager> {
   }
 
   public PlayerEntity GetClosest(Vector3 position) {
-    if (Players.Count == 0) return Players[0].Entity;
+    if (Players.Count == 1) return Players[0].Entity;
     else return Players.OrderBy(x => Vector3.Distance(x.Entity.transform.position, position)).First().Entity;
   }
   public float GetDistanceToClosest(Vector3 position) => Vector3.Distance(position, GetClosest(position).transform.position);

@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  UseSave: 0
+  UseSave: 1
 --- !u!4 &1056971610
 Transform:
   m_ObjectHideFlags: 0
