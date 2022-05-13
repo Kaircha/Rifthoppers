@@ -7,7 +7,7 @@ public class VipersTongueUpgrade : Upgrade {
   public override string Quote => "Become Venomous!";
   public override List<Modifier> Modifiers => new() {
     new(ModifierType.Increase, "+1 Forks"),
-    new(ModifierType.Default, "20% + Luck x 5% Poison on Hit"),
+    new(ModifierType.Default, "20% + 5% x Luck Poison on Hit"),
     new(ModifierType.Default, "Poison when Hit")};
   public override int Weight => throw new System.NotImplementedException();
 
@@ -16,24 +16,24 @@ public class VipersTongueUpgrade : Upgrade {
     Sprite = sprite;
   }
 
-  public override void OnAdd(Entity entity) {
-    entity.OnDamageDealt += PoisonOnDamageDealt;
-    entity.Health.OnDamageTaken += PoisonOnDamageTaken;
-    entity.Stats.ProjectileForks += 1;
-    // Poison Resistance?
+  public override void OnAdd() {
+    Entity.OnDamageDealt += PoisonOnDamageDealt;
+    Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
+    Entity.Stats.ProjectileForks += 1;
   }
 
-  public override void OnRemove(Entity entity) {
-    entity.OnDamageDealt -= PoisonOnDamageDealt;
-    entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
-    entity.Stats.ProjectileForks -= 1;
+  public override void OnRemove() {
+    Entity.OnDamageDealt -= PoisonOnDamageDealt;
+    Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
+    Entity.Stats.ProjectileForks -= 1;
   }
 
   public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (dealer == null || receiver == null || amount == 0 || isDoT) return;
     // 20% + Luck * 5% Chance to apply a Poison stack 
-    if (Random.Range(0f, 100f) < 20f + dealer.Stats.PlayerLuck * 5f) return;
-    receiver.AddEffect(new PoisonEffect(2, 5));
+    if (Random.Range(0f, 100f) < 20f + 5f * Entity.Stats.PlayerLuck) {
+      receiver.AddEffect(new PoisonEffect(2, 5));
+    }
   }
 
   // Effect should only occur on touching an enemy

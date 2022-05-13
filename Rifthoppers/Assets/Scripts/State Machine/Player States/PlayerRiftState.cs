@@ -59,7 +59,7 @@ public class PlayerRiftState : State {
     while (true) {
       yield return new WaitUntil(() => IsShooting);
       Entity.HasAttacked();
-      Blaster.Shoot();
+      Blaster.StartShooting();
       float firerate = (IsMoving ? 1 : 1.5f) * Stats.PlayerFirerate;
       yield return new WaitForSeconds(1 / firerate);
     }
