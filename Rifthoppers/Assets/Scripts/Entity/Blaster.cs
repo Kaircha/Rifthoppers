@@ -35,10 +35,10 @@ public class Blaster : MonoBehaviour {
     while (true) {
       yield return new WaitUntil(() => IsShooting);
       ShootingStarted();
-      StartCoroutine(ShootRoutine());
+      Coroutine coroutine = StartCoroutine(ShootRoutine());
       yield return new WaitUntil(() => !IsShooting);
       ShootingStopped();
-      StopCoroutine(ShootRoutine());
+      StopCoroutine(coroutine);
     }
   }
 
