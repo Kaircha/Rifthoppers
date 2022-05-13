@@ -10,8 +10,8 @@ public class Projectile : MonoBehaviour, IPoolable {
   private Collider2D Collider;
   private AudioSource HitAudio;
   private List<GameObject> Targets;
-  private LayerMask Ignore;
   private Entity Owner;
+  private LayerMask Ignore;
   private float Speed;
   private float Damage;
   private float Homing;
@@ -42,9 +42,10 @@ public class Projectile : MonoBehaviour, IPoolable {
     Rigidbody.velocity = Speed * transform.right;
   }
 
-  public void Shoot(LayerMask ignore, Entity owner, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
-    Ignore = ignore;
+  public void Shoot(Entity owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileChains, owner.Stats.ProjectileSizeMulti);
+  public void Shoot(Entity owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
     Owner = owner;
+    Ignore = ignore;
     Speed = speed;
     Damage = damage;
     Homing = homing;
@@ -96,7 +97,7 @@ public class Projectile : MonoBehaviour, IPoolable {
         projectile.transform.position = transform.position;
         projectile.transform.right = transform.right;
         projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
-        projectile.Shoot(Ignore, Owner, Speed, Damage / 2, Homing, 0, Chains, SizeMulti * 0.7f);
+        projectile.Shoot(Owner, Ignore, Speed, Damage / 2, Homing, 0, Chains, SizeMulti * 0.7f);
         Physics2D.IgnoreCollision(projectile.Collider, collider);
       }
       Forks = 0;

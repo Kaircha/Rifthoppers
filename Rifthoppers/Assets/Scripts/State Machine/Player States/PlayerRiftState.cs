@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerRiftState : State {
   public Entity Entity;
   private bool IsShooting => Entity.Input.Shoot;
-  private bool IsMoving => Entity.Direction.magnitude > 0;
-  private Stats Stats => Entity.Stats;
   private Blaster Blaster;
   private Power Power;
   private Dodge Dodge;
@@ -23,8 +21,8 @@ public class PlayerRiftState : State {
     Power.gameObject.SetActive(true);
     Dodge.gameObject.SetActive(true);
 
-    Machine.StartCoroutine(ShootRoutine());
-    Machine.StartCoroutine(UpdateBlaster());
+    // These could technically also be started OnEnable on their own object
+    Machine.StartCoroutine(Blaster.BlasterRoutine());
     Machine.StartCoroutine(Dodge.DodgeRoutine());
     Machine.StartCoroutine(Power.PowerRoutine());
   }
@@ -45,23 +43,5 @@ public class PlayerRiftState : State {
     Power.gameObject.SetActive(false);
     Blaster.gameObject.SetActive(false);
     Dodge.gameObject.SetActive(false);
-  }
-
-  public IEnumerator UpdateBlaster() {
-    while(true) {
-      yield return new WaitUntil(() => IsShooting);
-      yield return new WaitUntil(() => !IsShooting);
-      Blaster.StopShooting();
-    }
-  }
-
-  public IEnumerator ShootRoutine() {
-    while (true) {
-      yield return new WaitUntil(() => IsShooting);
-      Entity.HasAttacked();
-      Blaster.StartShooting();
-      float firerate = (IsMoving ? 1 : 1.5f) * Stats.PlayerFirerate;
-      yield return new WaitForSeconds(1 / firerate);
-    }
   }
 }
