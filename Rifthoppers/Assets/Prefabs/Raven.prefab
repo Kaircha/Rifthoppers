@@ -5626,11 +5626,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entity: {fileID: 2545378967618400601}
+  BulletOrigin: {fileID: 7743683448680869880}
   Sprite: {fileID: 4205700405258454852}
   ShootSFX: {fileID: 6364248090205549524}
-  BulletOrigin: {fileID: 7743683448680869880}
   Rigidbody: {fileID: 2200544171613630170}
-  shooting: 0
 --- !u!114 &1770418940780496951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6505,6 +6504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefabs:
   - {fileID: 5356103915473366241, guid: 0ec645b59e2ad944f9844036915b195b, type: 3}
+  - {fileID: 9202412268540300278, guid: 52e8e62a299fcf34196396f2b5b45c03, type: 3}
+  Clones: []
 --- !u!1 &8052437087310551017
 GameObject:
   m_ObjectHideFlags: 0

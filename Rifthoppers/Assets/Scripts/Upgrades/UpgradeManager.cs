@@ -16,6 +16,7 @@ public class UpgradeManager : Singleton<UpgradeManager> {
     Upgrades.Add(new CoffeeCupUpgrade(2, Sprites[2]));
     Upgrades.Add(new EnergyAmplifierUpgrade(3, Sprites[3]));
     Upgrades.Add(new EnergyWingsUpgrade(4, Sprites[4]));
+    Upgrades.Add(new BackfireUpgrade(5, Sprites[5]));
   }
 
   public void TakeUpgrade(Upgrade upgrade) {
