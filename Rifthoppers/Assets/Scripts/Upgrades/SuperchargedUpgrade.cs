@@ -15,11 +15,11 @@ public class SuperchargedUpgrade : Upgrade{
     Sprite = sprite;
   }
 
-  public override void OnAdd(Entity entity) {
-    entity.Stats.MaxCharges = 10;
+  public override void OnAdd() {
+    Entity.Stats.MaxCharges = 10;
   }
 
-  public override void OnRemove(Entity entity) {
-    entity.Stats.MaxCharges = 1;
+  public override void OnRemove() {
+    Entity.Stats.MaxCharges = 1;
   }
 }

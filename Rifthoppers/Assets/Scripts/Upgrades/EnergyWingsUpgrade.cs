@@ -16,14 +16,14 @@ public class EnergyWingsUpgrade : Upgrade {
     Sprite = sprite;
   }
 
-  public override void OnAdd(Entity entity) {
-    entity.UpgradeVFX.ApplyVFX(0);
-    entity.IsFlying = true;
+  public override void OnAdd() {
+    Entity.UpgradeVFX.ApplyVFX(0);
+    Entity.IsFlying = true;
   }
 
-  public override void OnRemove(Entity entity) {
-    entity.UpgradeVFX.DeleteVFX(0);
+  public override void OnRemove() {
+    Entity.UpgradeVFX.DeleteVFX(0);
     // Assumes the default IsFlying of Entity is false; Also breaks if there are two flying upgrades!
-    entity.IsFlying = false;
+    Entity.IsFlying = false;
   }
 }

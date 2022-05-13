@@ -15,6 +15,6 @@ public class EnergyAmplifierUpgrade : Upgrade {
     Sprite = sprite;
   }
 
-  public override void OnAdd(Entity entity) => entity.Stats.ProjectileDamage += 4;
-  public override void OnRemove(Entity entity) => entity.Stats.ProjectileDamage -= 4;
+  public override void OnAdd() => Entity.Stats.ProjectileDamage += 4;
+  public override void OnRemove() => Entity.Stats.ProjectileDamage -= 4;
 }

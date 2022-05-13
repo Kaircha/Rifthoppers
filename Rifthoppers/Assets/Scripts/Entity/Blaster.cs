@@ -14,44 +14,46 @@ public class Blaster : MonoBehaviour {
   private Stats Stats => Entity.Stats;
 
   public event Action OnShoot;
+  public event Action OnStartShoot;
   public event Action OnStopShoot;
-  public bool shooting = false;
+  public bool IsShooting = false;
 
   private FakeBullet fakeBullet;
 
-  public void SwitchWeapon()
-  {
-    switch (Entity.Stats.Weapon){
-      case 0: OnShoot = DefaultWeapon; OnStopShoot = DefaultWeaponStop; break;
+  public void SwitchWeapon() {
+    switch (Entity.Stats.Weapon) {
+      case 0: OnStartShoot = DefaultWeaponStart; OnStopShoot = DefaultWeaponStop; break;
     }
   }
 
-  public void Shoot() {
-    shooting = true;
-    OnShoot?.Invoke();
+  public void StartShooting() {
+    IsShooting = true;
+    OnStartShoot?.Invoke();
   }
-  public void StopShooting(){
-    shooting = false;
+  public void StopShooting() {
+    IsShooting = false;
     OnStopShoot?.Invoke();
   }
 
   private void Awake() {
     fakeBullet = GetComponentInChildren<FakeBullet>(true);
-    OnShoot = DefaultWeapon; OnStopShoot = DefaultWeaponStop;
+    OnStartShoot = DefaultWeaponStart;
+    OnStopShoot = DefaultWeaponStop;
     ImpulseSource = GetComponent<CinemachineImpulseSource>();
   }
 
-  public void DefaultWeapon(){
+  public void DefaultWeaponStart() {
     ++ChargeCount;
-    fakeBullet.Size = CalcSize(); fakeBullet.Damage = CalcDamage() * 0.75f; fakeBullet.color = Stats.ProjectileColor;
-    if (ChargeCount == Stats.MaxCharges || !shooting) ShootBullet(); 
+    fakeBullet.Size = CalcSize();
+    fakeBullet.Damage = CalcDamage() * 0.75f;
+    fakeBullet.color = Stats.ProjectileColor;
+    if (ChargeCount == Stats.MaxCharges || !IsShooting) ShootBullet(); 
   }
   public void DefaultWeaponStop(){
-    if (ChargeCount != 0)ShootBullet();
+    if (ChargeCount != 0) ShootBullet();
   }
 
   public void ShootBullet() {
-
     if (Stats.ProjectileCount > 1) {
       float angle = 60f;
       float angleStart = -angle / 2;
@@ -79,11 +81,11 @@ public class Blaster : MonoBehaviour {
     ImpulseSource.GenerateImpulse(0.15f * Stats.ProjectileSizeMulti * BulletOrigin.right);
     ShootSFX.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
     ShootSFX.Play();
+    OnShoot?.Invoke();
   }
 
   private int ChargeCount = 0;
 
   private float CalcSize() => Stats.ProjectileSizeMulti + 0.3f * ChargeCount;
   private float CalcDamage() => Stats.ProjectileDamage * (ChargeCount + 1);
-
 }

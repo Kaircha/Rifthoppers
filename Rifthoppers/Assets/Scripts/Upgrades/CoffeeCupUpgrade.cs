@@ -16,6 +16,6 @@ public class CoffeeCupUpgrade : Upgrade {
     Sprite = sprite;
   }
 
-  public override void OnAdd(Entity entity) => entity.Stats.PlayerFirerate += 3;
-  public override void OnRemove(Entity entity) => entity.Stats.PlayerFirerate -= 3;
+  public override void OnAdd() => Entity.Stats.PlayerFirerate += 3;
+  public override void OnRemove() => Entity.Stats.PlayerFirerate -= 3;
 }
