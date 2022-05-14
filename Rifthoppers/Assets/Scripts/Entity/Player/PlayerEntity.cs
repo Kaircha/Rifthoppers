@@ -12,7 +12,7 @@ public class PlayerEntity : Entity {
     Machine = GetComponent<StateMachine>();
   }
 
-  public void EnterAIState() => Machine.State = new PlayerAIState(this);
-  public void EnterLabState() => Machine.State = new PlayerLabState(this);
-  public void EnterRiftState() => Machine.State = new PlayerRiftState(this);
+  public void EnterAIState() => Machine.ChangeState(new PlayerAIState(this));
+  public void EnterLabState() => Machine.ChangeState(new PlayerLabState(this));
+  public void EnterRiftState() => Machine.ChangeState(new PlayerRiftState(this));
 }

@@ -20,26 +20,27 @@ public class GameManager : Singleton<GameManager> {
   }
 
   public void Start() {
-    Machine.State = SceneManager.GetActiveScene().name == "Rift" ? RiftWaveState : LaboratoryState;
+    // Won't let us play from the Rift scene directly
+    Machine.ChangeState(LaboratoryState);
   }
 
 
   // Temporary?
-  public void WaveToUpgrade() => Machine.State = RiftUpgradeState;
-  public void UpgradeToWave() => Machine.State = RiftWaveState;
+  public void WaveToUpgrade() => Machine.ChangeState(RiftUpgradeState);
+  public void UpgradeToWave() => Machine.ChangeState(RiftWaveState);
 
 
   public IEnumerator LabToWave() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Rift", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.State = RiftWaveState;
+    Machine.ChangeState(RiftWaveState);
     SceneManager.UnloadSceneAsync("Laboratory");
   }
 
   public IEnumerator WaveToLab() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.State = LaboratoryState;
+    Machine.ChangeState(LaboratoryState);
     SceneManager.UnloadSceneAsync("Rift");
 
     foreach (Player player in LobbyManager.Instance.Players) {

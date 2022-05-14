@@ -16,7 +16,7 @@ public abstract class Brain : MonoBehaviour {
     Machine = GetComponent<StateMachine>();
     Initialize();
     // When Disabled and Re-Enabled, the Brain will re-enter into its EntryState
-    Machine.State = EntryState;
+    Machine.ChangeState(EntryState);
     foreach (Transition transition in Transitions) {
       transition.Condition.Initialize();
     }
@@ -31,7 +31,7 @@ public abstract class Brain : MonoBehaviour {
         if (!transition.Condition.Satisfied) continue;
         if (transition.From == null || (transition.From == Machine.State && transition.From.CanExit)) {
           Debug.Log($"{Entity.name} transitioned from {Machine.State} to {transition.To}.");
-          Machine.State = transition.To;
+          Machine.ChangeState(transition.To);
           transition.Condition.Reset();
           break;
         }
