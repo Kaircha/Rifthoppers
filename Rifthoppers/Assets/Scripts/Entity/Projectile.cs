@@ -43,6 +43,7 @@ public class Projectile : MonoBehaviour, IPoolable {
   }
 
   public void Shoot(Entity owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileChains, owner.Stats.ProjectileSizeMulti);
+  public void Shoot(Entity owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileChains, owner.Stats.ProjectileSizeMulti * sizeMulti);
   public void Shoot(Entity owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
     Owner = owner;
     Ignore = ignore;

@@ -15,11 +15,9 @@ public class SuperchargedUpgrade : Upgrade{
     Sprite = sprite;
   }
 
-  public override void OnAdd() {
-    Entity.Stats.MaxCharges = 10;
-  }
+  public override void OnAdd() => Entity.Blaster.ReplaceWeapons(new ChargedWeapon(Entity, Entity.Blaster.BulletOrigin, 10));
 
-  public override void OnRemove() {
-    Entity.Stats.MaxCharges = 1;
+  public override void OnRemove(){
+    // not sure
   }
 }

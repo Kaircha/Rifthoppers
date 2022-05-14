@@ -23,5 +23,6 @@ public class Stats : MonoBehaviour {
   public float PowerCostMulti = 1f;
 
   public int Weapon = 0;
-  public int MaxCharges = 1;
+
+  public FakeBullet FakeBullet;
 }

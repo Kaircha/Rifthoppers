@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour {
   public bool IsFlying;
   public List<Upgrade> Upgrades = new();
   public List<Effect> Effects = new();
+  public Blaster Blaster;
 
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
@@ -43,6 +44,7 @@ public class Entity : MonoBehaviour {
     Health = GetComponent<IHealth>();
     Stats = GetComponent<Stats>();
     UpgradeVFX = GetComponent<ApplyUpgradeVFX>();
+    Blaster = GetComponentInChildren<Blaster>(true);
   }
 
   private void OnEnable() {

@@ -6179,7 +6179,7 @@ MonoBehaviour:
   CanHurtFlying: 0
   Size: 0
   Damage: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &7554912812059499226
 Rigidbody2D:
   serializedVersion: 4
@@ -6490,6 +6490,7 @@ MonoBehaviour:
   PowerCostMulti: 1
   Weapon: 0
   MaxCharges: 1
+  FakeBullet: {fileID: 3453866291831946554}
 --- !u!114 &478400437151063674
 MonoBehaviour:
   m_ObjectHideFlags: 0

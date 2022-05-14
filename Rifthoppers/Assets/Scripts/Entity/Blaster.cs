@@ -12,7 +12,6 @@ public class Blaster : MonoBehaviour {
   public Rigidbody2D Rigidbody;
 
   public List<Weapon> Weapons = new();
-
   public bool IsShooting => Entity.Input.Shoot;
   public bool IsMoving => Entity.Direction.magnitude > 0;
 
@@ -63,6 +62,23 @@ public class Blaster : MonoBehaviour {
       OnShootingStarted -= weapon.ShootingStarted;
       OnShootingStopped -= weapon.ShootingStopped;
     }
+  }
+
+  //need to add exception
+  public void ReplaceWeapons(Weapon weapon){
+    for (int i = 0; i < Weapons.Count; ++i)
+      if (true){
+
+        OnShoot -= Weapons[i].Shoot;
+        OnShootingStarted -= Weapons[i].ShootingStarted;
+        OnShootingStopped -= Weapons[i].ShootingStopped;
+
+        Weapons[i] = weapon;
+
+        OnShoot += weapon.Shoot;
+        OnShootingStarted += weapon.ShootingStarted;
+        OnShootingStopped += weapon.ShootingStopped;
+      }
   }
 }
 

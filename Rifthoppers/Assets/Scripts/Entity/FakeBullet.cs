@@ -15,14 +15,28 @@ public class FakeBullet : Surface
     rend = GetComponent<SpriteRenderer>();
   }
 
+  public void AfterShoot(){
+    Size = 0;
+    transform.localScale = Vector3.zero;
+  }
+
   private new void Update(){
     base.Update();
-    transform.localScale = Size * Vector3.one;
-    rend.color = color;
+
+    if (transform.localScale.x < Size)
+    {
+      transform.localScale += Time.deltaTime * (Size - transform.localScale.x) * 6 * Vector3.one;
+      if (transform.localScale.x > Size)
+        transform.localScale = Size * Vector3.one;
+    }
+    else if (transform.localScale.x > Size){
+      transform.localScale -= Time.deltaTime * (transform.localScale.x - Size) * 6 * Vector3.one;
+      if (transform.localScale.x < Size)
+        transform.localScale = Size * Vector3.one;
+    }
   }
   public override void SurfaceEffect(Entity entity, Surface surface){
-
     if (entity is PlayerEntity) return;
-    entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
+      entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
   }
 }
