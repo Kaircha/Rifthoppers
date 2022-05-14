@@ -44,7 +44,7 @@ public class Energy : MonoBehaviour, IHealth {
     Static += amount;
     Dynamic += amount;
 
-    Debug.Log(Static + ", " + Dynamic);
+    //Debug.Log(Static + ", " + Dynamic);
     if (Static > Maximum){
       RiftManager.Instance.Experience.Learn((Static - Maximum)/25);
       Static = Maximum;

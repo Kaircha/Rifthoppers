@@ -11,8 +11,8 @@ public class RiftWaveState : State {
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Checkpoint.SetActive(true);
     RiftManager.Instance.RiftSpawner.StartSpawning();
-    RiftManager.Instance.RiftScaler.Resize(20f);
-    RiftManager.Instance.RiftLoader.LoadWave();
+    RiftManager.Instance.AreaLoader.Resize(20f);
+    RiftManager.Instance.AreaLoader.LoadWave();
     // Animate this?
     RiftManager.Instance.RiftWaveUIMaterial.color = Color.white;
     RiftManager.Instance.WaveStarted();

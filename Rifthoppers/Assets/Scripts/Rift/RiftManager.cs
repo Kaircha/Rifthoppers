@@ -8,14 +8,12 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using System;
 
-[RequireComponent(typeof(RiftLoader))]
-[RequireComponent(typeof(RiftScaler))]
+[RequireComponent(typeof(AreaLoader))]
 [RequireComponent(typeof(RiftSpawner))]
 [RequireComponent(typeof(Energy))]
 public class RiftManager : Singleton<RiftManager> {
 
-  [HideInInspector] public RiftLoader RiftLoader;
-  [HideInInspector] public RiftScaler RiftScaler;
+  [HideInInspector] public AreaLoader AreaLoader;
   [HideInInspector] public RiftSpawner RiftSpawner;
   [HideInInspector] public Energy Energy;
 
@@ -49,8 +47,7 @@ public class RiftManager : Singleton<RiftManager> {
   public override void Awake() {
     base.Awake();
 
-    RiftLoader = GetComponent<RiftLoader>();
-    RiftScaler = GetComponent<RiftScaler>();
+    AreaLoader = GetComponent<AreaLoader>();
     RiftSpawner = GetComponent<RiftSpawner>();
     Energy = GetComponent<Energy>();
     Energy.Maximum = 100f;

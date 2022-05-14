@@ -41,7 +41,7 @@ public class RiftSpawner : MonoBehaviour {
     }
   }
 
-  Vector3 SpawnPosition() => RiftManager.Instance.RiftScaler.Radius * Random.insideUnitCircle.normalized;
+  Vector3 SpawnPosition() => RiftManager.Instance.AreaLoader.ScaleRadius * Random.insideUnitCircle.normalized;
 }
 
 [System.Serializable]

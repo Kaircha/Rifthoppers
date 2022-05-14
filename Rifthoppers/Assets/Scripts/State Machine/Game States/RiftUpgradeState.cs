@@ -9,7 +9,7 @@ public class RiftUpgradeState : State {
       player.Entity.transform.position = Vector3.zero;
     }
     RiftManager.Instance.Energy.Heal();
-    RiftManager.Instance.RiftScaler.Resize(10f);
-    RiftManager.Instance.RiftLoader.LoadUpgrade();
+    RiftManager.Instance.AreaLoader.Resize(10f);
+    RiftManager.Instance.AreaLoader.LoadUpgrade();
   }
 }
