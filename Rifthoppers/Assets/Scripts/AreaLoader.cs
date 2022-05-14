@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaLoader : MonoBehaviour
-{
+public class AreaLoader : MonoBehaviour{
 
   public List<Material> FadeMaterials; // first one needs to be the default one 
   public List<GameObject> Waves = new(); // temporary until we add wave class
@@ -11,7 +10,7 @@ public class AreaLoader : MonoBehaviour
   private Transform TemporaryArea;
   public GameObject Upgrade;
 
-  Coroutine loadRoutine = null;
+  private Coroutine loadRoutine = null;
 
   public void LoadWave(){
     if (loadRoutine != null) StopCoroutine(loadRoutine);
@@ -22,8 +21,8 @@ public class AreaLoader : MonoBehaviour
     TemporaryArea = Instantiate(Upgrade, CurrentArea).transform;
   }
 
-  public IEnumerator Load(GameObject Area)
-  {
+  public IEnumerator Load(GameObject Area){
+
     if (TemporaryArea != null) Destroy(TemporaryArea.gameObject);
 
     Transform newArea = Instantiate(Area, transform).transform;
@@ -32,19 +31,15 @@ public class AreaLoader : MonoBehaviour
 
     SetDefaultMaterial(newArea);
     SetAreaMaterialFloat(CurrentArea, "_Size", 0.1f);
-    SetAreaMaterialFloat(CurrentArea, "_Alpha", 0f);
 
     float timer = 0f;
-    while (timer < 1f)
-    {
-      SetAreaMaterialFloat(CurrentArea, "_Alpha", timer);
-      SetAreaMaterialFloat(newArea, "_Alpha", timer);
+    while (timer < 1f){
+      SetFadeFloat("_Alpha", timer);
       timer += Time.deltaTime;
       yield return null;
     }
 
-    SetAreaMaterialFloat(CurrentArea, "_Alpha", 1);
-    SetAreaMaterialFloat(newArea, "_Alpha", 1);
+    SetFadeFloat("_Alpha", 1);
 
     Destroy(CurrentArea.gameObject);
     CurrentArea = newArea;
@@ -61,8 +56,12 @@ public class AreaLoader : MonoBehaviour
     foreach (Transform child in Area) SetDefaultMaterial(child);
   }
   public void SetAreaMaterialFloat(Transform Area, string name, float value){
-    if (Area.TryGetComponent(out SpriteRenderer rend))
-      rend.material.SetFloat(name, value);
+    if (Area.TryGetComponent(out SpriteRenderer rend)){
+      MaterialPropertyBlock prop = new MaterialPropertyBlock();
+      rend.GetPropertyBlock(prop);
+      prop.SetFloat(name, value);
+      rend.SetPropertyBlock(prop);
+    }
     foreach (Transform child in Area) SetAreaMaterialFloat(child, name, value);
   }
 
