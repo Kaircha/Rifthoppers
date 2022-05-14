@@ -19,7 +19,7 @@ public class AreaLoader : MonoBehaviour
   }
   public void LoadUpgrade(){
     if (loadRoutine != null) StopCoroutine(loadRoutine);
-    TemporaryArea = Instantiate(Upgrade, CurrentArea.transform).transform;
+    TemporaryArea = Instantiate(Upgrade, CurrentArea).transform;
   }
 
   public IEnumerator Load(GameObject Area)
@@ -30,18 +30,21 @@ public class AreaLoader : MonoBehaviour
     if (newArea.TryGetComponent<RiftRandomizer>(out RiftRandomizer randomizer))
       randomizer.RandomizeSpots();
 
-    SetDefaultMaterial(newArea.transform);
+    SetDefaultMaterial(newArea);
     SetAreaMaterialFloat(CurrentArea, "_Size", 0.1f);
-    SetFadeFloat("_Alpha", 0f);
+    SetAreaMaterialFloat(CurrentArea, "_Alpha", 0f);
 
     float timer = 0f;
-    while (timer < 1f){
-      SetFadeFloat("_Alpha", timer);
+    while (timer < 1f)
+    {
+      SetAreaMaterialFloat(CurrentArea, "_Alpha", timer);
+      SetAreaMaterialFloat(newArea, "_Alpha", timer);
       timer += Time.deltaTime;
       yield return null;
     }
 
-    SetFadeFloat("_Alpha", 1);
+    SetAreaMaterialFloat(CurrentArea, "_Alpha", 1);
+    SetAreaMaterialFloat(newArea, "_Alpha", 1);
 
     Destroy(CurrentArea.gameObject);
     CurrentArea = newArea;
@@ -81,10 +84,10 @@ public class AreaLoader : MonoBehaviour
 
     float time = 0;
     while (time < 1){
+      time += ScaleSpeed * Time.deltaTime;
       ScaleRadius = Mathf.SmoothStep(radius, target, time);
       RiftCollider.localScale = Mask.localScale = 0.05f * ScaleRadius * Vector3.one;
       shapemodule.radius = ScaleRadius;
-      time += ScaleSpeed * Time.deltaTime;
       yield return null;
     }
     ScaleRadius = shapemodule.radius = target;
