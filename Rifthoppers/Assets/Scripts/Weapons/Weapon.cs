@@ -15,3 +15,10 @@ public abstract class Weapon : ScriptableObject {
   public abstract void ShootingUpdated();
   public abstract void ShootingStopped();
 }
+
+[System.Flags]
+public enum WeaponType {
+  Default = 0,
+  Charged = 1,
+  Remote = 2,
+}

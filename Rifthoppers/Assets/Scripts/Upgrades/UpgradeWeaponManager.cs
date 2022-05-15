@@ -13,9 +13,3 @@ public class UpgradeWeaponManager : Singleton<UpgradeWeaponManager> {
     OnUpgradeTaken?.Invoke(upgrade);
   }
 }
-
-[Flags]
-public enum WeaponType {
-  Default = 0,
-  Charged = 1,
-}
