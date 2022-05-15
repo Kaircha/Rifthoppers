@@ -7,8 +7,6 @@ public class ChargedWeapon : Weapon {
   private int Charges = 0;
   public int MaxCharges = 10;
 
-  private Transform FakeBullet;
-
   public override void Shoot() {
     Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
     projectile.transform.position = Barrel.Origin.position;
@@ -24,7 +22,6 @@ public class ChargedWeapon : Weapon {
     }
 
     Charges = 0;
-
     Entity.Stats.FakeBullet.AfterShoot();
   }
   public override void ShootingStarted() { }

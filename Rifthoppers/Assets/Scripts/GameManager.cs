@@ -13,6 +13,8 @@ public class GameManager : Singleton<GameManager> {
   public RiftWaveState RiftWaveState = new();
   public RiftUpgradeState RiftUpgradeState = new();
 
+  public Transform Lab;
+
   public override void Awake() {
     base.Awake();
 
@@ -33,8 +35,9 @@ public class GameManager : Singleton<GameManager> {
   public IEnumerator LabToWave() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Rift", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(RiftWaveState, 1f);
-    yield return new WaitForSeconds(1f);
+    RiftManager.Instance.AreaLoader.ChangeCurrentArea(GameObject.Find("Lab").transform, 10f);
+    Machine.ChangeState(RiftWaveState, 0f);
+    yield return new WaitForSeconds(2f);
     SceneManager.UnloadSceneAsync("Laboratory");
   }
 

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RiftWaveState : State {
+
+  public Transform CurrentArea;
+
   public override void Enter() {
     foreach (Player player in LobbyManager.Instance.Players) {
       player.Entity.EnterRiftState();
@@ -11,6 +14,7 @@ public class RiftWaveState : State {
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Checkpoint.SetActive(true);
     RiftManager.Instance.RiftSpawner.StartSpawning();
+
     RiftManager.Instance.AreaLoader.Resize(20f);
     RiftManager.Instance.AreaLoader.LoadWave();
     // Animate this?

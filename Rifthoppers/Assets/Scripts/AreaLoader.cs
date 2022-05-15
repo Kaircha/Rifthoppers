@@ -12,6 +12,16 @@ public class AreaLoader : MonoBehaviour{
 
   private Coroutine loadRoutine = null;
 
+  public void ChangeCurrentArea(Transform area, float radius){
+    CurrentArea.gameObject.SetActive(false);
+    CurrentArea = area;
+    SetDefaultMaterial(CurrentArea);
+
+    var shapemodule = RiftParticleSystem.shape;
+    ScaleRadius = shapemodule.radius = radius;
+    RiftCollider.localScale = Mask.localScale = 0.05f * radius * Vector3.one;
+  }
+
   public void LoadWave(){
     if (loadRoutine != null) StopCoroutine(loadRoutine);
     loadRoutine = StartCoroutine(Load(Waves[Random.Range(0, Waves.Count)]));
