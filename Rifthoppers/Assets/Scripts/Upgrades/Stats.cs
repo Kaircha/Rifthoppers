@@ -22,7 +22,7 @@ public class Stats : MonoBehaviour {
   public float PowerStrength = 20f;
   public float PowerCostMulti = 1f;
 
-  public int Weapon = 0;
+  public WeaponType WeaponType;
 
-  public FakeBullet FakeBullet;
+  public FakeBullet FakeBullet; // This shouldn't be here
 }

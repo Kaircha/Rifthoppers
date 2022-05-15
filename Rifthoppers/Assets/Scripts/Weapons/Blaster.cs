@@ -1,4 +1,3 @@
-using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,29 +5,28 @@ using UnityEngine;
 
 public class Blaster : MonoBehaviour {
   public Entity Entity;
-  public Transform BulletOrigin;
+  public Barrel Barrel;
   public SpriteRenderer Sprite;
-  public AudioSource ShootSFX;
-  public Rigidbody2D Rigidbody;
 
   public List<Weapon> Weapons = new();
   public bool IsShooting => Entity.Input.Shoot;
   public bool IsMoving => Entity.Direction.magnitude > 0;
 
-  public event Action OnShoot;
   public event Action OnShootingStarted;
+  public event Action OnShootingUpdated;
   public event Action OnShootingStopped;
 
-  public void Shoot() => OnShoot?.Invoke();
   public void ShootingStarted() => OnShootingStarted?.Invoke();
+  public void ShootingUpdated() => OnShootingUpdated?.Invoke();
   public void ShootingStopped() => OnShootingStopped?.Invoke();
 
+
   private void OnEnable() {
-    if (Weapons.Count == 0) {
-      AddWeapon(new DefaultWeapon(Entity, BulletOrigin));
-    }
+    // Shouldn't add a Default Weapon this way; Scriptable Object
+    if (Weapons.Count == 0) AddWeapon(GetWeapon(Entity.Stats.WeaponType));
   }
   private void OnDisable() => StopAllCoroutines();
+
 
   public IEnumerator BlasterRoutine() {
     while (true) {
@@ -43,46 +41,50 @@ public class Blaster : MonoBehaviour {
 
   public IEnumerator ShootRoutine() {
     while (true) {
-      Shoot();
+      ShootingUpdated();
       float firerate = (IsMoving ? 1 : 1.5f) * Entity.Stats.PlayerFirerate;
       yield return new WaitForSeconds(1 / firerate);
     }
   }
 
+  #region These don't actually work for weapons beyond the first
   public void AddWeapon(Weapon weapon) {
+    // Technically can't be set like this; Entity/Barrel might be different
+    weapon.Entity = Entity;
+    weapon.Barrel = Barrel;
+
     Weapons.Add(weapon);
-    OnShoot += weapon.Shoot;
     OnShootingStarted += weapon.ShootingStarted;
+    OnShootingUpdated += weapon.ShootingUpdated;
     OnShootingStopped += weapon.ShootingStopped;
   }
 
   public void RemoveWeapon(Weapon weapon) {
     if (Weapons.Remove(weapon)) {
-      OnShoot -= weapon.Shoot;
       OnShootingStarted -= weapon.ShootingStarted;
+      OnShootingUpdated -= weapon.ShootingUpdated;
       OnShootingStopped -= weapon.ShootingStopped;
     }
   }
+  #endregion
 
-  //need to add exception
-  public void ReplaceWeapons(Weapon weapon){
-    for (int i = 0; i < Weapons.Count; ++i)
-      if (true){
+  public void ReplaceWeapons(WeaponType type) {
+    Weapon weapon = UpgradeWeaponManager.Instance.Weapons[(int)type];
 
-        OnShoot -= Weapons[i].Shoot;
+    for (int i = 0; i < Weapons.Count; ++i) {
+      // Replacement exception
+      if (true) {
         OnShootingStarted -= Weapons[i].ShootingStarted;
+        OnShootingUpdated -= Weapons[i].ShootingUpdated;
         OnShootingStopped -= Weapons[i].ShootingStopped;
 
         Weapons[i] = weapon;
 
-        OnShoot += weapon.Shoot;
         OnShootingStarted += weapon.ShootingStarted;
+        OnShootingUpdated += weapon.ShootingUpdated;
         OnShootingStopped += weapon.ShootingStopped;
       }
+    }
   }
+  public Weapon GetWeapon(WeaponType type) => UpgradeWeaponManager.Instance.Weapons[(int)type];
 }
-
-//Rigidbody.AddForce(-10f * Stats.ProjectileSizeMulti * BulletOrigin.right, ForceMode2D.Impulse);
-//ImpulseSource.GenerateImpulse(0.15f * Stats.ProjectileSizeMulti * BulletOrigin.right);
-//ShootSFX.pitch = UnityEngine.Random.Range(0.7f, 1.3f);
-//ShootSFX.Play();

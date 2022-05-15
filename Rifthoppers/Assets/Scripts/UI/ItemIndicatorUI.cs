@@ -17,7 +17,7 @@ public class ItemIndicatorUI : MonoBehaviour {
     }
 
     Image.sprite = upgrade.Sprite;
-    Name.text = upgrade.Name;
+    Name.text = upgrade.name;
     Quote.text = upgrade.Quote;
     foreach (Modifier modifier in upgrade.Modifiers) {
       Instantiate(ModifierPrefab, Holder).DisplayModifier(modifier);

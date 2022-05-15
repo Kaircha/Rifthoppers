@@ -5626,10 +5626,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entity: {fileID: 2545378967618400601}
-  BulletOrigin: {fileID: 7743683448680869880}
+  Barrel: {fileID: 0}
   Sprite: {fileID: 4205700405258454852}
-  ShootSFX: {fileID: 6364248090205549524}
-  Rigidbody: {fileID: 2200544171613630170}
+  DefaultWeapon: {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
+  Weapons: []
 --- !u!114 &1770418940780496951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,6 +6349,7 @@ MonoBehaviour:
   Speed: 10
   AISpeed: 2
   IsFlying: 0
+  Blaster: {fileID: 2181993222141836174}
   Machine: {fileID: 4282712546159289950}
 --- !u!50 &2200544171613630170
 Rigidbody2D:
@@ -6489,7 +6490,6 @@ MonoBehaviour:
   PowerStrength: 20
   PowerCostMulti: 1
   Weapon: 0
-  MaxCharges: 1
   FakeBullet: {fileID: 3453866291831946554}
 --- !u!114 &478400437151063674
 MonoBehaviour:

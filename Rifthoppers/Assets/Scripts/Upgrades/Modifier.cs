@@ -1,3 +1,4 @@
+[System.Serializable]
 public class Modifier {
   public ModifierType Type;
   public string Description;

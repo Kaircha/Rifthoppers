@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cbcb2abbe1a9f347a23da9217eff16e, type: 3}
+  m_Name: Charged Weapon
+  m_EditorClassIdentifier: 
+  Entity: {fileID: 0}
+  Barrel: {fileID: 0}
+  ShootSFX: {fileID: 8300000, guid: b8b3ad8d4b3d9ba4984a730e3dd4e448, type: 3}
+  ShootingStartedSFX: {fileID: 0}
+  ShootingUpdatedSFX: {fileID: 0}
+  ShootingStoppedSFX: {fileID: 0}
+  MaxCharges: 10

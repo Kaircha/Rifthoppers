@@ -5900,6 +5900,7 @@ MonoBehaviour:
   Speed: 10
   AISpeed: 2
   IsFlying: 0
+  Blaster: {fileID: 6654770937803018697}
   Machine: {fileID: 6654770937096141520}
 --- !u!50 &6654770937096141510
 Rigidbody2D:
@@ -6040,7 +6041,6 @@ MonoBehaviour:
   PowerStrength: 20
   PowerCostMulti: 1
   Weapon: 0
-  MaxCharges: 1
   FakeBullet: {fileID: 3506053450830444105}
 --- !u!114 &2051739045551100073
 MonoBehaviour:
@@ -11157,6 +11157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770937803018696}
   - component: {fileID: 6654770937803018697}
+  - component: {fileID: 4056168371975201273}
   - component: {fileID: 804373926506740117}
   m_Layer: 6
   m_Name: Gun
@@ -11164,7 +11165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6654770937803018696
 Transform:
   m_ObjectHideFlags: 0
@@ -11196,10 +11197,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entity: {fileID: 6654770937096141522}
-  BulletOrigin: {fileID: 6654770937206333709}
+  Barrel: {fileID: 4056168371975201273}
   Sprite: {fileID: 6654770936630601650}
-  ShootSFX: {fileID: 6654770937808443584}
+  DefaultWeapon: {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
+  Weapons: []
+--- !u!114 &4056168371975201273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654770937803018699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2837cd47fdc1445b914564bc11a14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioSource: {fileID: 6654770937808443584}
+  ImpulseSource: {fileID: 804373926506740117}
   Rigidbody: {fileID: 6654770937096141510}
+  Origin: {fileID: 6654770937206333709}
 --- !u!114 &804373926506740117
 MonoBehaviour:
   m_ObjectHideFlags: 0

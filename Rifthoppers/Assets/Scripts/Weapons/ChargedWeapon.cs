@@ -2,41 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargedWeapon : Weapon
-{
-  private int charges = 0;
-  private int maxCharges = 1;
+[CreateAssetMenu(fileName = "Charged Weapon", menuName = "Weapons/Charged")]
+public class ChargedWeapon : Weapon {
+  private int Charges = 0;
+  public int MaxCharges = 10;
 
   private Transform FakeBullet;
 
-  public ChargedWeapon(Entity entity, Transform origin, int max){
-    Entity = entity;
-    ShootOrigin = origin;
-    maxCharges = max;
-  }
-
-  public override void Shoot(){
-    ++charges;
-    Entity.Stats.FakeBullet.Size = GetScale() * Entity.Stats.ProjectileSizeMulti;
-    if (charges == maxCharges)
-      ShootBullet();
-  }
-
-  public void ShootBullet(){
-
+  public override void Shoot() {
     Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-    projectile.transform.position = ShootOrigin.position;
-    projectile.transform.right = ShootOrigin.right;
+    projectile.transform.position = Barrel.Origin.position;
+    projectile.transform.right = Barrel.Origin.right;
     projectile.GetComponent<SpriteRenderer>().color = Entity.Stats.ProjectileColor;
-    projectile.GetComponent<Projectile>().Shoot(Entity, charges, GetScale());
-    charges = 0;
+    projectile.GetComponent<Projectile>().Shoot(Entity, Charges, GetScale());
+
+    Barrel.Rigidbody.AddForce(-10f * GetScale() * Entity.Stats.ProjectileSizeMulti * Barrel.Origin.right, ForceMode2D.Impulse);
+    Barrel.ImpulseSource.GenerateImpulse(0.15f * GetScale() * Entity.Stats.ProjectileSizeMulti * Barrel.Origin.right);
+    if (ShootSFX != null) {
+      Barrel.AudioSource.pitch = Random.Range(0.7f, 1.3f);
+      Barrel.AudioSource.PlayOneShot(ShootSFX);
+    }
+
+    Charges = 0;
 
     Entity.Stats.FakeBullet.AfterShoot();
   }
+  public override void ShootingStarted() { }
+  public override void ShootingUpdated() {
+    ++Charges;
+    Entity.Stats.FakeBullet.Size = GetScale() * Entity.Stats.ProjectileSizeMulti;
+    if (Charges == MaxCharges) Shoot();
+  }
+  public override void ShootingStopped() => Shoot();
 
-  public override void ShootingStarted(){}
-  public override void ShootingStopped() => ShootBullet();
-
-  private float GetScale() => charges * 0.4f;
+  private float GetScale() => Charges * 0.4f;
 }
- 

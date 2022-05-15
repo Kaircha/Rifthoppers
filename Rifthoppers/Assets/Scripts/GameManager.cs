@@ -33,14 +33,16 @@ public class GameManager : Singleton<GameManager> {
   public IEnumerator LabToWave() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Rift", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(RiftWaveState);
+    Machine.ChangeState(RiftWaveState, 1f);
+    yield return new WaitForSeconds(1f);
     SceneManager.UnloadSceneAsync("Laboratory");
   }
 
   public IEnumerator WaveToLab() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(LaboratoryState);
+    Machine.ChangeState(LaboratoryState, 1f);
+    yield return new WaitForSeconds(1f);
     SceneManager.UnloadSceneAsync("Rift");
 
     foreach (Player player in LobbyManager.Instance.Players) {

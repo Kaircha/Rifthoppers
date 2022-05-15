@@ -12,12 +12,12 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
 
   // Ideally set externally in future
   private void OnEnable(){
-    SetUpgrade(UpgradeManager.Instance.Upgrades[Random.Range(0, UpgradeManager.Instance.Upgrades.Count)]);
+    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
   }
   public void SetUpgrade(Upgrade upgrade) {
     Upgrade = upgrade;
     Renderer.sprite = Upgrade.Sprite;
-    TempText.text = upgrade.Name;
+    TempText.text = upgrade.name;
     //if (StatManager.Instance.Upgrades.Count > 0) TempTutorial.SetActive(false);
   }
 
@@ -34,6 +34,6 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
   public void Interact(PlayerEntity interactor) {
     Upgrade.Add(interactor);
     RiftManager.Instance.NextWave();
-    UpgradeManager.Instance.TakeUpgrade(Upgrade);
+    UpgradeWeaponManager.Instance.TakeUpgrade(Upgrade);
   }
 }

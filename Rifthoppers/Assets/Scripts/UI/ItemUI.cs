@@ -8,12 +8,11 @@ public class ItemUI : MonoBehaviour {
   public TextMeshProUGUI Name;
   public TextMeshProUGUI Quote;
 
-  private void OnEnable() => UpgradeManager.Instance.OnUpgradeTaken += TriggerInfo;
-  private void OnDisable() => UpgradeManager.Instance.OnUpgradeTaken -= TriggerInfo;
+  private void OnEnable() => UpgradeWeaponManager.Instance.OnUpgradeTaken += TriggerInfo;
+  private void OnDisable() => UpgradeWeaponManager.Instance.OnUpgradeTaken -= TriggerInfo;
 
   public void TriggerInfo(Upgrade upgrade) {
-
-    Name.text = upgrade.Name;
+    Name.text = upgrade.name;
     Quote.text = upgrade.Quote;
     StartCoroutine(DoAnimation());
   }

@@ -2,20 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Viper's Tongue", menuName = "Upgrades/Viper's Tongue")]
 public class VipersTongueUpgrade : Upgrade {
-  public override string Name => "Viper's Tongue";
-  public override string Quote => "Become Venomous!";
-  public override List<Modifier> Modifiers => new() {
-    new(ModifierType.Increase, "+1 Forks"),
-    new(ModifierType.Default, "20% + 5% x Luck Poison on Hit"),
-    new(ModifierType.Default, "Poison when Hit")};
-  public override int Weight => throw new System.NotImplementedException();
-
-  public VipersTongueUpgrade(int id, Sprite sprite){
-    ID = id;
-    Sprite = sprite;
-  }
-
   public override void OnAdd() {
     Entity.OnDamageDealt += PoisonOnDamageDealt;
     Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
