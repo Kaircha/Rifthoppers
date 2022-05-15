@@ -8199,7 +8199,7 @@ MonoBehaviour:
   RiftWaveUIMaterial: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
   AudioMixerGroup: {fileID: 24300002, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
   SpeedMultiplier: 1
-  DisableEnergyDamage: 1
+  DisableEnergyDamage: 0
 --- !u!114 &1672535913
 MonoBehaviour:
   m_ObjectHideFlags: 0

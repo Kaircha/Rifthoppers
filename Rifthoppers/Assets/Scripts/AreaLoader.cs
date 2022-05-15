@@ -24,18 +24,26 @@ public class AreaLoader : MonoBehaviour{
 
   public void LoadWave(){
     if (loadRoutine != null) StopCoroutine(loadRoutine);
-    loadRoutine = StartCoroutine(Load(Waves[Random.Range(0, Waves.Count)]));
+    loadRoutine = StartCoroutine(Load(Waves[Random.Range(0, Waves.Count)], true));
+  }
+  public void LoadWave(Transform newArea){
+    if (loadRoutine != null) StopCoroutine(loadRoutine);
+    loadRoutine = StartCoroutine(Load(newArea.gameObject, false));
   }
   public void LoadUpgrade(){
     if (loadRoutine != null) StopCoroutine(loadRoutine);
     TemporaryArea = Instantiate(Upgrade, CurrentArea).transform;
   }
 
-  public IEnumerator Load(GameObject Area){
+  public IEnumerator Load(GameObject Area, bool instantiate){
 
     if (TemporaryArea != null) Destroy(TemporaryArea.gameObject);
 
-    Transform newArea = Instantiate(Area, transform).transform;
+    Transform newArea;
+
+    if (instantiate) newArea = Instantiate(Area, transform).transform;
+    else newArea = Area.transform;
+
     if (newArea.TryGetComponent<RiftRandomizer>(out RiftRandomizer randomizer))
       randomizer.RandomizeSpots();
 

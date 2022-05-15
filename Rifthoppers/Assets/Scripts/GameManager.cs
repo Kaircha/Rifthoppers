@@ -44,14 +44,16 @@ public class GameManager : Singleton<GameManager> {
   public IEnumerator WaveToLab() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(LaboratoryState, 1f);
-    yield return new WaitForSeconds(1f);
+    Machine.ChangeState(LaboratoryState, 0f);
+    RiftManager.Instance.AreaLoader.Resize(10f);
+    RiftManager.Instance.AreaLoader.LoadWave(GameObject.Find("Lab").transform);
+    yield return new WaitForSeconds(2f);
     SceneManager.UnloadSceneAsync("Rift");
 
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.transform.position = Vector3.zero;
+      //player.Entity.transform.position = Vector3.zero;
       // Way overkill. Maybe better to not use physics?
-      player.Entity.Rigidbody.AddForce(700f * Vector2.down, ForceMode2D.Impulse);
+      //player.Entity.Rigidbody.AddForce(700f * Vector2.down, ForceMode2D.Impulse);
     }
   }
 }
