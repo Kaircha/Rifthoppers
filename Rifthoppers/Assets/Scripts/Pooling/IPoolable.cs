@@ -6,7 +6,7 @@ public interface IPoolable {
   public Pool Pool { get; set; }
 
   public void Release(GameObject gameObject) {
-    if (Pool != null) Pool.Objects.Release(gameObject);
+    if (Pool != null && gameObject.activeSelf) Pool.Objects.Release(gameObject);
     else gameObject.SetActive(false);
   }
 }

@@ -5628,7 +5628,6 @@ MonoBehaviour:
   Entity: {fileID: 2545378967618400601}
   Barrel: {fileID: 0}
   Sprite: {fileID: 4205700405258454852}
-  DefaultWeapon: {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   Weapons: []
 --- !u!114 &1770418940780496951
 MonoBehaviour:
@@ -5707,7 +5706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6221380070068490207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5774,7 +5773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581054342649331625}
   - component: {fileID: 4748709831878349820}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6349,6 +6348,7 @@ MonoBehaviour:
   Speed: 10
   AISpeed: 2
   IsFlying: 0
+  Upgrades: []
   Blaster: {fileID: 2181993222141836174}
   Machine: {fileID: 4282712546159289950}
 --- !u!50 &2200544171613630170
@@ -6489,7 +6489,7 @@ MonoBehaviour:
   PowerRange: 5
   PowerStrength: 20
   PowerCostMulti: 1
-  Weapon: 0
+  WeaponType: 0
   FakeBullet: {fileID: 3453866291831946554}
 --- !u!114 &478400437151063674
 MonoBehaviour:

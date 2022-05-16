@@ -19,4 +19,4 @@ MonoBehaviour:
     Description: Blaster charges until limit or release
   Weight: 0
   Entity: {fileID: 0}
-  WeaponType: -1
+  WeaponType: 1

@@ -17,7 +17,7 @@ public class Energy : MonoBehaviour, IHealth {
 
   public void Update() {
     if (IsDead) return;
-    if (Dynamic > Static) Dynamic -= 0.15f * Maximum * Time.deltaTime;
+    if (Dynamic > Static) Dynamic -= 0.2f * Maximum * Time.deltaTime;
     if (Dynamic < Static) Dynamic = Static;
     if (Dynamic <= 0) {
       IsDead = true;

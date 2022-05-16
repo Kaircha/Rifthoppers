@@ -32,5 +32,5 @@ public class ChargedWeapon : Weapon {
   }
   public override void ShootingStopped() => Shoot();
 
-  private float GetScale() => Charges * 0.4f;
+  private float GetScale() => 0.6f + Charges * 0.4f;
 }

@@ -8,7 +8,6 @@ public class EnemyEntity : Entity, IPoolable {
   public int minOrbs, maxOrbs;
   public float BaseHP = 40;
   public event Action OnSpawn;
-  public GameObject Orb;
 
   public Pool Pool { get; set; }
 
@@ -27,13 +26,14 @@ public class EnemyEntity : Entity, IPoolable {
   }
   
   private void SpawnOrb() {
-    Vector3 offset = new(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
-    Instantiate(Orb, transform.position + offset, Quaternion.identity);
+    GameObject orb = PoolManager.Instance.OrbletPool.Objects.Get();
+    orb.transform.position = transform.position;
+    orb.GetComponent<Rigidbody2D>().AddForce(5f * UnityEngine.Random.insideUnitCircle, ForceMode2D.Impulse);
   }
 
   private void OnCollisionEnter2D(Collision2D collision) {
     if (collision.transform.CompareTag("Player") && collision.gameObject.TryGetComponent(out Entity entity)) {
-      entity.Health.Hurt(this, entity, 10f * RiftManager.Instance.DifficultyMultiplier, false);
+      entity.Health.Hurt(this, entity, 8f * RiftManager.Instance.DifficultyMultiplier, false);
       collision.rigidbody.AddForce(50f * Direction, ForceMode2D.Impulse);
     }
   }

@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FakeBullet : Surface
-{
+public class FakeBullet : Surface {
   public float Size = 0;
   public float Damage = 0;
   public Color color;
-
-  private SpriteRenderer rend;
-
-  private void Awake()
-  {
-    rend = GetComponent<SpriteRenderer>();
-  }
 
   public void AfterShoot(){
     Size = 0;
@@ -23,16 +15,13 @@ public class FakeBullet : Surface
   private new void Update(){
     base.Update();
 
-    if (transform.localScale.x < Size)
-    {
+    if (transform.localScale.x < Size) {
       transform.localScale += Time.deltaTime * (Size - transform.localScale.x) * 6 * Vector3.one;
-      if (transform.localScale.x > Size)
-        transform.localScale = Size * Vector3.one;
+      if (transform.localScale.x > Size) transform.localScale = Size * Vector3.one;
     }
     else if (transform.localScale.x > Size){
       transform.localScale -= Time.deltaTime * (transform.localScale.x - Size) * 6 * Vector3.one;
-      if (transform.localScale.x < Size)
-        transform.localScale = Size * Vector3.one;
+      if (transform.localScale.x < Size) transform.localScale = Size * Vector3.one;
     }
   }
   public override void SurfaceEffect(Entity entity, Surface surface){

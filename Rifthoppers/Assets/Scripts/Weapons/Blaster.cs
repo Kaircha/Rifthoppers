@@ -27,7 +27,6 @@ public class Blaster : MonoBehaviour {
   }
   private void OnDisable() => StopAllCoroutines();
 
-
   public IEnumerator BlasterRoutine() {
     while (true) {
       yield return new WaitUntil(() => IsShooting);
@@ -70,6 +69,9 @@ public class Blaster : MonoBehaviour {
 
   public void ReplaceWeapons(WeaponType type) {
     Weapon weapon = UpgradeWeaponManager.Instance.Weapons[(int)type];
+    // Not good
+    weapon.Entity = Entity;
+    weapon.Barrel = Barrel;
 
     for (int i = 0; i < Weapons.Count; ++i) {
       // Replacement exception

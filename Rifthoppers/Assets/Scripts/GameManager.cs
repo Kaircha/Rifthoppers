@@ -24,6 +24,10 @@ public class GameManager : Singleton<GameManager> {
   public void Start() {
     // Won't let us play from the Rift scene directly
     Machine.ChangeState(LaboratoryState);
+    SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
+    foreach (Player player in LobbyManager.Instance.Players) {
+      player.Entity.transform.position = new Vector3(0, -30);
+    }
   }
 
 
@@ -44,8 +48,7 @@ public class GameManager : Singleton<GameManager> {
   public IEnumerator WaveToLab() {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(LaboratoryState, 1f);
-    yield return new WaitForSeconds(1f);
+    Machine.ChangeState(LaboratoryState);
     SceneManager.UnloadSceneAsync("Rift");
 
     foreach (Player player in LobbyManager.Instance.Players) {

@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 468380139}
   IsActive: 0
+  Room: {fileID: 1571142897}
 --- !u!61 &468380139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1418,7 +1419,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571142894}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

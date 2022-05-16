@@ -22,10 +22,6 @@ public class RiftManager : Singleton<RiftManager> {
 
   [Header("Dynamic Effects")]
   public Material RiftWaveUIMaterial;
-  public AudioMixerGroup AudioMixerGroup;
-  public Volume PostProcessingVolume => GameManager.Instance.PostProcessingVolume;
-  private ColorAdjustments ColorAdjustments;
-  private Vignette Vignette;
 
   [Header("Experimenting")]
   [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
@@ -54,17 +50,7 @@ public class RiftManager : Singleton<RiftManager> {
     Energy.Heal();
   }
 
-  private void Start() {
-    if (PostProcessingVolume.profile.TryGet(out ColorAdjustments colorAdjustments)) ColorAdjustments = colorAdjustments;
-    if (PostProcessingVolume.profile.TryGet(out Vignette vignette)) Vignette = vignette;
-  }
-
   private void Update() {
-    ColorAdjustments.contrast.Override(25 * (1 - EnergyMultiplier));
-    ColorAdjustments.saturation.Override(-125 * (1 - EnergyMultiplier));
-    Vignette.intensity.Override(0.3f + 0.5f * (1 - EnergyMultiplier));
-    AudioMixerGroup.audioMixer.SetFloat("Lowpass", EnergyMultiplier * 5000f);
-
     if (DisableEnergyDamage) Energy.Heal(); // Ugly code just for lazy debugging
   }
 

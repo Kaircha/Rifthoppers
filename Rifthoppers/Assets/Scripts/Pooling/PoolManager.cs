@@ -11,4 +11,5 @@ public class PoolManager : Singleton<PoolManager> {
   public Pool SquidlingPool;
   public Pool MothPool;
   public Pool ExplosiveSquidPool;
+  public Pool OrbletPool;
 }

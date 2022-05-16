@@ -24,13 +24,16 @@ public class Projectile : MonoBehaviour, IPoolable {
   public Pool Pool { get; set; }
   private bool IsArmed = false;
 
-  public void OnEnable() {
+  private void OnEnable() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Collider = GetComponent<Collider2D>();
     HitAudio = GetComponent<AudioSource>();
     Speed = 0;
     Damage = 0;
+    RiftManager.Instance.OnWaveEnded += Disarm;
   }
+  private void OnDisable() => RiftManager.Instance.OnWaveEnded -= Disarm;
+
 
   // Temporarily disabled until the RiftManager is finished
   public void FixedUpdate() {

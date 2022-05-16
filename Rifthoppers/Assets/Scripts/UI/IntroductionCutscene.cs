@@ -15,12 +15,12 @@ public class IntroductionCutscene : MonoBehaviour {
       yield return new WaitForSeconds(frame.Duration);
       frame.Card.SetActive(false);
     }
-    SceneManager.LoadScene("Laboratory");
+    SceneManager.LoadScene("Persistent");
   }
 
   public void Skip() {
     StopAllCoroutines();
-    SceneManager.LoadScene("Laboratory");
+    SceneManager.LoadScene("Persistent");
   }
 }
 

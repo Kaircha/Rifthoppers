@@ -18,4 +18,6 @@ public class PortalRoom : MonoBehaviour {
       VirtualCamera.Priority = 0;
     }
   }
+
+  public void Exit() => VirtualCamera.Priority = 0;
 }

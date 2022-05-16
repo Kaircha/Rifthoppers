@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Introduction.unity
     guid: 91417b3298d02644089f978f542306c0
   - enabled: 1
+    path: Assets/Scenes/Persistent.unity
+    guid: 6b31709a92e9b934abdda99c72637979
+  - enabled: 1
     path: Assets/Scenes/Laboratory.unity
     guid: 0b49efb96e484004eb3da74837bcc6d0
   - enabled: 1

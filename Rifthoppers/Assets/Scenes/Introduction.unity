@@ -917,27 +917,21 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=72>Changelog</size>
 
-    + Moths have arrived in the Rift!
+    + 6 Upgrades and counting
 
 
-    +
-    Reworked the Upgrade System
+    + Upgrade
+    Item Indicators
 
 
-    + The first two Upgrades
-
-    <size=28>Viper''s
-    Tongue & Supercharged</size>
+    + Improved the Gameplay loop
 
 
-    + Surfaces which apply effects
+    + Simple lab rework
+    / transition
 
 
-    + Status
-    Effect system
-
-
-    + Beginnings of 3d Audio'
+    + Gameplay speed increases'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1192,10 +1186,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=48>Welcome to Rifthoppers!</size>
 
-    This is the 4th WebGL build
+    This is the 5th WebGL build
     of our weekly dev schedule.
 
-    <size=30>Released May 8th 2022</size>'
+    <size=30>Released May 15th 2022</size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

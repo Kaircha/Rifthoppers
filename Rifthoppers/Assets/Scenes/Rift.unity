@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 320701069}
   - component: {fileID: 320701071}
   - component: {fileID: 320701070}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -932,6 +932,53 @@ MonoBehaviour:
   Radius: 20
   Resolution: 64
   PolygonOrEdge: 0
+--- !u!1 &435490302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435490303}
+  - component: {fileID: 435490304}
+  m_Layer: 0
+  m_Name: Orblet Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &435490303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435490302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1892324627}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &435490304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435490302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090c2fd2ee920e64386874903b7ea519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Minimum: 10
+  Maximum: 10000
+  Prefab: {fileID: 3875406828900962222, guid: 63611863abe783441a3bae03fb5b32fc, type: 3}
 --- !u!1 &492235913
 GameObject:
   m_ObjectHideFlags: 0
@@ -8197,9 +8244,8 @@ MonoBehaviour:
     Current: 0
   Checkpoint: {fileID: 3875406827800948136}
   RiftWaveUIMaterial: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
-  AudioMixerGroup: {fileID: 24300002, guid: b23ad542648d7ec4b885bae66c185e79, type: 2}
   SpeedMultiplier: 1
-  DisableEnergyDamage: 1
+  DisableEnergyDamage: 0
 --- !u!114 &1672535913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8651,6 +8697,7 @@ Transform:
   - {fileID: 814662142}
   - {fileID: 1956558504}
   - {fileID: 261909018}
+  - {fileID: 435490303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8673,6 +8720,7 @@ MonoBehaviour:
   SquidlingPool: {fileID: 814662143}
   MothPool: {fileID: 1956558505}
   ExplosiveSquidPool: {fileID: 261909019}
+  OrbletPool: {fileID: 435490304}
 --- !u!1 &1956558503
 GameObject:
   m_ObjectHideFlags: 0
