@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager> {
     AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Rift", LoadSceneMode.Additive);
     yield return new WaitUntil(() => asyncSceneLoad.isDone);
     RiftManager.Instance.AreaLoader.ChangeCurrentArea(GameObject.Find("Lab").transform, 10f);
-    Machine.ChangeState(RiftWaveState, 2f);
+    Machine.ChangeState(RiftWaveState, 0f);
     yield return new WaitForSeconds(2f);
     SceneManager.UnloadSceneAsync("Laboratory");
   }

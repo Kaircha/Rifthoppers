@@ -11,8 +11,14 @@ public class Orbital : MonoBehaviour{
 
   private void Start() => transform.position = new Vector3(0, radius, 0);
 
-  private void OnTriggerStay2D(Collider2D collider){
-    if (collider.attachedRigidbody.gameObject.TryGetComponent(out Entity entity) && !(entity is PlayerEntity))
+  public void Reinitialize(float _speed, float _radius){
+    speed = _speed;
+    radius = _radius;
+    transform.position = new Vector3(0, radius, 0);
+  }
+
+  private void OnTriggerEnter2D(Collider2D collider){
+    if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent(out Entity entity) && !(entity is PlayerEntity))
       onOrbitalCollide?.Invoke(entity);
   }
   private void FixedUpdate(){
