@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Effect {
   public Entity Entity;
-  public abstract IEnumerator EffectRoutine();
+  public Coroutine Coroutine;
   public abstract void Add(Effect effect);
+  public abstract IEnumerator EffectRoutine();
 }

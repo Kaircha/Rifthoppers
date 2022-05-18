@@ -4,8 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Jar of Pickles", menuName = "Upgrades/Jar of Pickles")]
 
-public class JarOfPickles : Upgrade
-{
+public class JarOfPicklesUpgrade : Upgrade {
 
   public GameObject OrbitalPrefab;
   public Sprite Pickle;
@@ -14,13 +13,13 @@ public class JarOfPickles : Upgrade
 
   private Orbital Orbital; 
 
-  public override void OnAdd()
-  {
+  public override void Add() {
     Orbital = Instantiate(OrbitalPrefab, Entity.transform).GetComponent<Orbital>();
     Orbital.Reinitialize(300, 0.35f);
     Orbital.GetComponent<SpriteRenderer>().sprite = Pickle;
-    Orbital.onOrbitalCollide += OnCollide;
+    Orbital.OnOrbitalCollide += OnCollide;
   }
-  public override void OnRemove() => Destroy(Orbital.gameObject);
+  public override IEnumerator UpgradeRoutine() { yield return null; }
+  public override void Remove() => Destroy(Orbital.gameObject);
   public void OnCollide(Entity enemy) => enemy.Health.Hurt(Entity, enemy, damage, false); 
 }

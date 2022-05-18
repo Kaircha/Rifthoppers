@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LaboratoryState : State {
   public override void Enter() {
-
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.Upgrades.ForEach(x => x.Remove(player.Entity));
-      player.Entity.Upgrades = new();
+      player.Entity.RemoveUpgrades();
+      player.Entity.RemoveEffects();
       player.Entity.EnterLabState();
     }
   }

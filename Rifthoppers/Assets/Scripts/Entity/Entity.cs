@@ -88,6 +88,23 @@ public class Entity : MonoBehaviour {
   public virtual void OnDeath(Entity entity) { }
 
 
+
+  public void AddUpgrade(Upgrade upgrade) {
+    //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
+    upgrade.Entity = this;
+    upgrade.Add();
+    upgrade.Coroutine = StartCoroutine(upgrade.UpgradeRoutine());
+    Upgrades.Add(upgrade);
+  }
+
+  public void RemoveUpgrades() {
+    foreach (Upgrade upgrade in Upgrades) {
+      upgrade.Remove();
+      StopCoroutine(upgrade.Coroutine);
+    }
+    Upgrades = new();
+  }
+
   public void AddEffect(Effect effect) {
     foreach (Effect e in Effects) {
       if (e.GetType() == effect.GetType()) {
@@ -97,11 +114,27 @@ public class Entity : MonoBehaviour {
     }
 
     effect.Entity = this;
-    StartCoroutine(effect.EffectRoutine());
+    effect.Coroutine = StartCoroutine(effect.EffectRoutine());
+    Effects.Add(effect);
+  }
+
+  public void RemoveEffect(Effect effect) {
+    if (Effects.Contains(effect)) {
+      Effects.Remove(effect);
+      StopCoroutine(effect.Coroutine);
+    }
   }
 
   public void RemoveEffects() {
-    Effects.ForEach(effect => StopCoroutine(effect.EffectRoutine()));
+    foreach (Effect effect in Effects) {
+      StopCoroutine(effect.Coroutine);
+    }
     Effects = new();
   }
+
+
+
+  // TESTING
+  [ContextMenu("Ignite")]
+  public void IgniteEntity() => AddEffect(new IgniteEffect(1f, 10f));
 }

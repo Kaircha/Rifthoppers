@@ -38,6 +38,7 @@ public class IgniteEffect : Effect {
       yield return null;
     }
 
+    Entity.RemoveEffect(this);
     // Remove VFX
   }
 }

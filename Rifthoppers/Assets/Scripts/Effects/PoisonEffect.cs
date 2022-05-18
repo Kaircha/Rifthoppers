@@ -31,6 +31,8 @@ public class PoisonEffect : Effect {
       yield return null;
     }
 
+    Entity.RemoveEffect(this);
+
     //Destroy(P);
     //Sprite.material = def;
   }

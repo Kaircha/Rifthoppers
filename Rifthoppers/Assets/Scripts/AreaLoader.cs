@@ -59,7 +59,7 @@ public class AreaLoader : MonoBehaviour{
 
     SetFadeFloat("_Alpha", 1);
 
-    Destroy(CurrentArea.gameObject);
+    if (CurrentArea != null) Destroy(CurrentArea.gameObject);
     CurrentArea = newArea;
   }
 

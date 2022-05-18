@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Backfire", menuName = "Upgrades/Backfire")]
 public class BackfireUpgrade : Upgrade {
   private GameObject Clone;
-  public override void OnAdd() {
+  public override void Add() {
     // GetChild really sucks; This needs to be better
     Clone = Entity.UpgradeVFX.ApplyVFX(1, Entity.transform.GetChild(2)); 
     Blaster blaster = Entity.GetComponentInChildren<Blaster>(true);
@@ -15,7 +15,9 @@ public class BackfireUpgrade : Upgrade {
     blaster.OnShootingUpdated += SelfIgnite;
   }
 
-  public override void OnRemove() {
+  public override IEnumerator UpgradeRoutine() { yield return null; }
+
+  public override void Remove() {
     Entity.UpgradeVFX.DeleteVFX(Clone);
     Blaster blaster = Entity.GetComponentInChildren<Blaster>(true);
     //blaster.RemoveWeapon(Weapon);

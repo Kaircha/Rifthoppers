@@ -4,18 +4,22 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Viper's Tongue", menuName = "Upgrades/Viper's Tongue")]
 public class VipersTongueUpgrade : Upgrade {
-  public override void OnAdd() {
+  [Min(0)] public float PoisonDamage = 2f;
+  [Min(0)] public float PoisonDuration = 5f;
+
+  public override void Add() {
     Entity.OnDamageDealt += PoisonOnDamageDealt;
     Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
     Entity.Stats.ProjectileForks += 1;
   }
-
-  public override void OnRemove() {
+  public override IEnumerator UpgradeRoutine() { yield return null; }
+  public override void Remove() {
     Entity.OnDamageDealt -= PoisonOnDamageDealt;
     Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
     Entity.Stats.ProjectileForks -= 1;
   }
 
+  // Technically doesn't stack with other sources of poison chance
   public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (dealer == null || receiver == null || amount == 0 || isDoT) return;
     // 20% + Luck * 5% Chance to apply a Poison stack 

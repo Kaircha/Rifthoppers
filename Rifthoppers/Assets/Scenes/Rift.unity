@@ -8351,13 +8351,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Upgrades:
-  - {fileID: 11400000, guid: 03d41d7ff0c679645bee7c80ea39b5f7, type: 2}
   - {fileID: 11400000, guid: 04621e51780870c4eb965b7d68f6ad3a, type: 2}
   - {fileID: 11400000, guid: ea236ae389383014faa3970646a85d16, type: 2}
   - {fileID: 11400000, guid: b7938ac9efb9cb94eb011f359b057ebe, type: 2}
   - {fileID: 11400000, guid: f9b8d8d6117cf4148a76e645f61467b8, type: 2}
   - {fileID: 11400000, guid: 9ded6a9b3bd01c945adfbc389011eeee, type: 2}
   - {fileID: 11400000, guid: 1b04e10bbea11f941b47eed89c84e3a5, type: 2}
+  - {fileID: 11400000, guid: 83d325ef1034ae540aa292e2dad1d3ef, type: 2}
   Weapons:
   - {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   - {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}

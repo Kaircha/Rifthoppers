@@ -9,6 +9,7 @@ public abstract class Upgrade : ScriptableObject {
   public int Weight;
 
   [HideInInspector] public Entity Entity;
+  [HideInInspector] public Coroutine Coroutine;
 
   // public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");
   // public int TimesObtained => DataManager.Instance.Get<int>($"{ID}TimesObtained");
@@ -16,18 +17,7 @@ public abstract class Upgrade : ScriptableObject {
 
   // public void Unlock() => DataManager.Instance.Set($"{ID}IsUnlocked", true);
 
-  public void Add(Entity entity) {
-    //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
-    Entity = entity;
-    OnAdd();
-    entity.Upgrades.Add(this);
-  }
-  public void Remove(Entity entity) {
-    // Upgrades are currently being removed on Exiting the RiftDeadState; Will not work with a quick-reset!
-    Entity = entity;
-    OnRemove();
-  }
-
-  public abstract void OnAdd();
-  public abstract void OnRemove();
+  public abstract void Add();
+  public abstract IEnumerator UpgradeRoutine();
+  public abstract void Remove();
 }
