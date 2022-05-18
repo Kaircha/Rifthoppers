@@ -31,6 +31,6 @@ public class VipersTongueUpgrade : Upgrade {
   // Effect should only occur on touching an enemy
   private void PoisonOnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (dealer == null || isDoT) return;
-    dealer.AddEffect(new PoisonEffect(2, 5));
+    dealer.AddEffect(new PoisonEffect(PoisonDamage, PoisonDuration));
   }
 }

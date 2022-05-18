@@ -19,7 +19,11 @@ MonoBehaviour:
     Description: +2 Firerate while Ignited
   - Type: 0
     Description: +20% Damage while Ignited
+  - Type: 2
+    Description: 20% + 5% + Luck Ignite on Hit
   Weight: 0
   Entity: {fileID: 0}
   Firerate: 2
   ProjectileDamageMulti: 0.2
+  IgniteDamage: 2
+  IgniteDuration: 5

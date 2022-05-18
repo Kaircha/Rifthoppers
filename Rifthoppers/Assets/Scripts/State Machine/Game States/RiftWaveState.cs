@@ -17,7 +17,8 @@ public class RiftWaveState : State {
     }
     RiftManager.Instance.Energy.CanTakeDamage = true;
     RiftManager.Instance.Energy.Heal();
-    RiftManager.Instance.Checkpoint.SetActive(true);
+    //RiftManager.Instance.Checkpoint.SetActive(true);
+    RiftManager.Instance.Checkpoint.transform.position = 18f * Random.insideUnitCircle; // Temporary!
     RiftManager.Instance.RiftSpawner.StartSpawning();
 
     RiftManager.Instance.AreaLoader.Resize(20f);
@@ -50,7 +51,8 @@ public class RiftWaveState : State {
     // Sometimes never gets called!
 
     RiftManager.Instance.Energy.CanTakeDamage = false;
-    RiftManager.Instance.Checkpoint.SetActive(false);
+    //RiftManager.Instance.Checkpoint.SetActive(false);
+    RiftManager.Instance.Checkpoint.transform.position = new Vector3(0, 100, 0); // Temporary!
     RiftManager.Instance.RiftSpawner.StopSpawning();
     // Animate this?
     RiftManager.Instance.RiftWaveUIMaterial.color = Color.clear;
