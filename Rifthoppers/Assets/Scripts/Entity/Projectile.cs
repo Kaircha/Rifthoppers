@@ -16,9 +16,7 @@ public class Projectile : MonoBehaviour, IPoolable {
   private float Damage;
   private float Homing;
   private int Forks;
-  private int Pierces;
-  private int Chains;
-  private float Explosion;
+  private bool CanPierce => Owner.Stats.ProjectilePierces > 0;
   private float SizeMulti;
 
   public Pool Pool { get; set; }
@@ -34,7 +32,6 @@ public class Projectile : MonoBehaviour, IPoolable {
   }
   private void OnDisable() => RiftManager.Instance.OnWaveEnded -= Disarm;
 
-
   // Temporarily disabled until the RiftManager is finished
   public void FixedUpdate() {
     // Homing; Flies towards target
@@ -45,16 +42,15 @@ public class Projectile : MonoBehaviour, IPoolable {
     Rigidbody.velocity = Speed * transform.right;
   }
 
-  public void Shoot(Entity owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileChains, owner.Stats.ProjectileSizeMulti);
-  public void Shoot(Entity owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileChains, owner.Stats.ProjectileSizeMulti * sizeMulti);
-  public void Shoot(Entity owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, int chains = 0, float sizeMulti = 1) {
+  public void Shoot(Entity owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti);
+  public void Shoot(Entity owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti * sizeMulti);
+  public void Shoot(Entity owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, float sizeMulti = 1) {
     Owner = owner;
     Ignore = ignore;
     Speed = speed;
     Damage = damage;
     Homing = homing;
     Forks = forks;
-    Chains = chains;
     SizeMulti = sizeMulti;
     Rigidbody.velocity = Speed * transform.right;
     transform.localScale = SizeMulti * Vector3.one;
@@ -69,7 +65,19 @@ public class Projectile : MonoBehaviour, IPoolable {
       return;
     }
 
-    // Dealing damage
+    // Enemy is hit. Deal damage.
+    // If can Fork -> Forks for half damage; Forked projectiles cannot fork
+    // Else if can Pierce -> Pierce for excess damage.
+    // Else, or if no damage is left, stop.
+
+    float excessDamage = Impact(collider);
+    if (Forks > 1) Fork(collider);
+    else if (excessDamage <= 0) Disarm();
+    else if (CanPierce) Pierce(collider, excessDamage);
+    else Disarm();
+  }
+
+  public float Impact(Collider2D collider) {
     if (collider.gameObject.TryGetComponent(out Entity entity)) {
       collider.GetComponent<Rigidbody2D>().AddForce(40f * SizeMulti * transform.right, ForceMode2D.Impulse);
       GameObject impact = PoolManager.Instance.BulletImpact.Objects.Get();
@@ -78,59 +86,35 @@ public class Projectile : MonoBehaviour, IPoolable {
       impact.GetComponent<ParticleSystem>().Play();
       impact.GetComponent<AudioSource>().Play();
 
-      entity.Health.Hurt(Owner, entity, Damage, false);
-      //ExplodeAndDamage();
+      if (Chance.Percent(Owner.Stats.PoisonChance)) entity.AddEffect(new PoisonEffect(Damage, 4f));
+      if (Chance.Percent(Owner.Stats.IgniteChance)) entity.AddEffect(new IgniteEffect(Damage, 4f));
+
+      return entity.Health.Hurt(Owner, entity, Damage, false);
     }
-
-    // Piercing; Passes through target
-    if (Pierces >= 1) {
-      Physics2D.IgnoreCollision(Collider, collider);
-      Pierces--;
-      return;
-    }
-
-    // Forking; Splits into 2 or more
-    if (Forks > 1) {
-      float angle = 90f; // Base this value on the distance between player and mouse
-      float angleStart = -angle / 2;
-      float angleIncrease = angle / ((float)Forks - 1f);
-
-      for (int i = 0; i < Forks; i++) {
-        Projectile projectile = PoolManager.Instance.Bullets.Objects.Get().GetComponent<Projectile>();
-        projectile.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
-        projectile.transform.position = transform.position;
-        projectile.transform.right = transform.right;
-        projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
-        projectile.Shoot(Owner, Ignore, Speed, Damage / 2, Homing, 0, Chains, SizeMulti * 0.7f);
-        Physics2D.IgnoreCollision(projectile.Collider, collider);
-      }
-      Forks = 0;
-
-      Disarm();
-      return;
-    }
-
-    // Chaining; Bounces to next closest target
-    if (Chains >= 1) {
-      Physics2D.IgnoreCollision(Collider, collider);
-      Chains--;
-      Transform target = Targets.Count > 1 ? Targets[1].transform : null;
-      if (target != null) {
-        transform.right = (target.position - transform.position + 0.5f * Vector3.up).normalized;
-        Rigidbody.velocity = Speed * transform.right;
-        return;
-      }
-    }
-
-    Disarm();
+    return Damage;
   }
 
-  public void ExplodeAndDamage() {
-    foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, transform.lossyScale.x)){
-      if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent<Entity>(out Entity entity)){
-        if (entity is EnemyEntity) entity.Health.Hurt(Owner, entity, Damage, false, Explosion, transform.position);
-      }
+  public void Fork(Collider2D collider) {
+    float angle = 90f; // Base this value on the distance between player and mouse
+    float angleStart = -angle / 2;
+    float angleIncrease = angle / ((float)Forks - 1f);
+
+    for (int i = 0; i < Forks; i++) {
+      Projectile projectile = PoolManager.Instance.Bullets.Objects.Get().GetComponent<Projectile>();
+      projectile.GetComponent<SpriteRenderer>().color = GetComponent<SpriteRenderer>().color;
+      projectile.transform.position = transform.position;
+      projectile.transform.right = transform.right;
+      projectile.transform.Rotate(Vector3.forward, angleStart + angleIncrease * i);
+      projectile.Shoot(Owner, Ignore, Speed, Damage / 2, Homing, 0, Mathf.Max(SizeMulti / 2, 0.6f));
+      Physics2D.IgnoreCollision(projectile.Collider, collider);
     }
+  }
+
+  public void Pierce(Collider2D collider, float excessDamage) {
+    Physics2D.IgnoreCollision(Collider, collider);
+    SizeMulti = Mathf.Max(SizeMulti / Damage * excessDamage, 0.6f);
+    transform.localScale = SizeMulti * Vector3.one;
+    Damage = excessDamage;
   }
 
   public void Disarm() {

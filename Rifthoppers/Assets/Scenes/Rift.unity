@@ -8358,6 +8358,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ded6a9b3bd01c945adfbc389011eeee, type: 2}
   - {fileID: 11400000, guid: 1b04e10bbea11f941b47eed89c84e3a5, type: 2}
   - {fileID: 11400000, guid: 83d325ef1034ae540aa292e2dad1d3ef, type: 2}
+  - {fileID: 11400000, guid: bc6417ecaf568ab46953b214602b80cd, type: 2}
+  - {fileID: 11400000, guid: ba452f14a3693ed40bdbfb45eaab599f, type: 2}
   Weapons:
   - {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   - {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}

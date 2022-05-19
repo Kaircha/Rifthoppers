@@ -12,7 +12,8 @@ public class PyromaniacUpgrade : Upgrade {
   private IgnitedCondition IgnitedCondition;
 
   public override void Add() {
-    Entity.OnDamageDealt += IgniteOnDamageDealt;
+    Entity.Stats.IgniteChanceBase += 20f;
+    Entity.Stats.IgniteChancePerLuck += 5f;
     IgnitedCondition = new IgnitedCondition(Entity);
   }
 
@@ -28,15 +29,16 @@ public class PyromaniacUpgrade : Upgrade {
   }
 
   public override void Remove() {
-    Entity.OnDamageDealt -= IgniteOnDamageDealt;
+    Entity.Stats.IgniteChanceBase -= 20f;
+    Entity.Stats.IgniteChancePerLuck -= 5f;
   }
 
   // Technically doesn't stack with other sources of ignite chance
-  public void IgniteOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-    if (dealer == null || receiver == null || amount == 0 || isDoT) return;
-    // 20% + Luck * 5% Chance to apply a Poison stack 
-    if (Random.Range(0f, 100f) < 20f + 5f * Entity.Stats.PlayerLuck) {
-      receiver.AddEffect(new IgniteEffect(IgniteDamage, IgniteDuration));
-    }
-  }
+  //public void IgniteOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
+  //  if (dealer == null || receiver == null || amount == 0 || isDoT) return;
+  //  // 20% + Luck * 5% Chance to apply a Poison stack 
+  //  if (Random.Range(0f, 100f) < 20f + 5f * Entity.Stats.PlayerLuck) {
+  //    receiver.AddEffect(new IgniteEffect(IgniteDamage, IgniteDuration));
+  //  }
+  //}
 }

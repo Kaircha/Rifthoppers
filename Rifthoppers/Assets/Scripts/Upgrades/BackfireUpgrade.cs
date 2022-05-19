@@ -26,7 +26,7 @@ public class BackfireUpgrade : Upgrade {
   }
 
   private void SelfIgnite() {
-    if (Random.Range(0f, 100f) < 30f - 10f * Entity.Stats.PlayerLuck)
+    if (Random.Range(0f, 100f) < 30f - 10f * Entity.Stats.Luck)
     Entity.AddEffect(new IgniteEffect(1, 5));
   }
 }

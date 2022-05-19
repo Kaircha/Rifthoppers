@@ -23,9 +23,9 @@ public class PlayerHealth : MonoBehaviour, IHealth {
 
   public void Heal() => Energy.Heal();
 
-  public void Heal(float amount) => Energy.Heal(amount);
+  public float Heal(float amount) => Energy.Heal(amount);
 
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (!isDoT) {
       ImpulseSource.GenerateImpulse(0.5f);
       StartCoroutine(Immunity.ImmunityRoutine(0.2f));
@@ -33,9 +33,9 @@ public class PlayerHealth : MonoBehaviour, IHealth {
 
     // The player doesn't take damage, but instead redirects this damage to the Rift's energy
     OnDamageTaken?.Invoke(dealer, receiver, 0, isDoT);
-    Energy.Hurt(dealer, receiver, amount, isDoT);
+    return Energy.Hurt(dealer, receiver, amount, isDoT);
   }
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
 
   public void Kill() {
     Energy.Kill();

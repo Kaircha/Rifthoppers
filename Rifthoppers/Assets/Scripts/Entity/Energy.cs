@@ -39,35 +39,42 @@ public class Energy : MonoBehaviour, IHealth {
     OnHeal?.Invoke();
   }
 
-  public void Heal(float amount) {
-    if (amount <= 0 || IsDead) return;
+  public float Heal(float amount) {
+    if (amount <= 0 || IsDead) return 0f;
     Static += amount;
     Dynamic += amount;
-
-    //Debug.Log(Static + ", " + Dynamic);
+    float excess = 0f;
+    
     if (Static > Maximum){
-      RiftManager.Instance.Experience.Learn((Static - Maximum)/2f);
+      excess = Static - Maximum;
+      RiftManager.Instance.Experience.Learn(0.5f * excess);
       Static = Maximum;
     }
     if (Dynamic > Maximum) Dynamic = Maximum;
     OnHeal?.Invoke();
+    return excess;
   }
 
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-    if (amount <= 0 || IsDead || !CanTakeDamage) return;
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
+    if (amount <= 0 || IsDead || !CanTakeDamage) return 0f;
     Static -= amount;
+    float excess = 0f;
     OnDamageTaken?.Invoke(dealer, null, amount, isDoT);
     if (dealer != null) dealer.HasDealtDamage(receiver, amount, isDoT);
     if (isDoT) Dynamic -= amount;
-    if (Static <= 0) Static = 0;
+    if (Static <= 0) {
+      excess = -Static;
+      Static = 0;
+    }
     if (Dynamic <= 0) {
       Dynamic = 0;
       IsDead = true;
       OnDeath?.Invoke(dealer);
     }
+    return excess;
   }
 
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) => Hurt(dealer, receiver, amount, isDoT);
 
   public void Kill() {
     if (IsDead) return;

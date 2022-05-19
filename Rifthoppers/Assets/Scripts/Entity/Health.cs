@@ -25,34 +25,40 @@ public class Health : MonoBehaviour, IHealth {
     OnHeal?.Invoke();
   }
 
-  public void Heal(float amount) {
-    if (amount <= 0 || IsDead) return;
+  public float Heal(float amount) {
+    if (amount <= 0 || IsDead) return 0f;
+    float excess = 0f;
+
     Current += amount;
-    if (Current > Maximum) Current = Maximum;
+    if (Current > Maximum) {
+      excess = Maximum - Current;
+      Current = Maximum;
+    }
     OnHeal?.Invoke();
+    return excess;
   }
 
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-
-    if (amount <= 0 || IsDead) return;
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
+    if (amount <= 0 || IsDead) return 0f;
+    float excess = 0f;
     Current -= amount;
     OnDamageTaken?.Invoke(dealer, receiver, amount, isDoT);
     if (dealer != null) dealer.HasDealtDamage(receiver, amount, isDoT);
-    if (Current <= 0)
-    {
+    if (Current <= 0) {
       OnDamageTaken?.Invoke(dealer, receiver, amount, isDoT);
+      excess = -Current;
       Current = 0;
       IsDead = true;
       OnDeath?.Invoke(dealer);
       if (dealer != null && dealer is PlayerEntity) RiftManager.Instance.HasKilled(dealer as PlayerEntity);
     }
+    return excess;
   }
-  public void Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos)
-  {
+  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) {
     Vector3 direction = (pos - transform.position).normalized;
     GetComponent<Rigidbody2D>().AddForce(10 * knockback * direction);
 
-    Hurt(dealer, receiver, amount, isDoT);
+    return Hurt(dealer, receiver, amount, isDoT);
   }
 
   // needs work !!!
