@@ -7,7 +7,7 @@ public class ChargedWeapon : Weapon {
   private int Charges = 0;
   public int MaxCharges = 10;
 
-  public override void Shoot() {
+  public void Shoot() {
     Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
     projectile.transform.position = Barrel.Origin.position;
     projectile.transform.right = Barrel.Origin.right;

@@ -10,7 +10,6 @@ public abstract class Weapon : ScriptableObject {
   public AudioClip ShootingUpdatedSFX;
   public AudioClip ShootingStoppedSFX;
 
-  public abstract void Shoot();
   public abstract void ShootingStarted();
   public abstract void ShootingUpdated();
   public abstract void ShootingStopped();
@@ -20,5 +19,5 @@ public abstract class Weapon : ScriptableObject {
 public enum WeaponType {
   Default = 0,
   Charged = 1,
-  Remote = 2,
+  Laser = 2,
 }

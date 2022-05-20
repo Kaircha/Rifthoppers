@@ -9,4 +9,14 @@ public class Barrel : MonoBehaviour {
   public CinemachineImpulseSource ImpulseSource;
   public Rigidbody2D Rigidbody;
   public Transform Origin;
+
+  // Kind of shouldn't be here? Not sure where else to put it
+  public GameObject LaserPrefab;
+  [HideInInspector] public Laser Laser;
+
+  public void Awake() {
+    GameObject laser = Instantiate(LaserPrefab, transform);
+    Laser = laser.GetComponent<Laser>();
+    laser.SetActive(false);
+  }
 }

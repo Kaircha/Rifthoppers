@@ -808,8 +808,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 320701069}
-  - component: {fileID: 320701071}
   - component: {fileID: 320701070}
+  - component: {fileID: 320701071}
+  - component: {fileID: 320701072}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -917,7 +918,92 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &320701071
+--- !u!68 &320701071
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320701068}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 1
+  m_Points:
+  - {x: 0, y: 20}
+  - {x: 1.9603429, y: 19.903694}
+  - {x: 3.9018064, y: 19.615705}
+  - {x: 5.805693, y: 19.138807}
+  - {x: 7.6536694, y: 18.47759}
+  - {x: 9.427935, y: 17.638424}
+  - {x: 11.111404, y: 16.629393}
+  - {x: 12.687866, y: 15.460209}
+  - {x: 14.142136, y: 14.142136}
+  - {x: 15.460209, y: 12.687865}
+  - {x: 16.629393, y: 11.111403}
+  - {x: 17.638426, y: 9.427933}
+  - {x: 18.47759, y: 7.6536684}
+  - {x: 19.138807, y: 5.8056927}
+  - {x: 19.615705, y: 3.9018047}
+  - {x: 19.903694, y: 1.9603426}
+  - {x: 20, y: -0.0000008742278}
+  - {x: 19.903694, y: -1.9603444}
+  - {x: 19.615705, y: -3.9018064}
+  - {x: 19.138805, y: -5.8056946}
+  - {x: 18.47759, y: -7.6536703}
+  - {x: 17.638424, y: -9.427937}
+  - {x: 16.62939, y: -11.111407}
+  - {x: 15.46021, y: -12.687865}
+  - {x: 14.142136, y: -14.142136}
+  - {x: 12.687865, y: -15.46021}
+  - {x: 11.111403, y: -16.629393}
+  - {x: 9.427933, y: -17.638428}
+  - {x: 7.6536655, y: -18.477592}
+  - {x: 5.8056946, y: -19.138807}
+  - {x: 3.901806, y: -19.615705}
+  - {x: 1.9603419, y: -19.903694}
+  - {x: -0.0000017484556, y: -20}
+  - {x: -1.9603454, y: -19.903694}
+  - {x: -3.9018097, y: -19.615705}
+  - {x: -5.8056974, y: -19.138805}
+  - {x: -7.6536684, y: -18.47759}
+  - {x: -9.427936, y: -17.638424}
+  - {x: -11.111406, y: -16.62939}
+  - {x: -12.687868, y: -15.460207}
+  - {x: -14.142138, y: -14.142133}
+  - {x: -15.460209, y: -12.687866}
+  - {x: -16.629395, y: -11.111401}
+  - {x: -17.638426, y: -9.427934}
+  - {x: -18.477594, y: -7.6536627}
+  - {x: -19.138807, y: -5.805691}
+  - {x: -19.615705, y: -3.9018078}
+  - {x: -19.903694, y: -1.9603386}
+  - {x: -20, y: 0.00000023849762}
+  - {x: -19.903694, y: 1.9603486}
+  - {x: -19.615705, y: 3.9018083}
+  - {x: -19.138805, y: 5.8057003}
+  - {x: -18.477589, y: 7.653672}
+  - {x: -17.638426, y: 9.427935}
+  - {x: -16.629389, y: 11.111408}
+  - {x: -15.460209, y: 12.687866}
+  - {x: -14.142131, y: 14.14214}
+  - {x: -12.687863, y: 15.460211}
+  - {x: -11.111406, y: 16.629393}
+  - {x: -9.427931, y: 17.638428}
+  - {x: -7.6536684, y: 18.47759}
+  - {x: -5.805688, y: 19.13881}
+  - {x: -3.9018047, y: 19.615705}
+  - {x: -1.9603354, y: 19.903696}
+  - {x: 0, y: 20}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!114 &320701072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,12 +1012,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 320701068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf2be8924a22934cbc45679337dc740, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b4b37a94d5be294caaa75d6009e5efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 20
-  Resolution: 64
-  PolygonOrEdge: 0
 --- !u!1 &435490302
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,9 +8443,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 83d325ef1034ae540aa292e2dad1d3ef, type: 2}
   - {fileID: 11400000, guid: bc6417ecaf568ab46953b214602b80cd, type: 2}
   - {fileID: 11400000, guid: ba452f14a3693ed40bdbfb45eaab599f, type: 2}
+  - {fileID: 11400000, guid: 1fc6843b9ed3aba4cb59f6ec0b8ffde3, type: 2}
+  - {fileID: 11400000, guid: b890818280e578641a22c7282a98b2e5, type: 2}
   Weapons:
   - {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   - {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}
+  - {fileID: 11400000, guid: a68e4f1362fd9b04eb99a4a3a3533459, type: 2}
 --- !u!4 &1699433448
 Transform:
   m_ObjectHideFlags: 0

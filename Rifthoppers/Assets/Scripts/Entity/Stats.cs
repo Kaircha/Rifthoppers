@@ -13,7 +13,8 @@ public class Stats : MonoBehaviour {
   public float ProjectileDamage = 6f;
   public float ProjectileDamageMulti = 1f;
   public float ProjectileHoming = 0f;
-  public int ProjectileForks = 1; 
+  public int ProjectileForks = 1;
+  public int ProjectileBounces = 0;
   public int ProjectileChains = 0;
   public int ProjectilePierces = 0;
   public float ProjectileSizeMulti = 1f;

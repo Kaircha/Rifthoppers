@@ -6,16 +6,17 @@ using System;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Projectile : MonoBehaviour, IPoolable {
-  private Rigidbody2D Rigidbody;
+  [HideInInspector] public Rigidbody2D Rigidbody;
   private Collider2D Collider;
   private AudioSource HitAudio;
   private List<GameObject> Targets;
-  private Entity Owner;
+  [HideInInspector] public Entity Owner;
   private LayerMask Ignore;
-  private float Speed;
+  [HideInInspector] public float Speed;
   private float Damage;
   private float Homing;
   private int Forks;
+  private int Bounces;
   private bool CanPierce => Owner.Stats.ProjectilePierces > 0;
   private float SizeMulti;
 
@@ -51,11 +52,25 @@ public class Projectile : MonoBehaviour, IPoolable {
     Damage = damage;
     Homing = homing;
     Forks = forks;
+    Bounces = owner.Stats.ProjectileBounces;
     SizeMulti = sizeMulti;
     Rigidbody.velocity = Speed * transform.right;
     transform.localScale = SizeMulti * Vector3.one;
     IsArmed = true;
     Targets = Physics2D.OverlapCircleAll(transform.position, 20f, ~gameObject.layer).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).Select(x => x.gameObject).ToList();
+  }
+
+  public void OnCollisionEnter2D(Collision2D collision) {
+    if (!IsArmed) return;
+    if (collision.gameObject.layer == Ignore) {
+      Physics2D.IgnoreCollision(Collider, collision.collider);
+      return;
+    }
+
+    if (Owner.Stats.ProjectileBounces > 0 && collision.gameObject.layer == 0) {
+      transform.right = Vector2.Reflect(transform.right, collision.GetContact(0).normal);
+      Rigidbody.velocity = Speed * transform.right;
+    }
   }
 
   public void OnTriggerEnter2D(Collider2D collider) {
@@ -64,11 +79,6 @@ public class Projectile : MonoBehaviour, IPoolable {
       Physics2D.IgnoreCollision(Collider, collider);
       return;
     }
-
-    // Enemy is hit. Deal damage.
-    // If can Fork -> Forks for half damage; Forked projectiles cannot fork
-    // Else if can Pierce -> Pierce for excess damage.
-    // Else, or if no damage is left, stop.
 
     float excessDamage = Impact(collider);
     if (Forks > 1) Fork(collider);

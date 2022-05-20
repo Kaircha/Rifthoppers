@@ -25,7 +25,10 @@ public class Blaster : MonoBehaviour {
     // Shouldn't add a Default Weapon this way; Scriptable Object
     if (Weapons.Count == 0) AddWeapon(GetWeapon(Entity.Stats.WeaponType));
   }
-  private void OnDisable() => StopAllCoroutines();
+  private void OnDisable() {
+    StopAllCoroutines();
+    if (IsShooting) ShootingStopped();
+  }
 
   public IEnumerator BlasterRoutine() {
     while (true) {

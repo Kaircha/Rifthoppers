@@ -30,6 +30,7 @@ public class PlayerRiftState : State {
   public override IEnumerator Execute() {
     while (true) {
       Entity.Direction = (IsShooting ? 1 : 1.5f) * Entity.Input.Move.normalized;
+      Entity.Animator.speed = (IsShooting ? 1 : 1.5f);
       Blaster.Sprite.sortingOrder = (Entity.Target.position - Entity.transform.position).y > 0.6f ? -1 : 1;
 
       if (Entity.Input.IsMouseLook) Entity.Target.position = Entity.Input.Look;
