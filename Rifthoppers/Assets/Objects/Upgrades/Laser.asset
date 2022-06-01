@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a05a722daf5c64e99b13980e737964, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a43232ee42788a5499259623d9e4efa0, type: 3}
   Quote: Imma firin' mah lazer!
   Modifiers:
   - Type: 2

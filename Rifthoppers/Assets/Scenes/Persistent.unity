@@ -1117,7 +1117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Machine: {fileID: 0}
   PostProcessingVolume: {fileID: 4524564}
-  Lab: {fileID: 0}
 --- !u!114 &711645416
 MonoBehaviour:
   m_ObjectHideFlags: 0

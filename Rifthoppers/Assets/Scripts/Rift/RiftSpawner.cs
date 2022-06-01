@@ -16,11 +16,11 @@ public class RiftSpawner : MonoBehaviour {
       StartCoroutine(SpawnRoutine(spawnData));
     }
     // Temporary; References break upon scene load due to Singleton
-    SpawnData[0].Pool = PoolManager.Instance.SquidPool;
-    SpawnData[1].Pool = PoolManager.Instance.SquidmotherPool;
-    SpawnData[2].Pool = PoolManager.Instance.SquidlingPool;
-    SpawnData[3].Pool = PoolManager.Instance.MothPool;
-    SpawnData[4].Pool = PoolManager.Instance.ExplosiveSquidPool;
+    SpawnData[0].Pool = PoolManager.Instance.Squids;
+    SpawnData[1].Pool = PoolManager.Instance.Squidmothers;
+    SpawnData[2].Pool = PoolManager.Instance.Squidlings;
+    SpawnData[3].Pool = PoolManager.Instance.Moths;
+    SpawnData[4].Pool = PoolManager.Instance.ExplosiveSquids;
   }
 
   public void StopSpawning() {
@@ -28,9 +28,9 @@ public class RiftSpawner : MonoBehaviour {
   }
 
   public IEnumerator SpawnRoutine(EnemySpawnData spawnData) {
-    if (RiftManager.Instance.Experience.Level < spawnData.Threshold || spawnData.Rate <= 0 || spawnData.Maximum <= 0) yield break;
+    if ( spawnData.Rate <= 0 || spawnData.Maximum <= 0) yield break;
 
-    float delay = 1 / (RiftManager.Instance.DifficultyMultiplier * RiftManager.Instance.DifficultyMultiplier * spawnData.Rate);
+    float delay = 1 / spawnData.Rate;
 
     while (true) {
       yield return new WaitForSeconds(delay);
@@ -41,7 +41,7 @@ public class RiftSpawner : MonoBehaviour {
     }
   }
 
-  Vector3 SpawnPosition() => RiftManager.Instance.AreaLoader.ScaleRadius * Random.insideUnitCircle.normalized;
+  Vector3 SpawnPosition() => 20f * Random.insideUnitCircle.normalized;
 }
 
 [System.Serializable]

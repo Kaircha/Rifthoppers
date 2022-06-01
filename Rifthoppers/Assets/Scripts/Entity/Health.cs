@@ -25,17 +25,11 @@ public class Health : MonoBehaviour, IHealth {
     OnHeal?.Invoke();
   }
 
-  public float Heal(float amount) {
-    if (amount <= 0 || IsDead) return 0f;
-    float excess = 0f;
-
+  public void Heal(float amount) {
+    if (amount <= 0 || IsDead) return;
     Current += amount;
-    if (Current > Maximum) {
-      excess = Maximum - Current;
-      Current = Maximum;
-    }
+    if (Current > Maximum) Current = Maximum;
     OnHeal?.Invoke();
-    return excess;
   }
 
   public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {

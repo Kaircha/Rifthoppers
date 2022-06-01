@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72adb8d88e7f420448c029ff485c0611, type: 3}
+  m_Name: Purple Area
+  m_EditorClassIdentifier: 
+  Objects:
+  - {fileID: 3000635115195732487, guid: 0859e0853b303e74bb32ab1029764d12, type: 3}
+  Decorations:
+  - {fileID: 1842634970195592927, guid: 57f2ea1c680cecf48822e9dcb418f56b, type: 3}
+  - {fileID: 3620387114441421935, guid: 224e19cad71feae4aa3b0bb69a5876ae, type: 3}
+  - {fileID: 4124130450289060278, guid: 368ffc0966408ec4fa8353650c9573cf, type: 3}
+  Backgrounds:
+  - {fileID: 21300000, guid: ae9a9ca90fc886f4ba0ebcb72c924471, type: 3}
+  Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.9339623, g: 0.54187435, b: 0.66533834, a: 1}
+    key2: {r: 1, g: 0.7240858, b: 0.5613208, a: 0}
+    key3: {r: 0.57254905, g: 0.63975006, b: 1, a: 0}
+    key4: {r: 1, g: 1, b: 1, a: 0}
+    key5: {r: 1, g: 1, b: 1, a: 0}
+    key6: {r: 1, g: 1, b: 1, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16769
+    ctime2: 32189
+    ctime3: 49344
+    ctime4: 65535
+    ctime5: 65535
+    ctime6: 65535
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2

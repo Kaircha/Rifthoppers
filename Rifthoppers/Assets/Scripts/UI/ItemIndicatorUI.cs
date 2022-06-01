@@ -23,6 +23,7 @@ public class ItemIndicatorUI : MonoBehaviour {
       Instantiate(ModifierPrefab, Holder).DisplayModifier(modifier);
     }
     gameObject.SetActive(true);
+    Canvas.ForceUpdateCanvases();
   }
   public void HideItemIndicator() {
     gameObject.SetActive(false);

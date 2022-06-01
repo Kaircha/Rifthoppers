@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class UpgradeInteraction : MonoBehaviour, IInteractable {
+  public Reward Reward;
   private Upgrade Upgrade;
   public SpriteRenderer Renderer;
   public TextMeshProUGUI TempText;
@@ -12,14 +13,12 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
 
   // Ideally set externally in future
   private void OnEnable(){
-    //SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
-    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[UpgradeWeaponManager.Instance.Upgrades.Count - 1]);
+    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
   }
   public void SetUpgrade(Upgrade upgrade) {
     Upgrade = upgrade;
     Renderer.sprite = Upgrade.Sprite;
     TempText.text = upgrade.name;
-    //if (StatManager.Instance.Upgrades.Count > 0) TempTutorial.SetActive(false);
   }
 
   public void ShowHighlight() {
@@ -34,7 +33,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
 
   public void Interact(PlayerEntity interactor) {
     interactor.AddUpgrade(Upgrade);
-    RiftManager.Instance.NextWave();
+    Reward.IsFinished = true;
     UpgradeWeaponManager.Instance.TakeUpgrade(Upgrade);
   }
 }

@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour, IHealth {
 
   public void Heal() => Energy.Heal();
 
-  public float Heal(float amount) => Energy.Heal(amount);
+  public void Heal(float amount) => Energy.Heal(amount);
 
   public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {
     if (!isDoT) {

@@ -29,9 +29,9 @@ public class Projectile : MonoBehaviour, IPoolable {
     HitAudio = GetComponent<AudioSource>();
     Speed = 0;
     Damage = 0;
-    RiftManager.Instance.OnWaveEnded += Disarm;
+    RiftManager.Instance.OnEncounterEnded += Disarm;
   }
-  private void OnDisable() => RiftManager.Instance.OnWaveEnded -= Disarm;
+  private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= Disarm;
 
   // Temporarily disabled until the RiftManager is finished
   public void FixedUpdate() {
@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour, IPoolable {
     if (Owner.Stats.ProjectileBounces > 0 && collision.gameObject.layer == 0) {
       transform.right = Vector2.Reflect(transform.right, collision.GetContact(0).normal);
       Rigidbody.velocity = Speed * transform.right;
-    }
+    } else Disarm();
   }
 
   public void OnTriggerEnter2D(Collider2D collider) {
@@ -82,15 +82,14 @@ public class Projectile : MonoBehaviour, IPoolable {
 
     float excessDamage = Impact(collider);
     if (Forks > 1) Fork(collider);
-    else if (excessDamage <= 0) Disarm();
-    else if (CanPierce) Pierce(collider, excessDamage);
+    if (excessDamage > 0 && CanPierce) Pierce(collider, excessDamage);
     else Disarm();
   }
 
   public float Impact(Collider2D collider) {
     if (collider.gameObject.TryGetComponent(out Entity entity)) {
       collider.GetComponent<Rigidbody2D>().AddForce(40f * SizeMulti * transform.right, ForceMode2D.Impulse);
-      GameObject impact = PoolManager.Instance.BulletImpact.Objects.Get();
+      GameObject impact = PoolManager.Instance.BulletImpacts.Objects.Get();
       impact.transform.position = transform.position;
       impact.transform.right = transform.right;
       impact.GetComponent<ParticleSystem>().Play();

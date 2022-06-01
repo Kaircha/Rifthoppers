@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c167656ca5cd04c88038260d9424b0, type: 3}
   m_Name: Rubbershot
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a43232ee42788a5499259623d9e4efa0, type: 3}
   Quote: I missed?
   Modifiers:
   - Type: 2

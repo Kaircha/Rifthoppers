@@ -30,7 +30,6 @@ public abstract class Brain : MonoBehaviour {
         if (transition.To == null || transition.To == Machine.State || !transition.To.CanEnter) continue;
         if (!transition.Condition.Satisfied) continue;
         if (transition.From == null || (transition.From == Machine.State && transition.From.CanExit)) {
-          Debug.Log($"{Entity.name} transitioned from {Machine.State} to {transition.To}.");
           Machine.ChangeState(transition.To);
           transition.Condition.Reset();
           break;

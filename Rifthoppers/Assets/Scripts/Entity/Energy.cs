@@ -39,20 +39,14 @@ public class Energy : MonoBehaviour, IHealth {
     OnHeal?.Invoke();
   }
 
-  public float Heal(float amount) {
-    if (amount <= 0 || IsDead) return 0f;
+  public void Heal(float amount) {
+    if (amount <= 0 || IsDead) return;
     Static += amount;
     Dynamic += amount;
-    float excess = 0f;
     
-    if (Static > Maximum){
-      excess = Static - Maximum;
-      RiftManager.Instance.Experience.Learn(0.5f * excess);
-      Static = Maximum;
-    }
+    if (Static > Maximum) Static = Maximum;
     if (Dynamic > Maximum) Dynamic = Maximum;
     OnHeal?.Invoke();
-    return excess;
   }
 
   public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT) {

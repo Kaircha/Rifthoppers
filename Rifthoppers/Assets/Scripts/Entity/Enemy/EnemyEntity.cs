@@ -12,7 +12,7 @@ public class EnemyEntity : Entity, IPoolable {
   public Pool Pool { get; set; }
 
   public void HandleSpawn() {
-    (Health as Health).Maximum = BaseHP * RiftManager.Instance.DifficultyMultiplier;
+    (Health as Health).Maximum = BaseHP;
     Health.Revive();
     RemoveEffects();
     OnSpawn?.Invoke();
@@ -22,19 +22,19 @@ public class EnemyEntity : Entity, IPoolable {
     //RiftManager.Instance.Experience.Learn((int)Experience);
     int nr = UnityEngine.Random.Range(minOrbs, maxOrbs + 1);
 
-    while (nr-- > 0) SpawnOrb();
+    while (nr-- > 0) SpawnOrblet();
   }
   
-  private void SpawnOrb() {
-    GameObject orb = PoolManager.Instance.OrbletPool.Objects.Get();
-    orb.transform.position = transform.position;
-    orb.GetComponent<Rigidbody2D>().AddForce(5f * UnityEngine.Random.insideUnitCircle, ForceMode2D.Impulse);
+  private void SpawnOrblet() {
+    GameObject orblet = PoolManager.Instance.EnergyOrblets.Objects.Get();
+    orblet.transform.position = transform.position;
+    orblet.GetComponent<Rigidbody2D>().AddForce(5f * UnityEngine.Random.insideUnitCircle, ForceMode2D.Impulse);
   }
 
-  private void OnCollisionEnter2D(Collision2D collision) {
-    if (collision.transform.CompareTag("Player") && collision.gameObject.TryGetComponent(out Entity entity)) {
-      entity.Health.Hurt(this, entity, 8f * RiftManager.Instance.DifficultyMultiplier, false);
-      collision.rigidbody.AddForce(50f * Direction, ForceMode2D.Impulse);
+  private void OnTriggerEnter2D(Collider2D collider) {
+    if (collider.attachedRigidbody != null && collider.attachedRigidbody.CompareTag("Player") && collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
+      entity.Health.Hurt(this, entity, 8f, false);
+      collider.attachedRigidbody.AddForce(50f * Direction, ForceMode2D.Impulse);
     }
   }
 }

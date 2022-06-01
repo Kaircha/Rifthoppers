@@ -9,7 +9,7 @@ public class EnemyOrbState : State {
   public EnemyOrbState(Entity entity) => Entity = entity;
 
   public override void Enter() {
-    Entity.Target = Object.FindObjectOfType<Checkpoint>().transform;
+    Entity.Target = Object.FindObjectOfType<EnergyOrb>().transform;
   }
 
   public override IEnumerator Execute() {

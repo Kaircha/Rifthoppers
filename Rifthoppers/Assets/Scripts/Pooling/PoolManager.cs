@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 public class PoolManager : Singleton<PoolManager> {
+  public Pool SoundEffects;
   public Pool Bullets;
-  public Pool BulletImpact;
-  public Pool SquidPool;
-  public Pool SquidmotherPool;
-  public Pool SquidlingPool;
-  public Pool MothPool;
-  public Pool ExplosiveSquidPool;
-  public Pool OrbletPool;
+  public Pool BulletImpacts;
+  public Pool Squids;
+  public Pool Squidmothers;
+  public Pool Squidlings;
+  public Pool Moths;
+  public Pool ExplosiveSquids;
+  public Pool EnergyOrbs;
+  public Pool EnergyOrblets;
 }

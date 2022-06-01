@@ -8,65 +8,100 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using System;
 
-[RequireComponent(typeof(AreaLoader))]
-[RequireComponent(typeof(RiftSpawner))]
 [RequireComponent(typeof(Energy))]
 public class RiftManager : Singleton<RiftManager> {
-
-  [HideInInspector] public AreaLoader AreaLoader;
-  [HideInInspector] public RiftSpawner RiftSpawner;
   [HideInInspector] public Energy Energy;
+  public RiftGenerator RiftGenerator;
+  public RiftSpawner RiftSpawner;
 
-  public Experience Experience;
-  public GameObject Checkpoint;
+  [HideInInspector] public Wave Rift;
+  public Wave ActiveWave;
+  public Encounter Encounter => ActiveWave.Encounter;
+  public Coroutine EncounterRoutine;
+  public Reward Reward => ActiveWave.Reward;
+  public Coroutine RewardRoutine;
 
-  [Header("Dynamic Effects")]
   public Material RiftWaveUIMaterial;
-
-  [Header("Experimenting")]
+  public EdgeCollider2D RiftEdge;
+  public SpriteMask RiftMask;
   [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
-  public bool DisableEnergyDamage = false;
 
-  public float DifficultyMultiplier => (10f + Experience.Level) / 10f;
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
 
-  public event Action OnEnergyCollected;
-  public void EnergyCollected() => OnEnergyCollected?.Invoke();
-  public event Action<PlayerEntity> OnKilled;
+  #region Events
+  public void EnergyOrbSpawned() => OnEnergyOrbSpawned?.Invoke();
+  public event Action OnEnergyOrbSpawned;
+  public void EnergyCollected(float amount, bool invokeEvent) {
+    if (invokeEvent) OnEnergyCollected?.Invoke(amount);
+  }
+  public event Action<float> OnEnergyCollected;
+  public void ExperienceCollected(float amount) => OnExperienceCollected?.Invoke(amount);
+  public event Action<float> OnExperienceCollected;
   public void HasKilled(PlayerEntity entity) => OnKilled?.Invoke(entity);
-  public event Action OnWaveStarted;
-  public void WaveStarted() => OnWaveStarted?.Invoke();
-  public event Action OnWaveEnded;
-  public void WaveEnded() => OnWaveEnded?.Invoke();
-
+  public event Action<PlayerEntity> OnKilled;
+  public void EncounterStarted() => OnEncounterStarted?.Invoke();
+  public event Action OnEncounterStarted;
+  public void EncounterEnded() => OnEncounterEnded?.Invoke();
+  public event Action OnEncounterEnded;
+  public void RewardStarted() => OnRewardStarted?.Invoke();
+  public event Action OnRewardStarted;
+  public void RewardEnded() => OnRewardEnded?.Invoke();
+  public event Action OnRewardEnded;
+  #endregion
 
   public override void Awake() {
     base.Awake();
 
-    AreaLoader = GetComponent<AreaLoader>();
-    RiftSpawner = GetComponent<RiftSpawner>();
     Energy = GetComponent<Energy>();
     Energy.Maximum = 100f;
     Energy.Heal();
-  }
 
-  private void Update() {
-    if (DisableEnergyDamage) Energy.Heal(); // Ugly code just for lazy debugging
+    Rift = RiftGenerator.GenerateRift();
+    ActiveWave = Rift;
   }
 
   private void OnEnable() {
-    Experience.OnLevelUp += Victory;
+    OnEnergyCollected += Energy.Heal;
     Energy.OnDeath += Defeat;
   }
+
   private void OnDisable() {
-    Experience.OnLevelUp -= Victory;
+    OnEnergyCollected -= Energy.Heal;
     Energy.OnDeath -= Defeat;
   }
 
-  [ContextMenu("Next")]
-  public void NextWave() => GameManager.Instance.UpgradeToWave();
-  [ContextMenu("Victory")]
-  public void Victory() => GameManager.Instance.WaveToUpgrade();
-  [ContextMenu("Defeat")]
-  public void Defeat(Entity entity) => StartCoroutine(GameManager.Instance.WaveToLab());
+  public void StartEncounter() {
+    EncounterRoutine = StartCoroutine(Encounter.EncounterRoutine());
+    Encounter.Area.Show();
+    Encounter.EncounterStart();
+    RiftSpawner.StartSpawning();
+    EncounterStarted();
+  }
+  public void EndEncounter() {
+    if (EncounterRoutine != null) StopCoroutine(EncounterRoutine);
+    Encounter.Area.Hide();
+    Encounter.EncounterEnd();
+    RiftSpawner.StopSpawning();
+    EncounterEnded();
+  }
+  public void StartReward() {
+    RewardRoutine = StartCoroutine(Reward.RewardRoutine());
+    Reward.Area.Show();
+    Reward.RewardStart();
+    RewardStarted();
+  }
+  public void EndReward() {
+    if (RewardRoutine != null) StopCoroutine(RewardRoutine);
+    Reward.Area.Hide();
+    Reward.RewardEnd();
+    RewardEnded();
+  }
+
+  public bool NextWave() {
+    ActiveWave = ActiveWave.Child;
+    return ActiveWave != null;
+  }
+
+  public void Restart() => GameManager.Instance.RiftRestart();
+  public void Defeat(Entity entity) => GameManager.Instance.RiftDefeat();
 }

@@ -10,7 +10,7 @@ public class EnemySpawnState : State {
   public EnemySpawnState(Entity entity, EnemySpawnData spawnData, Transform origin) {
     Entity = entity;
     SpawnData = spawnData;
-    SpawnData.Pool = PoolManager.Instance.SquidlingPool;
+    SpawnData.Pool = PoolManager.Instance.Squidlings;
     Origin = origin;
   }
 
@@ -22,10 +22,10 @@ public class EnemySpawnState : State {
 
   public IEnumerator SpawnRoutine() {
     if (SpawnData == null || Origin == null) yield break;
-    if (RiftManager.Instance.Experience.Level < SpawnData.Threshold || SpawnData.Rate <= 0 || SpawnData.Maximum <= 0) yield break;
+    if (SpawnData.Rate <= 0 || SpawnData.Maximum <= 0) yield break;
 
     while (true) {
-      float delay = 1 / (RiftManager.Instance.DifficultyMultiplier * RiftManager.Instance.DifficultyMultiplier * SpawnData.Rate);
+      float delay = 1 / SpawnData.Rate;
 
       yield return new WaitForSeconds(delay);
       yield return new WaitUntil(() => SpawnData.Pool.Objects.CountActive <= SpawnData.Maximum);

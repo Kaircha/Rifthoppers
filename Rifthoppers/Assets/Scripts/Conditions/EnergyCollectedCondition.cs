@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnergyCollectedCondition : Condition {
-  public int Amount;
-  public int Required;
+  public float Amount;
+  public float Required;
 
-  public EnergyCollectedCondition(int required) {
+  public EnergyCollectedCondition(float required) {
     Required = required;
   }
 
@@ -15,5 +15,5 @@ public class EnergyCollectedCondition : Condition {
   public override void Reset() => Amount = 0;
   public override void Terminate() => RiftManager.Instance.OnEnergyCollected -= CountCollects;
 
-  private void CountCollects() => Amount++;
+  private void CountCollects(float amount) => Amount += amount;
 }

@@ -10,54 +10,82 @@ public class GameManager : Singleton<GameManager> {
   public Volume PostProcessingVolume;
 
   public LaboratoryState LaboratoryState = new();
-  public RiftWaveState RiftWaveState = new();
-  public RiftUpgradeState RiftUpgradeState = new();
+  public RiftState RiftState = new();
 
-  public Transform Lab;
+  private string Scene;
+  private Coroutine GameplayLoop;
 
   public override void Awake() {
     base.Awake();
-
     Machine = GetComponent<StateMachine>();
   }
 
   public void Start() {
-    // Won't let us play from the Rift scene directly
-    Machine.ChangeState(LaboratoryState);
-    SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
     foreach (Player player in LobbyManager.Instance.Players) {
       player.Entity.transform.position = new Vector3(0, -30);
     }
+
+    GameplayLoop = StartCoroutine(LaboratoryRoutine());
   }
 
 
-  // Temporary?
-  public void WaveToUpgrade() => Machine.ChangeState(RiftUpgradeState);
-  public void UpgradeToWave() => Machine.ChangeState(RiftWaveState);
+  public IEnumerator LaboratoryRoutine(bool fromPortal = false) {
+    yield return StartCoroutine(LoadScene("Laboratory"));
+    Machine.ChangeState(LaboratoryState);
 
-
-  public IEnumerator LabToWave() {
-    AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Rift", LoadSceneMode.Additive);
-    yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    RiftManager.Instance.AreaLoader.ChangeCurrentArea(GameObject.Find("Lab").transform, 10f);
-    Machine.ChangeState(RiftWaveState, 0f);
-    yield return new WaitForSeconds(2f);
-    SceneManager.UnloadSceneAsync("Laboratory");
-  }
-
-  public IEnumerator WaveToLab() {
-    AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync("Laboratory", LoadSceneMode.Additive);
-    yield return new WaitUntil(() => asyncSceneLoad.isDone);
-    Machine.ChangeState(LaboratoryState, 2f);
-    RiftManager.Instance.AreaLoader.Resize(10f);
-    RiftManager.Instance.AreaLoader.LoadWave(GameObject.Find("Lab").transform);
-    yield return new WaitForSeconds(2f);
-    SceneManager.UnloadSceneAsync("Rift");
-
-    foreach (Player player in LobbyManager.Instance.Players) {
-      //player.Entity.transform.position = Vector3.zero;
-      // Way overkill. Maybe better to not use physics?
-      //player.Entity.Rigidbody.AddForce(700f * Vector2.down, ForceMode2D.Impulse);
+    if (fromPortal) {
+      foreach (Player player in LobbyManager.Instance.Players) {
+        player.Entity.transform.position = Vector3.zero;
+        player.Entity.Rigidbody.AddForce(100f * Vector2.down, ForceMode2D.Impulse);
+      }
     }
+
+    yield return new WaitUntil(() => LaboratoryManager.Instance.PortalEntered);
+    LaboratoryManager.Instance.PortalEntered = false;
+
+    GameplayLoop = StartCoroutine(RiftRoutine());
+  }
+
+  public IEnumerator RiftRoutine() {
+    yield return StartCoroutine(LoadScene("Rift"));
+    Machine.ChangeState(RiftState);
+
+    bool waveAvailable = RiftManager.Instance.ActiveWave != null;
+    while (waveAvailable) {
+      RiftManager.Instance.StartEncounter();
+      yield return new WaitUntil(() => RiftManager.Instance.Encounter.IsFinished);
+      RiftManager.Instance.EndEncounter();
+
+      RiftManager.Instance.StartReward();
+      yield return new WaitUntil(() => RiftManager.Instance.Reward.IsFinished);
+      RiftManager.Instance.EndReward();
+
+      waveAvailable = RiftManager.Instance.NextWave();
+    }
+
+    GameplayLoop = StartCoroutine(LaboratoryRoutine(true));
+  }
+
+
+  public void RiftDefeat() {
+    StopCoroutine(GameplayLoop);
+    GameplayLoop = StartCoroutine(LaboratoryRoutine());
+  }
+
+  public void RiftRestart() {
+    StopCoroutine(GameplayLoop);
+    GameplayLoop = StartCoroutine(RiftRoutine());
+  }
+
+
+  public IEnumerator LoadScene(string scene) {
+    if (Scene != null) {
+      AsyncOperation asyncSceneUnload = SceneManager.UnloadSceneAsync(Scene);
+      yield return new WaitUntil(() => asyncSceneUnload.isDone);    
+    }
+
+    Scene = scene;
+    AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync(Scene, LoadSceneMode.Additive);
+    yield return new WaitUntil(() => asyncSceneLoad.isDone);
   }
 }

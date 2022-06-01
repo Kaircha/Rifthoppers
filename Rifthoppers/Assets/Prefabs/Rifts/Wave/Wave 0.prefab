@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entities: []
   Depth: 0.15
+  CanHurtFlying: 0
   Damage: 20
 --- !u!66 &7528533309978532750
 CompositeCollider2D:
@@ -1343,7 +1344,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5750884589849376873}
   - component: {fileID: 5750884589849377174}
-  - component: {fileID: 6230984553003013084}
   m_Layer: 0
   m_Name: Wave 0
   m_TagString: Untagged
@@ -1358,8 +1358,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5750884589849377175}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1438,23 +1438,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6230984553003013084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5750884589849377175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae57d21ea8cf225448285bb03ac7e0c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spots:
-  - {fileID: 8743216496423579698}
-  - {fileID: 2452486696172754982}
-  - {fileID: 5328647790902135181}
-  - {fileID: 3994180620395070026}
 --- !u!1 &5750884590014863553
 GameObject:
   m_ObjectHideFlags: 0
