@@ -33,7 +33,7 @@ public class EnemyEntity : Entity, IPoolable {
 
   private void OnTriggerEnter2D(Collider2D collider) {
     if (collider.attachedRigidbody != null && collider.attachedRigidbody.CompareTag("Player") && collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
-      entity.Health.Hurt(this, entity, 8f, false);
+      entity.Health.Hurt(this, entity, 5f, false);
       collider.attachedRigidbody.AddForce(50f * Direction, ForceMode2D.Impulse);
     }
   }

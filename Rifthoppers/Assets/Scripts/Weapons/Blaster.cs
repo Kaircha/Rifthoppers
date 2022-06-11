@@ -11,6 +11,7 @@ public class Blaster : MonoBehaviour {
   public List<Weapon> Weapons = new();
   public bool IsShooting => Entity.Input.Shoot;
   public bool IsMoving => Entity.Direction.magnitude > 0;
+  private bool CanShoot = true;
 
   public event Action OnShootingStarted;
   public event Action OnShootingUpdated;
@@ -22,7 +23,6 @@ public class Blaster : MonoBehaviour {
 
 
   private void OnEnable() {
-    // Shouldn't add a Default Weapon this way; Scriptable Object
     if (Weapons.Count == 0) AddWeapon(GetWeapon(Entity.Stats.WeaponType));
   }
   private void OnDisable() {
@@ -31,22 +31,26 @@ public class Blaster : MonoBehaviour {
   }
 
   public IEnumerator BlasterRoutine() {
+    CanShoot = true;
     while (true) {
       yield return new WaitUntil(() => IsShooting);
       ShootingStarted();
-      Coroutine coroutine = StartCoroutine(ShootRoutine());
-      yield return new WaitUntil(() => !IsShooting);
+      while (IsShooting) {
+        if (CanShoot) {
+          ShootingUpdated();
+          StartCoroutine(FirerateRoutine());
+        }
+        yield return null;
+      }
       ShootingStopped();
-      StopCoroutine(coroutine);
     }
   }
 
-  public IEnumerator ShootRoutine() {
-    while (true) {
-      ShootingUpdated();
-      float firerate = (IsMoving ? 1 : 1.5f) * Entity.Stats.PlayerFirerate;
-      yield return new WaitForSeconds(1 / firerate);
-    }
+  public IEnumerator FirerateRoutine() {
+    float firerate = (IsMoving ? 1 : 1.5f) * Entity.Stats.PlayerFirerate;
+    CanShoot = false;
+    yield return new WaitForSeconds(1 / firerate);
+    CanShoot = true;
   }
 
   #region These don't actually work for weapons beyond the first

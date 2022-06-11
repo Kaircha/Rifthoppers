@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e63a01573a81ab4a99d510b0c53c55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Current: 7
-  Maximum: 7
+  Current: 5
+  Maximum: 5
 --- !u!114 &1561905139480256980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   Sprite: {fileID: 1561905139268252420}
   HurtAudio: {fileID: 118423313073284639}
   Target: {fileID: 0}
-  Speed: 5
+  Speed: 4
   AISpeed: 0
   IsFlying: 1
   Upgrades: []
@@ -327,7 +327,6 @@ MonoBehaviour:
   minOrbs: 0
   maxOrbs: 1
   BaseHP: 10
-  Orb: {fileID: 4409124465079931070, guid: 63611863abe783441a3bae03fb5b32fc, type: 3}
 --- !u!50 &1561905139480256983
 Rigidbody2D:
   serializedVersion: 4

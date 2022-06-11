@@ -31,9 +31,7 @@ public class RiftManager : Singleton<RiftManager> {
   #region Events
   public void EnergyOrbSpawned() => OnEnergyOrbSpawned?.Invoke();
   public event Action OnEnergyOrbSpawned;
-  public void EnergyCollected(float amount, bool invokeEvent) {
-    if (invokeEvent) OnEnergyCollected?.Invoke(amount);
-  }
+  public void EnergyCollected(float amount) => OnEnergyCollected?.Invoke(amount);
   public event Action<float> OnEnergyCollected;
   public void ExperienceCollected(float amount) => OnExperienceCollected?.Invoke(amount);
   public event Action<float> OnExperienceCollected;
@@ -60,15 +58,9 @@ public class RiftManager : Singleton<RiftManager> {
     ActiveWave = Rift;
   }
 
-  private void OnEnable() {
-    OnEnergyCollected += Energy.Heal;
-    Energy.OnDeath += Defeat;
-  }
+  private void OnEnable() => Energy.OnDeath += Defeat;
 
-  private void OnDisable() {
-    OnEnergyCollected -= Energy.Heal;
-    Energy.OnDeath -= Defeat;
-  }
+  private void OnDisable() => Energy.OnDeath -= Defeat;
 
   public void StartEncounter() {
     EncounterRoutine = StartCoroutine(Encounter.EncounterRoutine());

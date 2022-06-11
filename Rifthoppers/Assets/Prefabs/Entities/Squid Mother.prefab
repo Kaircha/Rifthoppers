@@ -398,8 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e63a01573a81ab4a99d510b0c53c55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Current: 100
-  Maximum: 100
+  Current: 80
+  Maximum: 80
 --- !u!114 &2100380862824652304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entity: {fileID: 0}
   SpawnData:
-    Rate: 0.4
+    Rate: 0.8
     Threshold: 0
     Maximum: 10
     Pool: {fileID: 0}
@@ -461,7 +461,6 @@ MonoBehaviour:
   minOrbs: 5
   maxOrbs: 8
   BaseHP: 100
-  Orb: {fileID: 4409124465079931070, guid: 63611863abe783441a3bae03fb5b32fc, type: 3}
 --- !u!50 &2100380862824652307
 Rigidbody2D:
   serializedVersion: 4

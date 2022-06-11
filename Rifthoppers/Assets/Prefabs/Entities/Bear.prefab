@@ -6027,14 +6027,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Luck: 0
   PlayerSpeedMulti: 1
-  PlayerFirerate: 4
+  PlayerFirerate: 6
   ProjectileCount: 1
-  ProjectileSpeed: 17
+  ProjectileSpeed: 20
   ProjectileSpeedMulti: 1
-  ProjectileDamage: 6
+  ProjectileDamage: 8
   ProjectileDamageMulti: 1
   ProjectileHoming: 0
   ProjectileForks: 1
+  ProjectileBounces: 0
   ProjectileChains: 0
   ProjectilePierces: 0
   ProjectileSizeMulti: 1
@@ -11452,6 +11453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 8261056480845723946}
   Offset: {x: 0, y: 0, z: 0}
+  Speed: 20
 --- !u!1 &6654770938513832226
 GameObject:
   m_ObjectHideFlags: 0
@@ -11775,7 +11777,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: 5c925a96e20c969498f84ccd678819fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c925a96e20c969498f84ccd678819fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11783,7 +11785,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &3729827535965547574

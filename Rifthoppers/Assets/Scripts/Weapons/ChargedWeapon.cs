@@ -24,13 +24,15 @@ public class ChargedWeapon : Weapon {
     Charges = 0;
     Entity.Stats.FakeBullet.AfterShoot();
   }
-  public override void ShootingStarted() { }
+  public override void ShootingStarted() => Charges = 0;
   public override void ShootingUpdated() {
-    ++Charges;
+    Charges++;
     Entity.Stats.FakeBullet.Size = GetScale() * Entity.Stats.ProjectileSizeMulti;
     if (Charges == MaxCharges) Shoot();
   }
-  public override void ShootingStopped() => Shoot();
+  public override void ShootingStopped() {
+    if (Charges > 0) Shoot();
+  }
 
   private float GetScale() => 0.6f + Charges * 0.4f;
 }

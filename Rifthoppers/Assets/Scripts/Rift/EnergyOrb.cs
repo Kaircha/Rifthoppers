@@ -15,7 +15,8 @@ public class EnergyOrb : MonoBehaviour, IPoolable {
   public void Collect() {
     PoolManager.Instance.SoundEffects.Objects.Get().GetComponent<SoundEffect>().Play(AudioClip, 1f, 0.5f + RiftManager.Instance.Encounter.Progress);
 
-    RiftManager.Instance.EnergyCollected(Energy, true);
+    RiftManager.Instance.Energy.Heal(Energy);
+    RiftManager.Instance.EnergyCollected(Energy);
     RiftManager.Instance.ExperienceCollected(Experience);
 
     (this as IPoolable).Release(gameObject);

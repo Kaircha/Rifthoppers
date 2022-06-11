@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour {
   public bool IsFlying;
   public List<Upgrade> Upgrades = new();
   public List<Effect> Effects = new();
+  public List<Orbital> Orbitals = new();
   public Blaster Blaster;
 
   // Dealer, Receiver, Amount, isDoT
@@ -56,7 +57,11 @@ public class Entity : MonoBehaviour {
     Health.OnDeath -= OnDeath;
   }
 
-  private void Update() => Looking();
+  private void Update() {
+    Looking();
+    Orbiting();
+  }
+
   private void FixedUpdate() => Moving();
 
   public virtual void Moving() {
@@ -64,9 +69,18 @@ public class Entity : MonoBehaviour {
     IsMoving = Direction.magnitude > 0;
   }
 
+  public void Orbiting() {
+    foreach (Orbital orbital in Orbitals) {
+      orbital.transform.RotateAround(transform.position, new Vector3(0, 0, 1), 60f * Time.deltaTime);
+      orbital.transform.rotation = Quaternion.identity;
+    }
+  }
+
   public virtual void Looking() {
-    Sprite.flipX = transform.position.x > Target.position.x;
-    Animator.SetFloat("Direction", (Target.position - transform.position).y > 0.6f ? 1 : -1);
+    if (Target != null) {
+      Sprite.flipX = transform.position.x > Target.position.x;
+      Animator.SetFloat("Direction", (Target.position - transform.position).y > 0.6f ? 1 : -1);
+    }
     Animator.SetBool("IsMoving", IsMoving);
   }
 
@@ -84,11 +98,9 @@ public class Entity : MonoBehaviour {
     Sprite.material.SetInt("_IsHurt", 0);
   }
 
-
   public virtual void OnDeath(Entity entity) { }
 
-
-
+  #region Upgrades
   public void AddUpgrade(Upgrade upgrade) {
     //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
     upgrade.Entity = this;
@@ -104,7 +116,9 @@ public class Entity : MonoBehaviour {
     }
     Upgrades = new();
   }
+  #endregion
 
+  #region Effects
   public void AddEffect(Effect effect) {
     foreach (Effect e in Effects) {
       if (e.GetType() == effect.GetType()) {
@@ -131,10 +145,43 @@ public class Entity : MonoBehaviour {
     }
     Effects = new();
   }
+  #endregion
 
+  #region Orbitals
+  public void AddOrbital(Orbital orbital) {
+    Orbitals.Add(orbital);
+    StartCoroutine(OrderOrbitalsRoutine());
+  }
 
+  public void RemoveOrbital(Orbital orbital) {
+    if (Orbitals.Contains(orbital)) {
+      Orbitals.Remove(orbital);
+      (orbital as IPoolable).Release(orbital.gameObject);
+      StartCoroutine(OrderOrbitalsRoutine());
+    }
+  }
 
-  // TESTING
-  [ContextMenu("Ignite")]
-  public void IgniteEntity() => AddEffect(new IgniteEffect(1f, 10f));
+  public void RemoveOrbitals() {
+    foreach (Orbital orbital in Orbitals) {
+      (orbital as IPoolable).Release(orbital.gameObject);
+    }
+    Orbitals = new();
+  }
+
+  public IEnumerator OrderOrbitalsRoutine() {
+    float timer = 0f;
+    List<Vector3> origins = Orbitals.Select(x => x.transform.localPosition).ToList();
+    List<Vector3> targets = new();
+    for (int i = 0; i < Orbitals.Count; i++) {
+      float angle = i * 360f / Orbitals.Count;
+      targets.Add(4f * new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)));
+    }
+
+    while (timer < 1) {
+      for (int i = 0; i < Orbitals.Count; i++) Orbitals[i].transform.localPosition = Vector3.Lerp(origins[i], targets[i], timer);
+      timer += Time.deltaTime;
+      yield return null;
+    }
+  }
+  #endregion
 }

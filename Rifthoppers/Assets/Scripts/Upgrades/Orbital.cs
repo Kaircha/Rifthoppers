@@ -3,25 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Orbital : MonoBehaviour{
+public class Orbital : MonoBehaviour, IPoolable {
+  public CircleCollider2D Collider;
+  public SpriteRenderer Renderer;
+
   public event Action<Entity> OnOrbitalCollide;
-  private float Speed = 100;
-  private float Radius = 0.3f;
+  public Pool Pool { get; set; }
 
-  private void Start() => transform.position = new Vector3(0, Radius, 0);
-
-  public void Reinitialize(float speed, float radius) {
-    Speed = speed;
-    Radius = radius;
-    transform.position = new Vector3(0, Radius, 0);
+  public void Initialize(float radius, Sprite sprite) {
+    Collider.radius = radius;
+    Renderer.sprite = sprite;
   }
 
   private void OnTriggerEnter2D(Collider2D collider) {
-    if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent(out Entity entity) && !(entity is PlayerEntity))
+    if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
       OnOrbitalCollide?.Invoke(entity);
-  }
-  private void FixedUpdate() {
-    transform.RotateAround(transform.parent.position, new Vector3(0, 0, 1), Speed * Time.fixedDeltaTime);
-    transform.rotation = Quaternion.identity;
+    }
   }
 }

@@ -13,7 +13,8 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
 
   // Ideally set externally in future
   private void OnEnable(){
-    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
+    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[5]);
+    //SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
   }
   public void SetUpgrade(Upgrade upgrade) {
     Upgrade = upgrade;

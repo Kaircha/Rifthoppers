@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 
 public class PoolManager : Singleton<PoolManager> {
   public Pool SoundEffects;
+  public Pool Orbitals;
   public Pool Bullets;
   public Pool BulletImpacts;
   public Pool Squids;
