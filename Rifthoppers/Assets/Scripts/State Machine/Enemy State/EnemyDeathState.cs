@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyDeathState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
   private Collider2D[] Colliders;
   private SpriteRenderer SpriteRenderer;
 
-  public EnemyDeathState(Entity entity) => Entity = entity;
+  public EnemyDeathState(EnemyBrain brain) => Brain = brain;
 
   public override void Enter() {
-    Colliders = Entity.GetComponentsInChildren<Collider2D>();
-    SpriteRenderer = Entity.GetComponentInChildren<SpriteRenderer>();
+    Colliders = Brain.GetComponentsInChildren<Collider2D>();
+    SpriteRenderer = Brain.GetComponentInChildren<SpriteRenderer>();
 
     foreach (Collider2D collider in Colliders) collider.enabled = false;
     SpriteRenderer.color = Color.black;
@@ -20,7 +20,7 @@ public class EnemyDeathState : State {
 
   public override IEnumerator Execute() {
     yield return new WaitForSeconds(0.5f);
-    (Entity as IPoolable).Release(Entity.gameObject);
+    (Brain as IPoolable).Release(Brain.gameObject);
   }
 
   public override void Exit() {

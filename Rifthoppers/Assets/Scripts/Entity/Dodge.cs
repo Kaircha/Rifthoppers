@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Dodge : MonoBehaviour {
-  public Entity Entity;
+  public PlayerBrain Brain;
   public SpriteRenderer Renderer;
   public ParticleSystem DodgeSystem;
   public AudioSource DodgeSource;
-  private Immunity Immunity;
-
-  private void Awake() {
-    Immunity = Entity.GetComponentInChildren<Immunity>(true);
-  }
 
   public void Use(bool isFlipped) {
     var main = DodgeSystem.main;
@@ -25,13 +20,13 @@ public class Dodge : MonoBehaviour {
 
   public IEnumerator DodgeRoutine() {
     while (true) {
-      yield return new WaitUntil(() => Entity.Input.Dodge && Entity.Input.Move != Vector2.zero);
-      Use(Entity.transform.position.x > Entity.Target.position.x);
-      Entity.Input.Dodge = false;
-      Entity.Rigidbody.AddForce(150f * Entity.Input.Move, ForceMode2D.Impulse);
-      RiftManager.Instance.Energy.Hurt(Entity, null, 5f * RiftManager.Instance.Energy.StaticPercentage * RiftManager.Instance.Energy.StaticPercentage, false);
+      yield return new WaitUntil(() => Brain.Input.Dodge && Brain.Input.Move != Vector2.zero);
+      Use(Brain.transform.position.x > Brain.Target.position.x);
+      Brain.Input.Dodge = false;
+      Brain.Entity.Rigidbody.AddForce(150f * Brain.Input.Move, ForceMode2D.Impulse);
+      RiftManager.Instance.Energy.Hurt(Brain.Entity, null, 5f * RiftManager.Instance.Energy.StaticPercentage * RiftManager.Instance.Energy.StaticPercentage, false);
 
-      StartCoroutine(Immunity.ImmunityRoutine(0.2f));
+      StartCoroutine(Brain.Immunity.ImmunityRoutine(0.2f));
       yield return new WaitForSeconds(0.4f);
     }
   }

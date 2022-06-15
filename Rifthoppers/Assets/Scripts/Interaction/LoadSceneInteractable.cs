@@ -14,7 +14,7 @@ public class LoadSceneInteractable : MonoBehaviour, IInteractable {
     transform.localScale = Vector3.one;
   }
 
-  public void Interact(PlayerEntity interactor) {
+  public void Interact(PlayerBrain interactor) {
     SceneManager.LoadScene(Scene);
   }
 }

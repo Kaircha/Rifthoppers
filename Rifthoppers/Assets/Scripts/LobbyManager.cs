@@ -17,7 +17,6 @@ public class LobbyManager : Singleton<LobbyManager> {
 
   public override void Awake() {
     base.Awake();
-
     AddPlayer();
   }
 
@@ -32,9 +31,9 @@ public class LobbyManager : Singleton<LobbyManager> {
 
   public void AddPlayer() {
     InputData input = Instantiate(PlayerPrefab, transform).GetComponent<InputData>();
-    PlayerEntity entity = Instantiate(EntityPrefab, input.transform).GetComponent<PlayerEntity>();
-    entity.Input = input;
-    Players.Add(new Player(input, entity));
+    PlayerBrain brain = Instantiate(EntityPrefab, input.transform).GetComponent<PlayerBrain>();
+    brain.Input = input;
+    Players.Add(new Player(input, brain));
 
     UpdateAudioListeners();
     UpdateVirtualCameras();
@@ -62,7 +61,7 @@ public class LobbyManager : Singleton<LobbyManager> {
       Camera.main.GetComponentInChildren<AudioListener>().enabled = true;
     } else {
       foreach (AudioListener listener in FindObjectsOfType<AudioListener>()) listener.enabled = false;
-      if (Players.Count == 1) Players[0].Entity.GetComponentInChildren<AudioListener>().enabled = true;
+      if (Players.Count == 1) Players[0].Brain.GetComponentInChildren<AudioListener>().enabled = true;
       // else No players active at all!
     }
   }
@@ -76,47 +75,48 @@ public class LobbyManager : Singleton<LobbyManager> {
     if (Players.Count == 0) return Vector2.zero;
     Vector3 result = Vector3.zero;
     foreach (Player player in Players) {
-      result += player.Entity.transform.position;
+      result += player.Brain.transform.position;
     }
     return result / Players.Count;
   }
   public Vector2 AimPos() {
-    Vector2 A = Players[0].Entity.Target.position;
-    Vector2 B = Players[0].Entity.transform.position;
+    Vector2 A = Players[0].Brain.Target.position;
+    Vector2 B = Players[0].Brain.transform.position;
     return 0.1f * A + 0.9f * B;
   }
 
-  public void ChangeCharacter(PlayerEntity oldEntity, PlayerEntity newEntity) {
-    Player player = Players.First(x => x.Entity == oldEntity);
-    player.Entity = newEntity;
+  public void ChangeCharacter(PlayerBrain oldBrain, PlayerBrain newBrain) {
+    Player player = Players.First(x => x.Brain == oldBrain);
+    player.Brain = newBrain;
 
-    newEntity.transform.SetParent(player.Input.transform);
-    newEntity.Input = player.Input;
-    newEntity.EnterLabState();
+    newBrain.transform.SetParent(player.Input.transform);
+    newBrain.Input = player.Input;
+    newBrain.EnterInteractState();
 
-    oldEntity.EnterAIState();
-    oldEntity.transform.SetParent(null);
+    oldBrain.EnterAIState();
+    oldBrain.transform.SetParent(null);
     // Opposite of DontDestroyOnLoad
-    SceneManager.MoveGameObjectToScene(oldEntity.gameObject, SceneManager.GetActiveScene());
+    SceneManager.MoveGameObjectToScene(oldBrain.gameObject, SceneManager.GetActiveScene());
     
     UpdateAudioListeners();
   }
 
-  public PlayerEntity GetClosest(Vector3 position) {
-    if (Players.Count == 1) return Players[0].Entity;
-    else return Players.OrderBy(x => Vector3.Distance(x.Entity.transform.position, position)).First().Entity;
+  public Entity GetClosest(Vector3 position) {
+    if (Players.Count == 1) return Players[0].Brain.Entity;
+    else return Players.OrderBy(x => Vector3.Distance(x.Brain.transform.position, position)).First().Brain.Entity;
   }
   public float GetDistanceToClosest(Vector3 position) => Vector3.Distance(position, GetClosest(position).transform.position);
 
 }
 
+// Almost pointless; Brain already contains Input
 [System.Serializable]
 public class Player {
   public InputData Input;
-  public PlayerEntity Entity;
+  public PlayerBrain Brain;
 
-  public Player(InputData input, PlayerEntity entity) {
+  public Player(InputData input, PlayerBrain brain) {
     Input = input;
-    Entity = entity;
+    Brain = brain;
   }
 }

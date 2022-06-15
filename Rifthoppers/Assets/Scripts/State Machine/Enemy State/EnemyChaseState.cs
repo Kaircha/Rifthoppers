@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyChaseState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
 
-  public EnemyChaseState(Entity entity) => Entity = entity;
+  public EnemyChaseState(EnemyBrain brain) => Brain = brain;
 
   public override void Enter() {
-    Entity.Target = LobbyManager.Instance.GetClosest(Entity.transform.position).transform;
+    Brain.Target = LobbyManager.Instance.GetClosest(Brain.transform.position).transform;
   }
 
   public override IEnumerator Execute() {
     while (true) {
-      Entity.Direction = (Entity.Target.position - Entity.transform.position).normalized;
+      Vector2 direction = (Brain.Target.position - Brain.transform.position).normalized;
+      Brain.Entity.Direction = Brain.Stats.Speed * direction;
       
       yield return null;
     }

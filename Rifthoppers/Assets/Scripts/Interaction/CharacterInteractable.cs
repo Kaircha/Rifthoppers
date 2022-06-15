@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterInteractable : MonoBehaviour, IInteractable {
-  public PlayerEntity Entity;
+  public PlayerBrain Brain;
   public Button UI;
 
   public void ShowHighlight() {
     UI.gameObject.SetActive(true);
   }
 
-  public void Interact(PlayerEntity interactor) {
-    LobbyManager.Instance.ChangeCharacter(interactor, Entity);
+  public void Interact(PlayerBrain interactor) {
+    LobbyManager.Instance.ChangeCharacter(interactor, Brain);
   }
 
   public void HideHighlight() {

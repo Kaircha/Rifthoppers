@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Blaster : MonoBehaviour {
-  public Entity Entity;
+  public PlayerBrain Brain;
   public Barrel Barrel;
   public SpriteRenderer Sprite;
 
   public List<Weapon> Weapons = new();
-  public bool IsShooting => Entity.Input.Shoot;
-  public bool IsMoving => Entity.Direction.magnitude > 0;
+  public bool IsShooting => Brain.Input.Shoot;
+  public bool IsMoving => Brain.Entity.Direction.magnitude > 0;
   private bool CanShoot = true;
 
   public event Action OnShootingStarted;
@@ -23,7 +23,7 @@ public class Blaster : MonoBehaviour {
 
 
   private void OnEnable() {
-    if (Weapons.Count == 0) AddWeapon(GetWeapon(Entity.Stats.WeaponType));
+    if (Weapons.Count == 0) AddWeapon(GetWeapon(Brain.Stats.WeaponType));
   }
   private void OnDisable() {
     StopAllCoroutines();
@@ -47,7 +47,7 @@ public class Blaster : MonoBehaviour {
   }
 
   public IEnumerator FirerateRoutine() {
-    float firerate = (IsMoving ? 1 : 1.5f) * Entity.Stats.PlayerFirerate;
+    float firerate = (IsMoving ? 1 : 1.5f) * Brain.Stats.Firerate;
     CanShoot = false;
     yield return new WaitForSeconds(1 / firerate);
     CanShoot = true;
@@ -55,8 +55,8 @@ public class Blaster : MonoBehaviour {
 
   #region These don't actually work for weapons beyond the first
   public void AddWeapon(Weapon weapon) {
-    // Technically can't be set like this; Entity/Barrel might be different
-    weapon.Entity = Entity;
+    // Technically can't be set like this; Entity/Barrel might be different; weapon is a scriptable object
+    weapon.Brain = Brain;
     weapon.Barrel = Barrel;
 
     Weapons.Add(weapon);
@@ -76,8 +76,8 @@ public class Blaster : MonoBehaviour {
 
   public void ReplaceWeapons(WeaponType type) {
     Weapon weapon = UpgradeWeaponManager.Instance.Weapons[(int)type];
-    // Not good
-    weapon.Entity = Entity;
+    // Not good; weapon is a scriptable object
+    weapon.Brain = Brain;
     weapon.Barrel = Barrel;
 
     for (int i = 0; i < Weapons.Count; ++i) {

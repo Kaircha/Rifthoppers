@@ -47,6 +47,6 @@ Material:
     - _Size: -0.1
     m_Colors:
     - _FocalPoint: {r: 0, g: 0, b: 0, a: 0}
-    - _LiquidColor: {r: 0, g: 0.39836144, b: 0.6698113, a: 0}
-    - _RippleColor: {r: 0.36078438, g: 0.4836719, b: 0.972549, a: 0}
+    - _LiquidColor: {r: 0, g: 0.35101348, b: 0.6901961, a: 0}
+    - _RippleColor: {r: 0, g: 0.035856284, b: 0.4528302, a: 0}
   m_BuildTextureStacks: []

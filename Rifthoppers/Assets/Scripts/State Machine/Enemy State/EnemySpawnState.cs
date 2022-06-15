@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawnState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
   public EnemySpawnData SpawnData;
   public Transform Origin;
 
-  public EnemySpawnState(Entity entity, EnemySpawnData spawnData, Transform origin) {
-    Entity = entity;
+  public EnemySpawnState(EnemyBrain brain, EnemySpawnData spawnData, Transform origin) {
+    Brain = brain;
     SpawnData = spawnData;
     SpawnData.Pool = PoolManager.Instance.Squidlings;
     Origin = origin;
   }
 
   public override void Enter() {
-    Entity.Target = LobbyManager.Instance.GetClosest(Entity.transform.position).transform;
-    Entity.Direction = Vector2.zero;
+    Brain.Target = LobbyManager.Instance.GetClosest(Brain.transform.position).transform;
+    Brain.Entity.Direction = Vector2.zero;
     Machine.StartCoroutine(SpawnRoutine());
   }
 
@@ -31,7 +31,7 @@ public class EnemySpawnState : State {
       yield return new WaitUntil(() => SpawnData.Pool.Objects.CountActive <= SpawnData.Maximum);
       GameObject enemy = SpawnData.Pool.Objects.Get();
       enemy.transform.position = Origin.position;
-      enemy.GetComponent<EnemyEntity>().HandleSpawn();
+      enemy.GetComponent<EnemyBrain>().InitializeEntity();
     }
   }
 }

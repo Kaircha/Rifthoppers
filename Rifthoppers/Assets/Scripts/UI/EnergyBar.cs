@@ -11,22 +11,4 @@ public class EnergyBar : MonoBehaviour {
     Fill.transform.localScale = new Vector3(Energy.StaticPercentage, 1, 1);
     Underfill.transform.localScale = new Vector3(Energy.Percentage, 1, 1);
   }
-
-  //private void Start() {
-  //  UpdateBar();
-  //}
-
-  //private void OnEnable() {
-  //  Energy.OnHeal += UpdateBar;
-  //  Energy.OnHurt += UpdateBar;
-  //}
-
-  //private void OnDisable() {
-  //  Energy.OnHeal -= UpdateBar;
-  //  Energy.OnHurt -= UpdateBar;    
-  //}
-
-  //private void UpdateBar() {
-  //  Fill.transform.localScale = new Vector3(Energy.Percentage, 1, 1);
-  //}
 }

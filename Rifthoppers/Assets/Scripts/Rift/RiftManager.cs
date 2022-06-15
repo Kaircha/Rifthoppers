@@ -35,8 +35,6 @@ public class RiftManager : Singleton<RiftManager> {
   public event Action<float> OnEnergyCollected;
   public void ExperienceCollected(float amount) => OnExperienceCollected?.Invoke(amount);
   public event Action<float> OnExperienceCollected;
-  public void HasKilled(PlayerEntity entity) => OnKilled?.Invoke(entity);
-  public event Action<PlayerEntity> OnKilled;
   public void EncounterStarted() => OnEncounterStarted?.Invoke();
   public event Action OnEncounterStarted;
   public void EncounterEnded() => OnEncounterEnded?.Invoke();

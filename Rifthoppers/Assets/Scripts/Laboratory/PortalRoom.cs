@@ -8,7 +8,7 @@ public class PortalRoom : MonoBehaviour {
   public List<SpriteMask> Masks;
 
   private void OnTriggerEnter2D(Collider2D collision) {
-    if (collision.TryGetComponent(out PlayerEntity entity)) {
+    if (collision.gameObject.CompareTag("Player")) {
       // Doesn't work for Local Co-op, but this is mostly a temporary effect anyway
       VirtualCamera.Priority = 100;
       Masks.ForEach(mask => mask.gameObject.SetActive(false));
@@ -16,7 +16,7 @@ public class PortalRoom : MonoBehaviour {
   }
 
   private void OnTriggerExit2D(Collider2D collision) {
-    if (collision.TryGetComponent(out PlayerEntity entity)) {
+    if (collision.gameObject.CompareTag("Player")) {
       VirtualCamera.Priority = 0;
       Masks.ForEach(mask => mask.gameObject.SetActive(true));
     }

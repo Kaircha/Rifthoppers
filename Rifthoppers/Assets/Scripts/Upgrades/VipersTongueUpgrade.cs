@@ -8,17 +8,17 @@ public class VipersTongueUpgrade : Upgrade {
   [Min(0)] public float PoisonDuration = 5f;
 
   public override void Add() {
-    Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
-    Entity.Stats.PoisonChanceBase += 20f;
-    Entity.Stats.PoisonChancePerLuck += 5f;
-    Entity.Stats.ProjectileForks += 1;
+    Brain.Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
+    Brain.Stats.PoisonChanceBase += 20f;
+    Brain.Stats.PoisonChancePerLuck += 5f;
+    Brain.Stats.ProjectileForks += 1;
   }
   public override IEnumerator UpgradeRoutine() { yield return null; }
   public override void Remove() {
-    Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
-    Entity.Stats.PoisonChanceBase -= 20f;
-    Entity.Stats.PoisonChancePerLuck -= 5f;
-    Entity.Stats.ProjectileForks -= 1;
+    Brain.Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
+    Brain.Stats.PoisonChanceBase -= 20f;
+    Brain.Stats.PoisonChancePerLuck -= 5f;
+    Brain.Stats.ProjectileForks -= 1;
   }
 
   //// Technically doesn't stack with other sources of poison chance

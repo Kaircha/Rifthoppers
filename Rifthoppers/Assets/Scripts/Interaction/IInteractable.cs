@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IInteractable {
   public void ShowHighlight();
-  public void Interact(PlayerEntity interactor);
+  public void Interact(PlayerBrain interactor);
   public void HideHighlight();
 }

@@ -4,20 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyOrbState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
 
-  public EnemyOrbState(Entity entity) => Entity = entity;
+  public EnemyOrbState(EnemyBrain brain) => Brain = brain;
 
   public override void Enter() {
-    Entity.Target = Object.FindObjectOfType<EnergyOrb>().transform;
+    Brain.Target = Object.FindObjectOfType<EnergyOrb>().transform;
   }
 
   public override IEnumerator Execute() {
     float angle = 0;
 
     while (true) {
-      Entity.Direction = (Entity.Target.position - Entity.transform.position + 2 * new Vector3(Mathf.Sin(angle), Mathf.Cos(angle))).normalized;
       angle = (angle + 3f * Time.deltaTime) % (2 * Mathf.PI);
+      Vector2 direction = (Brain.Target.position - Brain.transform.position + 2 * new Vector3(Mathf.Sin(angle), Mathf.Cos(angle))).normalized;
+      Brain.Entity.Direction = Brain.Stats.Speed * direction;
 
       // Siphon energy? Grow bigger?
 

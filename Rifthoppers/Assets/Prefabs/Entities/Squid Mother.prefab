@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2100380862824652305}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &156196960354372830
 GameObject:
@@ -260,6 +260,70 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2047016817141194678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4323813782032948477}
+  - component: {fileID: 3928036901995087753}
+  - component: {fileID: 437307372290224247}
+  m_Layer: 7
+  m_Name: Damager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4323813782032948477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047016817141194678}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2100380862824652305}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &3928036901995087753
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047016817141194678}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.7, y: 1}
+  m_Direction: 1
+--- !u!114 &437307372290224247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047016817141194678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc5253ddef6be14f9b5e7c44851d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  UseTime: 0
+  Dealer: {fileID: 0}
 --- !u!1 &2100380862474489030
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,9 +418,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2100380862824652305}
   - component: {fileID: 2100380862824652311}
+  - component: {fileID: 6163680529638527905}
   - component: {fileID: 2100380862824652304}
   - component: {fileID: 7884463620061002483}
-  - component: {fileID: 6163680529638527905}
+  - component: {fileID: 6385781452202145937}
   - component: {fileID: 2100380862824652307}
   - component: {fileID: 2100380862824652332}
   - component: {fileID: 1623237856173453542}
@@ -382,6 +447,7 @@ Transform:
   - {fileID: 2100380862474489031}
   - {fileID: 2100380862830707917}
   - {fileID: 385307415753495820}
+  - {fileID: 4323813782032948477}
   - {fileID: 752577929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -400,6 +466,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Current: 80
   Maximum: 80
+--- !u!114 &6163680529638527905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100380862824652309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d70597f02a043744b85fd83f6066a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  Animator: {fileID: 0}
+  Direction: {x: 0, y: 0}
+  Sprite: {fileID: 2100380862474489024}
+  HurtAudio: {fileID: 2882693616569531188}
 --- !u!114 &2100380862824652304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,14 +507,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a18e051e2c8a3c4aac8ee58592c9904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Machine: {fileID: 0}
   Entity: {fileID: 0}
+  Target: {fileID: 0}
+  Stats: {fileID: 0}
   SpawnData:
     Rate: 0.8
     Threshold: 0
     Maximum: 10
     Pool: {fileID: 0}
   SpawnOrigin: {fileID: 752577929}
---- !u!114 &6163680529638527905
+--- !u!114 &6385781452202145937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -440,27 +526,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2100380862824652309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bdcb7657b29b649ae2a7bbf370c6da, type: 3}
+  m_Script: {fileID: 11500000, guid: a45cdf0c840a3ba4a8289a787d538d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 0}
-  Animator: {fileID: 0}
-  Stats: {fileID: 0}
-  UpgradeVFX: {fileID: 0}
-  Input: {fileID: 0}
-  Direction: {x: 0, y: 0}
-  IsMoving: 0
-  Sprite: {fileID: 2100380862474489024}
-  HurtAudio: {fileID: 2882693616569531188}
-  Target: {fileID: 0}
-  Speed: 12.5
-  AISpeed: 0
-  IsFlying: 0
-  Upgrades: []
-  Blaster: {fileID: 0}
-  minOrbs: 5
-  maxOrbs: 8
-  BaseHP: 100
+  Speed: 10
+  Health: 80
+  Damage: 0
+  MinOrbs: 0
+  MaxOrbs: 0
 --- !u!50 &2100380862824652307
 Rigidbody2D:
   serializedVersion: 4

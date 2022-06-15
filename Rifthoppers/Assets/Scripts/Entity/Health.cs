@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 
 public class Health : MonoBehaviour, IHealth {
-  public float Percentage => Current / Maximum;
+  public float Percentage => Mathf.Clamp01(Current / Maximum);
 
   public bool IsDead { get; set; }
 
@@ -37,17 +37,18 @@ public class Health : MonoBehaviour, IHealth {
     float excess = 0f;
     Current -= amount;
     OnDamageTaken?.Invoke(dealer, receiver, amount, isDoT);
-    if (dealer != null) dealer.HasDealtDamage(receiver, amount, isDoT);
+    if (dealer != null) dealer.DealtDamage(receiver, amount, isDoT);
     if (Current <= 0) {
       OnDamageTaken?.Invoke(dealer, receiver, amount, isDoT);
       excess = -Current;
       Current = 0;
       IsDead = true;
       OnDeath?.Invoke(dealer);
-      if (dealer != null && dealer is PlayerEntity) RiftManager.Instance.HasKilled(dealer as PlayerEntity);
     }
     return excess;
   }
+
+  // Shouldn't be here!
   public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) {
     Vector3 direction = (pos - transform.position).normalized;
     GetComponent<Rigidbody2D>().AddForce(10 * knockback * direction);
@@ -55,7 +56,6 @@ public class Health : MonoBehaviour, IHealth {
     return Hurt(dealer, receiver, amount, isDoT);
   }
 
-  // needs work !!!
   public void Kill() {
     if (IsDead) return;
     Current = 0;

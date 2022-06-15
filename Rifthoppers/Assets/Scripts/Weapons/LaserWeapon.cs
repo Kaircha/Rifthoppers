@@ -12,7 +12,7 @@ public class LaserWeapon : Weapon {
     Barrel.Laser.StartVFX.Play();
     Barrel.Laser.EndVFX.Play();
     Barrel.Laser.EdgeCollider.points = new Vector2[2];
-    Barrel.Laser.LineRenderer.widthMultiplier = Entity.Stats.ProjectileSizeMulti;
+    Barrel.Laser.LineRenderer.widthMultiplier = Brain.Stats.ProjectileSizeMulti;
 
     Barrel.transform.parent.GetComponent<LookAt>().Speed = 10f;
   }
@@ -26,7 +26,7 @@ public class LaserWeapon : Weapon {
     if (numResults > 0) {
       for (int i = 0; i < numResults; i++) {
         if (results[i].attachedRigidbody != null && results[i].attachedRigidbody.TryGetComponent(out Entity entity)) {
-          entity.Health.Hurt(Entity, entity, Entity.Stats.ProjectileDamage, false);
+          entity.Health.Hurt(Brain.Entity, entity, Brain.Stats.ProjectileDamage, false);
         }
       }
     }
@@ -46,7 +46,7 @@ public class LaserWeapon : Weapon {
     points[0] = Vector2.zero;
 
     while (true) {
-      Barrel.Rigidbody.AddForce(-20f * Entity.Stats.ProjectileSizeMulti * Barrel.Origin.right, ForceMode2D.Force);
+      Barrel.Rigidbody.AddForce(-20f * Brain.Stats.ProjectileSizeMulti * Barrel.Origin.right, ForceMode2D.Force);
       Barrel.ImpulseSource.GenerateImpulse(0.1f * Barrel.Origin.right);
 
       Barrel.Laser.LineRenderer.SetPosition(0, Barrel.Origin.localPosition);

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LaboratoryState : State {
   public override void Enter() {
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.EnterLabState();
+      player.Brain.EnterInteractState();
     }
   }
 }

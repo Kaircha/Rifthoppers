@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyIdleState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
 
-  public EnemyIdleState(Entity entity) => Entity = entity;
+  public EnemyIdleState(EnemyBrain brain) => Brain = brain;
 
   public override IEnumerator Execute() {
+    Brain.Entity.Direction = Vector2.zero;
     yield return null;
   }
 }

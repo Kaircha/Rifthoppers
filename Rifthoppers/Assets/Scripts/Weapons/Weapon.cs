@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : ScriptableObject {
-  [HideInInspector] public Entity Entity;
-  [HideInInspector] public Barrel Barrel;
+  [HideInInspector] public PlayerBrain Brain; // This shouldn't be here!
+  [HideInInspector] public Barrel Barrel; // This shouldn't be here!
   public AudioClip ShootSFX;
   public AudioClip ShootingStartedSFX;
   public AudioClip ShootingUpdatedSFX;

@@ -7,7 +7,7 @@ public abstract class Encounter : MonoBehaviour {
   public bool IsFinished => Progress >= 1f;
   public abstract float Progress { get; }
   public virtual void EncounterStart() {
-    LobbyManager.Instance.Players.ForEach(player => player.Entity.EnterRiftState());
+    LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterCombatState());
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Energy.CanTakeDamage = true;
     RiftManager.Instance.RiftWaveUIMaterial.color = Color.white; // Animate this?

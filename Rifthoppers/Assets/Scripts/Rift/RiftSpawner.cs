@@ -37,7 +37,7 @@ public class RiftSpawner : MonoBehaviour {
       yield return new WaitUntil(() => spawnData.Pool.Objects.CountActive <= spawnData.Maximum);
       GameObject enemy = spawnData.Pool.Objects.Get();
       enemy.transform.position = SpawnPosition();
-      enemy.GetComponent<EnemyEntity>().HandleSpawn();
+      enemy.GetComponent<EnemyBrain>().InitializeEntity();
     }
   }
 

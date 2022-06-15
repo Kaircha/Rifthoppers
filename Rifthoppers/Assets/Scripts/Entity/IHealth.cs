@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IHealth {
   public event Action<Entity, Entity, float, bool> OnDamageTaken;
   public event Action<Entity> OnDeath;
-  public bool IsDead { get; set; }
+  public bool IsDead { get; }
   public float Percentage { get; }
 
   public void Revive();

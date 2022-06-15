@@ -128,6 +128,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &3189352927300418936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9171299901001218162}
+  - component: {fileID: 4437207987061336427}
+  - component: {fileID: 5995808894452539196}
+  m_Layer: 7
+  m_Name: Damager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9171299901001218162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189352927300418936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7704696552183869549}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4437207987061336427
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189352927300418936}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.5, y: 0.7}
+  m_Direction: 1
+--- !u!114 &5995808894452539196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189352927300418936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc5253ddef6be14f9b5e7c44851d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  UseTime: 0
+  Dealer: {fileID: 4728645539954435044}
 --- !u!1 &7704696552142678704
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,9 +234,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7704696552183869549}
   - component: {fileID: 7704696552183869547}
+  - component: {fileID: 4728645539954435044}
   - component: {fileID: 7704696552183869548}
   - component: {fileID: -3604018424350134207}
-  - component: {fileID: 4728645539954435044}
+  - component: {fileID: -4047803944836595746}
   - component: {fileID: 7704696552183869551}
   - component: {fileID: 6468070794756729703}
   - component: {fileID: 7011119249251294874}
@@ -198,6 +263,7 @@ Transform:
   - {fileID: 7704696552374903483}
   - {fileID: 7704696552142678705}
   - {fileID: 8255796275981990768}
+  - {fileID: 9171299901001218162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -215,6 +281,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Current: 15
   Maximum: 15
+--- !u!114 &4728645539954435044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704696552183869545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d70597f02a043744b85fd83f6066a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  Animator: {fileID: 0}
+  Direction: {x: 0, y: 0}
+  Sprite: {fileID: 7704696552374903484}
+  HurtAudio: {fileID: 4285103430202759523}
 --- !u!114 &7704696552183869548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a72fe499e45974c8e66bec865fc326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Machine: {fileID: 0}
   Entity: {fileID: 0}
---- !u!114 &4728645539954435044
+  Target: {fileID: 0}
+  Stats: {fileID: 0}
+--- !u!114 &-4047803944836595746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,27 +335,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7704696552183869545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bdcb7657b29b649ae2a7bbf370c6da, type: 3}
+  m_Script: {fileID: 11500000, guid: a45cdf0c840a3ba4a8289a787d538d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 0}
-  Animator: {fileID: 0}
-  Stats: {fileID: 0}
-  UpgradeVFX: {fileID: 0}
-  Input: {fileID: 0}
-  Direction: {x: 0, y: 0}
-  IsMoving: 0
-  Sprite: {fileID: 7704696552374903484}
-  HurtAudio: {fileID: 4285103430202759523}
-  Target: {fileID: 0}
-  Speed: 8
-  AISpeed: 0
-  IsFlying: 1
-  Upgrades: []
-  Blaster: {fileID: 0}
-  minOrbs: 2
-  maxOrbs: 5
-  BaseHP: 40
+  Speed: 6
+  Health: 15
+  Damage: 0
+  MinOrbs: 0
+  MaxOrbs: 0
 --- !u!50 &7704696552183869551
 Rigidbody2D:
   serializedVersion: 4

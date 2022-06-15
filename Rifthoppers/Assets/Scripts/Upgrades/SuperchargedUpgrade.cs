@@ -7,14 +7,14 @@ public class SuperchargedUpgrade : Upgrade {
   public WeaponType WeaponType;
 
   public override void Add() {
-    Entity.Stats.WeaponType |= WeaponType;
-    Entity.Blaster.ReplaceWeapons(Entity.Stats.WeaponType);
+    Brain.Stats.WeaponType |= WeaponType;
+    Brain.Blaster.ReplaceWeapons(Brain.Stats.WeaponType);
   }
 
   public override IEnumerator UpgradeRoutine() { yield return null; }
 
   public override void Remove() {
-    Entity.Stats.WeaponType &= ~WeaponType;
-    Entity.Blaster.ReplaceWeapons(Entity.Stats.WeaponType);
+    Brain.Stats.WeaponType &= ~WeaponType;
+    Brain.Blaster.ReplaceWeapons(Brain.Stats.WeaponType);
   }
 }

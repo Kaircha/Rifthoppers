@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager> {
 
   public void Start() {
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.transform.position = new Vector3(0, -30);
+      player.Brain.Entity.transform.position = new Vector3(0, -30);
     }
 
     GameplayLoop = StartCoroutine(LaboratoryRoutine());
@@ -35,8 +35,8 @@ public class GameManager : Singleton<GameManager> {
 
     if (fromPortal) {
       foreach (Player player in LobbyManager.Instance.Players) {
-        player.Entity.transform.position = Vector3.zero;
-        player.Entity.Rigidbody.AddForce(100f * Vector2.down, ForceMode2D.Impulse);
+        player.Brain.Entity.transform.position = Vector3.zero;
+        player.Brain.Entity.Rigidbody.AddForce(100f * Vector2.down, ForceMode2D.Impulse);
       }
     }
 

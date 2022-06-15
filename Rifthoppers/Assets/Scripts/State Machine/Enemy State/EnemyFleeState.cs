@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFleeState : State {
-  public Entity Entity;
+  public EnemyBrain Brain;
 
-  public EnemyFleeState(Entity entity) => Entity = entity;
+  public EnemyFleeState(EnemyBrain brain) => Brain = brain;
 
 
   public override IEnumerator Execute() {
     while (true) {
-      Entity.Target = LobbyManager.Instance.GetClosest(Entity.transform.position).transform;
-      Entity.Direction = (Entity.transform.position - Entity.Target.position).normalized;
+      Brain.Target = LobbyManager.Instance.GetClosest(Brain.transform.position).transform;
+
+      Vector2 direction = (Brain.transform.position - Brain.Target.position).normalized;
+      Brain.Entity.Direction = Brain.Stats.Speed * direction;
       
       yield return null;
     }

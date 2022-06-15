@@ -9,8 +9,8 @@ public class UpgradeReward : Reward {
       interaction.Reward = this;
     }
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.EnterLabState();
-      player.Entity.transform.position = Vector3.zero;
+      player.Brain.EnterInteractState();
+      player.Brain.Entity.transform.position = Vector3.zero;
     }
   }
 

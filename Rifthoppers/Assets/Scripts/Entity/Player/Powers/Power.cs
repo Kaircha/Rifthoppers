@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public abstract class Power : MonoBehaviour {
-  public Entity Entity;
+  public PlayerBrain Brain;
   public float PressCost;
   public float HoldCost;
   public float ReleaseCost;
-  public float CostMulti => Entity.Stats.PowerCostMulti;
-  public float Range => Entity.Stats.PowerRange;
-  public float Strength => Entity.Stats.PowerStrength;
+  public float CostMulti => Brain.Stats.PowerCostMulti;
+  public float Range => Brain.Stats.PowerRange;
+  public float Strength => Brain.Stats.PowerStrength;
 
   public event Action OnPowerUsed;
 
@@ -21,19 +21,19 @@ public abstract class Power : MonoBehaviour {
 
   public IEnumerator PowerRoutine() {
     while (true) {
-      yield return new WaitUntil(() => Entity.Input.Power);
+      yield return new WaitUntil(() => Brain.Input.Power);
 
       Press();
-      RiftManager.Instance.Energy.Hurt(Entity, null, PressCost * CostMulti, false);
+      RiftManager.Instance.Energy.Hurt(Brain.Entity, null, PressCost * CostMulti, false);
 
-      while (Entity.Input.Power) {
+      while (Brain.Input.Power) {
         Hold();
-        RiftManager.Instance.Energy.Hurt(Entity, null, HoldCost * CostMulti * Time.deltaTime, true);
+        RiftManager.Instance.Energy.Hurt(Brain.Entity, null, HoldCost * CostMulti * Time.deltaTime, true);
         yield return null;
       }
 
       Release();
-      RiftManager.Instance.Energy.Hurt(Entity, null, ReleaseCost * CostMulti, false);
+      RiftManager.Instance.Energy.Hurt(Brain.Entity, null, ReleaseCost * CostMulti, false);
 
       OnPowerUsed?.Invoke();
     }

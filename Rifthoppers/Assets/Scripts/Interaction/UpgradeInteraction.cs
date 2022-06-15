@@ -32,8 +32,8 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
     Renderer.color = Color.white;
   }
 
-  public void Interact(PlayerEntity interactor) {
-    interactor.AddUpgrade(Upgrade);
+  public void Interact(PlayerBrain interactor) {
+    interactor.Upgrades.Add(Upgrade);
     Reward.IsFinished = true;
     UpgradeWeaponManager.Instance.TakeUpgrade(Upgrade);
   }

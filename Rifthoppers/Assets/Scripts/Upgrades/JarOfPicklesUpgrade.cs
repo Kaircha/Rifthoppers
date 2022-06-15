@@ -15,15 +15,15 @@ public class JarOfPicklesUpgrade : Upgrade {
 
   public override void Add() {
     Orbital = PoolManager.Instance.Orbitals.Objects.Get().GetComponent<Orbital>();
-    Orbital.transform.SetParent(Entity.transform);
+    Orbital.transform.SetParent(Brain.transform);
     Orbital.Initialize(0.3f, Pickle);
     Orbital.OnOrbitalCollide += OnCollide;
-    Entity.AddOrbital(Orbital);
+    Brain.Orbitals.Add(Orbital);
   }
   public override IEnumerator UpgradeRoutine() { yield return null; }
   public override void Remove() {
     Orbital.OnOrbitalCollide -= OnCollide;
-    Entity.RemoveOrbital(Orbital);
+    Brain.Orbitals.Remove(Orbital);
   }
-  public void OnCollide(Entity enemy) => enemy.Health.Hurt(Entity, enemy, Damage, false); 
+  public void OnCollide(Entity enemy) => enemy.Health.Hurt(Brain.Entity, enemy, Damage, false); 
 }

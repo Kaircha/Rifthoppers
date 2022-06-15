@@ -11,7 +11,7 @@ public class RewindPower : Power {
   Vector3 RewindPosition;
 
   public override void Press() {
-    RewindPosition = Entity.transform.position;
+    RewindPosition = Brain.transform.position;
     
     RewindRenderer = new GameObject().AddComponent<SpriteRenderer>();
     RewindRenderer.sprite = MainRenderer.sprite;
@@ -24,7 +24,7 @@ public class RewindPower : Power {
   public override void Hold() { }
 
   public override void Release() {
-    Entity.transform.position = RewindPosition;
+    Brain.transform.position = RewindPosition;
 
     Destroy(RewindRenderer.gameObject);
   }

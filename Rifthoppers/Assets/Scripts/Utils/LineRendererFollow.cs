@@ -7,8 +7,11 @@ public class LineRendererFollow : MonoBehaviour {
   public Transform A;
   public Transform B;
 
-  private void Update() {
+  private void Update() => Reposition();
+
+  [ContextMenu("Update")]
+  public void Reposition() {
     LineRenderer.SetPosition(0, A.position);
-    LineRenderer.SetPosition(1, B.position); 
+    LineRenderer.SetPosition(1, B.position);     
   }
 }

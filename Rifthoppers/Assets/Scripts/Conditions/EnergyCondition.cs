@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnergyCondition : Condition {
-  public Energy Energy;
+  public IHealth Energy;
   public float Required;
   public ComparisonType Type;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Should not be a Surface!
 public class FakeBullet : Surface {
   public float Size = 0;
   public float Damage = 0;
@@ -25,7 +26,6 @@ public class FakeBullet : Surface {
     }
   }
   public override void SurfaceEffect(Entity entity, Surface surface){
-    if (entity is PlayerEntity) return;
-      entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
+    entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
   }
 }

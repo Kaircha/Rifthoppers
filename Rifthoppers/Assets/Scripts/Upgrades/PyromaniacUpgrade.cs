@@ -12,25 +12,25 @@ public class PyromaniacUpgrade : Upgrade {
   private IgnitedCondition IgnitedCondition;
 
   public override void Add() {
-    Entity.Stats.IgniteChanceBase += 20f;
-    Entity.Stats.IgniteChancePerLuck += 5f;
-    IgnitedCondition = new IgnitedCondition(Entity);
+    Brain.Stats.IgniteChanceBase += 20f;
+    Brain.Stats.IgniteChancePerLuck += 5f;
+    IgnitedCondition = new IgnitedCondition(Brain.Entity);
   }
 
   public override IEnumerator UpgradeRoutine() {
     while (true) {
       yield return new WaitUntil(() => IgnitedCondition.Satisfied);
-      Entity.Stats.PlayerFirerate += Firerate;
-      Entity.Stats.ProjectileDamageMulti += ProjectileDamageMulti;
+      Brain.Stats.Firerate += Firerate;
+      Brain.Stats.ProjectileDamageMulti += ProjectileDamageMulti;
       yield return new WaitUntil(() => !IgnitedCondition.Satisfied);
-      Entity.Stats.PlayerFirerate -= Firerate;
-      Entity.Stats.ProjectileDamageMulti -= ProjectileDamageMulti;
+      Brain.Stats.Firerate -= Firerate;
+      Brain.Stats.ProjectileDamageMulti -= ProjectileDamageMulti;
     }
   }
 
   public override void Remove() {
-    Entity.Stats.IgniteChanceBase -= 20f;
-    Entity.Stats.IgniteChancePerLuck -= 5f;
+    Brain.Stats.IgniteChanceBase -= 20f;
+    Brain.Stats.IgniteChancePerLuck -= 5f;
   }
 
   // Technically doesn't stack with other sources of ignite chance

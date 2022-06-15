@@ -54,7 +54,7 @@ public class Energy : MonoBehaviour, IHealth {
     Static -= amount;
     float excess = 0f;
     OnDamageTaken?.Invoke(dealer, null, amount, isDoT);
-    if (dealer != null) dealer.HasDealtDamage(receiver, amount, isDoT);
+    if (dealer != null) dealer.DealtDamage(receiver, amount, isDoT);
     if (isDoT) Dynamic -= amount;
     if (Static <= 0) {
       excess = -Static;

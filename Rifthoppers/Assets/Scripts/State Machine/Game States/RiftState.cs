@@ -37,8 +37,8 @@ public class RiftState : State {
     AudioMixerGroup.audioMixer.SetFloat("Lowpass", 5000f);
 
     foreach (Player player in LobbyManager.Instance.Players) {
-      player.Entity.RemoveUpgrades();
-      player.Entity.RemoveEffects();
+      player.Brain.Upgrades.Clear();
+      player.Brain.Entity.RemoveEffects();
     }
   }
 }

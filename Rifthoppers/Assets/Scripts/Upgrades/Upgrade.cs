@@ -8,7 +8,7 @@ public abstract class Upgrade : ScriptableObject {
   public List<Modifier> Modifiers;
   public int Weight;
 
-  [HideInInspector] public Entity Entity;
+  [HideInInspector] public PlayerBrain Brain;
   [HideInInspector] public Coroutine Coroutine;
 
   // public bool IsUnlocked => DataManager.Instance.Get<bool>($"{ID}IsUnlocked");

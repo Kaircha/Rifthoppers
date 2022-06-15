@@ -8,7 +8,7 @@ public class TeleportPower : Power {
   public AudioSource TeleportSource;
 
   public override void Press() {
-    Entity.transform.position = Entity.Target.position;
+    Brain.transform.position = Brain.Target.position;
   }
 
   public override void Hold() { }

@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour, IPoolable {
   private Collider2D Collider;
   private AudioSource HitAudio;
   private List<GameObject> Targets;
-  [HideInInspector] public Entity Owner;
+  [HideInInspector] public PlayerBrain Owner;
   private LayerMask Ignore;
   [HideInInspector] public float Speed;
   private float Damage;
@@ -43,9 +43,9 @@ public class Projectile : MonoBehaviour, IPoolable {
     Rigidbody.velocity = Speed * transform.right;
   }
 
-  public void Shoot(Entity owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti);
-  public void Shoot(Entity owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti * sizeMulti);
-  public void Shoot(Entity owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, float sizeMulti = 1) {
+  public void Shoot(PlayerBrain owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti);
+  public void Shoot(PlayerBrain owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti * sizeMulti);
+  public void Shoot(PlayerBrain owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, float sizeMulti = 1) {
     Owner = owner;
     Ignore = ignore;
     Speed = speed;
@@ -98,7 +98,7 @@ public class Projectile : MonoBehaviour, IPoolable {
       if (Chance.Percent(Owner.Stats.PoisonChance)) entity.AddEffect(new PoisonEffect(Damage, 4f));
       if (Chance.Percent(Owner.Stats.IgniteChance)) entity.AddEffect(new IgniteEffect(Damage, 4f));
 
-      return entity.Health.Hurt(Owner, entity, Damage, false);
+      return entity.Health.Hurt(Owner.Entity, entity, Damage, false);
     }
     return Damage;
   }
