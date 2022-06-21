@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8261056480845723946}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Aim Target
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -153,8 +153,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6184832692217563654}
   - component: {fileID: 8060147464654405646}
-  m_Layer: 13
-  m_Name: Collector
+  m_Layer: 12
+  m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5497919447407297587}
   - component: {fileID: 1611782599119153392}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Audio Listener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6654770937096141506}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3839877473287659764
 MonoBehaviour:
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207992784310395053}
   - component: {fileID: 7399179072107901353}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +534,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6654770937096141506}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2302835220740104462
 MonoBehaviour:
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 3087632290950038182}
   - component: {fileID: 4384585133133980508}
   - component: {fileID: 6531498787194260324}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5372,7 +5372,7 @@ GameObject:
   - component: {fileID: 8496975050369360902}
   - component: {fileID: 4243176398243168025}
   - component: {fileID: 2515351395660596370}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5518,54 +5518,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.4, y: 0.5}
   m_Direction: 1
---- !u!1 &4885057692744262538
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2685223173095651766}
-  - component: {fileID: 2729906805893183235}
-  m_Layer: 15
-  m_Name: Border
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2685223173095651766
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4885057692744262538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6654770937096141506}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &2729906805893183235
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4885057692744262538}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.4, y: 0.5}
-  m_Direction: 1
 --- !u!1 &4984034967544398810
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,7 +5528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1636181818220008425}
   - component: {fileID: 5470297647055312341}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Dodge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5626,7 +5578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7189231440524858960}
   - component: {fileID: 1669001474789791512}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5801,7 +5753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770936497268061}
   - component: {fileID: 6654770936497268034}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5911,7 +5863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770936571536074}
   - component: {fileID: 6654770936571536075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6039,7 +5991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770936630601613}
   - component: {fileID: 6654770936630601650}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6147,7 +6099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6654770937096141533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6162,7 +6114,6 @@ Transform:
   - {fileID: 1629506919242822207}
   - {fileID: 6184832692217563654}
   - {fileID: 8261056480845723946}
-  - {fileID: 2685223173095651766}
   - {fileID: 8042286414315821139}
   - {fileID: 7515291311807577125}
   m_Father: {fileID: 0}
@@ -6250,18 +6201,17 @@ MonoBehaviour:
   SpeedBase: 8
   SpeedMulti: 1
   Firerate: 6
-  ProjectileCount: 1
-  ProjectileSpeed: 20
-  ProjectileSpeedMulti: 1
-  ProjectileDamage: 8
-  ProjectileDamageMulti: 1
-  ProjectileHoming: 0
-  ProjectileForks: 1
-  ProjectileBounces: 0
-  ProjectileChains: 0
-  ProjectilePierces: 0
-  ProjectileSizeMulti: 1
-  ProjectileColor: {r: 1, g: 1, b: 1, a: 1}
+  AmmoCount: 1
+  AmmoBaseSpeed: 15
+  AmmoSpeedMulti: 1
+  AmmoBaseDamage: 6
+  AmmoDamageMulti: 1
+  AmmoHoming: 0
+  AmmoSplits: 1
+  AmmoReflects: 0
+  AmmoPierces: 0
+  AmmoSize: 1
+  AmmoColor: {r: 1, g: 1, b: 1, a: 1}
   IgniteChanceBase: 0
   IgniteChancePerLuck: 0
   PoisonChanceBase: 0
@@ -6408,7 +6358,7 @@ GameObject:
   - component: {fileID: 6654770937153837513}
   - component: {fileID: 6654770937153837519}
   - component: {fileID: 6654770937153837518}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11276,7 +11226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6654770937206333709}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Origin
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -11311,7 +11261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770937466850578}
   - component: {fileID: 6654770937466850669}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11484,8 +11434,8 @@ GameObject:
   - component: {fileID: 6654770937803018697}
   - component: {fileID: 4056168371975201273}
   - component: {fileID: 804373926506740117}
-  m_Layer: 6
-  m_Name: Gun
+  m_Layer: 0
+  m_Name: Blaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11605,7 +11555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770937808443587}
   - component: {fileID: 6654770937808443584}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11733,7 +11683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770938506262269}
   - component: {fileID: 6654770938506262242}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11781,7 +11731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6654770938513832227}
   - component: {fileID: 6654770938513832224}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12031,7 +11981,7 @@ GameObject:
   - component: {fileID: 3729827535965547574}
   - component: {fileID: 3506053450830444105}
   - component: {fileID: 3600079166115008656}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: FakeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

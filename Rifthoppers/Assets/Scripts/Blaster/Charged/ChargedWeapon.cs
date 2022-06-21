@@ -11,11 +11,11 @@ public class ChargedWeapon : Weapon {
     Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
     projectile.transform.position = barrel.Origin.position;
     projectile.transform.right = barrel.Origin.right;
-    projectile.GetComponent<SpriteRenderer>().color = brain.Stats.ProjectileColor;
+    projectile.GetComponent<SpriteRenderer>().color = brain.Stats.AmmoColor;
     projectile.GetComponent<Projectile>().Shoot(brain, Charges, GetScale());
 
-    barrel.Rigidbody.AddForce(-10f * GetScale() * brain.Stats.ProjectileSizeMulti * barrel.Origin.right, ForceMode2D.Impulse);
-    barrel.ImpulseSource.GenerateImpulse(0.15f * GetScale() * brain.Stats.ProjectileSizeMulti * barrel.Origin.right);
+    barrel.Rigidbody.AddForce(-10f * GetScale() * brain.Stats.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
+    barrel.ImpulseSource.GenerateImpulse(0.15f * GetScale() * brain.Stats.AmmoSize * barrel.Origin.right);
     if (ShootSFX != null) {
       barrel.AudioSource.pitch = Random.Range(0.7f, 1.3f);
       barrel.AudioSource.PlayOneShot(ShootSFX);
@@ -27,7 +27,7 @@ public class ChargedWeapon : Weapon {
   public override void ShootingStarted(PlayerBrain brain, Barrel barrel) => Charges = 0;
   public override void ShootingUpdated(PlayerBrain brain, Barrel barrel) {
     Charges++;
-    brain.Stats.FakeBullet.Size = GetScale() * brain.Stats.ProjectileSizeMulti;
+    brain.Stats.FakeBullet.Size = GetScale() * brain.Stats.AmmoSize;
     if (Charges == MaxCharges) Shoot(brain, barrel);
   }
   public override void ShootingStopped(PlayerBrain brain, Barrel barrel) {

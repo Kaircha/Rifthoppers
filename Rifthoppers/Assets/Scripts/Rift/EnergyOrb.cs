@@ -9,7 +9,11 @@ public class EnergyOrb : MonoBehaviour, IPoolable {
 
   public Pool Pool { get; set; }
 
-  private void OnEnable() => RiftManager.Instance.EnergyOrbSpawned();
+  private void OnEnable() {
+    RiftManager.Instance.EnergyOrbSpawned();
+    RiftManager.Instance.OnEncounterEnded += DestroyOnWaveEnded;
+  }
+  private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= DestroyOnWaveEnded;
   private void OnTriggerEnter2D(Collider2D collision) => Collect();
 
   public void Collect() {
@@ -21,4 +25,6 @@ public class EnergyOrb : MonoBehaviour, IPoolable {
 
     (this as IPoolable).Release(gameObject);
   }
+
+  public void DestroyOnWaveEnded() => (this as IPoolable).Release(gameObject);
 }

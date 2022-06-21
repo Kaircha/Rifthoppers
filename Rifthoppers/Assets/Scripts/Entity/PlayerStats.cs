@@ -10,18 +10,19 @@ public class PlayerStats : MonoBehaviour {
 
   public float Firerate = 6f;
 
-  public int ProjectileCount = 1;
-  public float ProjectileSpeed = 15f;
-  public float ProjectileSpeedMulti = 1f;
-  public float ProjectileDamage = 6f;
-  public float ProjectileDamageMulti = 1f;
-  public float ProjectileHoming = 0f;
-  public int ProjectileForks = 1;
-  public int ProjectileBounces = 0;
-  public int ProjectileChains = 0;
-  public int ProjectilePierces = 0;
-  public float ProjectileSizeMulti = 1f;
-  public Color ProjectileColor;
+  public int AmmoCount = 1;
+  public float AmmoSpeed => AmmoBaseSpeed * AmmoSpeedMulti;
+  public float AmmoBaseSpeed = 15f;
+  public float AmmoSpeedMulti = 1f;
+  public float AmmoDamage => AmmoBaseDamage * AmmoDamageMulti;
+  public float AmmoBaseDamage = 6f;
+  public float AmmoDamageMulti = 1f;
+  public float AmmoHoming = 0f;
+  public int AmmoSplits = 1;
+  public int AmmoReflects = 0;
+  public int AmmoPierces = 0;
+  public float AmmoSize = 1f;
+  public Color AmmoColor = Color.white;
 
   public float IgniteChance => IgniteChanceBase + IgniteChancePerLuck * Luck;
   public float IgniteChanceBase = 0f;

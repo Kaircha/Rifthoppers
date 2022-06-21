@@ -21,10 +21,10 @@ public class PyromaniacUpgrade : Upgrade {
     while (true) {
       yield return new WaitUntil(() => IgnitedCondition.Satisfied);
       Brain.Stats.Firerate += Firerate;
-      Brain.Stats.ProjectileDamageMulti += ProjectileDamageMulti;
+      Brain.Stats.AmmoDamageMulti += ProjectileDamageMulti;
       yield return new WaitUntil(() => !IgnitedCondition.Satisfied);
       Brain.Stats.Firerate -= Firerate;
-      Brain.Stats.ProjectileDamageMulti -= ProjectileDamageMulti;
+      Brain.Stats.AmmoDamageMulti -= ProjectileDamageMulti;
     }
   }
 

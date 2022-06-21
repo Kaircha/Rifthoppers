@@ -516,9 +516,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 10
   Health: 80
-  Damage: 0
-  MinOrbs: 0
-  MaxOrbs: 0
+  Damage: 10
+  MinOrbs: 3
+  MaxOrbs: 8
 --- !u!50 &2100380862824652307
 Rigidbody2D:
   serializedVersion: 4

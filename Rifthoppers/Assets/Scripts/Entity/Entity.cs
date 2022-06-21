@@ -34,6 +34,7 @@ public class Entity : MonoBehaviour {
   private void OnDisable() => Health.OnDamageTaken -= OnDamageTaken;
 
   private void FixedUpdate() {
+    if (Effects.Exists(effect => effect is StunEffect)) return;
     Rigidbody.AddForce(Direction, ForceMode2D.Impulse);
     Animator.SetBool("IsMoving", Direction.magnitude > 0);
   }

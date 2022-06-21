@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour, IPoolable {
   private float Homing;
   private int Forks;
   private int Bounces;
-  private bool CanPierce => Owner.Stats.ProjectilePierces > 0;
+  private bool CanPierce => Owner.Stats.AmmoPierces > 0;
   private float SizeMulti;
 
   public Pool Pool { get; set; }
@@ -43,8 +43,8 @@ public class Projectile : MonoBehaviour, IPoolable {
     Rigidbody.velocity = Speed * transform.right;
   }
 
-  public void Shoot(PlayerBrain owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti);
-  public void Shoot(PlayerBrain owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.ProjectileSpeed * owner.Stats.ProjectileSpeedMulti, owner.Stats.ProjectileDamage * owner.Stats.ProjectileDamageMulti * dmgMulti, owner.Stats.ProjectileHoming, owner.Stats.ProjectileForks, owner.Stats.ProjectileSizeMulti * sizeMulti);
+  public void Shoot(PlayerBrain owner) => Shoot(owner, owner.gameObject.layer, owner.Stats.AmmoSpeed * owner.Stats.AmmoSpeedMulti, owner.Stats.AmmoDamage * owner.Stats.AmmoDamageMulti, owner.Stats.AmmoHoming, owner.Stats.AmmoSplits, owner.Stats.AmmoSize);
+  public void Shoot(PlayerBrain owner, float dmgMulti, float sizeMulti) => Shoot(owner, owner.gameObject.layer, owner.Stats.AmmoSpeed * owner.Stats.AmmoSpeedMulti, owner.Stats.AmmoDamage * owner.Stats.AmmoDamageMulti * dmgMulti, owner.Stats.AmmoHoming, owner.Stats.AmmoSplits, owner.Stats.AmmoSize * sizeMulti);
   public void Shoot(PlayerBrain owner, LayerMask ignore, float speed, float damage, float homing = 0, int forks = 0, float sizeMulti = 1) {
     Owner = owner;
     Ignore = ignore;
@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour, IPoolable {
     Damage = damage;
     Homing = homing;
     Forks = forks;
-    Bounces = owner.Stats.ProjectileBounces;
+    Bounces = owner.Stats.AmmoReflects;
     SizeMulti = sizeMulti;
     Rigidbody.velocity = Speed * transform.right;
     transform.localScale = SizeMulti * Vector3.one;
@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour, IPoolable {
       return;
     }
 
-    if (Owner.Stats.ProjectileBounces > 0 && collision.gameObject.layer == 0) {
+    if (Owner.Stats.AmmoReflects > 0 && collision.gameObject.layer == 0) {
       transform.right = Vector2.Reflect(transform.right, collision.GetContact(0).normal);
       Rigidbody.velocity = Speed * transform.right;
     } else Disarm();

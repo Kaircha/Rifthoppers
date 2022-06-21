@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Rubbershot", menuName = "Upgrades/Rubbershot")]
 public class RubbershotUpgrade : Upgrade {
   public override void Add() {
-    Brain.Stats.ProjectileBounces += 1;
+    Brain.Stats.AmmoReflects += 1;
   }
 
   public override IEnumerator UpgradeRoutine() { yield return null; }
 
   public override void Remove() {
-    Brain.Stats.ProjectileBounces -= 1;
+    Brain.Stats.AmmoReflects -= 1;
   }
 }
