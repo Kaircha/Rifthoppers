@@ -14,6 +14,8 @@ public class PlayerCombatState : State {
   }
 
   public override void Enter() {
+    Brain.Entity.Health.OnDamageTaken += OnDamageTaken;
+
     Blaster.gameObject.SetActive(true);
     Power.gameObject.SetActive(true);
     Dodge.gameObject.SetActive(true);
@@ -39,8 +41,23 @@ public class PlayerCombatState : State {
   }
 
   public override void Exit() {
+    Brain.Entity.Health.OnDamageTaken -= OnDamageTaken;
+
     Power.gameObject.SetActive(false);
     Blaster.gameObject.SetActive(false);
     Dodge.gameObject.SetActive(false);
+  }
+
+  public void OnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {
+    if (isDoT) return;
+
+    Brain.Impulse.GenerateImpulse(1f);
+    Brain.StartCoroutine(Brain.Immunity.ImmunityRoutine(0.4f));
+    Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(Brain.transform.position, 5f, ~LayerMask.NameToLayer("Enemy"));
+    foreach (Collider2D enemy in nearbyEnemies) {
+      if (enemy.attachedRigidbody == null) return;
+      Vector3 direction = (Brain.transform.position - enemy.transform.position).normalized;
+      enemy.attachedRigidbody.AddForce(10f * enemy.attachedRigidbody.mass * direction, ForceMode2D.Impulse);
+    }
   }
 }

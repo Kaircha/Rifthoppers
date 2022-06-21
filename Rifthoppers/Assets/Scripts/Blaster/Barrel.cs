@@ -12,11 +12,11 @@ public class Barrel : MonoBehaviour {
 
   // Kind of shouldn't be here? Not sure where else to put it
   public GameObject LaserPrefab;
-  [HideInInspector] public Laser Laser;
+  [HideInInspector] public LaserAmmo Laser;
 
   public void Awake() {
     GameObject laser = Instantiate(LaserPrefab, transform);
-    Laser = laser.GetComponent<Laser>();
+    Laser = laser.GetComponent<LaserAmmo>();
     laser.SetActive(false);
   }
 }

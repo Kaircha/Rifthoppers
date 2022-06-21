@@ -9,19 +9,19 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
   - Player
   - Enemy
-  - Projectile
-  - Checkpoint
-  - Feet
-  - PostProcessing
+  - Rift
+  - Low Wall
+  - High Wall
   - Interactable
-  - Collector
-  - LiquidPool
-  - Border
+  - Interactor
+  - 
+  - 
+  - 
   - 
   - 
   - 

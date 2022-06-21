@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1889053309632822835}
-  - component: {fileID: 1889053309632822847}
+  - component: {fileID: 210503008462287837}
   - component: {fileID: -1939362199872041449}
   - component: {fileID: 1889053309632822846}
   - component: {fileID: 1889053309632822833}
   - component: {fileID: 1889053309632822832}
   - component: {fileID: 4433745795542312832}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1889053309632822847
+--- !u!114 &210503008462287837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,12 +46,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889053309632822834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3f70496f041b0d449ce2c5c91afd8dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a671874875f0cc4686957dbe36c02ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
-  Owner: {fileID: 0}
-  Speed: 0
+  Collider: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!114 &-1939362199872041449
 MonoBehaviour:
   m_ObjectHideFlags: 0

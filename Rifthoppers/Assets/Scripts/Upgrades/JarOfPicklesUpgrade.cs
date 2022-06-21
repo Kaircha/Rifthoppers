@@ -15,7 +15,7 @@ public class JarOfPicklesUpgrade : Upgrade {
 
   public override void Add() {
     Orbital = PoolManager.Instance.Orbitals.Objects.Get().GetComponent<Orbital>();
-    Orbital.transform.SetParent(Brain.transform);
+    Orbital.transform.SetParent(Brain.Orbitals.transform);
     Orbital.Initialize(0.3f, Pickle);
     Orbital.OnOrbitalCollide += OnCollide;
     Brain.Orbitals.Add(Orbital);

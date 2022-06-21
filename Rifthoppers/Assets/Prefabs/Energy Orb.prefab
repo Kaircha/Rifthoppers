@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 3875406828900962218}
   - component: {fileID: 3875406828900962221}
   - component: {fileID: 4481502203507854434}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Energy Orb
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerBrain : Brain {
   [HideInInspector] public Immunity Immunity;
   [HideInInspector] public Orbitals Orbitals;
   [HideInInspector] public Upgrades Upgrades;
+  [HideInInspector] public CinemachineImpulseSource Impulse;
 
   public override void Awake() {
     base.Awake();
@@ -24,6 +26,7 @@ public class PlayerBrain : Brain {
     Orbitals = GetComponentInChildren<Orbitals>(true);
     Upgrades = GetComponentInChildren<Upgrades>(true);
     Upgrades.Brain = this;
+    Impulse = GetComponent<CinemachineImpulseSource>();
   }
 
   public void Update() {

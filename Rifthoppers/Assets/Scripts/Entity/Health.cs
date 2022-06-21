@@ -48,14 +48,6 @@ public class Health : MonoBehaviour, IHealth {
     return excess;
   }
 
-  // Shouldn't be here!
-  public float Hurt(Entity dealer, Entity receiver, float amount, bool isDoT, float knockback, Vector3 pos) {
-    Vector3 direction = (pos - transform.position).normalized;
-    GetComponent<Rigidbody2D>().AddForce(10 * knockback * direction);
-
-    return Hurt(dealer, receiver, amount, isDoT);
-  }
-
   public void Kill() {
     if (IsDead) return;
     Current = 0;

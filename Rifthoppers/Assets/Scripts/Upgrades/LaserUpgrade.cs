@@ -8,13 +8,13 @@ public class LaserUpgrade : Upgrade {
 
   public override void Add() {
     Brain.Stats.WeaponType |= WeaponType;
-    Brain.Blaster.ReplaceWeapons(Brain.Stats.WeaponType);
+    Brain.Blaster.Weapon = Brain.Blaster.GetWeapon(Brain.Stats.WeaponType);
   }
 
   public override IEnumerator UpgradeRoutine() { yield return null; }
 
   public override void Remove() {
     Brain.Stats.WeaponType &= ~WeaponType;
-    Brain.Blaster.ReplaceWeapons(Brain.Stats.WeaponType);
+    Brain.Blaster.Weapon = Brain.Blaster.GetWeapon(Brain.Stats.WeaponType);
   }
 }

@@ -11,8 +11,6 @@ public class BackfireUpgrade : Upgrade {
     //Clone = Entity.UpgradeVFX.ApplyVFX(1, Entity.transform.GetChild(2)); 
     Blaster blaster = Brain.GetComponentInChildren<Blaster>(true);
     //blaster.AddWeapon(Weapon);
-    
-    blaster.OnShootingUpdated += SelfIgnite;
   }
 
   public override IEnumerator UpgradeRoutine() { yield return null; }
@@ -21,8 +19,6 @@ public class BackfireUpgrade : Upgrade {
     //Entity.UpgradeVFX.DeleteVFX(Clone);
     Blaster blaster = Brain.GetComponentInChildren<Blaster>(true);
     //blaster.RemoveWeapon(Weapon);
-    
-    blaster.OnShootingUpdated -= SelfIgnite;
   }
 
   private void SelfIgnite() {

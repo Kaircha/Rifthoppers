@@ -6,9 +6,9 @@ using UnityEngine;
 public class Orbitals : MonoBehaviour {
   private List<Orbital> OrbitalList = new();
 
-  public void Orbiting() {
+  public void Update() {
     foreach (Orbital orbital in OrbitalList) {
-      orbital.transform.RotateAround(transform.position, new Vector3(0, 0, 1), 60f * Time.deltaTime);
+      orbital.transform.RotateAround(transform.position, new Vector3(0, 0, 1), 90f * Time.deltaTime);
       orbital.transform.rotation = Quaternion.identity;
     }
   }

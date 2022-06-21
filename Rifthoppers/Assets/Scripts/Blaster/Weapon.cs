@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : ScriptableObject {
-  [HideInInspector] public PlayerBrain Brain; // This shouldn't be here!
-  [HideInInspector] public Barrel Barrel; // This shouldn't be here!
   public AudioClip ShootSFX;
   public AudioClip ShootingStartedSFX;
   public AudioClip ShootingUpdatedSFX;
   public AudioClip ShootingStoppedSFX;
 
-  public abstract void ShootingStarted();
-  public abstract void ShootingUpdated();
-  public abstract void ShootingStopped();
+  public abstract void ShootingStarted(PlayerBrain brain, Barrel barrel);
+  public abstract void ShootingUpdated(PlayerBrain brain, Barrel barrel);
+  public abstract void ShootingStopped(PlayerBrain brain, Barrel barrel);
 }
 
 [System.Flags]

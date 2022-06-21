@@ -946,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 367691506}
   - component: {fileID: 367691507}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Post Processing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -4579,7 +4579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665262629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5710394, y: -0.61405104, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4936,7 +4936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1886043276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5711,6 +5711,10 @@ PrefabInstance:
     - target: {fileID: 7114286750297353069, guid: 3d3fea544bde62545a0204de385b0c49, type: 3}
       propertyPath: m_Name
       value: Acid Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114286750297353069, guid: 3d3fea544bde62545a0204de385b0c49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d3fea544bde62545a0204de385b0c49, type: 3}
