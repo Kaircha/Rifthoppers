@@ -16,7 +16,8 @@ public class Orbital : MonoBehaviour, IPoolable {
   }
 
   private void OnTriggerEnter2D(Collider2D collider) {
-    if (collider.attachedRigidbody != null && collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
+    if (collider.attachedRigidbody == null) return;
+    if (collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
       OnOrbitalCollide?.Invoke(entity);
     }
   }

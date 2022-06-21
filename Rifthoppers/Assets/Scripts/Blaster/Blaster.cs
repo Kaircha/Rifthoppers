@@ -12,9 +12,11 @@ public class Blaster : MonoBehaviour {
   public Weapon Weapon {
     get => _weapon;
     set {
-      OnShootingStarted -= _weapon.ShootingStarted;
-      OnShootingUpdated -= _weapon.ShootingUpdated;
-      OnShootingStopped -= _weapon.ShootingStopped;
+      if (_weapon != null) {
+        OnShootingStarted -= _weapon.ShootingStarted;
+        OnShootingUpdated -= _weapon.ShootingUpdated;
+        OnShootingStopped -= _weapon.ShootingStopped;
+      }
       _weapon = value;
       OnShootingStarted += _weapon.ShootingStarted;
       OnShootingUpdated += _weapon.ShootingUpdated;

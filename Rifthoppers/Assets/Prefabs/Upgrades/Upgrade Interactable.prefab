@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5363711965343286618}
   - component: {fileID: 234851265556639340}
   - component: {fileID: 7850070350309853539}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,13 +147,13 @@ GameObject:
   - component: {fileID: 1674875069646248872}
   - component: {fileID: 5703923465086544649}
   - component: {fileID: 6236361283078708031}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6193101673809247767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267561461739075503}
   - component: {fileID: 6365687033324126218}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.8, y: 16.8}
+  m_Size: {x: 0.21, y: 0.21}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8118200194708336826}
   - component: {fileID: 7795606729404365423}
   - component: {fileID: 8118200194708336825}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Upgrade Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57941d62aa1f55a449791cb2319a59af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Reward: {fileID: 0}
   Renderer: {fileID: 6365687033324126218}
   TempText: {fileID: 7850070350309853539}
   TempTutorial: {fileID: 0}
+  ItemIndicator: {fileID: 0}

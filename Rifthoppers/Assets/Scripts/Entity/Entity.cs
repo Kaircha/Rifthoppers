@@ -35,7 +35,7 @@ public class Entity : MonoBehaviour {
 
   private void FixedUpdate() {
     if (Effects.Exists(effect => effect is StunEffect)) return;
-    Rigidbody.AddForce(Direction, ForceMode2D.Impulse);
+    Rigidbody.AddForce(Rigidbody.mass * Direction, ForceMode2D.Impulse);
     Animator.SetBool("IsMoving", Direction.magnitude > 0);
   }
 

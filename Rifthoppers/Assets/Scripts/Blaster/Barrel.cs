@@ -15,8 +15,8 @@ public class Barrel : MonoBehaviour {
   [HideInInspector] public LaserAmmo Laser;
 
   public void Awake() {
-    GameObject laser = Instantiate(LaserPrefab, transform);
-    Laser = laser.GetComponent<LaserAmmo>();
-    laser.SetActive(false);
+    //GameObject laser = Instantiate(LaserPrefab, transform);
+    //Laser = laser.GetComponent<LaserAmmo>();
+    //laser.SetActive(false);
   }
 }

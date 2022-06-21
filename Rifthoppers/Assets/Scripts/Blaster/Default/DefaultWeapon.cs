@@ -5,13 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Default Weapon", menuName = "Weapons/Default")]
 public class DefaultWeapon : Weapon {
   public void Shoot(PlayerBrain brain, Barrel barrel) {
-    GameObject bullet = PoolManager.Instance.Bullets.Objects.Get();
+    GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
     // Setup bullet
-    bullet.transform.position = barrel.Origin.position;
-    bullet.transform.right = barrel.Origin.right;
-    bullet.GetComponent<SpriteRenderer>().color = brain.Stats.AmmoColor;
-    bullet.GetComponent<DefaultAmmo>().Brain = brain;
-    // Shoot bullet
+    defaultAmmo.layer = brain.gameObject.layer;
+    defaultAmmo.transform.position = barrel.Origin.position;
+    defaultAmmo.transform.right = barrel.Origin.right;
+    defaultAmmo.GetComponent<SpriteRenderer>().color = brain.Stats.AmmoColor;
+    defaultAmmo.GetComponent<DefaultAmmo>().Brain = brain;
+    defaultAmmo.GetComponent<Rigidbody2D>().velocity = brain.Stats.AmmoSpeed * defaultAmmo.transform.right;
 
     barrel.Rigidbody.AddForce(-10f * brain.Stats.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
     barrel.ImpulseSource.GenerateImpulse(0.15f * brain.Stats.AmmoSize * barrel.Origin.right);

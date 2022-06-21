@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 996401881283390152}
   - component: {fileID: 4956725582615230901}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45cdf0c840a3ba4a8289a787d538d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4
+  Speed: 1.6
   Health: 7
   Damage: 3
   MinOrbs: 1

@@ -15,17 +15,19 @@ public class Damager : MonoBehaviour {
     Dealer = dealer;
   }
 
-  private void OnTriggerEnter2D(Collider2D collision) {
-    if (collision.attachedRigidbody == null) return;
-    if (collision.attachedRigidbody.TryGetComponent(out Entity entity)) {
+  private void OnTriggerEnter2D(Collider2D collider) {
+    if (collider.attachedRigidbody == null) return;
+    if (collider.TryGetComponent(out Orbital _)) return;
+    if (collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
       if (!UseTime) entity.Health.Hurt(Dealer, entity, Damage, false);
       else Entities.Add(entity); 
     }
   }
 
-  private void OnTriggerExit2D(Collider2D collision) {
-    if (collision.attachedRigidbody == null) return;
-    if (collision.attachedRigidbody.TryGetComponent(out Entity entity)) {
+  private void OnTriggerExit2D(Collider2D collider) {
+    if (collider.attachedRigidbody == null) return;
+    if (collider.TryGetComponent(out Orbital _)) return;
+    if (collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
       if (Entities.Contains(entity)) Entities.Remove(entity);
     }
   }
