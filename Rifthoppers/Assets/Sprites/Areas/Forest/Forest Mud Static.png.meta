@@ -1,25 +1,7 @@
 fileFormatVersion: 2
-guid: 3351d2e980d194941ab1b4bb14721ab6
+guid: 2d0f5155355ceb44286d53354cbe2996
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2361306978136134752
-    second: Bear TR Walk_0
-  - first:
-      213: -6966668740124420019
-    second: Bear TR Walk_1
-  - first:
-      213: -7765428186574327094
-    second: Bear TR Walk_2
-  - first:
-      213: 3910497081926488367
-    second: Bear TR Walk_3
-  - first:
-      213: -84713135931610245
-    second: Bear TR Walk_4
-  - first:
-      213: 8713085657562368457
-    second: Bear TR Walk_5
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,7 +81,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +105,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,127 +128,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bear TR Walk_0
+      name: Forest Mud Static_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: 0}
+        x: 17
+        y: 151
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06494759f2c05c020800000000000000
-      internalID: 2361306978136134752
+      spriteID: e362e240f47e62f49b305dd84807f2b5
+      internalID: 728022008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_1
+      name: Forest Mud Static_1
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 102
+        y: 133
+        width: 81
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d48d01d11bb615f90800000000000000
-      internalID: -6966668740124420019
+      spriteID: 54ff501ea6928a24c98069c468c920fb
+      internalID: 559781585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_2
+      name: Forest Mud Static_2
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 21
+        y: 91
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac27e621538ab3490800000000000000
-      internalID: -7765428186574327094
+      spriteID: 587f335f0fe0955408fe8d9a4dcae5e8
+      internalID: 637951629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_3
+      name: Forest Mud Static_3
       rect:
         serializedVersion: 2
-        x: 57
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 100
+        y: 47
+        width: 81
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f211e679060e44630800000000000000
-      internalID: 3910497081926488367
+      spriteID: 0a6c8d82dd533354882f5a17bbfc9b3b
+      internalID: 402752166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_4
+      name: Forest Mud Static_4
       rect:
         serializedVersion: 2
-        x: 76
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: 0}
+        x: 17
+        y: 47
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bacf80ad903def0800000000000000
-      internalID: -84713135931610245
+      spriteID: 023a4ff3ca78ecd40bc5512a40491dde
+      internalID: -904798920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_5
+      name: Forest Mud Static_5
       rect:
         serializedVersion: 2
-        x: 95
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 61
+        y: 47
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c94e8cdd391be870800000000000000
-      internalID: 8713085657562368457
+      spriteID: 1e6c4eb2424672c43bc323581147d11d
+      internalID: -3255713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest Mud Static_6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 11
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5076673b1df5f494a83de1f666f9768b
+      internalID: 2045410036
       vertices: []
       indices: 
       edges: []
@@ -258,12 +285,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bear TR Walk_0: 2361306978136134752
-      Bear TR Walk_4: -84713135931610245
-      Bear TR Walk_1: -6966668740124420019
-      Bear TR Walk_5: 8713085657562368457
-      Bear TR Walk_2: -7765428186574327094
-      Bear TR Walk_3: 3910497081926488367
+      Forest Mud Static_5: -3255713
+      Forest Mud Static_1: 559781585
+      Forest Mud Static_2: 637951629
+      Forest Mud Static_4: -904798920
+      Forest Mud Static_6: 2045410036
+      Forest Mud Static_3: 402752166
+      Forest Mud Static_0: 728022008
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

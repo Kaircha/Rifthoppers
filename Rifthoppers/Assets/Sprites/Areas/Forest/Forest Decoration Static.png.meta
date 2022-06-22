@@ -1,25 +1,7 @@
 fileFormatVersion: 2
-guid: 3351d2e980d194941ab1b4bb14721ab6
+guid: 39755be410bf65749b0bb19f9628a287
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2361306978136134752
-    second: Bear TR Walk_0
-  - first:
-      213: -6966668740124420019
-    second: Bear TR Walk_1
-  - first:
-      213: -7765428186574327094
-    second: Bear TR Walk_2
-  - first:
-      213: 3910497081926488367
-    second: Bear TR Walk_3
-  - first:
-      213: -84713135931610245
-    second: Bear TR Walk_4
-  - first:
-      213: 8713085657562368457
-    second: Bear TR Walk_5
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -99,7 +81,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,7 +105,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,127 +128,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bear TR Walk_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06494759f2c05c020800000000000000
-      internalID: 2361306978136134752
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bear TR Walk_1
+      name: Forest Decoration Static_0
       rect:
         serializedVersion: 2
         x: 19
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        y: 156
+        width: 53
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d48d01d11bb615f90800000000000000
-      internalID: -6966668740124420019
+      spriteID: 29c0670428c5d014799ba756e6490983
+      internalID: -747315395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_2
+      name: Forest Decoration Static_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 123
+        y: 129
+        width: 59
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac27e621538ab3490800000000000000
-      internalID: -7765428186574327094
+      spriteID: 4ffc5961c3e27784687cda938dce4a0e
+      internalID: -843133634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_3
+      name: Forest Decoration Static_2
       rect:
         serializedVersion: 2
-        x: 57
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 25
+        y: 45
+        width: 82
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f211e679060e44630800000000000000
-      internalID: 3910497081926488367
+      spriteID: 51b9ca8e2eb1f9740a79158511be6661
+      internalID: -102697190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_4
+      name: Forest Decoration Static_3
       rect:
         serializedVersion: 2
-        x: 76
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: 0}
+        x: 146
+        y: 78
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bacf80ad903def0800000000000000
-      internalID: -84713135931610245
+      spriteID: c207c286238173145a63601abc29f076
+      internalID: 2085161660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bear TR Walk_5
+      name: Forest Decoration Static_4
       rect:
         serializedVersion: 2
-        x: 95
-        y: 0
-        width: 19
-        height: 21
-      alignment: 9
-      pivot: {x: 0.47368422, y: -0}
+        x: 149
+        y: 19
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c94e8cdd391be870800000000000000
-      internalID: 8713085657562368457
+      spriteID: 9d7680332456d5249a00ff676f700dd1
+      internalID: 903448700
       vertices: []
       indices: 
       edges: []
@@ -258,12 +243,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bear TR Walk_0: 2361306978136134752
-      Bear TR Walk_4: -84713135931610245
-      Bear TR Walk_1: -6966668740124420019
-      Bear TR Walk_5: 8713085657562368457
-      Bear TR Walk_2: -7765428186574327094
-      Bear TR Walk_3: 3910497081926488367
+      Forest Decoration Static_2: -102697190
+      Forest Decoration Static_1: -843133634
+      Forest Decoration Static_4: 903448700
+      Forest Decoration Static_3: 2085161660
+      Forest Decoration Static_0: -747315395
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
