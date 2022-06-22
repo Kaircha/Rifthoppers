@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour {
   public float AmmoBaseDamage = 6f;
   public float AmmoDamageMulti = 1f;
   public float AmmoHoming = 0f;
-  public int AmmoSplits = 1;
+  public int AmmoSplits = 0;
   public int AmmoReflects = 0;
   public int AmmoPierces = 0;
   public float AmmoSize = 1f;

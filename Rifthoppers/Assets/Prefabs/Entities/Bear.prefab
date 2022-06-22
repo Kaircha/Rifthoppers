@@ -6204,8 +6204,8 @@ MonoBehaviour:
   AmmoBaseDamage: 6
   AmmoDamageMulti: 1
   AmmoHoming: 0
-  AmmoSplits: 1
-  AmmoReflects: 1
+  AmmoSplits: 0
+  AmmoReflects: 0
   AmmoPierces: 0
   AmmoSize: 1
   AmmoColor: {r: 1, g: 1, b: 1, a: 1}
