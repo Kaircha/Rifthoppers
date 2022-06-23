@@ -17,7 +17,5 @@ public abstract class Encounter : MonoBehaviour {
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Energy.CanTakeDamage = false;
     RiftManager.Instance.RiftWaveUIMaterial.color = Color.clear; // Animate this?
-    PoolManager.Instance.EnergyOrbs.Objects.Dispose();
-    PoolManager.Instance.EnergyOrblets.Objects.Dispose();
   }
 }

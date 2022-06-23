@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143854919007502242}
+  - component: {fileID: 2310787899453156192}
   m_Layer: 0
   m_Name: Mushroom (0)
   m_TagString: Untagged
@@ -117,6 +118,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2310787899453156192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084928272774725407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcab213b6aef099409879f33957e6672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Grass: {fileID: 3142976051668379387}
+  Leaves: {fileID: 0}
 --- !u!1 &9072106910956106383
 GameObject:
   m_ObjectHideFlags: 0
