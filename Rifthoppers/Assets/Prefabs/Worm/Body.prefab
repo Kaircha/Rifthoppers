@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8633616859331247257}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8633616857541637076
 SpriteRenderer:
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8633616859331247257}
   - component: {fileID: 8633616859331247253}
-  - component: {fileID: 8633616859331247252}
+  - component: {fileID: 1428195669825246077}
   - component: {fileID: 8633616859331247255}
   - component: {fileID: 8633616859331247259}
   - component: {fileID: 8633616859331247258}
@@ -118,8 +118,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 26026280445196070}
   - {fileID: 8633616857541637083}
+  - {fileID: 26026280445196070}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: 1
---- !u!114 &8633616859331247252
+--- !u!114 &1428195669825246077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,14 +145,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8633616859331247256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d70597f02a043744b85fd83f6066a7b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc7ca0651b354ed498be1ed97bfc6067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 8633616859331247259}
-  Animator: {fileID: 8633616859331247258}
+  Rigidbody: {fileID: 0}
+  Animator: {fileID: 0}
   Direction: {x: 0, y: 0}
   Sprite: {fileID: 8633616857541637076}
   HurtAudio: {fileID: 1058580233432414148}
+  IsPowered: 0
 --- !u!114 &8633616859331247255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +271,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8633616859331247257}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1058580233432414148
 AudioSource:

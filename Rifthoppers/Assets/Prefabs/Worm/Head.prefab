@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7603464744925626196}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &293046169057915878
 AudioSource:
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7603464744925626196}
   - component: {fileID: 7603464744925626193}
-  - component: {fileID: 7603464744925626192}
+  - component: {fileID: 5180374950390976281}
   - component: {fileID: 5728540599652879075}
   - component: {fileID: 7603464744925626198}
   - component: {fileID: 7603464744925626197}
@@ -162,8 +162,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4987595663379806554}
   - {fileID: 7603464745286832984}
+  - {fileID: 4987595663379806554}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: 1
---- !u!114 &7603464744925626192
+--- !u!114 &5180374950390976281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,14 +189,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7603464744925626219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d70597f02a043744b85fd83f6066a7b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc7ca0651b354ed498be1ed97bfc6067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 7603464744925626198}
-  Animator: {fileID: 7603464744925626197}
+  Rigidbody: {fileID: 0}
+  Animator: {fileID: 0}
   Direction: {x: 0, y: 0}
   Sprite: {fileID: 7603464745286832985}
   HurtAudio: {fileID: 293046169057915878}
+  IsPowered: 0
 --- !u!114 &5728540599652879075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7603464744925626196}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7603464745286832985
 SpriteRenderer:

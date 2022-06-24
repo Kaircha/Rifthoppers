@@ -18,6 +18,14 @@ public class WormLaserState : State {
   }
 
   public override IEnumerator Execute() {
+    float timer = 0f;
+    while (timer < 1) {
+      Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
+      Brain.Target.position = (25f - 6f * timer) * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));
+      timer += Time.deltaTime;
+      yield return null;
+    }
+
     while (true) {
       Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
       Brain.Target.position = 19f * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));

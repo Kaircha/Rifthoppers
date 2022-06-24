@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormCycleState : State {
+public class WormIdleState : State {
   public WormBrain Brain;
   public float Direction = 1f;
   public float Duration = 1f;
 
-  public WormCycleState(WormBrain brain, float direction, float duration) {
+  public WormIdleState(WormBrain brain, float direction, float duration) {
     Brain = brain;
     Direction = direction;
     Duration = Mathf.Max(0.01f, duration); // Prevent dividing by <= 0
@@ -18,6 +18,14 @@ public class WormCycleState : State {
   }
 
   public override IEnumerator Execute() {
+    float timer = 0f;
+    while (timer < 1) {
+      Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
+      Brain.Target.position = (19f + 6f) * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));
+      timer += Time.deltaTime;
+      yield return null;
+    }
+
     while (true) {
       Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
       Brain.Target.position = 25f * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));
