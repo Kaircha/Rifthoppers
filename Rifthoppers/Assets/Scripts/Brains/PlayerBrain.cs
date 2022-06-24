@@ -15,6 +15,7 @@ public class PlayerBrain : Brain {
   [HideInInspector] public Orbitals Orbitals;
   [HideInInspector] public Upgrades Upgrades;
   [HideInInspector] public CinemachineImpulseSource Impulse;
+  public Transform Target;
 
   public override void Awake() {
     base.Awake();

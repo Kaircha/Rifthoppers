@@ -21,8 +21,8 @@ public class Follower : MonoBehaviour {
   }
 
   public void SetTarget(Vector3 position) {
-    if (position == Target) return;
     Previous = Target;
     Target = position;
+    if (Previous == Vector3.zero) Previous = position;
   }
 }

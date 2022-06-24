@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class EnemyBrain : Brain, IPoolable {
   [HideInInspector] public EnemyStats Stats;
+  [HideInInspector] public Transform Target;
   public Pool Pool { get; set; }
   public void Spawn() => OnSpawn?.Invoke();
   public event Action OnSpawn;

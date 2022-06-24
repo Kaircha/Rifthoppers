@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(StateMachine))]
 public abstract class Brain : MonoBehaviour {
   [HideInInspector] public StateMachine Machine;
-  [HideInInspector] public Entity Entity;
-  public Transform Target;
+  public virtual Entity Entity { get; set; }
 
   public virtual void Awake() {
     Entity = GetComponent<Entity>();

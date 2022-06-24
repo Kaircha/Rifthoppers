@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7603464744925626196}
   - component: {fileID: 7603464744925626193}
   - component: {fileID: 7603464744925626192}
-  - component: {fileID: 7603464744925626194}
+  - component: {fileID: 5728540599652879075}
   - component: {fileID: 7603464744925626198}
   - component: {fileID: 7603464744925626197}
   - component: {fileID: 8481365497977812657}
@@ -197,7 +197,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   Sprite: {fileID: 7603464745286832985}
   HurtAudio: {fileID: 293046169057915878}
---- !u!114 &7603464744925626194
+--- !u!114 &5728540599652879075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,16 +206,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7603464744925626219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b421277c320177f4c8d154cd05b64939, type: 3}
+  m_Script: {fileID: 11500000, guid: 49c281006b23d0e4a902d0101d9e9163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Points:
-  - {x: 0, y: 0}
-  - {x: -2.5, y: 0}
-  Followers:
-  - {fileID: 0}
-  - {fileID: 0}
-  Radius: 2.5
+  Rigidbody: {fileID: 0}
 --- !u!50 &7603464744925626198
 Rigidbody2D:
   serializedVersion: 4
@@ -342,7 +336,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 83330915f4b803948bcca2a1e91a5b05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

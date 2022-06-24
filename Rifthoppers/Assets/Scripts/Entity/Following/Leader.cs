@@ -34,6 +34,9 @@ public class Leader : MonoBehaviour {
     if (distance >= Radius) {
       Points = Points.Prepend(transform.position).ToList();
       distance = Vector2.Distance(transform.position, Points[0]);
+      for (int i = 0; i < Followers.Count; i++) {
+        Followers[i].SetTarget(Points[i]);
+      }
     }
 
     while (Points.Count > Followers.Count) {
@@ -42,7 +45,6 @@ public class Leader : MonoBehaviour {
 
     for (int i = 0; i < Followers.Count; i++) {
       if (i >= Points.Count) continue;
-      Followers[i].SetTarget(Points[i]);
       Followers[i].Movement(distance / Radius);
       if (i == 0) Followers[i].LookAt(transform.position);
       else Followers[i].LookAt(Followers[i - 1].transform.position);
