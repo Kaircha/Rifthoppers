@@ -25,8 +25,13 @@ public class WormBrain : Brain {
   public IEnumerator Start() {
     Radius = 25f;
     while (!Health.IsDead) {
-      yield return StateRoutine(new WormIdleState(this, 1, 8f), 5f);
+      yield return StateRoutine(new WormChargeState(this));
+      yield return StateRoutine(new WormIdleState(this, 1, 8f), 3f);
       yield return StateRoutine(new WormNovaChargeState(this, 8));
+      yield return StateRoutine(new WormIdleState(this, 1, 8f), 1f);
+      yield return StateRoutine(new WormChargeState(this));
+      yield return StateRoutine(new WormIdleState(this, 1, 8f), 3f);
+      yield return StateRoutine(new WormLaserState(this, 1f, 8f), 16f);
     }
     StartCoroutine(StateRoutine(new WormDeathState(this)));
   }

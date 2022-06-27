@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Encounter : MonoBehaviour {
   public Area Area;
-  public virtual bool IsFinished => Progress >= 1f;
+  public bool IsStarted;
+  public abstract bool IsFinished { get; }
   public abstract float Progress { get; }
   public virtual void EncounterStart() {
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterCombatState());

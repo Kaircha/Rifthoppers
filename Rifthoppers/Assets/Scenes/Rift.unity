@@ -7071,6 +7071,7 @@ MonoBehaviour:
   Energy: {fileID: 0}
   RiftGenerator: {fileID: 585282556}
   RiftSpawner: {fileID: 554852278}
+  WormBoss: {fileID: 7863179210938364265, guid: aab4a1cc33661c741ad1e5dea54520c3, type: 3}
   Rift:
     Index: 0
     Encounter: {fileID: 0}

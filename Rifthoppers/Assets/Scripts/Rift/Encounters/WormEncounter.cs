@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WormEncounter : Encounter {
-  public GameObject WormPrefab;
   [HideInInspector] public WormBrain Brain;
-  public override float Progress => 1 - Brain.Health.Percentage;
+  public override float Progress => 1f - Brain.Health.Percentage;
   public override bool IsFinished => IsDead;
   public bool IsDead;
 
   public override void EncounterStart() {
     base.EncounterStart();
+    Brain = Instantiate(RiftManager.Instance.WormBoss, transform).GetComponent<WormBrain>();
     IsDead = false;
-    Brain = Instantiate(WormPrefab).GetComponent<WormBrain>();
+    IsStarted = true;
   }
 
   public override IEnumerator EncounterRoutine() {
-    Brain.Impulse.GenerateImpulse();
+    yield return new WaitForSeconds(0.5f);
+    //Brain.Impulse.GenerateImpulse();
     // Play spooky rumbling noise
     // Wait
     LobbyManager.Instance.SoloVCam.m_Lens.OrthographicSize = 12f;

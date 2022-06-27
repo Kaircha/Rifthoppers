@@ -5,6 +5,7 @@ using UnityEngine;
 public class WormChargeState : State {
   public WormBrain Brain;
   public const float Radius = 25f;
+  public override float ExecutionTime => 2f;
 
   public WormChargeState(WormBrain brain) {
     Brain = brain;

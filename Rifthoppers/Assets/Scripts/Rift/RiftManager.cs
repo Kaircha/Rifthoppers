@@ -13,6 +13,7 @@ public class RiftManager : Singleton<RiftManager> {
   [HideInInspector] public Energy Energy;
   public RiftGenerator RiftGenerator;
   public RiftSpawner RiftSpawner;
+  public GameObject WormBoss; // Temporary until this has a better place to live
 
   [HideInInspector] public Wave Rift;
   public Wave ActiveWave;
@@ -61,11 +62,11 @@ public class RiftManager : Singleton<RiftManager> {
   private void OnDisable() => Energy.OnDeath -= Defeat;
 
   public void StartEncounter() {
-    EncounterRoutine = StartCoroutine(Encounter.EncounterRoutine());
     Encounter.Area.Show();
     Encounter.EncounterStart();
     RiftSpawner.StartSpawning();
     EncounterStarted();
+    EncounterRoutine = StartCoroutine(Encounter.EncounterRoutine());
   }
   public void EndEncounter() {
     if (EncounterRoutine != null) StopCoroutine(EncounterRoutine);

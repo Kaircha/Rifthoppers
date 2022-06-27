@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExperienceEncounter : Encounter {
   public override float Progress => Mathf.Clamp01(Amount / Required);
+  public override bool IsFinished => Progress >= 1f;
   public float Amount = 0;
   public float Required = 100;
 

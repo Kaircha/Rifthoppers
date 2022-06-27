@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - Area: {instanceID: 0}
-  - WormPrefab: {fileID: 7863179210938364265, guid: aab4a1cc33661c741ad1e5dea54520c3, type: 3}
+  - WormPrefab: {instanceID: 0}
   - Brain: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
