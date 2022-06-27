@@ -98,7 +98,7 @@ public class WormLaserState : State {
   public IEnumerator BlasterRoutine() {
     while (true) {
       Machine.StartCoroutine(BlasterWave());
-      yield return new WaitForSeconds(8f); // Shoot delay
+      yield return new WaitForSeconds(6f); // Shoot delay
     }
   }
 
@@ -112,7 +112,7 @@ public class WormLaserState : State {
       float timer = 0f;
       while (timer < 0.5f) {
         segment.Energy = Mathf.PingPong(timer, 1f);
-        timer += 2f * Time.deltaTime;
+        timer += 4f * Time.deltaTime;
         yield return null;
       }
 
@@ -123,7 +123,7 @@ public class WormLaserState : State {
 
       while (timer < 1f) {
         segment.Energy = Mathf.PingPong(timer, 1f);
-        timer += 2f * Time.deltaTime;
+        timer += 4f * Time.deltaTime;
         yield return null;
       }
       segment.Energy = 0f;

@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Damager : MonoBehaviour {
   public float Damage = 1f;
+  public float Force = 1f;
   public bool UseTime = false;
   public Entity Dealer;
   private List<Entity> Entities = new();
@@ -19,7 +20,10 @@ public class Damager : MonoBehaviour {
     if (collider.attachedRigidbody == null) return;
     if (collider.TryGetComponent(out Orbital _)) return;
     if (collider.attachedRigidbody.TryGetComponent(out Entity entity)) {
-      if (!UseTime) entity.Health.Hurt(Dealer, entity, Damage, false);
+      if (!UseTime) {
+        entity.Health.Hurt(Dealer, entity, Damage, false);
+        entity.Rigidbody.AddForce(Force * (transform.position - entity.transform.position).normalized, ForceMode2D.Impulse);
+      }
       else Entities.Add(entity); 
     }
   }

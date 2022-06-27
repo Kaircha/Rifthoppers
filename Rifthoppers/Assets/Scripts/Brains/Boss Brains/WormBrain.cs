@@ -24,7 +24,19 @@ public class WormBrain : Brain {
 
   public IEnumerator Start() {
     Radius = 25f;
-    while (!Health.IsDead) {
+    Coroutine PhaseOne = StartCoroutine(PhaseOneRoutine());
+    yield return new WaitUntil(() => Health.IsDead);
+    StopCoroutine(PhaseOne);
+    StartCoroutine(StateRoutine(new WormDeathState(this)));
+  }
+  public IEnumerator StateRoutine(State state, float duration = 0) {
+    if (duration <= state.ExecutionTime) duration = state.ExecutionTime;
+    Machine.ChangeState(state);
+    yield return new WaitForSeconds(duration);
+  }
+
+  public IEnumerator PhaseOneRoutine() {
+    while (true) {
       yield return StateRoutine(new WormChargeState(this));
       yield return StateRoutine(new WormIdleState(this, 1, 8f), 3f);
       yield return StateRoutine(new WormNovaChargeState(this, 8));
@@ -32,13 +44,8 @@ public class WormBrain : Brain {
       yield return StateRoutine(new WormChargeState(this));
       yield return StateRoutine(new WormIdleState(this, 1, 8f), 3f);
       yield return StateRoutine(new WormLaserState(this, 1f, 8f), 16f);
+      yield return StateRoutine(new WormIdleState(this, 1, 8f), 1f);
     }
-    StartCoroutine(StateRoutine(new WormDeathState(this)));
-  }
-  public IEnumerator StateRoutine(State state, float duration = 0) {
-    if (duration <= state.ExecutionTime) duration = state.ExecutionTime;
-    Machine.ChangeState(state);
-    yield return new WaitForSeconds(duration);
   }
 
   public void UpdateLaser(Vector3 A, Vector3 B) {
