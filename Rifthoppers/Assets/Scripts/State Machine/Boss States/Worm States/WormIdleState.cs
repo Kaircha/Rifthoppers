@@ -6,6 +6,7 @@ public class WormIdleState : State {
   public WormBrain Brain;
   public float Direction = 1f;
   public float Duration = 1f;
+  public const float Radius = 25f;
 
   public WormIdleState(WormBrain brain, float direction, float duration) {
     Brain = brain;
@@ -18,13 +19,7 @@ public class WormIdleState : State {
   }
 
   public override IEnumerator Execute() {
-    float timer = 0f;
-    while (timer < 1) {
-      Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
-      Brain.Target.position = (19f + 6f) * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));
-      timer += Time.deltaTime;
-      yield return null;
-    }
+    if (Brain.Radius != Radius) yield return Machine.StartCoroutine(EnterRoutine());
 
     while (true) {
       Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
@@ -33,5 +28,17 @@ public class WormIdleState : State {
     }
   }
 
-  public override void Exit() { }
+  public override void Exit() {
+    Brain.Radius = Radius;
+  }
+
+  public IEnumerator EnterRoutine() {
+    float timer = 0f;
+    while (timer < 1) {
+      Brain.Angle = (Brain.Angle + Time.deltaTime / Duration * Direction * 2 * Mathf.PI) % (2 * Mathf.PI);
+      Brain.Target.position = Mathf.Lerp(Brain.Radius, Radius, timer) * new Vector2(Mathf.Sin(Brain.Angle), Mathf.Cos(Brain.Angle));
+      timer += Time.deltaTime;
+      yield return null;
+    }
+  }
 }

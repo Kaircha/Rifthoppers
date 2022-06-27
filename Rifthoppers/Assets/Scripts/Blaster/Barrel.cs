@@ -12,6 +12,8 @@ public class Barrel : MonoBehaviour {
   // Kind of shouldn't be here? Not sure where else to put it
   public GameObject LaserPrefab;
   [HideInInspector] public LaserAmmo Laser;
+  public FakeBullet FakeBullet;
+  [HideInInspector] public int Charges;
 
   public void Awake() {
     //GameObject laser = Instantiate(LaserPrefab, transform);

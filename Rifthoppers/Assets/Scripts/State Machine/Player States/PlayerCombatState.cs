@@ -29,7 +29,7 @@ public class PlayerCombatState : State {
   public override IEnumerator Execute() {
     while (true) {
       float speedMulti = (IsShooting ? 1 : 1.5f);
-      Brain.Entity.Direction = Brain.Stats.Speed * speedMulti * Brain.Input.Move.normalized;
+      Brain.Entity.Direction = Brain.PlayerStats.Speed * speedMulti * Brain.Input.Move.normalized;
       Brain.Entity.Animator.speed = speedMulti;
       Blaster.Sprite.sortingOrder = (Brain.Target.position - Brain.transform.position).y > 0.6f ? -1 : 1;
 

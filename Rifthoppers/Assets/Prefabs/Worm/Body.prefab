@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -225641503, guid: 62e2a0af6c01eb842aed73aa9684d3be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,7 +153,8 @@ MonoBehaviour:
   Direction: {x: 0, y: 0}
   Sprite: {fileID: 8633616857541637076}
   HurtAudio: {fileID: 1058580233432414148}
-  IsPowered: 0
+  Blaster: {fileID: 0}
+  Energy: 0
 --- !u!114 &8633616859331247255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0

@@ -10,7 +10,7 @@ public class HealthConduit : MonoBehaviour, IHealth {
       if (_health == null) {
         switch (Target) {
           case HealthTarget.Energy: _health = RiftManager.Instance.Energy; break;
-          case HealthTarget.Parent: _health = GetComponentInParent<IHealth>(); break;
+          case HealthTarget.Parent: _health = GetComponentInParent<Health>(); break;
         }
       }
       return _health;

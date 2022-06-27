@@ -6,14 +6,20 @@ using UnityEngine;
 public class FakeBullet : Surface {
   public float Size = 0;
   public float Damage = 0;
-  public Color color;
+  public SpriteRenderer Sprite;
 
-  public void AfterShoot(){
+  public void BeforeShoot(Color color) {
     Size = 0;
     transform.localScale = Vector3.zero;
+    Sprite.color = color;
+    gameObject.SetActive(true);
   }
 
-  private new void Update(){
+  public void AfterShoot() {
+    gameObject.SetActive(false);
+  }
+
+  private new void Update() {
     base.Update();
 
     if (transform.localScale.x < Size) {
@@ -25,7 +31,7 @@ public class FakeBullet : Surface {
       if (transform.localScale.x < Size) transform.localScale = Size * Vector3.one;
     }
   }
-  public override void SurfaceEffect(Entity entity, Surface surface){
+  public override void SurfaceEffect(Entity entity, Surface surface) {
     entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
   }
 }

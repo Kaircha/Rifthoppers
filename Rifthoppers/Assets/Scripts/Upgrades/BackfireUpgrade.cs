@@ -22,7 +22,7 @@ public class BackfireUpgrade : Upgrade {
   }
 
   private void SelfIgnite() {
-    if (Random.Range(0f, 100f) < 30f - 10f * Brain.Stats.Luck)
+    if (Random.Range(0f, 100f) < 30f - 10f * Brain.PlayerStats.Luck)
       Brain.Entity.AddEffect(new IgniteEffect(1, 5));
   }
 }

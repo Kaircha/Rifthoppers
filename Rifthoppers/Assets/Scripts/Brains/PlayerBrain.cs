@@ -7,7 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerBrain : Brain {
   [HideInInspector] public InputDevice Device; // Set by The LobbyManager
   [HideInInspector] public InputData Input; // Set by The LobbyManager
-  [HideInInspector] public PlayerStats Stats;
+  [HideInInspector] public PlayerStats PlayerStats;
+  [HideInInspector] public AmmoStats AmmoStats;
   [HideInInspector] public Blaster Blaster;
   [HideInInspector] public Power Power;
   [HideInInspector] public Dodge Dodge;
@@ -19,7 +20,8 @@ public class PlayerBrain : Brain {
 
   public override void Awake() {
     base.Awake();
-    Stats = GetComponent<PlayerStats>();
+    PlayerStats = GetComponent<PlayerStats>();
+    AmmoStats = GetComponent<AmmoStats>();
     Blaster = GetComponentInChildren<Blaster>(true);
     Power = GetComponentInChildren<Power>(true);
     Dodge = GetComponentInChildren<Dodge>(true);

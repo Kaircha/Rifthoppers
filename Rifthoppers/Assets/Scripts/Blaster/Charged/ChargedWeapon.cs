@@ -4,35 +4,42 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Charged Weapon", menuName = "Weapons/Charged")]
 public class ChargedWeapon : Weapon {
-  private int Charges = 0;
   public int MaxCharges = 10;
 
-  public void Shoot(PlayerBrain brain, Barrel barrel) {
-    Transform projectile = PoolManager.Instance.Bullets.Objects.Get().transform;
-    projectile.transform.position = barrel.Origin.position;
-    projectile.transform.right = barrel.Origin.right;
-    projectile.GetComponent<SpriteRenderer>().color = brain.Stats.AmmoColor;
-    projectile.GetComponent<Projectile>().Shoot(brain, Charges, GetScale());
+  public void Shoot(Entity entity, AmmoStats ammo, Barrel barrel) {
+    GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
+    // Setup bullet
+    defaultAmmo.layer = ammo.gameObject.layer;
+    defaultAmmo.transform.position = barrel.Origin.position;
+    defaultAmmo.transform.right = barrel.Origin.right;
+    defaultAmmo.GetComponent<SpriteRenderer>().color = ammo.AmmoColor;
+    defaultAmmo.GetComponent<DefaultAmmo>().Initialize(entity, ammo);
+    defaultAmmo.transform.localScale = ammo.AmmoSize * GetScale(barrel.Charges) * Vector3.one;
+    defaultAmmo.GetComponent<Rigidbody2D>().velocity = ammo.AmmoSpeed * defaultAmmo.transform.right;
 
-    barrel.Rigidbody.AddForce(-10f * GetScale() * brain.Stats.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
-    barrel.ImpulseSource.GenerateImpulse(0.15f * GetScale() * brain.Stats.AmmoSize * barrel.Origin.right);
+    barrel.Rigidbody.AddForce(-10f * GetScale(barrel.Charges) * ammo.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
+    barrel.ImpulseSource.GenerateImpulse(0.15f * GetScale(barrel.Charges) * ammo.AmmoSize * barrel.Origin.right);
     if (ShootSFX != null) {
       barrel.AudioSource.pitch = Random.Range(0.7f, 1.3f);
       barrel.AudioSource.PlayOneShot(ShootSFX);
     }
 
-    Charges = 0;
-    brain.Stats.FakeBullet.AfterShoot();
+    barrel.Charges = 0;
+    barrel.FakeBullet.AfterShoot();
   }
-  public override void ShootingStarted(PlayerBrain brain, Barrel barrel) => Charges = 0;
-  public override void ShootingUpdated(PlayerBrain brain, Barrel barrel) {
-    Charges++;
-    brain.Stats.FakeBullet.Size = GetScale() * brain.Stats.AmmoSize;
-    if (Charges == MaxCharges) Shoot(brain, barrel);
-  }
-  public override void ShootingStopped(PlayerBrain brain, Barrel barrel) {
-    if (Charges > 0) Shoot(brain, barrel);
+  public override void ShootingStarted(Entity entity, AmmoStats ammo, Barrel barrel) {
+    barrel.Charges = 0;
+    barrel.FakeBullet.BeforeShoot(ammo.AmmoColor);
   }
 
-  private float GetScale() => 0.6f + Charges * 0.4f;
+  public override void ShootingUpdated(Entity entity, AmmoStats ammo, Barrel barrel) {
+    barrel.Charges++;
+    barrel.FakeBullet.Size = GetScale(barrel.Charges) * ammo.AmmoSize;
+    if (barrel.Charges == MaxCharges) Shoot(entity, ammo, barrel);
+  }
+  public override void ShootingStopped(Entity entity, AmmoStats ammo, Barrel barrel) {
+    if (barrel.Charges > 0) Shoot(entity, ammo, barrel);
+  }
+
+  private float GetScale(int charges) => 0.6f + charges * 0.4f;
 }

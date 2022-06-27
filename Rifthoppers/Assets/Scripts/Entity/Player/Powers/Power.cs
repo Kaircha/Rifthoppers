@@ -9,9 +9,9 @@ public abstract class Power : MonoBehaviour {
   public float PressCost;
   public float HoldCost;
   public float ReleaseCost;
-  public float CostMulti => Brain.Stats.PowerCostMulti;
-  public float Range => Brain.Stats.PowerRange;
-  public float Strength => Brain.Stats.PowerStrength;
+  public float CostMulti => Brain.PlayerStats.PowerCostMulti;
+  public float Range => Brain.PlayerStats.PowerRange;
+  public float Strength => Brain.PlayerStats.PowerStrength;
 
   public event Action OnPowerUsed;
 

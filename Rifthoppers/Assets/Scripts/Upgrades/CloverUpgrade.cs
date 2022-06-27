@@ -7,12 +7,12 @@ public class CloverUpgrade : Upgrade {
   public int Luck = 2;
 
   public override void Add() {
-    Brain.Stats.Luck += Luck;
+    Brain.PlayerStats.Luck += Luck;
   }
 
   public override IEnumerator UpgradeRoutine() { yield return null; }
 
   public override void Remove() {
-    Brain.Stats.Luck -= Luck;
+    Brain.PlayerStats.Luck -= Luck;
   }
 }

@@ -32,7 +32,7 @@ public class PlayerInteractState : State {
     yield return null;
     
     while (true) {
-      Brain.Entity.Direction = Brain.Stats.Speed * 1.5f * Brain.Input.Move.normalized;
+      Brain.Entity.Direction = Brain.PlayerStats.Speed * 1.5f * Brain.Input.Move.normalized;
 
       if (Brain.Input.IsMouseLook) Brain.Target.position = Brain.Input.Look;
       else Brain.Target.localPosition = Brain.Input.Look;

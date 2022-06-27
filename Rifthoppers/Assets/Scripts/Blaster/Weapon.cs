@@ -8,9 +8,9 @@ public abstract class Weapon : ScriptableObject {
   public AudioClip ShootingUpdatedSFX;
   public AudioClip ShootingStoppedSFX;
 
-  public abstract void ShootingStarted(PlayerBrain brain, Barrel barrel);
-  public abstract void ShootingUpdated(PlayerBrain brain, Barrel barrel);
-  public abstract void ShootingStopped(PlayerBrain brain, Barrel barrel);
+  public abstract void ShootingStarted(Entity entity, AmmoStats ammo, Barrel barrel);
+  public abstract void ShootingUpdated(Entity entity, AmmoStats ammo, Barrel barrel);
+  public abstract void ShootingStopped(Entity entity, AmmoStats ammo, Barrel barrel);
 }
 
 [System.Flags]

@@ -27,41 +27,41 @@ public class Blaster : MonoBehaviour {
   public bool IsMoving => Brain.Entity.Direction.magnitude > 0;
   private bool CanShoot = true;
 
-  public event Action<PlayerBrain, Barrel> OnShootingStarted;
-  public event Action<PlayerBrain, Barrel> OnShootingUpdated;
-  public event Action<PlayerBrain, Barrel> OnShootingStopped;
+  public event Action<Entity, AmmoStats, Barrel> OnShootingStarted;
+  public event Action<Entity, AmmoStats, Barrel> OnShootingUpdated;
+  public event Action<Entity, AmmoStats, Barrel> OnShootingStopped;
 
-  public void ShootingStarted(PlayerBrain brain, Barrel barrel) => OnShootingStarted?.Invoke(brain, barrel);
-  public void ShootingUpdated(PlayerBrain brain, Barrel barrel) => OnShootingUpdated?.Invoke(brain, barrel);
-  public void ShootingStopped(PlayerBrain brain, Barrel barrel) => OnShootingStopped?.Invoke(brain, barrel);
+  public void ShootingStarted(Entity entity, AmmoStats stats, Barrel barrel) => OnShootingStarted?.Invoke(entity, stats, barrel);
+  public void ShootingUpdated(Entity entity, AmmoStats stats, Barrel barrel) => OnShootingUpdated?.Invoke(entity, stats, barrel);
+  public void ShootingStopped(Entity entity, AmmoStats stats, Barrel barrel) => OnShootingStopped?.Invoke(entity, stats, barrel);
 
 
   private void OnEnable() {
-    Weapon = GetWeapon(Brain.Stats.WeaponType);
+    Weapon = GetWeapon(Brain.AmmoStats.WeaponType);
   }
   private void OnDisable() {
     StopAllCoroutines();
-    if (IsShooting) ShootingStopped(Brain, Barrel);
+    if (IsShooting) ShootingStopped(Brain.Entity, Brain.AmmoStats, Barrel);
   }
 
   public IEnumerator BlasterRoutine() {
     CanShoot = true;
     while (true) {
       yield return new WaitUntil(() => IsShooting);
-      ShootingStarted(Brain, Barrel);
+      ShootingStarted(Brain.Entity, Brain.AmmoStats, Barrel);
       while (IsShooting) {
         if (CanShoot) {
-          ShootingUpdated(Brain, Barrel);
+          ShootingUpdated(Brain.Entity, Brain.AmmoStats, Barrel);
           StartCoroutine(FirerateRoutine());
         }
         yield return null;
       }
-      ShootingStopped(Brain, Barrel);
+      ShootingStopped(Brain.Entity, Brain.AmmoStats, Barrel);
     }
   }
 
   public IEnumerator FirerateRoutine() {
-    float firerate = (IsMoving ? 1 : 1.5f) * Brain.Stats.Firerate;
+    float firerate = (IsMoving ? 1 : 1.5f) * Brain.PlayerStats.Firerate;
     CanShoot = false;
     yield return new WaitForSeconds(1 / firerate);
     CanShoot = true;

@@ -6076,6 +6076,7 @@ GameObject:
   - component: {fileID: 6654770937096141520}
   - component: {fileID: 4497138410277447563}
   - component: {fileID: 7121696364370988061}
+  - component: {fileID: 4319120231355474142}
   - component: {fileID: 6654770937096141510}
   - component: {fileID: 6654770937096141508}
   - component: {fileID: 6654770937096141509}
@@ -6171,8 +6172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Machine: {fileID: 0}
-  Entity: {fileID: 0}
-  Target: {fileID: 8261056480845723946}
   Input: {fileID: 0}
   Stats: {fileID: 0}
   Blaster: {fileID: 0}
@@ -6182,6 +6181,7 @@ MonoBehaviour:
   Orbitals: {fileID: 0}
   Upgrades: {fileID: 0}
   Impulse: {fileID: 0}
+  Target: {fileID: 8261056480845723946}
 --- !u!114 &7121696364370988061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6209,6 +6209,7 @@ MonoBehaviour:
   AmmoPierces: 0
   AmmoSize: 1
   AmmoColor: {r: 1, g: 1, b: 1, a: 1}
+  WeaponType: 0
   IgniteChanceBase: 0
   IgniteChancePerLuck: 0
   PoisonChanceBase: 0
@@ -6216,8 +6217,31 @@ MonoBehaviour:
   PowerRange: 5
   PowerStrength: 20
   PowerCostMulti: 1
-  WeaponType: 0
   FakeBullet: {fileID: 3506053450830444105}
+--- !u!114 &4319120231355474142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654770937096141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95691c6fde862d742ae884de7e53651b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponType: 0
+  AmmoCount: 1
+  AmmoBaseSpeed: 15
+  AmmoSpeedMulti: 1
+  AmmoBaseDamage: 6
+  AmmoDamageMulti: 1
+  AmmoHoming: 0
+  AmmoSplits: 0
+  AmmoReflects: 0
+  AmmoPierces: 0
+  AmmoSize: 1
+  AmmoColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &6654770937096141510
 Rigidbody2D:
   serializedVersion: 4

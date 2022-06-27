@@ -6,18 +6,18 @@ using UnityEngine;
 public class LaserWeapon : Weapon {
   public ContactFilter2D ContactFilter;
 
-  public override void ShootingStarted(PlayerBrain brain, Barrel barrel) {
+  public override void ShootingStarted(Entity entity, AmmoStats ammo, Barrel barrel) {
     barrel.Laser.gameObject.SetActive(true);
-    barrel.Laser.LaserRoutine = barrel.StartCoroutine(LaserRoutine(brain, barrel));
+    barrel.Laser.LaserRoutine = barrel.StartCoroutine(LaserRoutine(entity, ammo, barrel));
     barrel.Laser.StartVFX.Play();
     barrel.Laser.EndVFX.Play();
     barrel.Laser.EdgeCollider.points = new Vector2[2];
-    barrel.Laser.LineRenderer.widthMultiplier = brain.Stats.AmmoSize;
+    barrel.Laser.LineRenderer.widthMultiplier = ammo.AmmoSize;
 
     barrel.transform.parent.GetComponent<LookAt>().Speed = 10f;
   }
 
-  public override void ShootingUpdated(PlayerBrain brain, Barrel barrel) {
+  public override void ShootingUpdated(Entity entity, AmmoStats ammo, Barrel barrel) {
     //Barrel.Rigidbody.AddForce(-20f * Entity.Stats.ProjectileSizeMulti * Barrel.Origin.right, ForceMode2D.Impulse);
     //Barrel.ImpulseSource.GenerateImpulse(0.15f * Barrel.Origin.right);
 
@@ -25,14 +25,14 @@ public class LaserWeapon : Weapon {
     int numResults = barrel.Laser.EdgeCollider.OverlapCollider(ContactFilter, results);
     if (numResults > 0) {
       for (int i = 0; i < numResults; i++) {
-        if (results[i].attachedRigidbody != null && results[i].attachedRigidbody.TryGetComponent(out Entity entity)) {
-          entity.Health.Hurt(brain.Entity, entity, brain.Stats.AmmoDamage, false);
+        if (results[i].attachedRigidbody != null && results[i].attachedRigidbody.TryGetComponent(out Entity target)) {
+          target.Health.Hurt(entity, target, ammo.AmmoDamage, false);
         }
       }
     }
   }
 
-  public override void ShootingStopped(PlayerBrain brain, Barrel barrel) {
+  public override void ShootingStopped(Entity entity, AmmoStats ammo, Barrel barrel) {
     barrel.Laser.gameObject.SetActive(false);
     barrel.StopCoroutine(barrel.Laser.LaserRoutine);
     barrel.Laser.StartVFX.Stop();
@@ -41,12 +41,12 @@ public class LaserWeapon : Weapon {
     barrel.transform.parent.GetComponent<LookAt>().Speed = 20f;
   }
 
-  public IEnumerator LaserRoutine(PlayerBrain brain, Barrel barrel) {
+  public IEnumerator LaserRoutine(Entity entity, AmmoStats ammo, Barrel barrel) {
     Vector2[] points = new Vector2[2];
     points[0] = Vector2.zero;
 
     while (true) {
-      barrel.Rigidbody.AddForce(-20f * brain.Stats.AmmoSize * barrel.Origin.right, ForceMode2D.Force);
+      barrel.Rigidbody.AddForce(-20f * ammo.AmmoSize * barrel.Origin.right, ForceMode2D.Force);
       barrel.ImpulseSource.GenerateImpulse(0.1f * barrel.Origin.right);
 
       barrel.Laser.LineRenderer.SetPosition(0, barrel.Origin.localPosition);

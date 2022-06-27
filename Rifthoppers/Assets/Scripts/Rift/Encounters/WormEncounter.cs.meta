@@ -3,7 +3,10 @@ guid: bbeae276fbaf79c46a6f89394450dd6f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Area: {instanceID: 0}
+  - WormPrefab: {fileID: 7863179210938364265, guid: aab4a1cc33661c741ad1e5dea54520c3, type: 3}
+  - Brain: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -5,16 +5,22 @@ using UnityEngine;
 public abstract class Ammo : MonoBehaviour, IPoolable {
   [HideInInspector] public Rigidbody2D Rigidbody;
   [HideInInspector] public Collider2D Collider;
-  [HideInInspector] public PlayerBrain Brain;
+  [HideInInspector] public Entity Entity;
+  [HideInInspector] public AmmoStats Stats;
 
   public Pool Pool { get; set; }
+
+  public void Initialize(Entity entity, AmmoStats stats) {
+    Entity = entity;
+    Stats = stats;
+  }
 
   public void OnEnable() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Collider = GetComponent<Collider2D>();
-    RiftManager.Instance.OnEncounterEnded += DestroyOnWaveEnded;
+    //RiftManager.Instance.OnEncounterEnded += DestroyOnWaveEnded;
   }
-  private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= DestroyOnWaveEnded;
+  //private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= DestroyOnWaveEnded;
   public void DestroyOnWaveEnded() => (this as IPoolable).Release(gameObject);
 
   public void FixedUpdate() => Homing();
