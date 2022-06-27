@@ -10,7 +10,7 @@ public class ChargedNovaWeapon : Weapon {
   public void Shoot(Entity entity, AmmoStats stats, Barrel barrel) {
     GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
     // Setup bullet
-    defaultAmmo.layer = stats.gameObject.layer;
+    defaultAmmo.layer = entity.gameObject.layer;
     defaultAmmo.transform.position = barrel.Origin.position;
     defaultAmmo.transform.right = barrel.Origin.right;
     defaultAmmo.GetComponent<SpriteRenderer>().color = stats.AmmoColor;

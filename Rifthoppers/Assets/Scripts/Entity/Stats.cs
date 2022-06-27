@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour {
+public class Stats : MonoBehaviour {
   public int Luck = 0;
   public float Speed => SpeedBase * SpeedMulti;
   public float SpeedBase = 8f;
@@ -22,4 +22,14 @@ public class PlayerStats : MonoBehaviour {
   public float PowerCostMulti = 1f;
 
   public FakeBullet FakeBullet; // This shouldn't be here
+
+  public AmmoStats AmmoStats;
+
+
+
+  // Enemy Stats
+  public float Health;
+  public float Damage;
+  public int MinOrbs;
+  public int MaxOrbs;
 }

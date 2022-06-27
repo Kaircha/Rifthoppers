@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyBrain : Brain, IPoolable {
-  [HideInInspector] public EnemyStats Stats;
+  [HideInInspector] public Stats Stats;
   [HideInInspector] public Transform Target;
   public Pool Pool { get; set; }
   public void Spawn() => OnSpawn?.Invoke();
@@ -28,7 +28,7 @@ public abstract class EnemyBrain : Brain, IPoolable {
 
   public override void Awake() {
     base.Awake();
-    Stats = GetComponent<EnemyStats>();
+    Stats = GetComponent<Stats>();
   }
 
   public void Update() {

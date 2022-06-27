@@ -3942,10 +3942,10 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DInputMaterialSlot",
     "m_ObjectId": "e66ceb1f576d4e1ab62d7423b1f1c4f5",
     "m_Id": 1480860997,
-    "m_DisplayName": "mainTex",
+    "m_DisplayName": "MainTex",
     "m_SlotType": 0,
     "m_Hidden": false,
-    "m_ShaderOutputName": "_mainTex",
+    "m_ShaderOutputName": "_MainTex",
     "m_StageCapability": 2,
     "m_BareResource": false,
     "m_Texture": {

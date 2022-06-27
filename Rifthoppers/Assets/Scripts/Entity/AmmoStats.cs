@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class AmmoStats : MonoBehaviour {
+[Serializable]
+public class AmmoStats{
   public WeaponType WeaponType;
   public int AmmoCount = 1;
   public float AmmoSpeed => AmmoBaseSpeed * AmmoSpeedMulti;
@@ -17,4 +17,20 @@ public class AmmoStats : MonoBehaviour {
   public int AmmoPierces = 0;
   public float AmmoSize = 1f;
   public Color AmmoColor = Color.white;
+
+  public AmmoStats(AmmoStats stats){
+
+    WeaponType = stats.WeaponType;
+    AmmoCount = stats.AmmoCount;
+    AmmoBaseSpeed = stats.AmmoBaseSpeed;
+    AmmoSpeedMulti = stats.AmmoSpeedMulti;
+    AmmoBaseDamage = stats.AmmoBaseDamage;
+    AmmoDamageMulti = stats.AmmoDamageMulti;
+    AmmoHoming = stats.AmmoHoming;
+    AmmoSplits = stats.AmmoSplits;
+    AmmoReflects = stats.AmmoReflects;
+    AmmoPierces = stats.AmmoPierces;
+    AmmoSize = stats.AmmoSize;
+    AmmoColor = stats.AmmoColor;
+  }
 }

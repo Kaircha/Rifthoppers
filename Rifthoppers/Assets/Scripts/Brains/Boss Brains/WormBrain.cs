@@ -17,7 +17,7 @@ public class WormBrain : Brain {
 
   public override void Awake() {
     base.Awake();
-    Ammo = GetComponent<AmmoStats>();
+    Ammo = GetComponent<Stats>().AmmoStats;
     Health = GetComponent<Health>();
     Impulse = Segments[0].GetComponent<CinemachineImpulseSource>();
   }

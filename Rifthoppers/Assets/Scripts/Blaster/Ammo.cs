@@ -15,6 +15,7 @@ public abstract class Ammo : MonoBehaviour, IPoolable {
     Stats = stats;
   }
 
+
   public void OnEnable() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Collider = GetComponent<Collider2D>();

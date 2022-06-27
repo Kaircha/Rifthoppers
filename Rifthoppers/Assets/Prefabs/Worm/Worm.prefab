@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 7863179210938364053}
   - component: {fileID: 7863179210938364054}
   - component: {fileID: 7863179210938364055}
-  - component: {fileID: 7863179210938364264}
+  - component: {fileID: 3343849433566913429}
   m_Layer: 7
   m_Name: Worm
   m_TagString: Untagged
@@ -304,12 +304,24 @@ MonoBehaviour:
   Target: {fileID: 7863179211336769049}
   Angle: 0
   Radius: 0
-  Ammo: {fileID: 0}
+  Ammo:
+    WeaponType: 0
+    AmmoCount: 1
+    AmmoBaseSpeed: 15
+    AmmoSpeedMulti: 1
+    AmmoBaseDamage: 6
+    AmmoDamageMulti: 1
+    AmmoHoming: 0
+    AmmoSplits: 0
+    AmmoReflects: 0
+    AmmoPierces: 0
+    AmmoSize: 1
+    AmmoColor: {r: 1, g: 1, b: 1, a: 1}
   Health: {fileID: 0}
   Impulse: {fileID: 0}
   LaserRenderer: {fileID: 7863179210393830080}
   LaserCollider: {fileID: 7863179210393830083}
---- !u!114 &7863179210938364264
+--- !u!114 &3343849433566913429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,21 +330,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 7863179210938364265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95691c6fde862d742ae884de7e53651b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  AmmoCount: 1
-  AmmoBaseSpeed: 10
-  AmmoSpeedMulti: 1
-  AmmoBaseDamage: 15
-  AmmoDamageMulti: 1
-  AmmoHoming: 0
-  AmmoSplits: 0
-  AmmoReflects: 0
-  AmmoPierces: 0
-  AmmoSize: 2
-  AmmoColor: {r: 0.16666675, g: 1, b: 0, a: 1}
+  Luck: 0
+  SpeedBase: 8
+  SpeedMulti: 1
+  Firerate: 6
+  IgniteChanceBase: 0
+  IgniteChancePerLuck: 0
+  PoisonChanceBase: 0
+  PoisonChancePerLuck: 0
+  PowerRange: 5
+  PowerStrength: 20
+  PowerCostMulti: 1
+  FakeBullet: {fileID: 0}
+  AmmoStats:
+    WeaponType: 1
+    AmmoCount: 1
+    AmmoBaseSpeed: 10
+    AmmoSpeedMulti: 1
+    AmmoBaseDamage: 15
+    AmmoDamageMulti: 1
+    AmmoHoming: 0
+    AmmoSplits: 0
+    AmmoReflects: 0
+    AmmoPierces: 0
+    AmmoSize: 2
+    AmmoColor: {r: 0.16862746, g: 1, b: 0, a: 1}
+  Health: 0
+  Damage: 0
+  MinOrbs: 0
+  MaxOrbs: 0
 --- !u!1 &7863179211336769050
 GameObject:
   m_ObjectHideFlags: 0

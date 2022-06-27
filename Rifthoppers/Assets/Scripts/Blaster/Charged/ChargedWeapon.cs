@@ -9,7 +9,7 @@ public class ChargedWeapon : Weapon {
   public void Shoot(Entity entity, AmmoStats ammo, Barrel barrel) {
     GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
     // Setup bullet
-    defaultAmmo.layer = ammo.gameObject.layer;
+    defaultAmmo.layer = entity.gameObject.layer;
     defaultAmmo.transform.position = barrel.Origin.position;
     defaultAmmo.transform.right = barrel.Origin.right;
     defaultAmmo.GetComponent<SpriteRenderer>().color = ammo.AmmoColor;

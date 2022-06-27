@@ -6075,13 +6075,12 @@ GameObject:
   - component: {fileID: 868725623651310127}
   - component: {fileID: 6654770937096141520}
   - component: {fileID: 4497138410277447563}
-  - component: {fileID: 7121696364370988061}
-  - component: {fileID: 4319120231355474142}
   - component: {fileID: 6654770937096141510}
   - component: {fileID: 6654770937096141508}
   - component: {fileID: 6654770937096141509}
   - component: {fileID: 2096565626777101293}
   - component: {fileID: 2051739045551100073}
+  - component: {fileID: 9037435990602928165}
   m_Layer: 6
   m_Name: Bear
   m_TagString: Player
@@ -6173,7 +6172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Machine: {fileID: 0}
   Input: {fileID: 0}
-  Stats: {fileID: 0}
+  PlayerStats: {fileID: 0}
   Blaster: {fileID: 0}
   Power: {fileID: 0}
   Dodge: {fileID: 0}
@@ -6182,66 +6181,6 @@ MonoBehaviour:
   Upgrades: {fileID: 0}
   Impulse: {fileID: 0}
   Target: {fileID: 8261056480845723946}
---- !u!114 &7121696364370988061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6654770937096141533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Luck: 0
-  SpeedBase: 2
-  SpeedMulti: 1
-  Firerate: 6
-  AmmoCount: 1
-  AmmoBaseSpeed: 15
-  AmmoSpeedMulti: 1
-  AmmoBaseDamage: 6
-  AmmoDamageMulti: 1
-  AmmoHoming: 0
-  AmmoSplits: 0
-  AmmoReflects: 0
-  AmmoPierces: 0
-  AmmoSize: 1
-  AmmoColor: {r: 1, g: 1, b: 1, a: 1}
-  WeaponType: 0
-  IgniteChanceBase: 0
-  IgniteChancePerLuck: 0
-  PoisonChanceBase: 0
-  PoisonChancePerLuck: 0
-  PowerRange: 5
-  PowerStrength: 20
-  PowerCostMulti: 1
-  FakeBullet: {fileID: 3506053450830444105}
---- !u!114 &4319120231355474142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6654770937096141533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95691c6fde862d742ae884de7e53651b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponType: 0
-  AmmoCount: 1
-  AmmoBaseSpeed: 15
-  AmmoSpeedMulti: 1
-  AmmoBaseDamage: 6
-  AmmoDamageMulti: 1
-  AmmoHoming: 0
-  AmmoSplits: 0
-  AmmoReflects: 0
-  AmmoPierces: 0
-  AmmoSize: 1
-  AmmoColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &6654770937096141510
 Rigidbody2D:
   serializedVersion: 4
@@ -6368,6 +6307,47 @@ MonoBehaviour:
   - {fileID: 5356103915473366241, guid: 0ec645b59e2ad944f9844036915b195b, type: 3}
   - {fileID: 9202412268540300278, guid: 52e8e62a299fcf34196396f2b5b45c03, type: 3}
   Clones: []
+--- !u!114 &9037435990602928165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654770937096141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Luck: 0
+  SpeedBase: 2
+  SpeedMulti: 1
+  Firerate: 6
+  IgniteChanceBase: 0
+  IgniteChancePerLuck: 0
+  PoisonChanceBase: 0
+  PoisonChancePerLuck: 0
+  PowerRange: 5
+  PowerStrength: 20
+  PowerCostMulti: 1
+  FakeBullet: {fileID: 3506053450830444105}
+  AmmoStats:
+    WeaponType: 0
+    AmmoCount: 1
+    AmmoBaseSpeed: 15
+    AmmoSpeedMulti: 1
+    AmmoBaseDamage: 6
+    AmmoDamageMulti: 1
+    AmmoHoming: 0
+    AmmoSplits: 0
+    AmmoReflects: 0
+    AmmoPierces: 0
+    AmmoSize: 1
+    AmmoColor: {r: 1, g: 1, b: 1, a: 1}
+  Health: 0
+  Damage: 0
+  MinOrbs: 0
+  MaxOrbs: 0
 --- !u!1 &6654770937153837512
 GameObject:
   m_ObjectHideFlags: 0
@@ -11513,6 +11493,8 @@ MonoBehaviour:
   Origin: {fileID: 6654770937206333709}
   LaserPrefab: {fileID: 8597006361929082459, guid: 5d49dd3998a72a5419900989093f0204, type: 3}
   Laser: {fileID: 0}
+  FakeBullet: {fileID: 0}
+  Charges: 0
 --- !u!114 &804373926506740117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12108,7 +12090,7 @@ MonoBehaviour:
   Depth: 0
   Size: 0
   Damage: 0
-  color: {r: 1, g: 1, b: 1, a: 1}
+  Sprite: {fileID: 0}
 --- !u!50 &3600079166115008656
 Rigidbody2D:
   serializedVersion: 4

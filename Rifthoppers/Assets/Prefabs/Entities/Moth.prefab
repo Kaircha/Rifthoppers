@@ -214,10 +214,10 @@ GameObject:
   - component: {fileID: 8792709176822358506}
   - component: {fileID: 1561905139480256980}
   - component: {fileID: 5150080584749907591}
-  - component: {fileID: 8307610796045623377}
   - component: {fileID: 1561905139480256983}
   - component: {fileID: 1561905139480257000}
   - component: {fileID: 2165645433094639394}
+  - component: {fileID: 5427611302871491997}
   m_Layer: 7
   m_Name: Moth
   m_TagString: Enemy
@@ -300,26 +300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Machine: {fileID: 0}
-  Entity: {fileID: 0}
-  Target: {fileID: 0}
   Stats: {fileID: 0}
---- !u!114 &8307610796045623377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561905139480256977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a45cdf0c840a3ba4a8289a787d538d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 1.6
-  Health: 7
-  Damage: 3
-  MinOrbs: 1
-  MaxOrbs: 3
+  Target: {fileID: 0}
 --- !u!50 &1561905139480256983
 Rigidbody2D:
   serializedVersion: 4
@@ -377,6 +359,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5427611302871491997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561905139480256977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9147a6de4cab61d43b50580ad5755f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Luck: 0
+  SpeedBase: 1.6
+  SpeedMulti: 1
+  Firerate: 6
+  IgniteChanceBase: 0
+  IgniteChancePerLuck: 0
+  PoisonChanceBase: 0
+  PoisonChancePerLuck: 0
+  PowerRange: 5
+  PowerStrength: 20
+  PowerCostMulti: 1
+  FakeBullet: {fileID: 0}
+  AmmoStats:
+    WeaponType: 0
+    AmmoCount: 1
+    AmmoBaseSpeed: 15
+    AmmoSpeedMulti: 1
+    AmmoBaseDamage: 6
+    AmmoDamageMulti: 1
+    AmmoHoming: 0
+    AmmoSplits: 0
+    AmmoReflects: 0
+    AmmoPierces: 0
+    AmmoSize: 1
+    AmmoColor: {r: 1, g: 1, b: 1, a: 1}
+  Health: 7
+  Damage: 3
+  MinOrbs: 1
+  MaxOrbs: 3
 --- !u!1 &2752499996334797105
 GameObject:
   m_ObjectHideFlags: 0

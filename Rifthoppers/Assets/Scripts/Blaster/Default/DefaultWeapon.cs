@@ -4,10 +4,12 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Default Weapon", menuName = "Weapons/Default")]
 public class DefaultWeapon : Weapon {
+
   public void Shoot(Entity entity, AmmoStats ammo, Barrel barrel) {
     GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
     // Setup bullet
-    defaultAmmo.layer = ammo.gameObject.layer;
+
+    defaultAmmo.layer = entity.gameObject.layer;
     defaultAmmo.transform.position = barrel.Origin.position;
     defaultAmmo.transform.right = barrel.Origin.right;
     defaultAmmo.GetComponent<SpriteRenderer>().color = ammo.AmmoColor;
@@ -22,6 +24,7 @@ public class DefaultWeapon : Weapon {
       barrel.AudioSource.PlayOneShot(ShootSFX);
     }
   }
+
   public override void ShootingStarted(Entity entity, AmmoStats ammo, Barrel barrel) { }
   public override void ShootingUpdated(Entity entity, AmmoStats ammo, Barrel barrel) => Shoot(entity, ammo, barrel);
   public override void ShootingStopped(Entity entity, AmmoStats ammo, Barrel barrel) { }
