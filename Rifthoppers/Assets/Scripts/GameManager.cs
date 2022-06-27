@@ -49,18 +49,20 @@ public class GameManager : Singleton<GameManager> {
   public IEnumerator RiftRoutine() {
     yield return StartCoroutine(LoadScene("Rift"));
     Machine.ChangeState(RiftState);
+    RiftManager.Instance.Index = 0;
 
-    bool waveAvailable = RiftManager.Instance.ActiveWave != null;
-    while (waveAvailable) {
+    foreach (Wave wave in RiftManager.Instance.Rift) {
       RiftManager.Instance.StartEncounter();
-      yield return new WaitUntil(() => RiftManager.Instance.Encounter.IsFinished);
+      yield return new WaitUntil(() => wave.Encounter.IsFinished);
       RiftManager.Instance.EndEncounter();
 
-      RiftManager.Instance.StartReward();
-      yield return new WaitUntil(() => RiftManager.Instance.Reward.IsFinished);
-      RiftManager.Instance.EndReward();
+      if (wave.Index < RiftManager.Instance.Rift.Count - 1) {
+        RiftManager.Instance.StartReward();
+        yield return new WaitUntil(() => wave.Reward.IsFinished);
+        RiftManager.Instance.EndReward();
+      }
 
-      waveAvailable = RiftManager.Instance.NextWave();
+      RiftManager.Instance.Index++;
     }
 
     GameplayLoop = StartCoroutine(LaboratoryRoutine(true));

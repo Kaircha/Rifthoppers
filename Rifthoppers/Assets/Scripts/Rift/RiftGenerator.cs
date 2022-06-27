@@ -5,11 +5,9 @@ using UnityEngine;
 public class RiftGenerator : MonoBehaviour {
   public AreaGenerator AreaGenerator;
 
-  public Wave GenerateRift() {
-    Wave rift = GenerateWave(0);
-    //rift.SetChild(GenerateWave(1));
-    //rift.Child.SetChild(GenerateWave(2));
-    //rift.Child.Child.SetChild(GenerateWave(3));
+  public List<Wave> GenerateRift() {
+    List<Wave> rift = new();
+    rift.Add(GenerateWave(0));
 
     return rift;
   }

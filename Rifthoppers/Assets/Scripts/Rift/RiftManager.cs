@@ -15,11 +15,11 @@ public class RiftManager : Singleton<RiftManager> {
   public RiftSpawner RiftSpawner;
   public GameObject WormBoss; // Temporary until this has a better place to live
 
-  [HideInInspector] public Wave Rift;
-  public Wave ActiveWave;
-  public Encounter Encounter => ActiveWave.Encounter;
+  [HideInInspector] public List<Wave> Rift;
+  [HideInInspector] public int Index;
+  public Encounter Encounter => Rift[Index].Encounter;
   public Coroutine EncounterRoutine;
-  public Reward Reward => ActiveWave.Reward;
+  public Reward Reward => Rift[Index].Reward;
   public Coroutine RewardRoutine;
 
   public Material RiftWaveUIMaterial;
@@ -54,11 +54,9 @@ public class RiftManager : Singleton<RiftManager> {
     Energy.Heal();
 
     Rift = RiftGenerator.GenerateRift();
-    ActiveWave = Rift;
   }
 
   private void OnEnable() => Energy.OnDeath += Defeat;
-
   private void OnDisable() => Energy.OnDeath -= Defeat;
 
   public void StartEncounter() {
@@ -86,11 +84,6 @@ public class RiftManager : Singleton<RiftManager> {
     Reward.Area.Hide();
     Reward.RewardEnd();
     RewardEnded();
-  }
-
-  public bool NextWave() {
-    ActiveWave = ActiveWave.Child;
-    return ActiveWave != null;
   }
 
   public void Restart() => GameManager.Instance.RiftRestart();
