@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Charged Nova Weapon", menuName = "Weapons/WormChargedNova")]
-public class ChargedNovaWeapon : Weapon {
+[CreateAssetMenu(fileName = "Worm Nova Weapon", menuName = "Weapons/WormNova")]
+public class WormNovaWeapon : Weapon {
   public int MaxCharges = 10;
   public int Amount = 16;
+  public float OrbChance = 10f;
 
   public void Shoot(Entity entity, AmmoStats stats, Barrel barrel) {
     GameObject defaultAmmo = PoolManager.Instance.Bullets.Objects.Get();
@@ -48,19 +49,21 @@ public class ChargedNovaWeapon : Weapon {
   public IEnumerator NovaRoutine(GameObject ammo, Entity entity, AmmoStats stats) {
     yield return new WaitForSeconds(1f);
     ammo.transform.localScale *= 0.5f;
-    foreach (Vector3 direction in Vector3.zero.Nova(Amount)) {
-      GameObject bullet = PoolManager.Instance.Bullets.Objects.Get();
-      bullet.layer = ammo.layer;
-      bullet.transform.position = ammo.transform.position + 0.5f * direction;
-      bullet.transform.right = direction;
-      bullet.GetComponent<SpriteRenderer>().color = stats.AmmoColor;
-      bullet.GetComponent<DefaultAmmo>().Initialize(entity, stats);
-      bullet.transform.localScale = stats.AmmoSize * Vector3.one;
-      bullet.GetComponent<Rigidbody2D>().velocity = stats.AmmoSpeed * bullet.transform.right;
-    }
+    foreach (Vector3 direction in Vector3.zero.Nova(Amount)) SubBullets(ammo, entity, stats, direction);
+    
     yield return new WaitForSeconds(1f);
     Destroy(ammo);
-    foreach (Vector3 direction in Vector3.zero.Nova(Amount)) {
+    foreach (Vector3 direction in Vector3.zero.Nova(Amount)) SubBullets(ammo, entity, stats, direction);
+  }
+
+  public void SubBullets(GameObject ammo, Entity entity, AmmoStats stats, Vector3 direction) {
+    if (Chance.Percent(OrbChance)) {
+      GameObject orb = PoolManager.Instance.EnergyOrbs.Objects.Get();
+      orb.transform.position = ammo.transform.position + 0.5f * direction;
+      orb.transform.right = direction;
+      orb.transform.localScale = stats.AmmoSize * Vector3.one;
+      orb.GetComponent<Rigidbody2D>().velocity = stats.AmmoSpeed * orb.transform.right;
+    } else {
       GameObject bullet = PoolManager.Instance.Bullets.Objects.Get();
       bullet.layer = ammo.layer;
       bullet.transform.position = ammo.transform.position + 0.5f * direction;

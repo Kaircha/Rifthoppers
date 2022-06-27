@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac74881754dcfc2418654ffecbac9b41, type: 3}
-  m_Name: Charged Nova Weapon
+  m_Name: Worm Nova Weapon
   m_EditorClassIdentifier: 
   ShootSFX: {fileID: 0}
   ShootingStartedSFX: {fileID: 0}

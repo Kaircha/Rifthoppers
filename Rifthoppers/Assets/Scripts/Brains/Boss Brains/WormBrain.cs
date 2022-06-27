@@ -55,5 +55,4 @@ public class WormBrain : Brain {
     LaserRenderer.SetPosition(1, B);
     LaserCollider.SetPoints(new() { A, B });
   }
-
 }

@@ -373,7 +373,7 @@ MonoBehaviour:
   Barrels:
   - {fileID: 5788026279750436608}
   - {fileID: 4181721104905634622}
-  Weapon: {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}
+  Weapon: {fileID: 11400000, guid: 3d30387f2d8901f4881e3fb3cb311fb8, type: 2}
   CanShoot: 1
 --- !u!50 &6137263564759455605
 Rigidbody2D:

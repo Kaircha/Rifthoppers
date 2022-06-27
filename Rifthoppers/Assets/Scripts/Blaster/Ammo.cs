@@ -19,9 +19,9 @@ public abstract class Ammo : MonoBehaviour, IPoolable {
   public void OnEnable() {
     Rigidbody = GetComponent<Rigidbody2D>();
     Collider = GetComponent<Collider2D>();
-    //RiftManager.Instance.OnEncounterEnded += DestroyOnWaveEnded;
+    RiftManager.Instance.OnEncounterEnded += DestroyOnWaveEnded;
   }
-  //private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= DestroyOnWaveEnded;
+  private void OnDisable() => RiftManager.Instance.OnEncounterEnded -= DestroyOnWaveEnded;
   public void DestroyOnWaveEnded() => (this as IPoolable).Release(gameObject);
 
   public void FixedUpdate() => Homing();

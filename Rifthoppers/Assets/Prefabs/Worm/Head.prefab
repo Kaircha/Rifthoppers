@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc5253ddef6be14f9b5e7c44851d006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  Force: 5
+  Damage: 30
+  Force: 20
   UseTime: 0
   Dealer: {fileID: 5180374950390976281}
 --- !u!1 &7525236078055737798

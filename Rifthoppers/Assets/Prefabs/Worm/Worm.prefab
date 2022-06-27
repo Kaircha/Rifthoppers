@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc5253ddef6be14f9b5e7c44851d006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 25
+  Force: 0
   UseTime: 1
   Dealer: {fileID: 3097346548583673455}
 --- !u!1 &7863179210938364265
