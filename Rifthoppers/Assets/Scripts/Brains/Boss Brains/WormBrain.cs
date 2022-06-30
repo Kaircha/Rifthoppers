@@ -24,6 +24,8 @@ public class WormBrain : Brain {
 
   public IEnumerator Start() {
     Radius = 25f;
+    // Temporary!
+    yield return new WaitForSeconds(2f);
     Coroutine PhaseOne = StartCoroutine(PhaseOneRoutine());
     yield return new WaitUntil(() => Health.IsDead);
     StopCoroutine(PhaseOne);
@@ -42,8 +44,10 @@ public class WormBrain : Brain {
       yield return StateRoutine(new WormNovaChargeState(this, 8));
       yield return StateRoutine(new WormIdleState(this, 1, 8f), 1f);
       yield return StateRoutine(new WormChargeState(this));
+      yield return StateRoutine(new WormIdleState(this, 1, 8f), 2f);
+      yield return StateRoutine(new WormChargeState(this));
       yield return StateRoutine(new WormIdleState(this, 1, 8f), 3f);
-      yield return StateRoutine(new WormLaserState(this, 1f, 8f), 16f);
+      yield return StateRoutine(new WormLaserState(this, 1f, 6f), 18f);
       yield return StateRoutine(new WormIdleState(this, 1, 8f), 1f);
     }
   }

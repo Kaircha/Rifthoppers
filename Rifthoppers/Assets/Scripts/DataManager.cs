@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
+using System.Xml.Serialization;
 using UnityEngine.SceneManagement;
 
 public class DataManager : Singleton<DataManager> {
@@ -11,39 +12,56 @@ public class DataManager : Singleton<DataManager> {
 
   public override void Awake() {
     base.Awake();
-    LoadData();
+    Load();
   }
 
   void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
   void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
-  void OnSceneLoaded(Scene scene, LoadSceneMode mode) => SaveData();
-  void OnApplicationQuit() => SaveData();
+  void OnSceneLoaded(Scene scene, LoadSceneMode mode) => Save();
+  void OnApplicationQuit() => Save();
 
-  public bool Has(string id) => Data.ContainsKey(id);
-  public T Get<T>(string id) => Data.TryGetValue(id, out dynamic value) ? value : default(T); 
+  public bool Has(string key) => Data.ContainsKey(key);
+  public T Get<T>(string key) => Data.TryGetValue(key, out dynamic value) ? value : default(T);
+  public bool TryGet<T>(string key, out T value) {
+    if (Data.TryGetValue(key, out dynamic v)) {
+      value = v;
+      return true;
+    } else {
+      value = default;
+      return false;
+    }
+  }
   public void Set<T>(string id, T value) => Data[id] = value;
 
-  [ContextMenu("DeleteData")]
+  [ContextMenu("Delete")]
   public void DeleteData() => Data = new Dictionary<string, dynamic>();
 
-  [ContextMenu("SaveData")]
-  public void SaveData() => SaveData($"{Application.persistentDataPath}/Save.dat");
-  private void SaveData(string path) {
+  [ContextMenu("Save")]
+  public void Save() => Save($"{Application.persistentDataPath}/Save.xml");
+  private void Save(string path) {
     if (!UseSave) return;
-    Debug.Log($"Saved Data to {path}.");
-    using (FileStream stream = new(path, FileMode.OpenOrCreate, FileAccess.ReadWrite)) {
-      new BinaryFormatter().Serialize(stream, Data);
-    }
-    // Display saving icon
+    Debug.Log(path);
+    List<KeyValue<string, dynamic>> data = Data.Select(x => new KeyValue<string, dynamic> { Key = x.Key, Value = x.Value }).ToList();
+    XmlSerializer serializer = new(typeof(List<KeyValue<string, dynamic>>));
+    StreamWriter writer = new(path);
+    serializer.Serialize(writer.BaseStream, data);
+    writer.Close();
   }
 
-  [ContextMenu("Load Data")]
-  public void LoadData() => LoadData($"{Application.persistentDataPath}/Save.dat");
-  private void LoadData(string path) {
+  [ContextMenu("Load")]
+  public void Load() => Load($"{Application.persistentDataPath}/Save.xml");
+  private void Load(string path) {
     if (!UseSave || !File.Exists(path)) return;
-    using (FileStream stream = new(path, FileMode.Open, FileAccess.Read)) {
-      Data = new BinaryFormatter().Deserialize(stream) as Dictionary<string, dynamic>;
-    }
+    XmlSerializer serializer = new(typeof(List<KeyValue<string, dynamic>>));
+    StreamReader reader = new(path);
+    Data = ((List<KeyValue<string, dynamic>>)serializer.Deserialize(reader.BaseStream)).ToDictionary(x => x.Key, x => x.Value);
+    reader.Close();
+  }
+
+  [XmlType(TypeName = "Entry")]
+  public class KeyValue<K, V> {
+    public K Key { get; set; }
+    public V Value { get; set; }
   }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Leader : MonoBehaviour {
   public List<Vector2> Points = new();
   public List<Follower> Followers = new();
+  public EdgeCollider2D Collider;
   public float Radius;
 
   private void Start() {
@@ -49,7 +50,11 @@ public class Leader : MonoBehaviour {
       if (i == 0) Followers[i].LookAt(transform.position);
       else Followers[i].LookAt(Followers[i - 1].transform.position);
     }
+
+    UpdateCollider();
   }
+
+  public void UpdateCollider() => Collider.SetPoints(Points);
 
   public void OnDrawGizmos() {
     if (Points.Count == 0) return;

@@ -7,6 +7,7 @@ public class Damager : MonoBehaviour {
   public float Damage = 1f;
   public float Force = 1f;
   public bool UseTime = false;
+  public float Delay = 0f;
   public Entity Dealer;
   private List<Entity> Entities = new();
 
@@ -23,6 +24,7 @@ public class Damager : MonoBehaviour {
       if (!UseTime) {
         entity.Health.Hurt(Dealer, entity, Damage, false);
         entity.Rigidbody.AddForce(Force * (transform.position - entity.transform.position).normalized, ForceMode2D.Impulse);
+        if (Delay > 0) Dealer.StartCoroutine(DelayRoutine());
       }
       else Entities.Add(entity); 
     }
@@ -38,5 +40,11 @@ public class Damager : MonoBehaviour {
 
   private void Update() {
     if (UseTime && Entities.Count > 0) Entities.ForEach(entity => entity.Health.Hurt(Dealer, entity, Damage * Time.deltaTime, true));
+  }
+
+  public IEnumerator DelayRoutine() {
+    gameObject.SetActive(false);
+    yield return new WaitForSeconds(Delay);
+    gameObject.SetActive(true);
   }
 }

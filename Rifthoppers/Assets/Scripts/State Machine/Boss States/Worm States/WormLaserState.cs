@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class WormLaserState : State {
   public WormBrain Brain;
   public float Direction = 1f;

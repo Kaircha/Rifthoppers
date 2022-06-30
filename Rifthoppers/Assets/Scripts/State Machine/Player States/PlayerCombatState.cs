@@ -56,6 +56,7 @@ public class PlayerCombatState : State {
     Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(Brain.transform.position, 5f, ~LayerMask.NameToLayer("Enemy"));
     foreach (Collider2D enemy in nearbyEnemies) {
       if (enemy.attachedRigidbody == null) return;
+      if (enemy.TryGetComponent(out Ammo _)) return;
       Vector3 direction = (enemy.transform.position - Brain.transform.position).normalized;
       enemy.attachedRigidbody.AddForce(10f * enemy.attachedRigidbody.mass * direction, ForceMode2D.Impulse);
     }
