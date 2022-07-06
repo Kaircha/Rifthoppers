@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceEncounter : Encounter {
-  public override float Progress => Mathf.Clamp01(Amount / Required);
+public class CollectionEncounter : Encounter {
   public override bool IsFinished => Progress >= 1f;
-  public float Amount = 0;
-  public float Required = 100;
+  public override float Progress => Mathf.Clamp01(Amount / Required);
+  public float Amount = 0f;
+  public float Required = 100f;
 
   public override void EncounterStart() {
     base.EncounterStart();
