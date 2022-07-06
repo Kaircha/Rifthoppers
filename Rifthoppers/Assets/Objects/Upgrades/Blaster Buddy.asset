@@ -16,7 +16,4 @@ MonoBehaviour:
   Quote: 
   Modifiers: []
   Weight: 0
-  Brain: {fileID: 0}
-  BlasterBuddyPrefab: {fileID: 4880650932558645302, guid: d234c628e77da4d46bd0d385a8e01441, type: 3}
-  Orbital: {fileID: 0}
-  SimpleBlaster: {fileID: 0}
+  Prefab: {fileID: 4880650932558645302, guid: d234c628e77da4d46bd0d385a8e01441, type: 3}

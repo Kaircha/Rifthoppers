@@ -31,7 +31,10 @@ public class FakeBullet : Surface {
       if (transform.localScale.x < Size) transform.localScale = Size * Vector3.one;
     }
   }
-  public override void SurfaceEffect(Entity entity, Surface surface) {
+
+  public override void SurfaceEnter(Entity entity) { }
+  public override void SurfaceStay(Entity entity) {
     entity.Health.Hurt(null, entity, Damage * Time.deltaTime, true);
   }
+  public override void SurfaceExit(Entity entity) { }
 }

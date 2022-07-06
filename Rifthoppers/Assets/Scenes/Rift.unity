@@ -7017,6 +7017,63 @@ Transform:
   m_Father: {fileID: 1892324627}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1509722353
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6035385517935399835, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_Name
+      value: Acid Surface
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104126172144440796, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f587067204c03cf41861b8497bd68ff2, type: 3}
 --- !u!1 &1646175822
 GameObject:
   m_ObjectHideFlags: 0
@@ -7178,6 +7235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8259a52c6ee0b4eb6ce0231e3c8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Upgrades: []
   Weapons:
   - {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   - {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}

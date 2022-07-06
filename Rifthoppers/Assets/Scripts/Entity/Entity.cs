@@ -18,8 +18,12 @@ public class Entity : MonoBehaviour {
   // Dealer, Receiver, Amount, isDoT
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
   public void DealtDamage(Entity receiver, float amount, bool isDoT) => OnDamageDealt?.Invoke(this, receiver, amount, isDoT);
-  public event Action<Entity, Surface> OnSurfaceWalked;
-  public void SurfaceWalked(Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
+  //public event Action<Entity, Surface> OnSurfaceEnter;
+  //public void SurfaceEnter(Surface surface) => OnSurfaceEnter?.Invoke(this, surface);
+  //public event Action<Entity, Surface> OnSurfaceStay;
+  //public void SurfaceStay(Surface surface) => OnSurfaceStay?.Invoke(this, surface);
+  //public event Action<Entity, Surface> OnSurfaceExit;
+  //public void SurfaceExit(Surface surface) => OnSurfaceExit?.Invoke(this, surface);
 
   public virtual void Awake() {
     Rigidbody = GetComponent<Rigidbody2D>();
