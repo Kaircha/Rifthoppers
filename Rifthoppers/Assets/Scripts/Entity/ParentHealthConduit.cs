@@ -2,17 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class HealthConduit : MonoBehaviour, IHealth {
-  public HealthTarget Target;
-  private IHealth _health;
-  public IHealth Health {
+public class ParentHealthConduit : MonoBehaviour, IHealth {
+  private Health _health;
+  public Health Health {
     get {
-      if (_health == null) {
-        switch (Target) {
-          case HealthTarget.Energy: _health = RiftManager.Instance.Energy; break;
-          case HealthTarget.Parent: _health = GetComponentInParent<Health>(); break;
-        }
-      }
+      if (_health == null) _health = GetComponentInParent<Health>();
       return _health;
     }
   }

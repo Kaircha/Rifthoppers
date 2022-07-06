@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba47aa28ddf2a14f8751c2387e5de6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 507330185}
+  Animator: {fileID: 507330185}
   Name: {fileID: 1345968302}
   Quote: {fileID: 662872845}
 --- !u!1 &554852276
@@ -7119,13 +7119,16 @@ MonoBehaviour:
   RiftSpawner: {fileID: 554852278}
   WormBoss: {fileID: 7863179210938364265, guid: aab4a1cc33661c741ad1e5dea54520c3, type: 3}
   Rift:
-    Index: 0
+  - Index: 0
     Encounter: {fileID: 0}
     Reward: {fileID: 0}
-  ActiveWave:
-    Index: 0
+  - Index: 0
     Encounter: {fileID: 0}
     Reward: {fileID: 0}
+  - Index: 0
+    Encounter: {fileID: 0}
+    Reward: {fileID: 0}
+  Index: 0
   RiftWaveUIMaterial: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
   RiftEdge: {fileID: 320701070}
   RiftMask: {fileID: 1824926373}
@@ -7175,18 +7178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8259a52c6ee0b4eb6ce0231e3c8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Upgrades:
-  - {fileID: 11400000, guid: 04621e51780870c4eb965b7d68f6ad3a, type: 2}
-  - {fileID: 11400000, guid: ea236ae389383014faa3970646a85d16, type: 2}
-  - {fileID: 11400000, guid: b7938ac9efb9cb94eb011f359b057ebe, type: 2}
-  - {fileID: 11400000, guid: f9b8d8d6117cf4148a76e645f61467b8, type: 2}
-  - {fileID: 11400000, guid: 9ded6a9b3bd01c945adfbc389011eeee, type: 2}
-  - {fileID: 11400000, guid: 1b04e10bbea11f941b47eed89c84e3a5, type: 2}
-  - {fileID: 11400000, guid: 83d325ef1034ae540aa292e2dad1d3ef, type: 2}
-  - {fileID: 11400000, guid: bc6417ecaf568ab46953b214602b80cd, type: 2}
-  - {fileID: 11400000, guid: ba452f14a3693ed40bdbfb45eaab599f, type: 2}
-  - {fileID: 11400000, guid: 1fc6843b9ed3aba4cb59f6ec0b8ffde3, type: 2}
-  - {fileID: 11400000, guid: b890818280e578641a22c7282a98b2e5, type: 2}
   Weapons:
   - {fileID: 11400000, guid: fdc89c609928fc644a675a90122928e0, type: 2}
   - {fileID: 11400000, guid: e12a15166cfe6b045a4d9f0445d80e2e, type: 2}

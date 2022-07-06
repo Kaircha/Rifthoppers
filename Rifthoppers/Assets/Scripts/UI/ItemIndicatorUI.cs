@@ -16,10 +16,10 @@ public class ItemIndicatorUI : MonoBehaviour {
       Destroy(child.gameObject);
     }
 
-    Image.sprite = upgrade.Sprite;
-    Name.text = upgrade.name;
-    Quote.text = upgrade.Quote;
-    foreach (Modifier modifier in upgrade.Modifiers) {
+    Image.sprite = upgrade.Object.Sprite;
+    Name.text = upgrade.Object.name;
+    Quote.text = upgrade.Object.Quote;
+    foreach (Modifier modifier in upgrade.Object.Modifiers) {
       Instantiate(ModifierPrefab, Holder).DisplayModifier(modifier);
     }
     gameObject.SetActive(true);

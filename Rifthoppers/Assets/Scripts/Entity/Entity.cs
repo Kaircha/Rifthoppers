@@ -1,10 +1,7 @@
 using System;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
@@ -22,7 +19,7 @@ public class Entity : MonoBehaviour {
   public event Action<Entity, Entity, float, bool> OnDamageDealt;
   public void DealtDamage(Entity receiver, float amount, bool isDoT) => OnDamageDealt?.Invoke(this, receiver, amount, isDoT);
   public event Action<Entity, Surface> OnSurfaceWalked;
-  public void SurfaceWalked(Entity entity, Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
+  public void SurfaceWalked(Surface surface) => OnSurfaceWalked?.Invoke(this, surface);
 
   public virtual void Awake() {
     Rigidbody = GetComponent<Rigidbody2D>();

@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public class UpgradeWeaponManager : Singleton<UpgradeWeaponManager> {
-  public List<Upgrade> Upgrades = new();
+  public List<UpgradeObject> Upgrades = new();
   public List<Weapon> Weapons = new();
 
   public event Action<Upgrade> OnUpgradeTaken;

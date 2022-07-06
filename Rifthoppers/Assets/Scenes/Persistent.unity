@@ -412,7 +412,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0176367, y: 1}
+    m_SensorSize: {x: 1.1559322, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -712,7 +712,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0176367, y: 1}
+    m_SensorSize: {x: 1.1559322, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -971,13 +971,13 @@ MonoBehaviour:
   Active: {fileID: 317819770}
   Inactive: {fileID: 317819769}
   CrossfadeDuration: 0.5
-  SceneMusic:
-  - start: {fileID: 0}
+  Music:
+  - name: Laboratory
+    start: {fileID: 0}
     loop: {fileID: 8300000, guid: eb82d629e386f0749952962962526141, type: 3}
-    scene: Laboratory
-  - start: {fileID: 8300000, guid: 94aee30229fd0da4ba473b06fb5d8af1, type: 3}
+  - name: Rift
+    start: {fileID: 8300000, guid: 94aee30229fd0da4ba473b06fb5d8af1, type: 3}
     loop: {fileID: 8300000, guid: 35efa6b0d039e1c4f854debfc421a6dd, type: 3}
-    scene: Rift
 --- !u!4 &317819772
 Transform:
   m_ObjectHideFlags: 0
@@ -1117,6 +1117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Machine: {fileID: 0}
   PostProcessingVolume: {fileID: 4524564}
+  DebugUpgrade: {fileID: 11400000, guid: 4d5ee7420fc0eba409398b9bd1cb0fb1, type: 2}
 --- !u!114 &711645416
 MonoBehaviour:
   m_ObjectHideFlags: 0

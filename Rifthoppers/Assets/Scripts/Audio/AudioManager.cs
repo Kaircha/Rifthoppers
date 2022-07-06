@@ -2,10 +2,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 /// <summary>
 /// The AudioManager requires both Singleton and DataManager scripts to function. <br></br> <br></br>
@@ -21,18 +19,14 @@ public class AudioManager : Singleton<AudioManager> {
   public AudioSource Active;
   public AudioSource Inactive;
   [Range(0.1f, 2f)] public float CrossfadeDuration = 0.5f;
-  public List<SceneMusic> SceneMusic;
+  public List<Music> Music;
 
   // Contains all audio channels in the AudioMixerGroup
   public static readonly string[] Channels = { "MasterVolume", "MusicVolume", "SFXVolume" };
 
   private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
   private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
-  private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => PlaySceneMusic(scene.name);
-  private void PlaySceneMusic(string sceneName) {
-    SceneMusic music = SceneMusic.FirstOrDefault(x => x.scene == sceneName);
-    if (music != null) PlayMusic(music);
-  }
+  private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => PlayMusic(scene.name);
 
   private void Start() {
     foreach (string channel in Channels) {
@@ -50,7 +44,8 @@ public class AudioManager : Singleton<AudioManager> {
     AudioMixerGroup.audioMixer.SetFloat(channel, Mathf.Log10(value) * 20);
   }
 
-  public void PlayMusic(SceneMusic sceneMusic) => PlayMusic(sceneMusic.start, sceneMusic.loop);
+  public void PlayMusic(string name) => PlayMusic(Music.FirstOrDefault(x => x.name == name) ?? new Music());
+  public void PlayMusic(Music music) => PlayMusic(music.start, music.loop);
   public void PlayMusic(AudioClip start, AudioClip loop) {
     if (loop == null) return;
     Inactive.clip = loop;
@@ -91,8 +86,8 @@ public class AudioManager : Singleton<AudioManager> {
 }
 
 [System.Serializable]
-public class SceneMusic {
+public class Music {
+  public string name;
   public AudioClip start;
   public AudioClip loop;
-  public string scene;
 }

@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Jar of Pickles", menuName = "Upgrades/Jar of Pickles")]
+public class JarOfPicklesUpgrade : UpgradeObject {
+  public override Upgrade Upgrade() => new JarOfPickles(this);
 
-public class JarOfPicklesUpgrade : Upgrade {
+  public class JarOfPickles : Upgrade {
+    public Orbital Orbital;
+    public float Damage = 10;
 
-  public GameObject OrbitalPrefab;
-  public Sprite Pickle;
+    private readonly GameObject Prefab;
 
-  public float Damage = 10;
+    public JarOfPickles(UpgradeObject obj) {
+      Object = obj;
+    }
 
-  private Orbital Orbital; 
-
-  public override void Add() {
-    Orbital = PoolManager.Instance.Orbitals.Objects.Get().GetComponent<Orbital>();
-    Orbital.transform.SetParent(Brain.Orbitals.transform);
-    Orbital.Initialize(0.3f, Pickle);
-    Orbital.OnOrbitalCollide += OnCollide;
-    Brain.Orbitals.Add(Orbital);
+    public override void Add() {
+      Orbital = GameObject.Instantiate(Prefab, Brain.Orbitals.transform).GetComponent<Orbital>();
+      Orbital.OnOrbitalCollide += OnCollide;
+      Brain.Orbitals.Add(Orbital);
+    }
+    public override IEnumerator UpgradeRoutine() { yield return null; }
+    public override void Remove() {
+      Orbital.OnOrbitalCollide -= OnCollide;
+      Brain.Orbitals.Remove(Orbital);
+    }
+    public void OnCollide(Entity enemy) => enemy.Health.Hurt(Brain.Entity, enemy, Damage, false); 
   }
-  public override IEnumerator UpgradeRoutine() { yield return null; }
-  public override void Remove() {
-    Orbital.OnOrbitalCollide -= OnCollide;
-    Brain.Orbitals.Remove(Orbital);
-  }
-  public void OnCollide(Entity enemy) => enemy.Health.Hurt(Brain.Entity, enemy, Damage, false); 
-}
+}  

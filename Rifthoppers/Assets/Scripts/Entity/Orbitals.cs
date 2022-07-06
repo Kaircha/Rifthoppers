@@ -9,11 +9,12 @@ public class Orbitals : MonoBehaviour {
   public void Update() {
     foreach (Orbital orbital in OrbitalList) {
       orbital.transform.RotateAround(transform.position, new Vector3(0, 0, 1), 90f * Time.deltaTime);
-      orbital.transform.rotation = Quaternion.identity;
+      if (orbital.KeepUpright) orbital.transform.rotation = Quaternion.identity;
     }
   }
 
   public void Add(Orbital orbital) {
+    orbital.transform.position = 4f * Vector3.down;
     OrbitalList.Add(orbital);
     StartCoroutine(OrderOrbitalsRoutine());
   }

@@ -3,36 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Viper's Tongue", menuName = "Upgrades/Viper's Tongue")]
-public class VipersTongueUpgrade : Upgrade {
-  [Min(0)] public float PoisonDamage = 2f;
-  [Min(0)] public float PoisonDuration = 5f;
+public class VipersTongueUpgrade : UpgradeObject {
+  public override Upgrade Upgrade() => new VipersTongue(this);
 
-  public override void Add() {
-    Brain.Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
-    Brain.PlayerStats.PoisonChanceBase += 20f;
-    Brain.PlayerStats.PoisonChancePerLuck += 5f;
-    Brain.PlayerStats.AmmoStats.AmmoSplits += 1;
-  }
-  public override IEnumerator UpgradeRoutine() { yield return null; }
-  public override void Remove() {
-    Brain.Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
-    Brain.PlayerStats.PoisonChanceBase -= 20f;
-    Brain.PlayerStats.PoisonChancePerLuck -= 5f;
-    Brain.PlayerStats.AmmoStats.AmmoSplits -= 1;
-  }
+  public class VipersTongue : Upgrade {
+    public VipersTongue(UpgradeObject obj) {
+      Object = obj;
+    }
 
-  //// Technically doesn't stack with other sources of poison chance
-  //public void PoisonOnDamageDealt(Entity dealer, Entity receiver, float amount, bool isDoT) {
-  //  if (dealer == null || receiver == null || amount == 0 || isDoT) return;
-  //  // 20% + Luck * 5% Chance to apply a Poison stack 
-  //  if (Random.Range(0f, 100f) < 20f + 5f * Entity.Stats.PlayerLuck) {
-  //    receiver.AddEffect(new PoisonEffect(2, 5));
-  //  }
-  //}
+    [Min(0)] public float PoisonDamage = 2f;
+    [Min(0)] public float PoisonDuration = 5f;
 
-  // Effect should only occur on touching an enemy
-  private void PoisonOnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {
-    if (dealer == null || isDoT) return;
-    dealer.AddEffect(new PoisonEffect(PoisonDamage, PoisonDuration));
+    public override void Add() {
+      Brain.Entity.Health.OnDamageTaken += PoisonOnDamageTaken;
+      Brain.PlayerStats.PoisonChanceBase += 20f;
+      Brain.PlayerStats.PoisonChancePerLuck += 5f;
+      Brain.PlayerStats.AmmoStats.AmmoSplits += 1;
+    }
+    public override IEnumerator UpgradeRoutine() { yield return null; }
+    public override void Remove() {
+      Brain.Entity.Health.OnDamageTaken -= PoisonOnDamageTaken;
+      Brain.PlayerStats.PoisonChanceBase -= 20f;
+      Brain.PlayerStats.PoisonChancePerLuck -= 5f;
+      Brain.PlayerStats.AmmoStats.AmmoSplits -= 1;
+    }
+
+    // Effect should only occur on touching an enemy
+    private void PoisonOnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {
+      if (dealer == null || isDoT) return;
+      dealer.AddEffect(new PoisonEffect(PoisonDamage, PoisonDuration));
+    }
   }
 }

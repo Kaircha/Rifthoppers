@@ -6128,7 +6128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799eefb782cc289438a4d98bd1a06058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: 0
 --- !u!114 &868725623651310127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6322,7 +6321,7 @@ MonoBehaviour:
   Luck: 0
   SpeedBase: 2
   SpeedMulti: 1
-  Firerate: 6
+  Firerate: 4
   IgniteChanceBase: 0
   IgniteChancePerLuck: 0
   PoisonChanceBase: 0

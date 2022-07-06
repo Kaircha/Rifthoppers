@@ -204,6 +204,7 @@ MonoBehaviour:
   Damage: 25
   Force: 0
   UseTime: 1
+  Delay: 0
   Dealer: {fileID: 3097346548583673455}
 --- !u!1 &7863179210938364265
 GameObject:
@@ -280,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e63a01573a81ab4a99d510b0c53c55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Current: 1000
-  Maximum: 1000
+  Current: 3000
+  Maximum: 3000
 --- !u!114 &7863179210938364054
 MonoBehaviour:
   m_ObjectHideFlags: 0

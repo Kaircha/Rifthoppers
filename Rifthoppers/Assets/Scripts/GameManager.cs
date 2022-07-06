@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager> {
   private string Scene;
   private Coroutine GameplayLoop;
 
+  // TEMPORARY
+  public Upgrade DebugUpgrade;
+
   public override void Awake() {
     base.Awake();
     Machine = GetComponent<StateMachine>();
@@ -50,6 +53,8 @@ public class GameManager : Singleton<GameManager> {
     yield return StartCoroutine(LoadScene("Rift"));
     Machine.ChangeState(RiftState);
     RiftManager.Instance.Index = 0;
+
+    LobbyManager.Instance.Players[0].Brain.Upgrades.Add(DebugUpgrade);
 
     foreach (Wave wave in RiftManager.Instance.Rift) {
       RiftManager.Instance.StartEncounter();

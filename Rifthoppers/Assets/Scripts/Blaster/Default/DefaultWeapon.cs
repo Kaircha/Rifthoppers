@@ -17,9 +17,9 @@ public class DefaultWeapon : Weapon {
     defaultAmmo.transform.localScale = ammo.AmmoSize * Vector3.one;
     defaultAmmo.GetComponent<Rigidbody2D>().velocity = ammo.AmmoSpeed * defaultAmmo.transform.right;
 
-    barrel.Rigidbody.AddForce(-10f * ammo.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
-    barrel.ImpulseSource.GenerateImpulse(0.15f * ammo.AmmoSize * barrel.Origin.right);
-    if (ShootSFX != null) {
+    if (barrel.Rigidbody) barrel.Rigidbody.AddForce(-10f * ammo.AmmoSize * barrel.Origin.right, ForceMode2D.Impulse);
+    if (barrel.ImpulseSource) barrel.ImpulseSource.GenerateImpulse(0.15f * ammo.AmmoSize * barrel.Origin.right);
+    if (ShootSFX != null && barrel.AudioSource) {
       barrel.AudioSource.pitch = Random.Range(0.7f, 1.3f);
       barrel.AudioSource.PlayOneShot(ShootSFX);
     }

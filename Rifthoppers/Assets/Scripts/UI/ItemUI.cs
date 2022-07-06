@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public class ItemUI : MonoBehaviour {
-  public Animator anim;
+  public Animator Animator;
   public TextMeshProUGUI Name;
   public TextMeshProUGUI Quote;
 
@@ -12,14 +12,14 @@ public class ItemUI : MonoBehaviour {
   private void OnDisable() => UpgradeWeaponManager.Instance.OnUpgradeTaken -= TriggerInfo;
 
   public void TriggerInfo(Upgrade upgrade) {
-    Name.text = upgrade.name;
-    Quote.text = upgrade.Quote;
+    Name.text = upgrade.Object.name;
+    Quote.text = upgrade.Object.Quote;
     StartCoroutine(DoAnimation());
   }
 
   private IEnumerator DoAnimation() {
-    anim.SetBool("UpgradeTaken", true);
+    Animator.SetBool("UpgradeTaken", true);
     yield return new WaitForSeconds(5);
-    anim.SetBool("UpgradeTaken", false);
+    Animator.SetBool("UpgradeTaken", false);
   }
 }

@@ -13,13 +13,13 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable {
 
   // Ideally set externally in future
   private void OnEnable(){
-    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[4]);
-    //SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
+    //SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[4]);
+    SetUpgrade(UpgradeWeaponManager.Instance.Upgrades[Random.Range(0, UpgradeWeaponManager.Instance.Upgrades.Count)]);
   }
-  public void SetUpgrade(Upgrade upgrade) {
-    Upgrade = upgrade;
-    Renderer.sprite = Upgrade.Sprite;
-    TempText.text = upgrade.name;
+  public void SetUpgrade(UpgradeObject upgradeObj) {
+    Upgrade = upgradeObj.Upgrade();
+    Renderer.sprite = upgradeObj.Sprite;
+    TempText.text = upgradeObj.name;
   }
 
   public void ShowHighlight() {
