@@ -19,8 +19,6 @@ public class RiftManager : Singleton<RiftManager> {
   [HideInInspector] public int Index;
   public Encounter Encounter => Rift[Index].Encounter;
   public Coroutine EncounterRoutine;
-  public Reward Reward => Rift[Index].Reward;
-  public Coroutine RewardRoutine;
 
   public Material RiftWaveUIMaterial;
   public EdgeCollider2D RiftEdge;
@@ -40,10 +38,6 @@ public class RiftManager : Singleton<RiftManager> {
   public event Action OnEncounterStarted;
   public void EncounterEnded() => OnEncounterEnded?.Invoke();
   public event Action OnEncounterEnded;
-  public void RewardStarted() => OnRewardStarted?.Invoke();
-  public event Action OnRewardStarted;
-  public void RewardEnded() => OnRewardEnded?.Invoke();
-  public event Action OnRewardEnded;
   #endregion
 
   public override void Awake() {
@@ -72,18 +66,6 @@ public class RiftManager : Singleton<RiftManager> {
     Encounter.EncounterEnd();
     RiftSpawner.StopSpawning();
     EncounterEnded();
-  }
-  public void StartReward() {
-    RewardRoutine = StartCoroutine(Reward.RewardRoutine());
-    Reward.Area.Show();
-    Reward.RewardStart();
-    RewardStarted();
-  }
-  public void EndReward() {
-    if (RewardRoutine != null) StopCoroutine(RewardRoutine);
-    Reward.Area.Hide();
-    Reward.RewardEnd();
-    RewardEnded();
   }
 
   public void Restart() => GameManager.Instance.RiftRestart();

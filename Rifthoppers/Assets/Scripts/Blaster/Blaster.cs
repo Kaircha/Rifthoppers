@@ -66,5 +66,5 @@ public class Blaster : MonoBehaviour {
     CanShoot = true;
   }
 
-  public Weapon GetWeapon(WeaponType type) => UpgradeWeaponManager.Instance.Weapons[(int)type];
+  public Weapon GetWeapon(WeaponType type) => WeaponManager.Instance.Weapons[(int)type];
 }

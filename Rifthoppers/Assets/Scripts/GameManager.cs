@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager> {
   private Coroutine GameplayLoop;
 
   // TEMPORARY
-  public Upgrade DebugUpgrade;
+  public UpgradeObject DebugUpgrade;
 
   public override void Awake() {
     base.Awake();
@@ -54,7 +54,7 @@ public class GameManager : Singleton<GameManager> {
     Machine.ChangeState(RiftState);
     RiftManager.Instance.Index = 0;
 
-    LobbyManager.Instance.Players[0].Brain.Upgrades.Add(DebugUpgrade);
+    LobbyManager.Instance.Players[0].Brain.Upgrades.Add(DebugUpgrade.Upgrade());
 
     foreach (Wave wave in RiftManager.Instance.Rift) {
       RiftManager.Instance.StartEncounter();
@@ -62,9 +62,10 @@ public class GameManager : Singleton<GameManager> {
       RiftManager.Instance.EndEncounter();
 
       if (wave.Index < RiftManager.Instance.Rift.Count - 1) {
-        RiftManager.Instance.StartReward();
-        yield return new WaitUntil(() => wave.Reward.IsFinished);
-        RiftManager.Instance.EndReward();
+        yield return StartCoroutine(RewardManager.Instance.RewardRoutine());
+        //wave.Reward.Start();
+        //yield return StartCoroutine(wave.Reward.Routine());
+        //wave.Reward.End();
       }
 
       RiftManager.Instance.Index++;

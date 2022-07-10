@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8355309419927101960}
   - component: {fileID: 5750884589849377174}
   m_Layer: 0
-  m_Name: Base Encounter Area
+  m_Name: Base Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
