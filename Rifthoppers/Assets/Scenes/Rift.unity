@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a28bfa2195e6047b2729a61bea0d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPreventSpawning: 1
+  DebugPreventSpawning: 0
   SpawnData:
   - Rate: 0.6
     Threshold: 0
@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d239cf67da52b49bce8414badf081d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseArea: {fileID: 0}
+  BaseArea: {fileID: 8355309419927101960, guid: ecab7e99ea02fda4f9bab0d9cbd50cde, type: 3}
   Themes:
   - {fileID: 11400000, guid: 5a52ebac4c16e0642bb7d308733f52ff, type: 2}
 --- !u!114 &585282556
@@ -1424,6 +1424,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1fc6843b9ed3aba4cb59f6ec0b8ffde3, type: 2}
   - {fileID: 11400000, guid: f9b8d8d6117cf4148a76e645f61467b8, type: 2}
   - {fileID: 11400000, guid: 9ded6a9b3bd01c945adfbc389011eeee, type: 2}
+  UpgradeTemplate: {fileID: 4350168034089814753, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
 --- !u!1 &727512870
 GameObject:
   m_ObjectHideFlags: 0
@@ -7245,7 +7246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85363eef695bbf4ca03072a6a4a9892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanTakeDamage: 1
+  CanTakeDamage: 0
   Static: 0
   Dynamic: 0
   Maximum: 1

@@ -330,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8118200194708336826}
   - component: {fileID: 7795606729404365423}
-  - component: {fileID: 8118200194708336825}
+  - component: {fileID: 4350168034089814753}
   m_Layer: 11
   m_Name: Upgrade Interactable
   m_TagString: Untagged
@@ -365,13 +365,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.5
---- !u!114 &8118200194708336825
+--- !u!114 &4350168034089814753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,11 +380,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8118200194708336827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57941d62aa1f55a449791cb2319a59af, type: 3}
+  m_Script: {fileID: 11500000, guid: 88526adf07344a84680461e23770435c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Reward: {fileID: 0}
-  Renderer: {fileID: 6365687033324126218}
-  TempText: {fileID: 7850070350309853539}
-  TempTutorial: {fileID: 0}
-  ItemIndicator: {fileID: 0}
+  rend: {fileID: 6365687033324126218}

@@ -26,7 +26,7 @@ public class RiftManager : Singleton<RiftManager> {
   [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
 
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
-
+      
   #region Events
   public void EnergyOrbSpawned() => OnEnergyOrbSpawned?.Invoke();
   public event Action OnEnergyOrbSpawned;
@@ -46,7 +46,6 @@ public class RiftManager : Singleton<RiftManager> {
     Energy = GetComponent<Energy>();
     Energy.Maximum = 100f;
     Energy.Heal();
-
     Rift = RiftGenerator.GenerateRift();
   }
 
