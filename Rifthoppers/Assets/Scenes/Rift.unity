@@ -1425,6 +1425,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9b8d8d6117cf4148a76e645f61467b8, type: 2}
   - {fileID: 11400000, guid: 9ded6a9b3bd01c945adfbc389011eeee, type: 2}
   UpgradeTemplate: {fileID: 4350168034089814753, guid: d0570bd901263cc4699702d3982de1eb, type: 3}
+  CurrentUpgrades: []
+  EnergyBar: {fileID: 1167966478}
+  RiftWaveUI: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
 --- !u!1 &727512870
 GameObject:
   m_ObjectHideFlags: 0
