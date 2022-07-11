@@ -12,6 +12,7 @@ public class CollectionEncounter : Encounter {
     base.EncounterStart();
     RiftManager.Instance.OnExperienceCollected += OnExperienceCollected;
     StartCoroutine(EnergyOrbSpawnRoutine());
+    IsStarted = true;
   }
 
   public override IEnumerator EncounterRoutine() {

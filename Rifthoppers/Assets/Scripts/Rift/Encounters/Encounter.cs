@@ -11,12 +11,12 @@ public abstract class Encounter : MonoBehaviour {
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterCombatState());
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Energy.CanTakeDamage = true;
-    RiftManager.Instance.RiftWaveUIMaterial.color = Color.white; // Animate this?
+    // RiftManager.Instance.RiftWaveUIMaterial.color = Color.white; // Animate this?
   }
   public abstract IEnumerator EncounterRoutine();
   public virtual void EncounterEnd() {
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Energy.CanTakeDamage = false;
-    RiftManager.Instance.RiftWaveUIMaterial.color = Color.clear; // Animate this?
+    // RiftManager.Instance.RiftWaveUIMaterial.color = Color.clear; // Animate this?
   }
 }

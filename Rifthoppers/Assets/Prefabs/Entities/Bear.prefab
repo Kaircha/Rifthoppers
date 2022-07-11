@@ -5977,7 +5977,6 @@ GameObject:
   - component: {fileID: 6654770937096141508}
   - component: {fileID: 6654770937096141509}
   - component: {fileID: 2096565626777101293}
-  - component: {fileID: 2051739045551100073}
   - component: {fileID: 9037435990602928165}
   m_Layer: 6
   m_Name: Bear
@@ -6188,22 +6187,6 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &2051739045551100073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6654770937096141533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64f8ccc169c3de7418ff985d5525fef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefabs:
-  - {fileID: 5356103915473366241, guid: 0ec645b59e2ad944f9844036915b195b, type: 3}
-  - {fileID: 9202412268540300278, guid: 52e8e62a299fcf34196396f2b5b45c03, type: 3}
-  Clones: []
 --- !u!114 &9037435990602928165
 MonoBehaviour:
   m_ObjectHideFlags: 0

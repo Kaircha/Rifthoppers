@@ -16,6 +16,7 @@ public class Orbitals : MonoBehaviour {
   public void Add(Orbital orbital) {
     orbital.transform.position = 4f * Vector3.down;
     OrbitalList.Add(orbital);
+    StopAllCoroutines();
     StartCoroutine(OrderOrbitalsRoutine());
   }
 
@@ -23,6 +24,7 @@ public class Orbitals : MonoBehaviour {
     if (OrbitalList.Contains(orbital)) {
       OrbitalList.Remove(orbital);
       (orbital as IPoolable).Release(orbital.gameObject);
+      StopAllCoroutines();
       StartCoroutine(OrderOrbitalsRoutine());
     }
   }

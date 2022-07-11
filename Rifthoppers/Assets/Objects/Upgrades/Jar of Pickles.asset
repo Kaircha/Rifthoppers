@@ -18,7 +18,4 @@ MonoBehaviour:
   - Type: 2
     Description: Summon a Pickle!
   Weight: 0
-  Entity: {fileID: 0}
-  OrbitalPrefab: {fileID: 6126541631663455401, guid: 889b97c3760a2c044916e26492bef02e, type: 3}
-  Pickle: {fileID: 21300000, guid: dd38cdfbdb45db241b122b1d4858f2a6, type: 3}
-  damage: 10
+  Prefab: {fileID: 6126541631663455401, guid: b6aa8e7571e80be47be6407d21cc6877, type: 3}

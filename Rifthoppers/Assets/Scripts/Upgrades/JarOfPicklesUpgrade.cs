@@ -4,7 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Jar of Pickles", menuName = "Upgrades/Jar of Pickles")]
 public class JarOfPicklesUpgrade : UpgradeObject {
-  public override Upgrade Upgrade() => new JarOfPickles(this);
+  public GameObject Prefab;
+  public override Upgrade Upgrade() => new JarOfPickles(this, Prefab);
 
   public class JarOfPickles : Upgrade {
     public Orbital Orbital;
@@ -12,8 +13,9 @@ public class JarOfPicklesUpgrade : UpgradeObject {
 
     private readonly GameObject Prefab;
 
-    public JarOfPickles(UpgradeObject obj) {
+    public JarOfPickles(UpgradeObject obj, GameObject prefab) {
       Object = obj;
+      Prefab = prefab;
     }
 
     public override void Add() {
@@ -28,4 +30,4 @@ public class JarOfPicklesUpgrade : UpgradeObject {
     }
     public void OnCollide(Entity enemy) => enemy.Health.Hurt(Brain.Entity, enemy, Damage, false); 
   }
-}  
+}
