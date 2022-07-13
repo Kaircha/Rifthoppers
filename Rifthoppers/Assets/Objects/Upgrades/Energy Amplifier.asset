@@ -16,6 +16,5 @@ MonoBehaviour:
   Quote: Damage up!
   Modifiers:
   - Type: 0
-    Description: +4 Damage up
+    Description: +2 Damage up
   Weight: 0
-  Entity: {fileID: 0}

@@ -11,8 +11,8 @@ public class CoffeeCupUpgrade : UpgradeObject {
       Object = obj;
     }
 
-    public override void Add() => Brain.PlayerStats.Firerate += 3;
+    public override void Add() => Brain.PlayerStats.Firerate += 1;
     public override IEnumerator UpgradeRoutine() { yield return null; }
-    public override void Remove() => Brain.PlayerStats.Firerate -= 3;
+    public override void Remove() => Brain.PlayerStats.Firerate -= 1;
   }
 } 

@@ -17,7 +17,7 @@ public class EnergyOrb : MonoBehaviour, IPoolable {
   private void OnTriggerEnter2D(Collider2D collision) => Collect();
 
   public void Collect() {
-    PoolManager.Instance.SoundEffects.Objects.Get().GetComponent<SoundEffect>().Play(AudioClip, 1f, 0.5f + RiftManager.Instance.Encounter.Progress);
+    PoolManager.Instance.SoundEffects.Objects.Get().GetComponent<SoundEffect>().Play(AudioClip, 1f, 0.5f + GameManager.Instance.CurrentWave.Encounter.Progress);
 
     RiftManager.Instance.Energy.Heal(Energy);
     RiftManager.Instance.EnergyCollected(Energy);

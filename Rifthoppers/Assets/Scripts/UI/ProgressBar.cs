@@ -6,12 +6,14 @@ public class ProgressBar : MonoBehaviour {
   public RectTransform Fill;
   public float Speed = 5f;
   private float Dynamic;
-  public bool IsStarted => RiftManager.Instance.Encounter.IsStarted;
-  public bool IsFinished => RiftManager.Instance.Encounter.IsFinished;
-  public float Progress => RiftManager.Instance.Encounter.Progress;
+  public bool IsStarted => GameManager.Instance.CurrentWave.Encounter.IsStarted;
+  public bool IsFinished => GameManager.Instance.CurrentWave.Encounter.IsFinished;
+  public float Progress => GameManager.Instance.CurrentWave.Encounter.Progress;
 
-  private void Update() {
-    if (!IsStarted) return;
+  // Maybe this should be updated by the Encounter
+  private IEnumerator Start() {
+    yield return new WaitUntil(() => GameManager.Instance.CurrentWave != null);
+    yield return new WaitUntil(() => IsStarted);
     Dynamic = Mathf.Lerp(Dynamic, Progress, Speed * Time.deltaTime);
     Fill.transform.localScale = new Vector3(Dynamic, 1, 1);
   }

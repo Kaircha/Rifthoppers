@@ -9,10 +9,10 @@ public class DetectionEncounter : Encounter {
   public float Amount = 0f;
   public float Required = 100f;
 
-  public override void EncounterStart() {
-    base.EncounterStart();
+  public override void Enter() {
+    base.Enter();
   }
-  public override IEnumerator EncounterRoutine() {
+  public override IEnumerator Execute() {
     while (true) {
       if (Progress >= 1f && Surface.Entities.Count != LobbyManager.Instance.Players.Count) {
         // Highlight that all players need to be on the surface
@@ -20,7 +20,7 @@ public class DetectionEncounter : Encounter {
       yield return null;
     }
   }
-  public override void EncounterEnd() {
-    base.EncounterEnd();
+  public override void Exit() {
+    base.Exit();
   }
 }

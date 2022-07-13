@@ -11,8 +11,8 @@ public class EnergyAmplifierUpgrade : UpgradeObject {
       Object = obj;
     }
 
-    public override void Add() => Brain.PlayerStats.AmmoStats.AmmoBaseDamage += 4;
+    public override void Add() => Brain.PlayerStats.AmmoStats.AmmoBaseDamage += 2;
     public override IEnumerator UpgradeRoutine() { yield return null; }
-    public override void Remove() => Brain.PlayerStats.AmmoStats.AmmoBaseDamage -= 4;
+    public override void Remove() => Brain.PlayerStats.AmmoStats.AmmoBaseDamage -= 2;
   }
 }

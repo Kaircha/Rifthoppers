@@ -34,7 +34,7 @@ public class EnergyOrblet : MonoBehaviour, IPoolable {
   }
 
   public void Collect() {
-    PoolManager.Instance.SoundEffects.Objects.Get().GetComponent<SoundEffect>().Play(AudioClip, 0.4f, 0.5f + RiftManager.Instance.Encounter.Progress);
+    PoolManager.Instance.SoundEffects.Objects.Get().GetComponent<SoundEffect>().Play(AudioClip, 0.4f, 0.5f + GameManager.Instance.CurrentWave.Encounter.Progress);
 
     RiftManager.Instance.Energy.Heal(Energy);
     RiftManager.Instance.ExperienceCollected(Experience);

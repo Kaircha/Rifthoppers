@@ -6200,9 +6200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Luck: 0
-  SpeedBase: 2
+  SpeedBase: 2.5
   SpeedMulti: 1
-  Firerate: 4
+  Firerate: 5
   IgniteChanceBase: 0
   IgniteChancePerLuck: 0
   PoisonChanceBase: 0

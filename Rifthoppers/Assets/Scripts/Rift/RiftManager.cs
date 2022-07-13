@@ -14,11 +14,9 @@ public class RiftManager : Singleton<RiftManager> {
   public RiftGenerator RiftGenerator;
   public RiftSpawner RiftSpawner;
   public GameObject WormBoss; // Temporary until this has a better place to live
-
+  
+  // Honestly might need to move to GameManager, not sure
   [HideInInspector] public List<Wave> Rift;
-  [HideInInspector] public int Index;
-  public Encounter Encounter => Rift[Index].Encounter;
-  public Coroutine EncounterRoutine;
 
   public Material RiftWaveUIMaterial;
   public EdgeCollider2D RiftEdge;
@@ -51,21 +49,6 @@ public class RiftManager : Singleton<RiftManager> {
 
   private void OnEnable() => Energy.OnDeath += Defeat;
   private void OnDisable() => Energy.OnDeath -= Defeat;
-
-  public void StartEncounter() {
-    Encounter.Area.Show();
-    Encounter.EncounterStart();
-    RiftSpawner.StartSpawning();
-    EncounterStarted();
-    EncounterRoutine = StartCoroutine(Encounter.EncounterRoutine());
-  }
-  public void EndEncounter() {
-    if (EncounterRoutine != null) StopCoroutine(EncounterRoutine);
-    Encounter.Area.Hide();
-    Encounter.EncounterEnd();
-    RiftSpawner.StopSpawning();
-    EncounterEnded();
-  }
 
   public void Restart() => GameManager.Instance.RiftRestart();
   public void Defeat(Entity entity) => GameManager.Instance.RiftDefeat();

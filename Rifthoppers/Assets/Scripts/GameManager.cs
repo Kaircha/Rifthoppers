@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(StateMachine))]
 public class GameManager : Singleton<GameManager> {
-  [HideInInspector] public StateMachine Machine;
+  public StateMachine Machine;
   public Volume PostProcessingVolume;
-
-  public LaboratoryState LaboratoryState = new();
-  public RiftState RiftState = new();
+  public Wave CurrentWave;
 
   private string Scene;
   private Coroutine GameplayLoop;
@@ -34,7 +32,7 @@ public class GameManager : Singleton<GameManager> {
 
   public IEnumerator LaboratoryRoutine(bool fromPortal = false) {
     yield return StartCoroutine(LoadScene("Laboratory"));
-    Machine.ChangeState(LaboratoryState);
+    LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterInteractState());
 
     if (fromPortal) {
       foreach (Player player in LobbyManager.Instance.Players) {
@@ -51,40 +49,52 @@ public class GameManager : Singleton<GameManager> {
 
   public IEnumerator RiftRoutine() {
     yield return StartCoroutine(LoadScene("Rift"));
-    Machine.ChangeState(RiftState);
-    RiftManager.Instance.Index = 0;
 
+    // For testing purposes
     LobbyManager.Instance.Players[0].Brain.Upgrades.Add(DebugUpgrade.Upgrade());
 
     foreach (Wave wave in RiftManager.Instance.Rift) {
-      RiftManager.Instance.StartEncounter();
-      yield return new WaitUntil(() => wave.Encounter.IsFinished);
-      RiftManager.Instance.EndEncounter();
-
-      if (wave.Index < RiftManager.Instance.Rift.Count - 1) {
-        yield return StartCoroutine(RewardManager.Instance.RewardRoutine());
-        //wave.Reward.Start();
-        //yield return StartCoroutine(wave.Reward.Routine());
-        //wave.Reward.End();
-      }
-
-      RiftManager.Instance.Index++;
+      CurrentWave = wave;
+      yield return EncounterRoutine(wave.Encounter);
+      yield return RewardRoutine(wave.Reward);
     }
 
+    Machine.ChangeState(new State()); // Create a new State to Reset values; safety fallback
+    ResetPlayers();
     GameplayLoop = StartCoroutine(LaboratoryRoutine(true));
   }
 
 
   public void RiftDefeat() {
     StopCoroutine(GameplayLoop);
+    Machine.ChangeState(new State());
+    ResetPlayers();
     GameplayLoop = StartCoroutine(LaboratoryRoutine());
   }
 
   public void RiftRestart() {
     StopCoroutine(GameplayLoop);
+    Machine.ChangeState(new State());
+    ResetPlayers();
     GameplayLoop = StartCoroutine(RiftRoutine());
   }
 
+  public void ResetPlayers() {
+    foreach (Player player in LobbyManager.Instance.Players) {
+      player.Brain.Upgrades.Clear();
+      player.Brain.Entity.RemoveEffects();
+    }
+  }
+
+  public IEnumerator EncounterRoutine(Encounter encounter) {
+    Machine.ChangeState(encounter);
+    yield return new WaitUntil(() => encounter.IsFinished);
+  }
+
+  public IEnumerator RewardRoutine(Reward reward) {
+    Machine.ChangeState(reward);
+    yield return new WaitForSeconds(reward.ExecutionTime);
+  }
 
   public IEnumerator LoadScene(string scene) {
     if (Scene != null) {

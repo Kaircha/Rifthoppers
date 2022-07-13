@@ -16,6 +16,5 @@ MonoBehaviour:
   Quote: Firerrate Up!
   Modifiers:
   - Type: 0
-    Description: +3 Firerate
+    Description: +1 Firerate
   Weight: 0
-  Entity: {fileID: 0}

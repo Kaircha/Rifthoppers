@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public abstract class State {
+public class State {
   public StateMachine Machine;
   public bool CanEnter = true;
   public bool CanExit = true;

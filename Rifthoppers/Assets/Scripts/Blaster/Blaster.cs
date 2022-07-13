@@ -60,7 +60,7 @@ public class Blaster : MonoBehaviour {
   }
 
   public IEnumerator FirerateRoutine() {
-    float firerate = (IsMoving ? 1 : 1.5f) * Brain.PlayerStats.Firerate;
+    float firerate = (IsMoving ? 0.8f : 1.5f) * Brain.PlayerStats.Firerate;
     CanShoot = false;
     yield return new WaitForSeconds(1 / firerate);
     CanShoot = true;

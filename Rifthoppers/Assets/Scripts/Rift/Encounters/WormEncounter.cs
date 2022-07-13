@@ -8,14 +8,14 @@ public class WormEncounter : Encounter {
   public override bool IsFinished => IsDead;
   public bool IsDead;
 
-  public override void EncounterStart() {
-    base.EncounterStart();
-    Brain = Instantiate(RiftManager.Instance.WormBoss, transform).GetComponent<WormBrain>();
+  public override void Enter() {
+    base.Enter();
+    Brain = Object.Instantiate(RiftManager.Instance.WormBoss, Area.transform).GetComponent<WormBrain>();
     IsDead = false;
     IsStarted = true;
   }
 
-  public override IEnumerator EncounterRoutine() {
+  public override IEnumerator Execute() {
     yield return new WaitForSeconds(0.5f);
     //Brain.Impulse.GenerateImpulse();
     // Play spooky rumbling noise
@@ -30,8 +30,8 @@ public class WormEncounter : Encounter {
     IsDead = true;
   }
 
-  public override void EncounterEnd() {
-    base.EncounterEnd();
+  public override void Exit() {
+    base.Exit();
     LobbyManager.Instance.SoloVCam.m_Lens.OrthographicSize = 10f;
   }
 }

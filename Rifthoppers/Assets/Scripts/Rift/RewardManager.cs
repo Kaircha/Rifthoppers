@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,9 @@ public class RewardManager : Singleton<RewardManager> {
 
   private Energy Energy => RiftManager.Instance.Energy;
 
-  public IEnumerator RewardRoutine() {
+  public void StartReward() {
     foreach (Player player in LobbyManager.Instance.Players)
-      player.Brain.Entity.transform.position = new(0, 4.5f, 0);
+      player.Brain.Entity.transform.position = new(0, 0, 0);
 
     for (float i = 0; i < 3; ++i) {
       UpgradeSurface upgrade = Instantiate(UpgradeTemplate, transform);
@@ -25,19 +26,21 @@ public class RewardManager : Singleton<RewardManager> {
       upgrade.Initialize(GetUpgrade());
       CurrentUpgrades.Add(upgrade.gameObject);
     }
+  }
 
+  public IEnumerator RewardRoutine() {
     float timer = 0;
     while (timer < TimeLimit) {
       float percentage = (TimeLimit - timer) * 100 / TimeLimit;
       Energy.Dynamic = Energy.Static = percentage;
 
       timer += Time.deltaTime;
-      yield return new WaitForEndOfFrame();
+      yield return null;
     }
+  }
 
-
+  public void EndReward() {
     foreach (UpgradePair pair in UpgradePairs) pair.Upgrades.Add(pair.Upgrade);
-
     foreach (GameObject obj in CurrentUpgrades) Destroy(obj);
     CurrentUpgrades.Clear();
   }
