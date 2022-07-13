@@ -8,6 +8,7 @@ public class Upgrades : MonoBehaviour {
 
   public void Add(Upgrade upgrade) {
     //DataManager.Instance.Set($"{ID}TimesObtained", DataManager.Instance.Get<int>($"{ID}TimesObtained") + 1);
+    Debug.Log("Added upgrade: " + upgrade);
     upgrade.Brain = Brain;
     upgrade.Add();
     upgrade.Coroutine = StartCoroutine(upgrade.UpgradeRoutine());
@@ -23,6 +24,7 @@ public class Upgrades : MonoBehaviour {
   public void Clear() {
     foreach (Upgrade upgrade in UpgradeList) {
       upgrade.Remove();
+      Debug.Log("Removed Upgrade: " + upgrade);
       StopCoroutine(upgrade.Coroutine);
     }
     UpgradeList = new();

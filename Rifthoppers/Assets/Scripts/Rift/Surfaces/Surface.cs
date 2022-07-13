@@ -9,8 +9,14 @@ public abstract class Surface : MonoBehaviour {
   // Sound made by walking on the surface
 
   public void OnTriggerEnter2D(Collider2D collision) {
+
+    if (((1 << collision.gameObject.layer) & Mask) == 0) return;
+
     if (collision.attachedRigidbody.TryGetComponent(out Entity entity)) {
       if (((1 << entity.gameObject.layer) & Mask) == 0) return;
+
+      if (Entities.Contains(entity)) return;
+
       Entities.Add(entity);
       SurfaceEnter(entity);
       entity.Sprite.material.SetFloat("_Submersion", Depth);

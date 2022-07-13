@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3447625682960785841}
   m_Layer: 6
   m_Name: Pickle
-  m_TagString: Untagged
+  m_TagString: Orbital
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

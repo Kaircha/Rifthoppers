@@ -472,5 +472,5 @@ MonoBehaviour:
   Depth: 0
   Mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1600
   Renderer: {fileID: 6365687033324126218}

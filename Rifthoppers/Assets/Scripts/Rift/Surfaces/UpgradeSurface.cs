@@ -21,7 +21,18 @@ public class UpgradeSurface : Surface {
 
   public override void SurfaceExit(Entity entity) {
     if (entity.TryGetComponent(out PlayerBrain brain)) {
-      RewardManager.Instance.UpgradePairs.Remove(new UpgradePair(brain.Upgrades, UpgradeObject.Upgrade()));
+      //RewardManager.Instance.UpgradePairs.Remove(new UpgradePair(brain.Upgrades, UpgradeObject.Upgrade()));
+
+      List<UpgradePair> toRemove = new();
+
+      foreach (UpgradePair pair in RewardManager.Instance.UpgradePairs)
+        if (pair.Upgrades == brain.Upgrades)
+          toRemove.Add(pair);
+
+      foreach (UpgradePair pair in toRemove)
+        RewardManager.Instance.UpgradePairs.Remove(pair);
+
+      toRemove.Clear();
     }
   }
 }
