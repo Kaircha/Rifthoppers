@@ -93,7 +93,7 @@ public class GameManager : Singleton<GameManager> {
 
   public IEnumerator RewardRoutine(Reward reward) {
     Machine.ChangeState(reward);
-    yield return new WaitForSeconds(reward.ExecutionTime);
+    yield return new WaitForSeconds(reward.ExecutionTime + 1f); // extra second for transition
   }
 
   public IEnumerator LoadScene(string scene) {

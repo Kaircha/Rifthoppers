@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public abstract class Encounter : State {
   public Area Area;
   public bool IsStarted;
-  public abstract bool IsFinished { get; }
+  public abstract bool IsFinished { get; set; }
   public abstract float Progress { get; }
 
   public ColorAdjustments ColorAdjustments;

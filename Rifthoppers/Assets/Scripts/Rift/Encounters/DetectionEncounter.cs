@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DetectionEncounter : Encounter {
   public Surface Surface;
-  public override bool IsFinished => Progress >= 1f && Surface.Entities.Count == LobbyManager.Instance.Players.Count;
+  public override bool IsFinished { get; set; }
+    //Progress >= 1f && Surface.Entities.Count == LobbyManager.Instance.Players.Count;
   public override float Progress => Mathf.Clamp01(Amount / Required);
   public float Amount = 0f;
   public float Required = 100f;

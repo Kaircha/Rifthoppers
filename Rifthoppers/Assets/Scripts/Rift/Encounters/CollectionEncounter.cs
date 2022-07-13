@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering.Universal;
 
 public class CollectionEncounter : Encounter {
-  public override bool IsFinished => Progress >= 1f;
+  public override bool IsFinished { get; set; }
   public override float Progress => Mathf.Clamp01(Amount / Required);
   public float Amount = 0f;
   public float Required = 100f;
@@ -17,10 +17,19 @@ public class CollectionEncounter : Encounter {
     RiftManager.Instance.OnExperienceCollected += OnExperienceCollected;
     OrbSpawnRoutine = GameManager.Instance.StartCoroutine(EnergyOrbSpawnRoutine());
     IsStarted = true;
+    IsFinished = false;
   }
 
   public override IEnumerator Execute() {
-    while (true) {
+    float timerA = 0f;
+    float speedA = Time.timeScale;
+    while (timerA < 1) {
+      Time.timeScale = Mathf.Lerp(speedA, 1f, timerA);
+      timerA += Time.deltaTime;
+      yield return null;
+    }
+
+    while (Progress < 1f) {
       RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
 
       Time.timeScale = RiftManager.Instance.EnergyMultiplier * RiftManager.Instance.SpeedMultiplier;
@@ -30,6 +39,18 @@ public class CollectionEncounter : Encounter {
       AudioMixerGroup.audioMixer.SetFloat("Lowpass", RiftManager.Instance.EnergyMultiplier * 5000f);
       yield return null;
     }
+
+    // Transition speed to 0.5f
+    float timerB = 0f;
+    float speedB = Time.timeScale;
+    while (timerB < 1) {
+      Time.timeScale = Mathf.Lerp(speedB, 0.5f, timerB);
+      timerB += Time.deltaTime;
+      yield return null;
+    }
+
+    // Confirm the end of the encounter
+    IsFinished = true;
   }
 
   public override void Exit() {

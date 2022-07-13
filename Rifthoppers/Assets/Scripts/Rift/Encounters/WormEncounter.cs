@@ -5,14 +5,13 @@ using UnityEngine;
 public class WormEncounter : Encounter {
   [HideInInspector] public WormBrain Brain;
   public override float Progress => 1f - Brain.Health.Percentage;
-  public override bool IsFinished => IsDead;
-  public bool IsDead;
+  public override bool IsFinished { get; set; }
 
   public override void Enter() {
     base.Enter();
     Brain = Object.Instantiate(RiftManager.Instance.WormBoss, Area.transform).GetComponent<WormBrain>();
-    IsDead = false;
     IsStarted = true;
+    IsFinished = false;
   }
 
   public override IEnumerator Execute() {
@@ -27,7 +26,7 @@ public class WormEncounter : Encounter {
     // Spawn Boss
     yield return new WaitUntil(() => Brain.Health.IsDead);
     // Wait
-    IsDead = true;
+    IsFinished = true;
   }
 
   public override void Exit() {
