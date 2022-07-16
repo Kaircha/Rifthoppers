@@ -18,8 +18,15 @@ public class Upgrades : MonoBehaviour {
   public void Remove(Upgrade upgrade) {
     upgrade.Remove();
     StopCoroutine(upgrade.Coroutine);
-    UpgradeList.Remove(upgrade);
+
+    foreach(Upgrade up in UpgradeList)
+      if(up.GetType().Name == upgrade.GetType().Name){
+        UpgradeList.Remove(up);
+        break;
+      }
   }
+
+  public List<Upgrade> Get() => UpgradeList;
 
   public void Clear() {
     foreach (Upgrade upgrade in UpgradeList) {

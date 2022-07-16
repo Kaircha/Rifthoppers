@@ -34,7 +34,6 @@ public class Blaster : MonoBehaviour {
   public void ShootingUpdated(Entity entity, AmmoStats stats, Barrel barrel) => OnShootingUpdated?.Invoke(entity, stats, barrel);
   public void ShootingStopped(Entity entity, AmmoStats stats, Barrel barrel) => OnShootingStopped?.Invoke(entity, stats, barrel);
 
-
   private void OnEnable() {
     Weapon = GetWeapon(Brain.PlayerStats.AmmoStats.WeaponType);
   }
@@ -60,8 +59,10 @@ public class Blaster : MonoBehaviour {
   }
 
   public IEnumerator FirerateRoutine() {
+
     float firerate = (IsMoving ? 0.8f : 1.5f) * Brain.PlayerStats.Firerate;
     CanShoot = false;
+    yield return new WaitUntil(() => !GameManager.Instance.preventShooting);
     yield return new WaitForSeconds(1 / firerate);
     CanShoot = true;
   }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class GameManager : Singleton<GameManager> {
 
   // TEMPORARY
   public UpgradeObject DebugUpgrade;
+  [NonSerialized] public bool preventShooting = false; // in order to stop shooting while dragging the dev panel
 
   public override void Awake() {
     base.Awake();
