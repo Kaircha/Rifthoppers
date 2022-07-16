@@ -22,4 +22,17 @@ public class DragPanel : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
   {
     GameManager.Instance.preventShooting = false;
   }
+
+  private float timeMulti, timeScale;
+
+  public void OnExpand(){
+    timeMulti = RiftManager.Instance.SpeedMultiplier;
+    timeScale = Time.timeScale;
+    RiftManager.Instance.SpeedMultiplier = Time.timeScale = 0;
+  }
+
+  public void OnCollapse(){
+    RiftManager.Instance.SpeedMultiplier = timeMulti;
+    Time.timeScale = timeScale;
+  }
 }
