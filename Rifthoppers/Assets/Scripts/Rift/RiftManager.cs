@@ -25,13 +25,14 @@ public class RiftManager : Singleton<RiftManager> {
   [Range(0.5f, 3f)] public float SpeedMultiplier = 1;
 
   public float EnergyMultiplier => Mathf.Clamp(4 * Energy.Percentage, 0.1f, 1f);
+  [NonSerialized] public int xpMulti = 1; // set to 0 in order to freeze progress - dev console
       
   #region Events
   public void EnergyOrbSpawned() => OnEnergyOrbSpawned?.Invoke();
   public event Action OnEnergyOrbSpawned;
   public void EnergyCollected(float amount) => OnEnergyCollected?.Invoke(amount);
   public event Action<float> OnEnergyCollected;
-  public void ExperienceCollected(float amount) => OnExperienceCollected?.Invoke(amount);
+  public void ExperienceCollected(float amount) => OnExperienceCollected?.Invoke(amount * xpMulti);
   public event Action<float> OnExperienceCollected;
   public void EncounterStarted() => OnEncounterStarted?.Invoke();
   public event Action OnEncounterStarted;
