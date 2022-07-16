@@ -21,6 +21,7 @@ public class RewardManager : Singleton<RewardManager> {
     //foreach (Player player in LobbyManager.Instance.Players)
     //  player.Brain.Entity.transform.position = new(0, 0, 0);
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterInteractState());
+    AudioManager.Instance.PlayMusic("Reward");
 
     for (float i = 0; i < 3; ++i) {
       UpgradeSurface upgrade = Instantiate(UpgradeTemplate, transform);

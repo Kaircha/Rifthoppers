@@ -24,9 +24,9 @@ public class AudioManager : Singleton<AudioManager> {
   // Contains all audio channels in the AudioMixerGroup
   public static readonly string[] Channels = { "MasterVolume", "MusicVolume", "SFXVolume" };
 
-  private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
-  private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
-  private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => PlayMusic(scene.name);
+  //private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+  //private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+  //private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => PlayMusic(scene.name);
 
   private void Start() {
     foreach (string channel in Channels) {

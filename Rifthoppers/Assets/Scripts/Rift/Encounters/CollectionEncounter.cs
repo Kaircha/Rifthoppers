@@ -40,6 +40,7 @@ public class CollectionEncounter : Encounter {
       AudioMixerGroup.audioMixer.SetFloat("Lowpass", RiftManager.Instance.EnergyMultiplier * 5000f);
       yield return null;
     }
+    RiftManager.Instance.ProgressBar.UpdateBar(1f);
 
     // Transition speed to 0.5f
     float timerB = 0f;

@@ -16,6 +16,7 @@ public abstract class Encounter : State {
 
   public override void Enter() {
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterCombatState());
+    AudioManager.Instance.PlayMusic("Second Wave");
     RiftManager.Instance.Energy.Heal();
     RiftManager.Instance.Energy.CanTakeDamage = true;
     RiftManager.Instance.EncounterStarted();

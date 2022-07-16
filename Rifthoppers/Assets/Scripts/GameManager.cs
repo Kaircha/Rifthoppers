@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager> {
 
   public IEnumerator LaboratoryRoutine(bool fromPortal = false) {
     yield return StartCoroutine(LoadScene("Laboratory"));
+    AudioManager.Instance.PlayMusic("Laboratory");
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterInteractState());
 
     if (fromPortal) {
