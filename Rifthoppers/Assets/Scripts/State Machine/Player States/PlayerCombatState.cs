@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombatState : State {
   public PlayerBrain Brain;
   private bool IsShooting => Brain.Input.Shoot;
+  private Orbitals Orbitals => Brain.Orbitals;
   private Blaster Blaster => Brain.Blaster;
   private Power Power => Brain.Power;
   private Dodge Dodge => Brain.Dodge;
@@ -19,6 +20,7 @@ public class PlayerCombatState : State {
     Blaster.gameObject.SetActive(true);
     Power.gameObject.SetActive(true);
     Dodge.gameObject.SetActive(true);
+    Orbitals.List.ForEach(orbital => orbital.DoBehavior = true);
 
     // These could technically also be started OnEnable on their own object
     Machine.StartCoroutine(Blaster.BlasterRoutine());
@@ -46,6 +48,7 @@ public class PlayerCombatState : State {
     Power.gameObject.SetActive(false);
     Blaster.gameObject.SetActive(false);
     Dodge.gameObject.SetActive(false);
+    Orbitals.List.ForEach(orbital => orbital.DoBehavior = false);
   }
 
   public void OnDamageTaken(Entity dealer, Entity receiver, float amount, bool isDoT) {

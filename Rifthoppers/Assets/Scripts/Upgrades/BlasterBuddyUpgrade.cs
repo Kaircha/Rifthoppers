@@ -19,7 +19,7 @@ public class BlasterBuddyUpgrade : UpgradeObject {
     }
 
     public override void Add() {
-      GameObject blasterBuddy = GameObject.Instantiate(Prefab, Brain.Orbitals.transform);
+      GameObject blasterBuddy = Instantiate(Prefab, Brain.Orbitals.transform);
       SimpleBlaster = blasterBuddy.GetComponent<SimpleBlaster>();
       SimpleBlaster.Entity = Brain.Entity;
       SimpleBlaster.ShootingStarted(Brain.Entity, Brain.PlayerStats.AmmoStats, SimpleBlaster.Barrels[0]);
@@ -29,6 +29,7 @@ public class BlasterBuddyUpgrade : UpgradeObject {
 
     public override IEnumerator UpgradeRoutine() {
       while (true) {
+        yield return new WaitUntil(() => Orbital.DoBehavior);
         SimpleBlaster.ShootingUpdated(Brain.Entity, Brain.PlayerStats.AmmoStats, SimpleBlaster.Barrels[0]);
         yield return new WaitForSeconds(2f / Brain.PlayerStats.Firerate);
       }

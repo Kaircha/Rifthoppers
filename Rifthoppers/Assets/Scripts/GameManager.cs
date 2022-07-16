@@ -29,7 +29,6 @@ public class GameManager : Singleton<GameManager> {
     GameplayLoop = StartCoroutine(LaboratoryRoutine());
   }
 
-
   public IEnumerator LaboratoryRoutine(bool fromPortal = false) {
     yield return StartCoroutine(LoadScene("Laboratory"));
     LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterInteractState());
@@ -51,7 +50,7 @@ public class GameManager : Singleton<GameManager> {
     yield return StartCoroutine(LoadScene("Rift"));
 
     // For testing purposes
-    LobbyManager.Instance.Players[0].Brain.Upgrades.Add(DebugUpgrade.Upgrade());
+    LobbyManager.Instance.Players.ForEach(player => player.Brain.Upgrades.Add(DebugUpgrade.Upgrade()));
 
     foreach (Wave wave in RiftManager.Instance.Rift) {
       CurrentWave = wave;
@@ -71,7 +70,6 @@ public class GameManager : Singleton<GameManager> {
     ResetPlayers();
     GameplayLoop = StartCoroutine(LaboratoryRoutine());
   }
-
   public void RiftRestart() {
     StopCoroutine(GameplayLoop);
     Machine.ChangeState(new State());
@@ -93,7 +91,7 @@ public class GameManager : Singleton<GameManager> {
 
   public IEnumerator RewardRoutine(Reward reward) {
     Machine.ChangeState(reward);
-    yield return new WaitForSeconds(reward.ExecutionTime + 1f); // extra second for transition
+    yield return new WaitForSeconds(reward.ExecutionTime + 2f); // extra second for transition
   }
 
   public IEnumerator LoadScene(string scene) {

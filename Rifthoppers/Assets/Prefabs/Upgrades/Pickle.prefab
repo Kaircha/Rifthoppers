@@ -48,7 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Collider: {fileID: 7467605738587111070}
   Renderer: {fileID: 3447625682960785841}
-  KeepUpright: 1
+  DoRotation: 0
+  DoBehavior: 1
+  Angle: 0
 --- !u!58 &7467605738587111070
 CircleCollider2D:
   m_ObjectHideFlags: 0

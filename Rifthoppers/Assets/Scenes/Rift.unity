@@ -7362,6 +7362,7 @@ MonoBehaviour:
   Energy: {fileID: 0}
   RiftGenerator: {fileID: 585282556}
   RiftSpawner: {fileID: 554852278}
+  ProgressBar: {fileID: 2095550839}
   WormBoss: {fileID: 7863179210938364265, guid: aab4a1cc33661c741ad1e5dea54520c3, type: 3}
   Rift: []
   RiftWaveUIMaterial: {fileID: 2100000, guid: d556bfdb8822e4d4a915b42f9cb5fde8, type: 2}
@@ -7914,7 +7915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fill: {fileID: 818853262}
-  Speed: 5
 --- !u!114 &2095550840
 MonoBehaviour:
   m_ObjectHideFlags: 0

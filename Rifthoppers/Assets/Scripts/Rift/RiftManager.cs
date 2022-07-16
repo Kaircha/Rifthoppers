@@ -13,6 +13,7 @@ public class RiftManager : Singleton<RiftManager> {
   [HideInInspector] public Energy Energy;
   public RiftGenerator RiftGenerator;
   public RiftSpawner RiftSpawner;
+  public ProgressBar ProgressBar;
   public GameObject WormBoss; // Temporary until this has a better place to live
   
   // Honestly might need to move to GameManager, not sure

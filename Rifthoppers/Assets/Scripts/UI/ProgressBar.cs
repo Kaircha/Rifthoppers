@@ -4,17 +4,6 @@ using UnityEngine;
 
 public class ProgressBar : MonoBehaviour {
   public RectTransform Fill;
-  public float Speed = 5f;
-  private float Dynamic;
-  public bool IsStarted => GameManager.Instance.CurrentWave.Encounter.IsStarted;
-  public bool IsFinished => GameManager.Instance.CurrentWave.Encounter.IsFinished;
-  public float Progress => GameManager.Instance.CurrentWave.Encounter.Progress;
-
-  // Maybe this should be updated by the Encounter
-  private IEnumerator Start() {
-    yield return new WaitUntil(() => GameManager.Instance.CurrentWave != null);
-    yield return new WaitUntil(() => IsStarted);
-    Dynamic = Mathf.Lerp(Dynamic, Progress, Speed * Time.deltaTime);
-    Fill.transform.localScale = new Vector3(Dynamic, 1, 1);
-  }
+  //public float Speed = 5f;
+  public void UpdateBar(float progress) => Fill.transform.localScale = new Vector3(Mathf.Clamp01(progress), 1, 1);
 }

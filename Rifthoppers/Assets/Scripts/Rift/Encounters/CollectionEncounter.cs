@@ -31,6 +31,7 @@ public class CollectionEncounter : Encounter {
 
     while (Progress < 1f) {
       RiftManager.Instance.Energy.Hurt(null, null, 5f * Time.deltaTime, true);
+      RiftManager.Instance.ProgressBar.UpdateBar(GameManager.Instance.CurrentWave.Encounter.Progress);
 
       Time.timeScale = RiftManager.Instance.EnergyMultiplier * RiftManager.Instance.SpeedMultiplier;
       ColorAdjustments.contrast.Override(25 * (1 - RiftManager.Instance.EnergyMultiplier));

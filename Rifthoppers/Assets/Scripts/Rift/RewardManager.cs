@@ -20,6 +20,7 @@ public class RewardManager : Singleton<RewardManager> {
   public void StartReward() {
     //foreach (Player player in LobbyManager.Instance.Players)
     //  player.Brain.Entity.transform.position = new(0, 0, 0);
+    LobbyManager.Instance.Players.ForEach(player => player.Brain.EnterInteractState());
 
     for (float i = 0; i < 3; ++i) {
       UpgradeSurface upgrade = Instantiate(UpgradeTemplate, transform);
@@ -43,12 +44,13 @@ public class RewardManager : Singleton<RewardManager> {
 
     float timerB = 0;
     while (timerB < TimeLimit) {
-      float percentage = (TimeLimit - timerB) * 100 / TimeLimit;
-      Energy.Dynamic = Energy.Static = percentage;
-
+      float percentage = Mathf.Clamp01((TimeLimit - timerB) / TimeLimit);
+      RiftManager.Instance.ProgressBar.UpdateBar(percentage);
+      RiftManager.Instance.Energy.Heal(10f * Time.deltaTime);
       timerB += Time.deltaTime;
       yield return null;
     }
+    RiftManager.Instance.ProgressBar.UpdateBar(0f);
 
     float timerC = 0f;
     float speedC = Time.timeScale;
@@ -64,6 +66,8 @@ public class RewardManager : Singleton<RewardManager> {
     foreach (GameObject obj in CurrentUpgrades) Destroy(obj);
     CurrentUpgrades.Clear();
 
+    // Temporary; Shouldn't be able to enter the lab from the Reward section
+    Time.timeScale = 1f;
     VirtualCamera.Priority = 0;
   }
 
