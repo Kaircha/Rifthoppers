@@ -16,11 +16,12 @@ public class Upgrades : MonoBehaviour {
   }
 
   public void Remove(Upgrade upgrade) {
-    upgrade.Remove();
-    StopCoroutine(upgrade.Coroutine);
 
     foreach(Upgrade up in UpgradeList)
-      if(up.GetType().Name == upgrade.GetType().Name){
+      if(up.GetType().Name == upgrade.GetType().Name)
+      {
+        up.Remove();
+        StopCoroutine(up.Coroutine);
         UpgradeList.Remove(up);
         break;
       }
